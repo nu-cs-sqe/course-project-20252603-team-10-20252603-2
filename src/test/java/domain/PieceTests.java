@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.Test;
 import domain.piece.*;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PieceTests {
@@ -21,5 +22,13 @@ public class PieceTests {
         Piece piece2 = new Pawn(PieceColor.WHITE);
         boolean sameColor = piece1.isSameColor(piece2);
         assertTrue(sameColor);
+    }
+
+    @Test
+    public void isSameColor_diffColorsCheckingWhite_returnFalse(){
+        Piece piece1 = new Pawn(PieceColor.BLACK);
+        Piece piece2 = new Pawn(PieceColor.WHITE);
+        boolean sameColor = piece1.isSameColor(piece2);
+        assertFalse(sameColor);
     }
 }
