@@ -6,10 +6,10 @@
 
 |             | System under test | Expected output | Implemented? |
 |-------------|-------------------|-----------------|--------------|
-| Test Case 1 | "B", "B"          | True            | no           |
-| Test Case 2 | "B", "W"          | False           | no           |
-| Test Case 3 | "W", "B"          | False           | no           |
-| Test Case 4 | "W", "W"          | True            | no           |
+| Test Case 1 | "B", "B"          | True            | yes          |
+| Test Case 2 | "B", "W"          | False           | yes          |
+| Test Case 3 | "W", "B"          | False           | yes          |
+| Test Case 4 | "W", "W"          | True            | yes          |
 
 
 ### STEPS FOR BVA: `isSameColor()`
