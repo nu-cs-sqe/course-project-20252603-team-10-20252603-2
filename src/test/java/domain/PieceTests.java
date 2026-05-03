@@ -31,4 +31,12 @@ public class PieceTests {
         boolean sameColor = piece1.isSameColor(piece2);
         assertFalse(sameColor);
     }
+
+    @Test
+    public void isSameColor_diffColorsCheckingBlack_returnFalse(){
+        Piece piece1 = new Pawn(PieceColor.WHITE);
+        Piece piece2 = new Pawn(PieceColor.BLACK);
+        boolean sameColor = piece1.isSameColor(piece2);
+        assertFalse(sameColor);
+    }
 }
