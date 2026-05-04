@@ -1,5 +1,8 @@
 package domain.piece;
 
+import domain.Board;
+import domain.Location;
+
 public abstract class Piece {
     private final PieceType type;
     private final PieceColor color;
@@ -22,6 +25,8 @@ public abstract class Piece {
     }
 
     public abstract Piece makeCopy();
+
+    public abstract boolean isValidMove(Location start, Location end, Board board);
 
     @Override
     public String toString() {

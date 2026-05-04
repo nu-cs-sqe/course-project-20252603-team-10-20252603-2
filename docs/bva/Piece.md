@@ -42,7 +42,7 @@
 
 | Test Number    | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern | Expected output | Implemented? |
 |----------------|---------|----------------|-----------------|--------------------------|----------------|------------------|-----------------|--------------|
-| 1              | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square      | False           | no           |
+| 1              | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square      | False           | yes          |
 | 2              | "BLACK" | [7][7]         | [7][7]          | EMPTY                    | True           | same square      | False           | no           |
 | 3              | "WHITE" | [0][0]         | [7][7]          | EMPTY                    | True           | too far          | False           | no           |
 | 4              | "BLACK" | [7][7]         | [6][7]          | EMPTY                    | True           | one forward      | True            | no           |
