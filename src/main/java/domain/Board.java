@@ -11,12 +11,15 @@ public class Board {
     private Piece[][] pieces;
 
 
-    public Board(){
-        initializeBoard();
+    public Board(boolean init){
+        pieces = new Piece[TOTAL_ROWS][TOTAL_COLS];
+        if (init) {
+            initializeBoard();
+        }
+
     }
 
     private void initializeBoard(){
-        pieces = new Piece[TOTAL_ROWS][TOTAL_COLS];
 
         // Initialize pawns
         for (int i = 0; i < TOTAL_COLS; i++) {
