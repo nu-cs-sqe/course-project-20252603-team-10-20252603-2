@@ -12,4 +12,13 @@ public class PlayerTests {
         Color actual = player.getPlayerColor();
         assertEquals(actual, Color.WHITE);
     }
+
+    @Test
+    public void getPoints_ZeroPoints_ReturnsZero(){
+        Player player = new Player(Color.WHITE);
+        Number actual = player.getPoints();
+        Number expected = 0;
+
+        assertEquals(actual, expected);
+    }
 }
