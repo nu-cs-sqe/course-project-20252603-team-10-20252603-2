@@ -23,6 +23,20 @@ public class PawnTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Pawn_sameSquare77edge_returnFalse() {
+        Piece pawn = new Pawn(PieceColor.BLACK);
+
+        Location start = new Location(7, 7);
+        Location chosen = new Location(7, 7);
+
+        Board board = new Board();
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 }
 
