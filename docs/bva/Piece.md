@@ -38,7 +38,7 @@
 
 
 
-### Method under test: `isValidMove()` for Pawn
+### Method under test: `isValidMove()` for Pawn -- EXEMPLAR FOR OTHER PIECE TYPE BVA
 
 | Test Number    | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern | Expected output | Implemented? |
 |----------------|---------|----------------|-----------------|--------------------------|----------------|------------------|-----------------|--------------|
