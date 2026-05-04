@@ -40,28 +40,28 @@
 
 ### Method under test: `isValidMove()` for Pawn -- EXEMPLAR FOR OTHER PIECE TYPE BVA
 
-| Test Number    | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern | Expected output | Implemented? |
-|----------------|---------|----------------|-----------------|--------------------------|----------------|------------------|-----------------|--------------|
-| 1              | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square      | False           | yes          |
-| 2              | "BLACK" | [7][7]         | [7][7]          | EMPTY                    | True           | same square      | False           | yes          |
-| 3              | "WHITE" | [0][0]         | [7][7]          | EMPTY                    | True           | too far          | False           | yes          |
-| 4              | "BLACK" | [7][7]         | [6][7]          | EMPTY                    | True           | one forward      | True            | no           |
-| 5              | "WHITE" | [0][0]         | [0][2]          | EMPTY                    | True           | two forward      | True            | no           |
-| 6              | "WHITE" | [0][0]         | [0][2]          | enemy                    | False          | two forward      | False           | no           |
-| 7              | "BLACK" | [7][6]         | [6][7]          | enemy                    | False          | one diag right   | True            | no           |
-| 8              | "BLACK" | [7][6]         | [6][5]          | enemy                    | False          | one diag left    | True            | no           |
-| 9              | "BLACK" | [7][6]         | [6][5]          | EMPTY                    | True           | one diag left    | False           | no           |
-| 10             | "BLACK" | [7][6]         | [6][5]          | friendly                 | false          | one diag left    | False           | no           |
-| 11             | "BLACK" | [6][6]         | [7][6]          | EMPTY                    | True           | backward         | False           | no           |
-| 12             | "BLACK" | [6][6]         | [6][7]          | EMPTY                    | True           | sideways         | False           | no           |
-| 13 (CANT SET)  | "BLACK" | [-1][3]        | [6][7]          | EMPTY                    | True           | sideways         | False           | no           |
-| 14 (CANT SET)  | "BLACK" | [3][-1]        | [6][7]          | EMPTY                    | True           | sideways         | False           | no           |
-| 15 (CANT SET)  | "BLACK" | [8][3]         | [6][7]          | EMPTY                    | True           | sideways         | False           | no           |
-| 16 (CANT SET)  | "BLACK" | [3][8]         | [6][7]          | EMPTY                    | True           | sideways         | False           | no           |
-| 17 (CANT SET)  | "BLACK" | [6][6]         | [-1][3]         | EMPTY                    | True           | sideways         | False           | no           |
-| 18 (CANT SET)  | "BLACK" | [6][6]         | [3][-1]         | EMPTY                    | True           | sideways         | False           | no           |
-| 19 (CANT SET)  | "BLACK" | [6][6]         | [8][3]          | EMPTY                    | True           | sideways         | False           | no           |
-| 20 (CANT SET)  | "BLACK" | [6][6]         | [3][8]          | EMPTY                    | True           | sideways         | False           | no           |
+| Test Number    | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern      | Expected output | Implemented? |
+|----------------|---------|----------------|-----------------|--------------------------|----------------|-----------------------|-----------------|--------------|
+| 1              | "WHITE" | x=0, y=0       | x=0, y=0        | EMPTY                    | True           | same square           | False           | yes          |
+| 2              | "BLACK" | x=7, y=7       | x=7, y=7        | EMPTY                    | True           | same square           | False           | yes          |
+| 3              | "WHITE" | x=0, y=0       | x=7, y=7        | EMPTY                    | True           | too far               | False           | yes          |
+| 4              | "BLACK" | x=7, y=7       | x=7, y=6        | EMPTY                    | True           | one forward           | True            | no           |
+| 5              | "WHITE" | x=0, y=0       | x=0, y=2        | EMPTY                    | True           | two forward           | True            | no           |
+| 6              | "WHITE" | x=0, y=0       | x=0, y=2        | enemy                    | False          | two forward           | False           | no           |
+| 7              | "BLACK" | x=6 y=7        | x=7, y=6        | enemy                    | False          | one diag right        | True            | no           |
+| 8              | "BLACK" | x=6 y=7        | x=5, y=6        | enemy                    | False          | one diag left         | True            | no           |
+| 9              | "BLACK" | x=6 y=7        | x=5, y=6        | EMPTY                    | True           | one diag left         | False           | no           |
+| 10             | "BLACK" | x=6 y=7        | x=5, y=6        | friendly                 | false          | one diag left         | False           | no           |
+| 11             | "BLACK" | x=6 y=6        | x=6 y=7         | EMPTY                    | True           | backward              | False           | no           |
+| 12             | "BLACK" | x=6 y=6        | x=5 y=6         | EMPTY                    | True           | sideways              | False           | no           |
+| 13 (CANT SET)  | "BLACK" | x=-1 y=3       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 14 (CANT SET)  | "BLACK" | x=3 y=-1       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 15 (CANT SET)  | "BLACK" | x=3 y=8        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 16 (CANT SET)  | "BLACK" | x=8 y=3        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 17 (CANT SET)  | "BLACK" | x=6 y=6        | x=-1 y=3        | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 18 (CANT SET)  | "BLACK" | x=6 y=6        | x=3 y=-1        | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 19 (CANT SET)  | "BLACK" | x=6 y=6        | x=8 y=3         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 20 (CANT SET)  | "BLACK" | x=6 y=6        | x=3 y=8         | EMPTY                    | True           | N/A, can't set        | False           | no           |
 
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
