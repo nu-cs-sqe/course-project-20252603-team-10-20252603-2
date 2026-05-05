@@ -28,25 +28,17 @@ public class Pawn extends Piece {
         int dist_x = end.getX() - start.getX();
         int dist_y = end.getY() - start.getY();
 
-        boolean oneForward = false;
-        boolean twoForward = false;
-        boolean oneForwardDiagonal = false;
-
-        if (dist_x == direction && dist_y == 0) {
-            oneForward = true;
-        }
-
-        if (dist_x == direction * 2 && dist_y == 0) {
-            twoForward = true;
-        }
-
-        if (dist_x == direction && Math.abs(dist_y) == 1) {
-            oneForwardDiagonal = true;
-        }
+        boolean oneForward = (dist_x == direction && dist_y == 0);
+        boolean twoForward = (dist_x == direction * 2 && dist_y == 0);
+        boolean oneForwardDiagonal = (dist_x == direction && Math.abs(dist_y) == 1);
 
         if (!(oneForward || oneForwardDiagonal || twoForward)) {
             return false;
         }
+
+        //  is there a piece blocking?
+        if (oneForward && board.isPieceHere(end)) return false;
+        if (twoForward && board.isPieceHere(end)) return false;
 
         return true;
     }
