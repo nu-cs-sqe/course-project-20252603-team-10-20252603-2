@@ -23,7 +23,7 @@ public class Pawn extends Piece {
         }
 
         //  is it too far?
-        int direction = (getColor() == PieceColor.WHITE) ? 1 : -1;
+        int direction = (getColor() == PieceColor.WHITE) ? -1 : 1;
 
         int dist_x = end.getX() - start.getX();
         int dist_y = end.getY() - start.getY();

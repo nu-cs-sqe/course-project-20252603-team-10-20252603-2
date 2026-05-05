@@ -6,6 +6,7 @@ import domain.piece.PieceColor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PawnTests {
 
@@ -49,6 +50,20 @@ public class PawnTests {
         boolean result = pawn.isValidMove(start, chosen, board);
 
         assertFalse(result);
+    }
+
+    @Test
+    public void isValidMove_Pawn_oneForward_returnTrue() {
+        Piece pawn = new Pawn(PieceColor.WHITE);
+
+        Location start = new Location(7, 7);
+        Location chosen = new Location(6, 7);
+
+        Board board = new Board(false);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertTrue(result);
     }
 
 
