@@ -50,7 +50,7 @@
 | 6              | "BLACK" | x=0, y=0       | x=2, y=0        | enemy                    | False          | two forward           | False                  | yes          |
 | 7              | "WHITE" | x=7 y=6        | x=6, y=7        | enemy                    | False          | one diag right        | True                   | yes          |
 | 8              | "WHITE" | x=7 y=6        | x=6, y=5        | enemy                    | False          | one diag left         | True                   | yes          |
-| 9              | "WHITE" | x=7 y=6        | x=6, y=5        | EMPTY                    | True           | one diag left         | False                  | no           |
+| 9              | "WHITE" | x=7 y=6        | x=6, y=5        | EMPTY                    | True           | one diag left         | False                  | yes          |
 | 10             | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false          | one diag left         | False                  | no           |
 | 11             | "WHITE" | x=6 y=6        | x=7 y=6         | EMPTY                    | True           | backward              | False                  | no           |
 | 12             | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True           | sideways              | False                  | no           |
