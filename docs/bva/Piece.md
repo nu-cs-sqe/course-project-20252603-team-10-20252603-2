@@ -54,15 +54,6 @@
 | 10             | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false          | one diag left         | False                  | yes          |
 | 11             | "WHITE" | x=6 y=6        | x=7 y=6         | EMPTY                    | True           | backward              | False                  | yes          |
 | 12             | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True           | sideways              | False                  | yes          |
-| 13 (CANT SET)  | "WHITE" | x=-1 y=3       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
-| 14 (CANT SET)  | "WHITE" | x=3 y=-1       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
-| 15 (CANT SET)  | "WHITE" | x=3 y=8        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
-| 16 (CANT SET)  | "WHITE" | x=8 y=3        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
-| 17 (CANT SET)  | "WHITE" | x=6 y=6        | x=-1 y=3        | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
-| 18 (CANT SET)  | "WHITE" | x=6 y=6        | x=3 y=-1        | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
-| 19 (CANT SET)  | "WHITE" | x=6 y=6        | x=8 y=3         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
-| 20 (CANT SET)  | "WHITE" | x=6 y=6        | x=3 y=8         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
-
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
 
