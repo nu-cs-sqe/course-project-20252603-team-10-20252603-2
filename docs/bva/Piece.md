@@ -53,7 +53,7 @@
 | 9              | "WHITE" | x=7 y=6        | x=6, y=5        | EMPTY                    | True           | one diag left         | False                  | yes          |
 | 10             | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false          | one diag left         | False                  | yes          |
 | 11             | "WHITE" | x=6 y=6        | x=7 y=6         | EMPTY                    | True           | backward              | False                  | yes          |
-| 12             | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True           | sideways              | False                  | no           |
+| 12             | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True           | sideways              | False                  | yes          |
 | 13 (CANT SET)  | "WHITE" | x=-1 y=3       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
 | 14 (CANT SET)  | "WHITE" | x=3 y=-1       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |
 | 15 (CANT SET)  | "WHITE" | x=3 y=8        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | N/A, can't set         | no           |

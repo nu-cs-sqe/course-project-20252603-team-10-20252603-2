@@ -176,6 +176,20 @@ public class PawnTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Pawn_sideways_returnFalse() {
+        Piece pawn = new Pawn(PieceColor.WHITE);
+
+        Location start = new Location(6, 6);
+        Location chosen = new Location(6, 5);
+
+        Board board = new Board(false);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 }
 
