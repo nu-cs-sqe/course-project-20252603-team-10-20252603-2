@@ -70,6 +70,11 @@ public class Board {
         return pieces[location.getX()][location.getY()] != null;
     }
 
+    // TODO: requires BVA and completed code (basic functionality written for isValidMove)
+    public Piece getPiece(Location location) {
+        return pieces[location.getX()][location.getY()];
+    }
+
     // TODO: requires BVA and testing (basic functionality written for isValidMove)
     public void setPiece(Location location, Piece piece) {
         pieces[location.getX()][location.getY()] = piece;
