@@ -45,23 +45,23 @@
 | 1              | "WHITE" | x=0, y=0       | x=0, y=0        | EMPTY                    | True           | same square           | False           | yes          |
 | 2              | "BLACK" | x=7, y=7       | x=7, y=7        | EMPTY                    | True           | same square           | False           | yes          |
 | 3              | "WHITE" | x=0, y=0       | x=7, y=7        | EMPTY                    | True           | too far               | False           | yes          |
-| 4              | "BLACK" | x=7, y=7       | x=7, y=6        | EMPTY                    | True           | one forward           | True            | no           |
-| 5              | "WHITE" | x=0, y=0       | x=0, y=2        | EMPTY                    | True           | two forward           | True            | no           |
-| 6              | "WHITE" | x=0, y=0       | x=0, y=2        | enemy                    | False          | two forward           | False           | no           |
-| 7              | "BLACK" | x=6 y=7        | x=7, y=6        | enemy                    | False          | one diag right        | True            | no           |
-| 8              | "BLACK" | x=6 y=7        | x=5, y=6        | enemy                    | False          | one diag left         | True            | no           |
-| 9              | "BLACK" | x=6 y=7        | x=5, y=6        | EMPTY                    | True           | one diag left         | False           | no           |
-| 10             | "BLACK" | x=6 y=7        | x=5, y=6        | friendly                 | false          | one diag left         | False           | no           |
-| 11             | "BLACK" | x=6 y=6        | x=6 y=7         | EMPTY                    | True           | backward              | False           | no           |
-| 12             | "BLACK" | x=6 y=6        | x=5 y=6         | EMPTY                    | True           | sideways              | False           | no           |
-| 13 (CANT SET)  | "BLACK" | x=-1 y=3       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
-| 14 (CANT SET)  | "BLACK" | x=3 y=-1       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
-| 15 (CANT SET)  | "BLACK" | x=3 y=8        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
-| 16 (CANT SET)  | "BLACK" | x=8 y=3        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
-| 17 (CANT SET)  | "BLACK" | x=6 y=6        | x=-1 y=3        | EMPTY                    | True           | N/A, can't set        | False           | no           |
-| 18 (CANT SET)  | "BLACK" | x=6 y=6        | x=3 y=-1        | EMPTY                    | True           | N/A, can't set        | False           | no           |
-| 19 (CANT SET)  | "BLACK" | x=6 y=6        | x=8 y=3         | EMPTY                    | True           | N/A, can't set        | False           | no           |
-| 20 (CANT SET)  | "BLACK" | x=6 y=6        | x=3 y=8         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 4              | "WHITE" | x=7, y=7       | x=7, y=6        | EMPTY                    | True           | one forward           | True            | yes          |
+| 5              | "BLACK" | x=0, y=0       | x=0, y=2        | EMPTY                    | True           | two forward           | True            | no           |
+| 6              | "BLACK" | x=0, y=0       | x=0, y=2        | enemy                    | False          | two forward           | False           | no           |
+| 7              | "WHITE" | x=6 y=7        | x=7, y=6        | enemy                    | False          | one diag right        | True            | no           |
+| 8              | "WHITE" | x=6 y=7        | x=5, y=6        | enemy                    | False          | one diag left         | True            | no           |
+| 9              | "WHITE" | x=6 y=7        | x=5, y=6        | EMPTY                    | True           | one diag left         | False           | no           |
+| 10             | "WHITE" | x=6 y=7        | x=5, y=6        | friendly                 | false          | one diag left         | False           | no           |
+| 11             | "WHITE" | x=6 y=6        | x=6 y=7         | EMPTY                    | True           | backward              | False           | no           |
+| 12             | "WHITE" | x=6 y=6        | x=5 y=6         | EMPTY                    | True           | sideways              | False           | no           |
+| 13 (CANT SET)  | "WHITE" | x=-1 y=3       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 14 (CANT SET)  | "WHITE" | x=3 y=-1       | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 15 (CANT SET)  | "WHITE" | x=3 y=8        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 16 (CANT SET)  | "WHITE" | x=8 y=3        | x=6 y=7         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 17 (CANT SET)  | "WHITE" | x=6 y=6        | x=-1 y=3        | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 18 (CANT SET)  | "WHITE" | x=6 y=6        | x=3 y=-1        | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 19 (CANT SET)  | "WHITE" | x=6 y=6        | x=8 y=3         | EMPTY                    | True           | N/A, can't set        | False           | no           |
+| 20 (CANT SET)  | "WHITE" | x=6 y=6        | x=3 y=8         | EMPTY                    | True           | N/A, can't set        | False           | no           |
 
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
