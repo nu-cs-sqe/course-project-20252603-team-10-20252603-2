@@ -97,6 +97,23 @@ public class PawnTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Pawn_oneDiagonalRight_returnTrue() {
+        Piece pawn = new Pawn(PieceColor.WHITE);
+
+        Location start = new Location(7, 6);
+        Location chosen = new Location(6, 7);
+
+        Board board = new Board(false);
+
+        Piece pawnBlocker = new Pawn(PieceColor.BLACK);
+        board.setPiece(chosen, pawnBlocker);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
 
 }
 

@@ -48,7 +48,7 @@
 | 4              | "WHITE" | x=7, y=7       | x=6, y=7        | EMPTY                    | True           | one forward           | True                   | yes          |
 | 5              | "BLACK" | x=0, y=0       | x=2, y=0        | EMPTY                    | True           | two forward           | True                   | yes          |
 | 6              | "BLACK" | x=0, y=0       | x=2, y=0        | enemy                    | False          | two forward           | False                  | yes          |
-| 7              | "WHITE" | x=7 y=6        | x=6, y=7        | enemy                    | False          | one diag right        | True                   | no           |
+| 7              | "WHITE" | x=7 y=6        | x=6, y=7        | enemy                    | False          | one diag right        | True                   | yes          |
 | 8              | "WHITE" | x=7 y=6        | x=6, y=5        | enemy                    | False          | one diag left         | True                   | no           |
 | 9              | "WHITE" | x=7 y=6        | x=6, y=5        | EMPTY                    | True           | one diag left         | False                  | no           |
 | 10             | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false          | one diag left         | False                  | no           |
