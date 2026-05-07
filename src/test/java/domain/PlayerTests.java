@@ -1,13 +1,8 @@
 package domain;
 
 import constants.Color;
-import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.easymock.EasyMock.expect;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerTests {

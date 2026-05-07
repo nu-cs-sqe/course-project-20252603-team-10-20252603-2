@@ -1,13 +1,13 @@
 # BVA Analysis for Player
 
-**Method under test: getTotalPoints()**
+**Method under test: getPoints()**
 
-|  | System under test | Expected output | Implemented? |
-| :---- | :---- | :---- |:-------------|
-| Test Case 1 | There are 0 captured pieces. | getCapturedPieces(): \[\] getTotalPoints(): 0 | yes          |
-| Test Case 2 | All pieces were captured, assuming no pawns have been promoted. | getCapturedPieces(): \[all pieces\] getTotalPoints() returns 39 | yes          |
-| Test Case 3 | One piece has been captured (ex. pawn) | getCapturedPieces(): \[pawn\] getTotalPoints() returns 1 | yes          |
-| Test Case 4 | All pieces were captured, with \>1 pawn being promoted. | getCapturedPieces(): \[all pieces, including promoted pieces\] getTotalPoints() returns \>39 | yes          |
+|  | System under test | Expected output                                                                              | Implemented? |
+| :---- | :---- |:---------------------------------------------------------------------------------------------|:-------------|
+| Test Case 1 | There are 0 captured pieces. | getCapturedPieces(): \[\] getPoints(): 0                                                     | yes          |
+| Test Case 2 | All pieces were captured, assuming no pawns have been promoted. | getCapturedPieces(): \[all pieces\] getPoints() returns 39                              | yes          |
+| Test Case 3 | One piece has been captured (ex. pawn) | getCapturedPieces(): \[pawn\] getPoints() returns 1                                          | yes          |
+| Test Case 4 | All pieces were captured, with \>1 pawn being promoted. | getCapturedPieces(): \[all pieces, including promoted pieces\] getPoints() returns \>39 | yes          |
 
 ### STEPS FOR BVA: `getCapturedPieces() and getTotalPoints()`
 
