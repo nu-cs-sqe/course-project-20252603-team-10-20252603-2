@@ -35,4 +35,27 @@ public class PlayerTests {
         int actual = player.getPoints();
         assertEquals(1, actual);
     }
+
+    @Test
+    public void getPoints_AllPiecesCaptured_Returns39() {
+        Player player = new Player(Color.WHITE);
+        player.addCapturedPieceAndIncrementPoints("pawn");
+        player.addCapturedPieceAndIncrementPoints("pawn");
+        player.addCapturedPieceAndIncrementPoints("pawn");
+        player.addCapturedPieceAndIncrementPoints("pawn");
+        player.addCapturedPieceAndIncrementPoints("pawn");
+        player.addCapturedPieceAndIncrementPoints("pawn");
+        player.addCapturedPieceAndIncrementPoints("pawn");
+        player.addCapturedPieceAndIncrementPoints("pawn");
+        player.addCapturedPieceAndIncrementPoints("knight");
+        player.addCapturedPieceAndIncrementPoints("knight");
+        player.addCapturedPieceAndIncrementPoints("rook");
+        player.addCapturedPieceAndIncrementPoints("rook");
+        player.addCapturedPieceAndIncrementPoints("bishop");
+        player.addCapturedPieceAndIncrementPoints("bishop");
+        player.addCapturedPieceAndIncrementPoints("queen");
+
+        int actual = player.getPoints();
+        assertEquals(39, actual);
+    }
 }
