@@ -3,14 +3,15 @@ package domain.piece;
 import domain.Board;
 import domain.Location;
 
-public class Pawn extends Piece {
-    public Pawn(PieceColor color) {
-        super(PieceType.PAWN, color);
+
+public class Rook extends Piece {
+    public Rook(PieceColor color) {
+        super(PieceType.ROOK, color);
     }
 
     @Override
     public Piece makeCopy() {
-        return new Pawn(getColor());
+        return new Rook(getColor());
     }
 
     @Override
