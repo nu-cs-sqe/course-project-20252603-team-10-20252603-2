@@ -6,6 +6,7 @@ import domain.piece.PieceColor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RookTests {
 
@@ -21,5 +22,19 @@ public class RookTests {
         boolean result = rook.isValidMove(start, chosen, board);
 
         assertFalse(result);
+    }
+
+    @Test
+    public void isValidMove_Rook_oneRight_returnTrue() {
+        Piece rook = new Rook(PieceColor.WHITE);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(0, 1);
+
+        Board board = new Board(false);
+
+        boolean result = rook.isValidMove(start, chosen, board);
+
+        assertTrue(result);
     }
 }
