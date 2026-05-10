@@ -28,6 +28,25 @@ public class Rook extends Piece {
         if (!isHorizontal && !isVertical) {
             return false;
         }
+
+        // check if the path is clear by looping through each pos
+        int colDirection = 0;
+
+        if (end.getY() > start.getY()) {
+            colDirection = 1;
+        } else {
+            colDirection = -1;
+        }
+
+        int currentCol = start.getY() + colDirection;
+
+        while (currentCol != end.getY()) {
+            if (board.isPieceHere(new Location(0, currentCol))) {
+                return false;
+            }
+            currentCol += colDirection;
+        }
+
         return true;
     }
 }

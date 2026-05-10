@@ -107,4 +107,21 @@ public class RookTests {
 
         assertFalse(result);
     }
+
+    @Test
+    public void isValidMove_Rook_blockedHorizontal_returnFalse() {
+        Piece rook = new Rook(PieceColor.WHITE);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(0, 3);
+
+        Board board = new Board(false);
+
+        Piece blockingPiece = new Rook(PieceColor.BLACK);
+        board.setPiece(new Location(0, 1), blockingPiece);
+
+        boolean result = rook.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
 }
