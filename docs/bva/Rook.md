@@ -13,7 +13,7 @@
 | 7           | "WHITE" | [0][0]         | [7][0]          | EMPTY                    | True           | 7 down (max distance)            | True            | yes          |
 | 8           | "WHITE" | [0][0]         | [3][3]          | EMPTY                    | True           | diag                             | False           | yes          |
 | 9           | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | False          | blocked horizontal               | False           | yes          |
-| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | False          | blocked vertical                 | False           | no           |
+| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | False          | blocked vertical                 | False           | yes          |
 | 11          | "WHITE" | [0][0]         | [0][7]          | enemy                    | True           | capture horizontal               | True            | no           |
 | 12          | "WHITE" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical                 | True            | no           |
 | 13          | "WHITE" | [7][0]         | [6][0]          | EMPTY                    | True           | 1 up (min)                       | True            | no           |

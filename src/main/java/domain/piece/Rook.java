@@ -31,20 +31,31 @@ public class Rook extends Piece {
 
         // check if the path is clear by looping through each pos
         int colDirection = 0;
+        int rowDirection = 0;
 
-        if (end.getY() > start.getY()) {
-            colDirection = 1;
+        if (isHorizontal) {
+            if (end.getY() > start.getY()) {
+                colDirection = 1;
+            } else {
+                colDirection = -1;
+            }
         } else {
-            colDirection = -1;
+            if (end.getX() > start.getX()) {
+                rowDirection = 1;
+            } else {
+                rowDirection = -1;
+            }
         }
 
         int currentCol = start.getY() + colDirection;
+        int currentRow = start.getX() + rowDirection;
 
-        while (currentCol != end.getY()) {
-            if (board.isPieceHere(new Location(0, currentCol))) {
+        while (currentCol != end.getY() || currentRow != end.getX()) {
+            if (board.isPieceHere(new Location(currentRow, currentCol))) {
                 return false;
             }
             currentCol += colDirection;
+            currentRow += rowDirection;
         }
 
         return true;
