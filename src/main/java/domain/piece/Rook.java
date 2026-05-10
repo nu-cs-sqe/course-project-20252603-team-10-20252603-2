@@ -16,7 +16,11 @@ public class Rook extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
-        if (start.equals(end)) return false;
+
+        if (start.equals(end)) {
+            return false;
+        }
+
         return false;
     }
 }
