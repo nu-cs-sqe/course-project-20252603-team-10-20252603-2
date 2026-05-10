@@ -37,4 +37,18 @@ public class RookTests {
 
         assertTrue(result);
     }
+
+    @Test
+    public void isValidMove_Rook_sevenRight_returnTrue() {
+        Piece rook = new Rook(PieceColor.WHITE);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(0, 7);
+
+        Board board = new Board(false);
+
+        boolean result = rook.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
 }
