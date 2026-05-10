@@ -8,8 +8,8 @@
 | 2           | "WHITE" | [0][0]         | [0][1]          | EMPTY                    | True           | 1 right (min distance)           | True            | yes          |
 | 3           | "WHITE" | [0][0]         | [0][7]          | EMPTY                    | True           | 7 right (max distance)           | True            | yes          |
 | 4           | "WHITE" | [0][7]         | [0][6]          | EMPTY                    | True           | 1 left (min distance)            | True            | yes          |
-| 5           | "WHITE" | [0][7]         | [0][0]          | EMPTY                    | True           | 7 left (max distance)            | True            | no           |
-| 6           | "WHITE" | [0][0]         | [1][0]          | EMPTY                    | True           | 1 down (min distance)            | True            | no           |
+| 5           | "WHITE" | [0][7]         | [0][0]          | EMPTY                    | True           | 7 left (max distance)            | True            | yes          |
+| 6           | "WHITE" | [0][0]         | [1][0]          | EMPTY                    | True           | 1 down (min distance)            | True            | yes          |
 | 7           | "WHITE" | [0][0]         | [7][0]          | EMPTY                    | True           | 7 down (max distance)            | True            | no           |
 | 8           | "WHITE" | [0][0]         | [3][3]          | EMPTY                    | True           | diag                             | False           | no           |
 | 9           | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | False          | blocked horizontal               | False           | no           |
