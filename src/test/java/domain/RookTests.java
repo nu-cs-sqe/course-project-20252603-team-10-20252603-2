@@ -81,11 +81,11 @@ public class RookTests {
     }
 
     @Test
-    public void isValidMove_Rook_oneDown_returnTrue() {
+    public void isValidMove_Rook_sevenDown_returnTrue() {
         Piece rook = new Rook(PieceColor.WHITE);
 
         Location start = new Location(0, 0);
-        Location chosen = new Location(1, 0);
+        Location chosen = new Location(7, 0);
 
         Board board = new Board(false);
 
