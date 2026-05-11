@@ -271,4 +271,21 @@ public class RookTests {
 
         assertFalse(result);
     }
+
+    @Test
+    public void isValidMove_blackRook_verticalCapture_returnTrue() {
+        Piece rook = new Rook(PieceColor.BLACK);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(7, 0);
+
+        Board board = new Board(false);
+
+        Piece capturePiece = new Rook(PieceColor.WHITE);
+        board.setPiece(new Location(7, 0), capturePiece);
+
+        boolean result = rook.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
 }
