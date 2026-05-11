@@ -23,7 +23,7 @@
 | 17          | "WHITE" | [0][0]         | [0][3]          | friendly                 | True           | friendly horizontal              | False           | yes          |
 | 18          | "WHITE" | [0][0]         | [3][0]          | friendly                 | True           | friendly vertical                | False           | yes          |
 | 19          | "BLACK" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical (black rook)    | True            | yes          |
-| 20          | "WHITE" | [7][7]         | [7][6]          | empty                    | True           | 1 left from bottom corner        | True            | no           |
+| 20          | "BLACK" | [7][7]         | [7][6]          | empty                    | True           | 1 left from bottom corner        | True            | yes          |
 | 21          | "WHITE" | [7][7]         | [6][7]          | empty                    | True           | 1 up from bottom corner          | True            | no           |
 
 ### STEPS FOR BVA: `isValidMove()` for Rook
