@@ -124,6 +124,7 @@ public class RookTests {
 
         assertFalse(result);
     }
+
     @Test
     public void isValidMove_Rook_blockedVertical_returnFalse() {
         Piece rook = new Rook(PieceColor.WHITE);
@@ -159,7 +160,7 @@ public class RookTests {
     }
 
     @Test
-    public void isValidMove_Rook_verticalapture_returnTrue() {
+    public void isValidMove_Rook_verticalCapture_returnTrue() {
         Piece rook = new Rook(PieceColor.WHITE);
 
         Location start = new Location(0, 0);
@@ -169,6 +170,20 @@ public class RookTests {
 
         Piece capturePiece = new Rook(PieceColor.BLACK);
         board.setPiece(new Location(3, 0), capturePiece);
+
+        boolean result = rook.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void isValidMove_Rook_oneUp_returnTrue() {
+        Piece rook = new Rook(PieceColor.WHITE);
+
+        Location start = new Location(7, 0);
+        Location chosen = new Location(6, 0);
+
+        Board board = new Board(false);
 
         boolean result = rook.isValidMove(start, chosen, board);
 
