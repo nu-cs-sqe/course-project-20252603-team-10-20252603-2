@@ -21,7 +21,7 @@
 | 15          | "BLACK" | [0][0]         | [0][3]          | enemy                    | True           | capture horizontal (black rook)  | True            | yes          |
 | 16          | "BLACK" | [0][0]         | [0][1]          | friendly                 | True           | friendly horizontal (black rook) | False           | yes          |
 | 17          | "WHITE" | [0][0]         | [0][3]          | friendly                 | True           | friendly horizontal              | False           | yes          |
-| 18          | "WHITE" | [0][0]         | [3][0]          | friendly                 | True           | friendly vertical                | False           | no           |
+| 18          | "WHITE" | [0][0]         | [3][0]          | friendly                 | True           | friendly vertical                | False           | yes          |
 | 19          | "BLACK" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical (black rook)    | True            | no           |
 | 20          | "WHITE" | [7][7]         | [7][6]          | empty                    | True           | 1 left from bottom corner        | True            | no           |
 | 21          | "WHITE" | [7][7]         | [6][7]          | empty                    | True           | 1 up from bottom corner          | True            | no           |
