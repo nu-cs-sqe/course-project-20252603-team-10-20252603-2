@@ -220,4 +220,21 @@ public class RookTests {
 
         assertTrue(result);
     }
+
+    @Test
+    public void isValidMove_blackRook_horizontalFriendlyDestination_returnFalse() {
+        Piece rook = new Rook(PieceColor.BLACK);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(0, 1);
+
+        Board board = new Board(false);
+
+        Piece friendlyPiece = new Rook(PieceColor.BLACK);
+        board.setPiece(new Location(0, 1), friendlyPiece);
+
+        boolean result = rook.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
 }

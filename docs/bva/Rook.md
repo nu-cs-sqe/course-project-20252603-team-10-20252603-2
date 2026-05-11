@@ -18,8 +18,8 @@
 | 12          | "WHITE" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical                 | True            | yes          |
 | 13          | "WHITE" | [7][0]         | [6][0]          | EMPTY                    | True           | 1 up (min)                       | True            | yes          |
 | 14          | "WHITE" | [7][0]         | [0][0]          | EMPTY                    | True           | 7 up (max)                       | True            | yes          |
-| 15          | "BLACK" | [0][0]         | [0][3]          | enemy                    | True           | capture horizontal (black rook)  | True            | no           |
-| 16          | "BLACK" | [0][0]         | [0][1]          | friendly                 | True           | friendly horizontal (black rook) | False           | no           |
+| 15          | "BLACK" | [0][0]         | [0][3]          | enemy                    | True           | capture horizontal (black rook)  | True            | yes          |
+| 16          | "BLACK" | [0][0]         | [0][1]          | friendly                 | True           | friendly horizontal (black rook) | False           | yes          |
 | 17          | "WHITE" | [0][0]         | [0][3]          | friendly                 | True           | friendly horizontal              | False           | no           |
 | 18          | "WHITE" | [0][0]         | [3][0]          | friendly                 | True           | friendly vertical                | False           | no           |
 | 19          | "BLACK" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical (black rook)    | True            | no           |

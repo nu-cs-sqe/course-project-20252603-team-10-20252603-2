@@ -58,6 +58,10 @@ public class Rook extends Piece {
             currentRow += rowDirection;
         }
 
+        Piece target = board.getPiece(end);
+        if (this.isSameColor(target)) return false;
+
+
         return true;
     }
 }
