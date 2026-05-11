@@ -213,7 +213,7 @@ public class RookTests {
 
         Board board = new Board(false);
 
-        Piece capturePiece = new Rook(PieceColor.BLACK);
+        Piece capturePiece = new Rook(PieceColor.WHITE);
         board.setPiece(new Location(0, 3), capturePiece);
 
         boolean result = rook.isValidMove(start, chosen, board);
