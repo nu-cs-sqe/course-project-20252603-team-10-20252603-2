@@ -20,7 +20,7 @@
 2. [done] Cate: Feedback written for Rook Class Implementation by Samreen (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18)
 3. [done] Cate: Feedback written for Player Class Implementation by Vivian (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
 4. [50% done] Cate: Address and make changes to isValidMove based on feedback from Vivian and Samreen (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/14)
-5. [not started] Cate: Code and test implementation for isValidMove (type=Knight)
+5. [not started] Cate: Code and test implementation for isValidMove (type=Knight) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/29)
 
 # Week X (XX/XX/2026-XX/XX/2026) TEMPLATE (You can change the format to whatever the team likes better)
 **Planning and Progress Tracking**:
