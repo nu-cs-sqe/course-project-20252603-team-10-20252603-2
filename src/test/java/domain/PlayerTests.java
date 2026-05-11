@@ -55,7 +55,7 @@ public class PlayerTests {
     }
 
     @Test
-    public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns() {
+    public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns47() {
         Player player = new Player(Color.WHITE);
         player.addCapturedPieceAndIncrementPoints("pawn");
         player.addCapturedPieceAndIncrementPoints("pawn");
