@@ -40,4 +40,9 @@ public class Player {
         capturedPieces.add(piece);
         points += getPieceValue(piece);
     }
+
+    // GameManager has not been implemented, so for now using the current player color as WHITE
+    public boolean isCurrentTurn() {
+        return this.playerColor == Color.WHITE;
+    }
 }

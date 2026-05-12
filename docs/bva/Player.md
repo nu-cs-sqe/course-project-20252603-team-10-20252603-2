@@ -78,9 +78,9 @@
 **Method under test: isCurrentTurn()**
 
 |  | System under test | Expected output | Implemented? |
-| :---- | :---- | :---- | :---- |
-| Test Case 1 | Current player’s turn | isCurrentTurn() returns true  | no |
-| Test Case 2 | Opposing player’s turn | isCurrentTurn() returns false  | no |
+| :---- | :---- | :---- |:-------------|
+| Test Case 1 | Current player’s turn | isCurrentTurn() returns true  | yes          |
+| Test Case 2 | Opposing player’s turn | isCurrentTurn() returns false  | no           |
 
 ### STEPS FOR BVA: `isCurrentTurn()`
 

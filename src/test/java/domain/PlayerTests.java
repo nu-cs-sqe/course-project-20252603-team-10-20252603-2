@@ -1,9 +1,11 @@
 package domain;
 
 import constants.Color;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PlayerTests {
     @Test
@@ -84,5 +86,13 @@ public class PlayerTests {
 
         int actual = player.getPoints();
         assertEquals(47, actual);
+    }
+
+    @Test
+    public void isCurrentTurn_WhenWhitePlayer_ReturnsTrue() {
+        Player player = new Player(Color.WHITE);
+        boolean actual = player.isCurrentTurn();
+
+        assertTrue(actual);
     }
 }
