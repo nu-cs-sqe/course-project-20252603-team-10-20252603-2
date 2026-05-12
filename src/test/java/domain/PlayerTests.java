@@ -103,14 +103,6 @@ public class PlayerTests {
     }
 
     @Test
-    public void addCapturedPieceAndIncrementPoints_WhenNoPieceWasCaptured_ReturnsVoid() {
-        Player player = new Player(Color.WHITE);
-        int points = player.getPoints();
-
-        assertEquals(0, points);
-    }
-
-    @Test
     public void isInCheck_ReturnsFalse() {
         Player player = new Player(Color.WHITE);
         boolean isInCheck = player.isInCheck();

@@ -1,6 +1,6 @@
 # BVA Analysis for Player
 
-**Method under test: getPoints()**
+**Method under test: incrementPoints()**
 
 |  | System under test | Expected output | Implemented? |
 | :---- | :---- | :---- |:-------------|
@@ -10,7 +10,7 @@
 | Test Case 4 | All pieces were captured, with \>=1 pawn being promoted. | getPoints() returns \>39 | yes          |
 | Test Case 5 | One Queen was captured. | getPoints() returns 9 | yes          |
 
-### STEPS FOR BVA: `getPoints()`
+### STEPS FOR BVA: `incrementPoints()`
 
 1. Data Types
 * Input
@@ -83,27 +83,3 @@
 * Output: boolean
     * True
     * False
-
-**Method under test: addCapturedPieceAndIncrementPoints()**
-
-|  | System under test | Expected output | Implemented? |
-| :---- | :---- | :---- |:-------------|
-| Test Case 1 | No piece has been captured. | void, player’s points have not changed | yes          |
-| Test Case 2 | PAWN was the first piece to be captured | void, player’s points go from 0 to 1 | yes          |
-| Test Case 3 | QUEEN was captured | void, player’s points have been incremented by 9 | yes          |
-
-### STEPS FOR BVA: `addCapturedPieceAndIncrementPoints()`
-
-1. Data types
-* Input:
-  * Cases
-    * Pieces: PAWN, BISHOP, ROOK, KNIGHT, QUEEN
-* Output: void / Exception
-2. Test Cases
-* Input:
-  * No piece captured (value: 0)
-  * PAWN (value: 1)
-  * QUEEN (value: 9)
-* Output: boolean
-  * True
-  * False
