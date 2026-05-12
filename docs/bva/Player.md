@@ -12,24 +12,19 @@
 
 ### STEPS FOR BVA: `getPoints()`
 
-1. input equivalence classes and output equivalence classes
+1. Data Types
 * Input
     * Cases
         * Player’s color: WHITE
         * Player’s color: BLACK
     * Board (2D array)
 * Output: Number
-2. determine data types
-* Input
-    * Cases
-        * Player’s color: WHITE
-        * Player’s color: BLACK
-    * Board (2D array)
-* Output: Number
-    * 0
-    * \<= 39
-    * \> 39
-
+2. Test Cases
+* 0 pieces captured - 0 points
+* All pieces captured, no promotions - 39 points
+* One pawn captured - 1 point
+* All pieces captured, with promotions - >39 points
+* Queen was capatured - 9 points
 
 **Method under test: isInCheck()**
 
@@ -48,7 +43,7 @@
 
 ### STEPS FOR BVA: `isInCheck()`
 
-1. input equivalence classes and output equivalence classes
+1. Data types
 * Input:
     * King Color: cases (BLACK, WHITE)
     * King Position: array indices
@@ -56,16 +51,7 @@
     * Blocking Piece: boolean
     * Movement pattern: cases
 * Output: boolean
-2. determine data types
-* Input:
-    * King Color: cases (BLACK, WHITE)
-    * King Position: array indices
-    * Attacking Piece Position: array indices
-    * Blocking Piece: boolean
-    * Movement pattern: cases
-* Output: boolean
-    * True
-    * False
+2. Test Cases
 
 | Input | Boundary / Case Values                                                                                                                                                                |
 | :---- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -84,17 +70,40 @@
 
 ### STEPS FOR BVA: `isCurrentTurn()`
 
-1. input equivalence classes and output equivalence classes
+1. Data types
 * Input: 
   * Cases
     * Player’s color: WHITE
     * Player’s color: BLACK
 * Output: boolean
-2. determine data types
+2. Test Cases
 * Input:
-    * Cases
-        * Player’s color: WHITE
-        * Player’s color: BLACK
+    * Player’s color: WHITE
+    * Player’s color: BLACK
 * Output: boolean
     * True
     * False
+
+**Method under test: addCapturedPieceAndIncrementPoints()**
+
+|  | System under test | Expected output | Implemented? |
+| :---- | :---- | :---- | :---- |
+| Test Case 1 | No piece has been captured. | void, player’s points have not changed | no |
+| Test Case 2 | PAWN was the first piece to be captured | void, player’s points go from 0 to 1 | no |
+| Test Case 3 | QUEEN was captured | void, player’s points have been incremented by 9 | no |
+
+### STEPS FOR BVA: `addCapturedPieceAndIncrementPoints()`
+
+1. Data types
+* Input:
+  * Cases
+    * Pieces: PAWN, BISHOP, ROOK, KNIGHT, QUEEN
+* Output: void / Exception
+2. Test Cases
+* Input:
+  * No piece captured (value: 0)
+  * PAWN (value: 1)
+  * QUEEN (value: 9)
+* Output: boolean
+  * True
+  * False
