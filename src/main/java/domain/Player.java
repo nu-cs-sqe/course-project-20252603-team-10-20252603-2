@@ -10,7 +10,6 @@ public class Player {
 
     private final Color playerColor;
     private int points = 0;
-    private List<String> capturedPieces = new ArrayList<>();
     private static final Map<String, Integer> PIECE_VALUES = Map.of(
             "pawn", 1,
             "knight", 3,
@@ -36,8 +35,7 @@ public class Player {
     }
 
     // using String as input instead of Piece for now
-    public void addCapturedPieceAndIncrementPoints(String piece) {
-        capturedPieces.add(piece);
+    public void incrementPoints(String piece) {
         points += getPieceValue(piece);
     }
 
