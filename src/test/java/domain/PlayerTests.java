@@ -109,4 +109,12 @@ public class PlayerTests {
 
         assertEquals(0, points);
     }
+
+    @Test
+    public void isInCheck_ReturnsFalse() {
+        Player player = new Player(Color.WHITE);
+        boolean isInCheck = player.isInCheck();
+
+        assertFalse(isInCheck);
+    }
 }

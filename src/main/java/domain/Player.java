@@ -43,4 +43,9 @@ public class Player {
     public boolean isCurrentTurn() {
         return this.playerColor == Color.WHITE;
     }
+
+    // placeholder return value because Board + King piece has not been implemented yet
+    public boolean isInCheck() {
+        return false;
+    }
 }
