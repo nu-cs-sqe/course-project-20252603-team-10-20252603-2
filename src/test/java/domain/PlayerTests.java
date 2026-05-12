@@ -102,4 +102,12 @@ public class PlayerTests {
 
         assertFalse(actual);
     }
+
+    @Test
+    public void addCapturedPieceAndIncrementPoints_WhenNoPieceWasCaptured_ReturnsVoid() {
+        Player player = new Player(Color.WHITE);
+        int points = player.getPoints();
+
+        assertEquals(0, points);
+    }
 }

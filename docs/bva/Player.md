@@ -87,10 +87,10 @@
 **Method under test: addCapturedPieceAndIncrementPoints()**
 
 |  | System under test | Expected output | Implemented? |
-| :---- | :---- | :---- | :---- |
-| Test Case 1 | No piece has been captured. | void, player’s points have not changed | no |
-| Test Case 2 | PAWN was the first piece to be captured | void, player’s points go from 0 to 1 | no |
-| Test Case 3 | QUEEN was captured | void, player’s points have been incremented by 9 | no |
+| :---- | :---- | :---- |:-------------|
+| Test Case 1 | No piece has been captured. | void, player’s points have not changed | yes          |
+| Test Case 2 | PAWN was the first piece to be captured | void, player’s points go from 0 to 1 | no           |
+| Test Case 3 | QUEEN was captured | void, player’s points have been incremented by 9 | no           |
 
 ### STEPS FOR BVA: `addCapturedPieceAndIncrementPoints()`
 
