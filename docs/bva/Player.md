@@ -3,12 +3,12 @@
 **Method under test: getPoints()**
 
 |  | System under test | Expected output | Implemented? |
-| :---- | :---- | :---- | :---- |
-| Test Case 1 | There are 0 captured pieces. | getPoints(): 0 | yes |
-| Test Case 2 | All pieces were captured, assuming no pawns have been promoted. | getPoints() returns 39 | yes |
-| Test Case 3 | One piece has been captured (ex. pawn) | getPoints() returns 1 | yes |
-| Test Case 4 | All pieces were captured, with \>=1 pawn being promoted. | getPoints() returns \>39 | yes |
-| Test Case 5 | One Queen was captured. | getPoints() returns 9 | no |
+| :---- | :---- | :---- |:-------------|
+| Test Case 1 | There are 0 captured pieces. | getPoints(): 0 | yes          |
+| Test Case 2 | All pieces were captured, assuming no pawns have been promoted. | getPoints() returns 39 | yes          |
+| Test Case 3 | One piece has been captured (ex. pawn) | getPoints() returns 1 | yes          |
+| Test Case 4 | All pieces were captured, with \>=1 pawn being promoted. | getPoints() returns \>39 | yes          |
+| Test Case 5 | One Queen was captured. | getPoints() returns 9 | yes          |
 
 ### STEPS FOR BVA: `getPoints()`
 

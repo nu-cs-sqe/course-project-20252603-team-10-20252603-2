@@ -32,6 +32,15 @@ public class PlayerTests {
     }
 
     @Test
+    public void getPoints_CapturedQueen_ReturnsNine(){
+        Player player = new Player(Color.WHITE);
+        player.addCapturedPieceAndIncrementPoints("queen");
+
+        int actual = player.getPoints();
+        assertEquals(9, actual);
+    }
+
+    @Test
     public void getPoints_AllPiecesCaptured_Returns39() {
         Player player = new Player(Color.WHITE);
         player.addCapturedPieceAndIncrementPoints("pawn");
