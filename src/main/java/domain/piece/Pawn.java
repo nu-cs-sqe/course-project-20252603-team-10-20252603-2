@@ -32,6 +32,8 @@ public class Pawn extends Piece {
         boolean twoForward = (dist_x == direction * 2 && dist_y == 0);
         boolean oneForwardDiagonal = (dist_x == direction && Math.abs(dist_y) == 1);
 
+        boolean onStartRow = (getColor() == PieceColor.WHITE && start.getX() == 6) || (getColor() == PieceColor.BLACK && start.getX() == 1);
+
         if (!(oneForward || oneForwardDiagonal || twoForward)) {
             return false;
         }
@@ -40,6 +42,7 @@ public class Pawn extends Piece {
         if (oneForward && board.isPieceHere(end)) return false;
         if (twoForward) {
             Location mid = new Location(start.getX() + direction, start.getY());
+            if (!onStartRow) return false;
             if (board.isPieceHere(mid)) return false;
             if (board.isPieceHere(end)) return false;
         }
