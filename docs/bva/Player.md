@@ -17,7 +17,8 @@
     * Cases
         * Player’s color: WHITE
         * Player’s color: BLACK
-    * Board (2D array)
+    * Cases
+      * Pieces (PAWN, ROOK, KNIGHT, QUEEN, BISHOP)
 * Output: Number
 2. Test Cases
 * 0 pieces captured - 0 points

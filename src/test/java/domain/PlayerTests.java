@@ -3,6 +3,10 @@ package domain;
 import constants.Color;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTests {
@@ -43,21 +47,12 @@ public class PlayerTests {
     @Test
     public void getPoints_AllPiecesCaptured_Returns39() {
         Player player = new Player(Color.WHITE);
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("knight");
-        player.incrementPoints("knight");
-        player.incrementPoints("rook");
-        player.incrementPoints("rook");
-        player.incrementPoints("bishop");
-        player.incrementPoints("bishop");
-        player.incrementPoints("queen");
+
+        List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight", "knight", "queen", "rook", "rook"));
+
+        for (int i = 0; i < pieces.size(); i++) {
+            player.incrementPoints(pieces.get(i));
+        }
 
         int actual = player.getPoints();
         assertEquals(39, actual);
@@ -66,21 +61,12 @@ public class PlayerTests {
     @Test
     public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns47() {
         Player player = new Player(Color.WHITE);
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("pawn");
-        player.incrementPoints("queen");
-        player.incrementPoints("knight");
-        player.incrementPoints("knight");
-        player.incrementPoints("rook");
-        player.incrementPoints("rook");
-        player.incrementPoints("bishop");
-        player.incrementPoints("bishop");
-        player.incrementPoints("queen");
+
+        List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "queen", "bishop", "bishop", "knight", "knight", "queen", "rook", "rook"));
+
+        for (int i = 0; i < pieces.size(); i++) {
+            player.incrementPoints(pieces.get(i));
+        }
 
         int actual = player.getPoints();
         assertEquals(47, actual);
