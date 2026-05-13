@@ -38,7 +38,11 @@ public class Pawn extends Piece {
 
         //  is there a piece blocking?
         if (oneForward && board.isPieceHere(end)) return false;
-        if (twoForward && board.isPieceHere(end)) return false;
+        if (twoForward) {
+            Location mid = new Location(start.getX() + direction, start.getY());
+            if (board.isPieceHere(mid)) return false;
+            if (board.isPieceHere(end)) return false;
+        }
         if (oneForwardDiagonal) {
             if (!board.isPieceHere(end)) return false;
             Piece target = board.getPiece(end);

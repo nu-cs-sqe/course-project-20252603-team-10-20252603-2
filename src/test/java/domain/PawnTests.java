@@ -81,7 +81,7 @@ public class PawnTests {
     }
 
     @Test
-    public void isValidMove_Pawn_twoForwardBlockedPath_returnFalse() {
+    public void isValidMove_Pawn_twoForwardBlockedEnd_returnFalse() {
         Piece pawn = new Pawn(PieceColor.BLACK);
 
         Location start = new Location(0, 0);
@@ -184,6 +184,24 @@ public class PawnTests {
         Location chosen = new Location(6, 5);
 
         Board board = new Board(false);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void isValidMove_Pawn_twoForwardBlockedPath_returnFalse() {
+        Piece pawn = new Pawn(PieceColor.BLACK);
+
+        Location start = new Location(0, 0);
+        Location mid = new Location(1, 0);
+        Location chosen = new Location(2, 0);
+
+        Board board = new Board(false);
+
+        Piece pawnBlocker = new Pawn(PieceColor.WHITE);
+        board.setPiece(mid, pawnBlocker);
 
         boolean result = pawn.isValidMove(start, chosen, board);
 

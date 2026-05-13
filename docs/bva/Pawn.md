@@ -18,9 +18,9 @@
 | 10          | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false          | one diag left    | False                    | yes          |
 | 11          | "WHITE" | x=6 y=6        | x=7 y=6         | EMPTY                    | True           | backward         | False                    | yes          |
 | 12          | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True           | sideways         | False                    | yes          |
-| 13          | "BLACK" | x=0, y=0       | x=2, y=0        | EMPTY                    | False          | two forward      | False                    | no           |
+| 13          | "BLACK" | x=0, y=0       | x=2, y=0        | EMPTY                    | False          | two forward      | False                    | yes          |
 | 14          | "BLACK" | x=2, y=0       | x=4, y=0        | EMPTY                    | True           | two forward      | False (non first turn)   | no           |
-| 15          | "WHITE" | x=5, y=7       | x=3, y=7        | EMPTY                    | True           | two forward      | False (non first turn)   | yes          |
+| 15          | "WHITE" | x=5, y=7       | x=3, y=7        | EMPTY                    | True           | two forward      | False (non first turn)   | no           |
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
 
