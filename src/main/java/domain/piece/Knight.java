@@ -16,6 +16,10 @@ public class Knight extends Piece {
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
         //  TODO: complete method
+        if (start.equals(end)) {
+            return false;
+        }
+
         if (board.isPieceHere(end)) {
             Piece target = board.getPiece(end);
             if (this.isSameColor(target)) return false;
