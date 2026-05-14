@@ -6,7 +6,7 @@
 | Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern                | Expected output | Implemented? |
 |-------------|---------|----------------|-----------------|--------------------------|----------------|---------------------------------|-----------------|--------------|
 | 1           | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square                     | False           | yes          |
-| 2           | "WHITE" | [0][0]         | [1][1]          | EMPTY                    | True           | 1 diagonal - up + right         | True            | no           |
+| 2           | "WHITE" | [0][0]         | [1][1]          | EMPTY                    | True           | 1 diagonal - up + right         | True            | yes          |
 | 3           | "WHITE" | [0][7]         | [1][6]          | EMPTY                    | True           | 1 diagonal - up + left          | True            | no           |
 | 4           | "WHITE" | [7][0]         | [6][1]          | EMPTY                    | True           | 1 diagonal - down + right       | True            | no           |
 | 5           | "WHITE" | [7][7]         | [6][6]          | EMPTY                    | True           | 1 diagonal - down + left        | True            | no           |
