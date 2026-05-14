@@ -231,4 +231,21 @@ public class KnightTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Knight_xMovement_returnFalse() {
+        Piece knight = new Knight(PieceColor.BLACK);
+
+        Location start = new Location(3, 3);
+        Location chosen = new Location(5, 3);
+
+        Board board = new Board(false);
+
+        Piece pawnBlocker = new Pawn(PieceColor.BLACK);
+        board.setPiece(chosen, pawnBlocker);
+
+        boolean result = knight.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 }
