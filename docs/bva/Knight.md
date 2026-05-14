@@ -24,8 +24,8 @@
 | 18          | "WHITE" | x=3, y=3       | x=5, y=5        | EMPTY                    | True                               | diagonal         | False           | yes          |
 | 19          | "WHITE" | x=3, y=3       | x=3, y=3        | EMPTY                    | True                               | same square      | False           | yes          |
 | 20          | "BLACK" | x=3, y=3       | x=5, y=2        | EMPTY                    | false (block at x=5,y=3, enemy)    | L movement #1    | True            | yes          |
-| 21          | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | false (block at x=4,y=3, enemy)    | L movement #3    | False           | yes          |
-| 22          | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | false (block at x=4,y=2, friendly) | L movement #3    | False           | yes          |
+| 21          | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | false (block at x=4,y=3, enemy)    | L movement #3    | True            | yes          |
+| 22          | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | false (block at x=4,y=2, friendly) | L movement #3    | True            | yes          |
 
 
 ### STEPS FOR BVA: `isValidMove()` for Knight
@@ -43,7 +43,7 @@
 
 2) BVA catalog classes
 * input:
-    * pawn color: cases
+    * knight color: cases
     * piece start position (row, column): array indices
     * chosen position (row, column): array indices
     * chosen position contents (empty, enemy piece, friendly piece): cases
@@ -54,7 +54,7 @@
 
 3) BVA catalog classes -- values
 * input:
-    * pawn color: cases
+    * knight color: cases
         * BLACK, WHITE
     * piece start position (row, column): array indices
         * all indices are 0 at same time: [0][0]

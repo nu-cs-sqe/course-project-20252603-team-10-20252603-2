@@ -34,7 +34,14 @@ public class Knight extends Piece {
         boolean isL7 = (end.getX() == start.getX()-1) && (end.getY() == start.getY()-2);
         boolean isL8 = (end.getX() == start.getX()-1) && (end.getY() == start.getY()+2);
 
-        if (isL1 || isL2 || isL3 || isL4 || isL5 || isL6 || isL7 || isL8) return true;
+        if (isL1 || isL2 || isL3 || isL4 || isL5 || isL6 || isL7 || isL8)  {
+
+            if (board.isPieceHere(end)) {
+                // TODO: connect code to capture piece
+            }
+
+            return true;
+        }
 
         return false;
     }
