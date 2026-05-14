@@ -149,4 +149,18 @@ public class BishopTests {
 
         assertTrue(result);
     }
+
+    @Test
+    public void isValidMove_Bishop_HorizontalMove_returnFalse() {
+        Piece bishop = new Bishop(PieceColor.WHITE);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(0, 3);
+
+        Board board = new Board(false);
+
+        boolean result = bishop.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
 }
