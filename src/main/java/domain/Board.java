@@ -35,22 +35,22 @@ public class Board {
         pieces[7][7] = new Rook(WHITE);
 
         // Initialize knights
-//        pieces[0][1] = new Knight(BLACK);
-//        pieces[0][6] = new Knight(BLACK);
-//        pieces[7][1] = new Knight(WHITE);
-//        pieces[7][6] = new Knight(WHITE);
-//
-//        // Initialize bishops
-//        pieces[0][2] = new Bishop(BLACK);
-//        pieces[0][5] = new Bishop(BLACK);
-//        pieces[7][2] = new Bishop(WHITE);
-//        pieces[7][5] = new Bishop(WHITE);
-//
-//        // Initialize queens and kings
-//        pieces[0][3] = new Queen(BLACK);
-//        pieces[0][4] = new King(BLACK);
-//        pieces[7][3] = new Queen(WHITE);
-//        pieces[7][4] = new King(WHITE);
+        pieces[0][1] = new Knight(BLACK);
+        pieces[0][6] = new Knight(BLACK);
+        pieces[7][1] = new Knight(WHITE);
+        pieces[7][6] = new Knight(WHITE);
+
+        // Initialize bishops
+        pieces[0][2] = new Bishop(BLACK);
+        pieces[0][5] = new Bishop(BLACK);
+        pieces[7][2] = new Bishop(WHITE);
+        pieces[7][5] = new Bishop(WHITE);
+
+        // Initialize queens and kings
+        pieces[0][3] = new Queen(BLACK);
+        pieces[0][4] = new King(BLACK);
+        pieces[7][3] = new Queen(WHITE);
+        pieces[7][4] = new King(WHITE);
     }
 
     public Piece[][] getSnapshot() {
