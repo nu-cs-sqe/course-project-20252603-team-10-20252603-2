@@ -20,7 +20,7 @@
 | 14          | "BLACK" | x=3, y=3       | x=5, y=2        | ENEMY                    | True                               | L movement #1    | True            | yes          |
 | 15          | "BLACK" | x=3, y=3       | x=5, y=2        | FRIENDLY                 | True                               | L movement #1    | False           | yes          |
 | 16          | "BLACK" | x=3, y=3       | x=5, y=3        | EMPTY                    | True                               | forward and back | False           | yes          |
-| 17          | "BLACK" | x=3, y=3       | x=3, y=5        | EMPTY                    | True                               | sideways         | False           | no           |
+| 17          | "BLACK" | x=3, y=3       | x=3, y=5        | EMPTY                    | True                               | sideways         | False           | yes          |
 | 18          | "WHITE" | x=3, y=3       | x=5, y=5        | EMPTY                    | True                               | diagonal         | False           | no           |
 | 19          | "WHITE" | x=3, y=3       | x=3, y=3        | EMPTY                    | True                               | same square      | False           | no           |
 | 20          | "BLACK" | x=3, y=3       | x=5, y=2        | EMPTY                    | false (block at x=5,y=3)           | L movement #1    | True            | no           |

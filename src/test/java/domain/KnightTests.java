@@ -240,12 +240,11 @@ public class KnightTests {
 
         Board board = new Board(false);
 
-        Piece pawnBlocker = new Pawn(PieceColor.BLACK);
-        board.setPiece(chosen, pawnBlocker);
-
         boolean result = knight.isValidMove(start, chosen, board);
 
         assertFalse(result);
     }
+
+
 
 }
