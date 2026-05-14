@@ -22,6 +22,11 @@ public class Bishop extends Piece {
 
         if (rowChange != colChange) return false;
 
+        if (board.isPieceHere(end)) {
+            Piece target = board.getPiece(end);
+            if (this.isSameColor(target)) return false;
+        }
+
         return true;
     }
 }

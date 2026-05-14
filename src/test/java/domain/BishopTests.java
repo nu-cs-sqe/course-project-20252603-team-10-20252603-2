@@ -180,4 +180,21 @@ public class BishopTests {
 
         assertTrue(result);
     }
+
+    @Test
+    public void isValidMove_Bishop_DiagonalFriendlyDestination_returnFalse() {
+        Piece bishop = new Bishop(PieceColor.BLACK);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(3, 3);
+
+        Board board = new Board(false);
+
+        Piece friendlyPiece = new Bishop(PieceColor.BLACK);
+        board.setPiece(new Location(3, 3), friendlyPiece);
+
+        boolean result = bishop.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
 }
