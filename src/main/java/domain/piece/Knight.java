@@ -18,8 +18,11 @@ public class Knight extends Piece {
         //  TODO: complete method
 
         boolean isL1 = (end.getX() == start.getX()+2) && (end.getY() == start.getY()-1);
+        boolean isL2 = (end.getX() == start.getX()+2) && (end.getY() == start.getY()+1);
+
 
         if (isL1) return true;
+        if (isL2) return true;
 
         return false;
     }
