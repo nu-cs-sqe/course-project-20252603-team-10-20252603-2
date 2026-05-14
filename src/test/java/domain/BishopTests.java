@@ -1,0 +1,25 @@
+package domain;
+
+import domain.piece.Bishop;
+import domain.piece.Piece;
+import domain.piece.PieceColor;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+public class BishopTests {
+
+    @Test
+    public void isValidMove_Bishop_sameSquare_returnFalse() {
+        Piece bishop = new Bishop(PieceColor.WHITE);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(0, 0);
+
+        Board board = new Board(false);
+
+        boolean result = bishop.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+}
