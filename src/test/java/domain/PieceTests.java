@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PieceTests {
-
     @Test
     public void isSameColor_bothPiecesAreBlack_returnTrue(){
         Piece piece1 = new Pawn(PieceColor.BLACK);
@@ -39,4 +38,5 @@ public class PieceTests {
         boolean sameColor = piece1.isSameColor(piece2);
         assertFalse(sameColor);
     }
+
 }
