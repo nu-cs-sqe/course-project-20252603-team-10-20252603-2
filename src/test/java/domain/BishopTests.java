@@ -51,4 +51,18 @@ public class BishopTests {
 
         assertTrue(result);
     }
+
+    @Test
+    public void isValidMove_Bishop_OneDiagonalUpAndLeft_returnTrue() {
+        Piece bishop = new Bishop(PieceColor.WHITE);
+
+        Location start = new Location(0, 7);
+        Location chosen = new Location(1, 6);
+
+        Board board = new Board(false);
+
+        boolean result = bishop.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
 }
