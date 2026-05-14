@@ -16,7 +16,7 @@
 | 10          | "WHITE" | x=7, y=7       | x=6, y=5        | EMPTY                    | True                               | L movement #5    | True            | yes          |
 | 11          | "WHITE" | x=2, y=1       | x=0, y=0        | EMPTY                    | True                               | L movement #5    | True            | yes          |
 | 12          | "WHITE" | x=6, y=5       | x=7, y=7        | EMPTY                    | True                               | L movement #4    | True            | yes          |
-| 13          | "BLACK" | x=3, y=3       | x=5, y=2        | EMPTY                    | false (block at x=4,y=3)           | L movement #1    | True            | no           |
+| 13          | "BLACK" | x=3, y=3       | x=5, y=2        | EMPTY                    | false (block at x=4,y=3)           | L movement #1    | True            | yes          |
 | 14          | "BLACK" | x=3, y=3       | x=5, y=2        | ENEMY                    | True                               | L movement #1    | True            | no           |
 | 15          | "BLACK" | x=3, y=3       | x=5, y=2        | FRIENDLY                 | True                               | L movement #1    | False           | no           |
 | 16          | "BLACK" | x=3, y=3       | x=5, y=3        | EMPTY                    | True                               | forward and back | False           | no           |

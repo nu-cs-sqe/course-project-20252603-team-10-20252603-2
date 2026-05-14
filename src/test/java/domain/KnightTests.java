@@ -1,6 +1,7 @@
 package domain;
 
 import domain.piece.Knight;
+import domain.piece.Pawn;
 import domain.piece.Piece;
 import domain.piece.PieceColor;
 import org.junit.jupiter.api.Test;
@@ -172,6 +173,24 @@ public class KnightTests {
         Location chosen = new Location(7, 7);
 
         Board board = new Board(false);
+
+        boolean result = knight.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void isValidMove_Knight_Lmov1blockedPathVert1_returnTrue() {
+        Piece knight = new Knight(PieceColor.BLACK);
+
+        Location start = new Location(3, 3);
+        Location blocker = new Location(4, 3);
+        Location chosen = new Location(5, 2);
+
+        Board board = new Board(false);
+
+        Piece pawnBlocker = new Pawn(PieceColor.WHITE);
+        board.setPiece(blocker, pawnBlocker);
 
         boolean result = knight.isValidMove(start, chosen, board);
 
