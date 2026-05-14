@@ -16,14 +16,14 @@
 | 10          | "WHITE" | x=7, y=7       | x=6, y=5        | EMPTY                    | True                               | L movement #5    | True            | yes          |
 | 11          | "WHITE" | x=2, y=1       | x=0, y=0        | EMPTY                    | True                               | L movement #5    | True            | yes          |
 | 12          | "WHITE" | x=6, y=5       | x=7, y=7        | EMPTY                    | True                               | L movement #4    | True            | yes          |
-| 13          | "BLACK" | x=3, y=3       | x=5, y=2        | EMPTY                    | false (block at x=4,y=3)           | L movement #1    | True            | yes          |
+| 13          | "BLACK" | x=3, y=3       | x=5, y=2        | EMPTY                    | false (block at x=4,y=3, enemy)    | L movement #1    | True            | yes          |
 | 14          | "BLACK" | x=3, y=3       | x=5, y=2        | ENEMY                    | True                               | L movement #1    | True            | yes          |
 | 15          | "BLACK" | x=3, y=3       | x=5, y=2        | FRIENDLY                 | True                               | L movement #1    | False           | yes          |
 | 16          | "BLACK" | x=3, y=3       | x=5, y=3        | EMPTY                    | True                               | forward and back | False           | yes          |
 | 17          | "BLACK" | x=3, y=3       | x=3, y=5        | EMPTY                    | True                               | sideways         | False           | yes          |
 | 18          | "WHITE" | x=3, y=3       | x=5, y=5        | EMPTY                    | True                               | diagonal         | False           | yes          |
 | 19          | "WHITE" | x=3, y=3       | x=3, y=3        | EMPTY                    | True                               | same square      | False           | yes          |
-| 20          | "BLACK" | x=3, y=3       | x=5, y=2        | EMPTY                    | false (block at x=5,y=3)           | L movement #1    | True            | yes          |
+| 20          | "BLACK" | x=3, y=3       | x=5, y=2        | EMPTY                    | false (block at x=5,y=3, enemy)    | L movement #1    | True            | yes          |
 | 21          | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | false (block at x=4,y=3, enemy)    | L movement #3    | False           | yes          |
 | 22          | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | false (block at x=4,y=2, friendly) | L movement #3    | False           | yes          |
 
