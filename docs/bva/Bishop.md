@@ -9,7 +9,7 @@
 | 2           | "WHITE" | [0][0]         | [1][1]          | EMPTY                    | True           | 1 diagonal - up + right         | True            | yes          |
 | 3           | "WHITE" | [0][7]         | [1][6]          | EMPTY                    | True           | 1 diagonal - up + left          | True            | yes          |
 | 4           | "WHITE" | [7][0]         | [6][1]          | EMPTY                    | True           | 1 diagonal - down + right       | True            | yes          |
-| 5           | "WHITE" | [7][7]         | [6][6]          | EMPTY                    | True           | 1 diagonal - down + left        | True            | no           |
+| 5           | "WHITE" | [7][7]         | [6][6]          | EMPTY                    | True           | 1 diagonal - down + left        | True            | yes          |
 | 6           | "WHITE" | [0][0]         | [7][7]          | EMPTY                    | True           | 7 diagonal - up + right         | True            | no           |
 | 7           | "WHITE" | [0][7]         | [7][0]          | EMPTY                    | True           | 7 diagonal - up + left          | True            | no           |
 | 8           | "WHITE" | [7][0]         | [0][7]          | EMPTY                    | True           | 7 diagonal - down + right       | True            | no           |
