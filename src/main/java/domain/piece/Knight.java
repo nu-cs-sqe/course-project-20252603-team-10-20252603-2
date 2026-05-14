@@ -19,10 +19,12 @@ public class Knight extends Piece {
 
         boolean isL1 = (end.getX() == start.getX()+2) && (end.getY() == start.getY()-1);
         boolean isL2 = (end.getX() == start.getX()+2) && (end.getY() == start.getY()+1);
+        boolean isL3 = (end.getX() == start.getX()+1) && (end.getY() == start.getY()-2);
 
 
         if (isL1) return true;
         if (isL2) return true;
+        if (isL3) return true;
 
         return false;
     }

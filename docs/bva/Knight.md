@@ -6,7 +6,7 @@
 |-------------|---------|----------------|-----------------|--------------------------|------------------------------------|------------------|-----------------|--------------|
 | 1           | "WHITE" | x=3, y=3       | x=5, y=2        | EMPTY                    | True                               | L movement #1    | True            | yes          |
 | 2           | "BLACK" | x=3, y=3       | x=5, y=4        | EMPTY                    | True                               | L movement #2    | True            | yes          |
-| 3           | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | True                               | L movement #3    | True            | no           |
+| 3           | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | True                               | L movement #3    | True            | yes          |
 | 4           | "WHITE" | x=3, y=3       | x=4, y=5        | EMPTY                    | True                               | L movement #4    | True            | no           |
 | 5           | "WHITE" | x=3, y=3       | x=1, y=2        | EMPTY                    | True                               | L movement #5    | True            | no           |
 | 6           | "WHITE" | x=3, y=3       | x=1, y=4        | EMPTY                    | True                               | L movement #6    | True            | no           |
