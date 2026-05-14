@@ -214,4 +214,21 @@ public class KnightTests {
         assertTrue(result);
     }
 
+    @Test
+    public void isValidMove_Knight_Lmov1blockedEndFriendly_returnFalse() {
+        Piece knight = new Knight(PieceColor.BLACK);
+
+        Location start = new Location(3, 3);
+        Location chosen = new Location(5, 2);
+
+        Board board = new Board(false);
+
+        Piece pawnBlocker = new Pawn(PieceColor.BLACK);
+        board.setPiece(chosen, pawnBlocker);
+
+        boolean result = knight.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 }
