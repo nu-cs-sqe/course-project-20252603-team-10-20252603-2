@@ -245,6 +245,20 @@ public class KnightTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Knight_yMovement_returnFalse() {
+        Piece knight = new Knight(PieceColor.BLACK);
+
+        Location start = new Location(3, 3);
+        Location chosen = new Location(3, 5);
+
+        Board board = new Board(false);
+
+        boolean result = knight.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 
 }
