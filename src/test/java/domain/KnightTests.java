@@ -324,4 +324,23 @@ public class KnightTests {
         assertTrue(result);
     }
 
+    @Test
+    public void isValidMove_Knight_Lmov3blockedPathHoriz2_returnTrue() {
+        Piece knight = new Knight(PieceColor.WHITE);
+
+        Location start = new Location(3, 3);
+        Location chosen = new Location(4, 1);
+
+        Location blocker = new Location(4, 2);
+
+        Board board = new Board(false);
+
+        Piece pawnBlocker = new Pawn(PieceColor.WHITE);
+        board.setPiece(blocker, pawnBlocker);
+
+        boolean result = knight.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
 }
