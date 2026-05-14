@@ -3,10 +3,7 @@ package domain.piece;
 import domain.Board;
 import domain.Location;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> main
 public class Rook extends Piece {
     public Rook(PieceColor color) {
         super(PieceType.ROOK, color);
@@ -19,7 +16,6 @@ public class Rook extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
-<<<<<<< HEAD
 
         if (start.equals(end)) {
             return false;
@@ -68,9 +64,5 @@ public class Rook extends Piece {
         }
 
         return true;
-=======
-        //  TODO: complete method
-        return false;
->>>>>>> main
     }
 }
