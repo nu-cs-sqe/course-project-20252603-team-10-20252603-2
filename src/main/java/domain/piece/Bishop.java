@@ -16,6 +16,12 @@ public class Bishop extends Piece {
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
         if (start.equals(end)) return false;
+
+        int rowChange = Math.abs(end.getX() - start.getX());
+        int colChange = Math.abs(end.getY() - start.getY());
+
+        if (rowChange != colChange) return false;
+
         return true;
     }
 }

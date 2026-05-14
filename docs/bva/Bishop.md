@@ -5,7 +5,7 @@
 
 | Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern                | Expected output | Implemented? |
 |-------------|---------|----------------|-----------------|--------------------------|----------------|---------------------------------|-----------------|--------------|
-| 1           | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square                     | False           | no           |
+| 1           | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square                     | False           | yes          |
 | 2           | "WHITE" | [0][0]         | [1][1]          | EMPTY                    | True           | 1 diagonal - up + right         | True            | no           |
 | 3           | "WHITE" | [0][7]         | [1][6]          | EMPTY                    | True           | 1 diagonal - up + left          | True            | no           |
 | 4           | "WHITE" | [7][0]         | [6][1]          | EMPTY                    | True           | 1 diagonal - down + right       | True            | no           |
@@ -14,7 +14,7 @@
 | 7           | "WHITE" | [0][7]         | [7][0]          | EMPTY                    | True           | 7 diagonal - up + left          | True            | no           |
 | 8           | "WHITE" | [7][0]         | [0][7]          | EMPTY                    | True           | 7 diagonal - down + right       | True            | no           |
 | 9           | "WHITE" | [7][7]         | [0][0]          | EMPTY                    | True           | diagonal - down + left          | True            | no           |
-| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | True           | vertical                        | False           | no           |
+| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | True           | vertical                        | False           | yes          |
 | 11          | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | True           | horizontal                      | False           | no           |
 | 12          | "WHITE" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal                | True            | no           |
 | 13          | "WHITE" | [0][0]         | [3][3]          | friendly                 | True           | friendly diagonal               | False           | no           |
