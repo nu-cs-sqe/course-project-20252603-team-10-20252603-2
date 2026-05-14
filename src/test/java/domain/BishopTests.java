@@ -197,4 +197,21 @@ public class BishopTests {
 
         assertFalse(result);
     }
+
+    @Test
+    public void isValidMove_BlackBishop_DiagonalCapture_returnTrue() {
+        Piece bishop = new Bishop(PieceColor.BLACK);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(7, 7);
+
+        Board board = new Board(false);
+
+        Piece capturePiece = new Bishop(PieceColor.WHITE);
+        board.setPiece(new Location(7, 7), capturePiece);
+
+        boolean result = bishop.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
 }
