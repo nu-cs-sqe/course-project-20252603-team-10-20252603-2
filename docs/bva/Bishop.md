@@ -16,7 +16,7 @@
 | 9           | "WHITE" | [7][7]         | [0][0]          | EMPTY                    | True           | diagonal - down + left          | True            | yes          |
 | 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | True           | vertical                        | False           | yes          |
 | 11          | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | True           | horizontal                      | False           | yes          |
-| 12          | "WHITE" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal                | True            | no           |
+| 12          | "WHITE" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal                | True            | yes          |
 | 13          | "WHITE" | [0][0]         | [3][3]          | friendly                 | True           | friendly diagonal               | False           | no           |
 | 14          | "BLACK" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal (black bishop) | True            | no           |
 | 15          | "BLACK" | [0][0]         | [7][7]          | empty                    | False          | valid move + blocked path       | False           | no           |
