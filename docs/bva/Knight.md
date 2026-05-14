@@ -11,7 +11,7 @@
 | 5           | "WHITE" | x=3, y=3       | x=1, y=2        | EMPTY                    | True                               | L movement #5    | True            | yes          |
 | 6           | "WHITE" | x=3, y=3       | x=1, y=4        | EMPTY                    | True                               | L movement #6    | True            | yes          |
 | 7           | "WHITE" | x=3, y=3       | x=2, y=1        | EMPTY                    | True                               | L movement #7    | True            | yes          |
-| 8           | "WHITE" | x=3, y=3       | x=2, y=5        | EMPTY                    | True                               | L movement #8    | True            | no           |
+| 8           | "WHITE" | x=3, y=3       | x=2, y=5        | EMPTY                    | True                               | L movement #8    | True            | yes          |
 | 9           | "WHITE" | x=0, y=0       | x=2, y=1        | EMPTY                    | True                               | L movement #2    | True            | no           |
 | 10          | "WHITE" | x=7, y=7       | x=6, y=5        | EMPTY                    | True                               | L movement #5    | True            | no           |
 | 11          | "WHITE" | x=2, y=1       | x=0, y=0        | EMPTY                    | True                               | L movement #5    | True            | no           |

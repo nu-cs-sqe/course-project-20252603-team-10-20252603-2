@@ -24,6 +24,7 @@ public class Knight extends Piece {
         boolean isL5 = (end.getX() == start.getX()-2) && (end.getY() == start.getY()-1);
         boolean isL6 = (end.getX() == start.getX()-2) && (end.getY() == start.getY()+1);
         boolean isL7 = (end.getX() == start.getX()-1) && (end.getY() == start.getY()-2);
+        boolean isL8 = (end.getX() == start.getX()-1) && (end.getY() == start.getY()+2);
 
         if (isL1) return true;
         if (isL2) return true;
@@ -32,6 +33,7 @@ public class Knight extends Piece {
         if (isL5) return true;
         if (isL6) return true;
         if (isL7) return true;
+        if (isL8) return true;
 
         return false;
     }
