@@ -16,6 +16,11 @@ public class Knight extends Piece {
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
         //  TODO: complete method
+
+        boolean isL1 = (end.getX() == start.getX()+2) && (end.getY() == start.getY()-1);
+
+        if (isL1) return true;
+
         return false;
     }
 }

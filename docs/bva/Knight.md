@@ -4,7 +4,7 @@
 
 | Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear?                     | Movement pattern | Expected output | Implemented? |
 |-------------|---------|----------------|-----------------|--------------------------|------------------------------------|------------------|-----------------|--------------|
-| 1           | "WHITE" | x=3, y=3       | x=5, y=2        | EMPTY                    | True                               | L movement #1    | True            | no           |
+| 1           | "WHITE" | x=3, y=3       | x=5, y=2        | EMPTY                    | True                               | L movement #1    | True            | yes          |
 | 2           | "BLACK" | x=3, y=3       | x=5, y=4        | EMPTY                    | True                               | L movement #2    | True            | no           |
 | 3           | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | True                               | L movement #3    | True            | no           |
 | 4           | "WHITE" | x=3, y=3       | x=4, y=5        | EMPTY                    | True                               | L movement #4    | True            | no           |
