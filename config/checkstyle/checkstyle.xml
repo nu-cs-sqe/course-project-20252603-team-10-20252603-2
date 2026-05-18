@@ -17,7 +17,6 @@
         <module name="MethodName"/>
         <module name="ParameterName"/>
         <module name="VariableName"/>
-<!--        local var name? -->
         <module name="MemberName"/>
         <module name="ConstantName"/>
         <module name="PackageName"/>

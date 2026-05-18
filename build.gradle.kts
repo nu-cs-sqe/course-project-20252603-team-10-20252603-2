@@ -43,7 +43,6 @@ tasks.withType<Checkstyle>().configureEach {
     reports {
         xml.required = false
         html.required = true
-// DO I NEED THIS?       html.stylesheet = resources.text.fromFile("config/xsl/checkstyle-noframes-severity-sorted.xsl")
     }
 }
 
@@ -60,7 +59,6 @@ spotbugs {
 tasks.spotbugsMain {
     reports.create("html") {
         required = true
-        // is this location ok
         outputLocation = layout.buildDirectory.file("reports/spotbugs/spotbugs.html")
         setStylesheet("fancy-hist.xsl")
     }
