@@ -25,8 +25,10 @@
 7. [done] Vivian: BVA for Player class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
 8. [50% done] Vivian: Implementation for Player class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
 
-# Week X (XX/XX/2026-XX/XX/2026) TEMPLATE (You can change the format to whatever the team likes better)
+# Week 7 (05/11/2026-05/17/2026)
 **Planning and Progress Tracking**:
-1. [done] Person: Task (Links to PR)
-2. [not started] Person: Task (Links to PR)
-3. [80% done] Person: Task (Links to PR)
+1. [done] Cate: Addressed and merged isValidMove feedback and updates from Vivian and Samreen (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/14)
+2. [done] Cate: Code and test implementation for isValidMove (type=Knight) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/29)
+3. [done] Cate: Pushed implementation of spotbugs and checkstyle (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
+4. [not started] Cate: Code and test implementation for isValidMove (type=Queen)
+
