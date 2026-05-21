@@ -15,6 +15,11 @@ public class Queen extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
+
+        boolean xMovement = (start.getY() == end.getY()) && (start.getX() != end.getX());
+
+        if (xMovement) return true;
+
         //  TODO: complete method
         return false;
     }
