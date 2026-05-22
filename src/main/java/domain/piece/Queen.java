@@ -18,8 +18,12 @@ public class Queen extends Piece {
 
         boolean xMovement = (start.getY() == end.getY()) && (start.getX() != end.getX());
         boolean yMovement = (start.getY() != end.getY()) && (start.getX() == end.getX());
+        int diffX = Math.abs(start.getX() - end.getX());
+        int diffY = Math.abs(start.getY() - end.getY());
+        boolean diagonalMovement = (diffX == diffY);
 
-        if (xMovement || yMovement) return true;
+
+        if (xMovement || yMovement || diagonalMovement) return true;
 
         //  TODO: complete method
         return false;

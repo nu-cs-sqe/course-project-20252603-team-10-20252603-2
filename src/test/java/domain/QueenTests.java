@@ -79,4 +79,18 @@ public class QueenTests {
         assertTrue(result);
     }
 
+    @Test
+    public void isValidMove_Queen_diagonalPos_returnTrue() {
+        Piece queen = new Queen(PieceColor.WHITE);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(7, 7);
+
+        Board board = new Board(false);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
 }
