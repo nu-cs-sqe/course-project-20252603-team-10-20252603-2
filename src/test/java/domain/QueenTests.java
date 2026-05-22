@@ -143,5 +143,22 @@ public class QueenTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Queen_yMovPosEnemyBlock_returnFalse() {
+        Piece queen = new Queen(PieceColor.BLACK);
+        Piece blocker = new Pawn(PieceColor.WHITE);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(0, 7);
+        Location blockerLocation = new Location(0, 3);
+
+        Board board = new Board(false);
+        board.setPiece(blockerLocation, blocker);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 }
