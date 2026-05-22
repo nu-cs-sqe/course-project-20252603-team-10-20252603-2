@@ -12,7 +12,7 @@
 | 6           | "WHITE" | x=0, y=0       | x=7, y=7        | empty                    | True                             | diagonal (+ direction)   | True            | yes          |
 | 7           | "WHITE" | x=7, y=7       | x=0, y=0        | empty                    | True                             | diagonal (- direction)   | True            | yes          |
 | 8           | "BLACK" | x=0, y=0       | x=7, y=0        | empty                    | False (friendly piece @ x=3,y=0) | x movement (+ direction) | False           | yes          |
-| 9           | "BLACK" | x=0, y=0       | x=7, y=0        | empty                    | False (enemy piece @ x=3,y=0)    | x movement (+ direction) | False           | no           |
+| 9           | "BLACK" | x=0, y=0       | x=7, y=0        | empty                    | False (enemy piece @ x=3,y=0)    | x movement (+ direction) | False           | yes          |
 | 10          | "BLACK" | x=0, y=0       | x=0, y=7        | empty                    | False (enemy piece @ x=0,y=3)    | y movement (+ direction) | False           | no           |
 | 11          | "WHITE" | x=0, y=0       | x=7, y=7        | empty                    | False (enemy piece @ x=3,y=3)    | diagonal (+ direction)   | False           | no           |
 | 12          | "WHITE" | x=7, y=7       | x=0, y=7        | ENEMY                    | True                             | x movement (- direction) | True            | no           |
