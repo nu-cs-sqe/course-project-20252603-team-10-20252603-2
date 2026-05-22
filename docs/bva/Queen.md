@@ -5,7 +5,7 @@
 | Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear?                   | Movement pattern         | Expected output | Implemented? |
 |-------------|---------|----------------|-----------------|--------------------------|----------------------------------|--------------------------|-----------------|--------------|
 | 1           | "WHITE" | x=0, y=0       | x=7, y=0        | empty                    | True                             | x movement (+ direction) | True            | yes          |
-| 2           | "BLACK" | x=0, y=0       | x=7, y=0        | empty                    | True                             | x movement (+ direction) | True            | no           |
+| 2           | "BLACK" | x=0, y=0       | x=7, y=0        | empty                    | True                             | x movement (+ direction) | True            | yes          |
 | 3           | "BLACK" | x=7, y=7       | x=0, y=7        | empty                    | True                             | x movement (- direction) | True            | no           |
 | 4           | "BLACK" | x=7, y=7       | x=7, y=0        | empty                    | True                             | y movement (- direction) | True            | no           |
 | 5           | "BLACK" | x=0, y=0       | x=0, y=7        | empty                    | True                             | y movement (+ direction) | True            | no           |
