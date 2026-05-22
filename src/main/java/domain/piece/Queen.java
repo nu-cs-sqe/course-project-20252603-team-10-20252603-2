@@ -29,7 +29,16 @@ public class Queen extends Piece {
 
         boolean diagonalMovement = (diffX == diffY);
 
-        if (diagonalMovement) return true;
+        if (diagonalMovement) {
+            for (int i = 1; i < diffX - 1; i++) {
+                Location locationCheck = new Location(start.getX() + (i * dirY), start.getY() + (i * dirY));
+
+                if (board.isPieceHere(locationCheck) == true) return false;
+
+            }
+
+            return true;
+        };
 
         if (yMovement) {
             for (int i = 1; i < diffY - 1; i++) {
