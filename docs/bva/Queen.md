@@ -7,7 +7,7 @@
 | 1           | "WHITE" | x=0, y=0       | x=7, y=0        | empty                    | True                             | x movement (+ direction) | True            | yes          |
 | 2           | "BLACK" | x=0, y=0       | x=7, y=0        | empty                    | True                             | x movement (+ direction) | True            | yes          |
 | 3           | "BLACK" | x=7, y=7       | x=0, y=7        | empty                    | True                             | x movement (- direction) | True            | yes          |
-| 4           | "BLACK" | x=7, y=7       | x=7, y=0        | empty                    | True                             | y movement (- direction) | True            | no           |
+| 4           | "BLACK" | x=7, y=7       | x=7, y=0        | empty                    | True                             | y movement (- direction) | True            | yes          |
 | 5           | "BLACK" | x=0, y=0       | x=0, y=7        | empty                    | True                             | y movement (+ direction) | True            | no           |
 | 6           | "WHITE" | x=0, y=0       | x=7, y=7        | empty                    | True                             | diagonal (+ direction)   | True            | no           |
 | 7           | "WHITE" | x=7, y=7       | x=0, y=0        | empty                    | True                             | diagonal (- direction)   | True            | no           |

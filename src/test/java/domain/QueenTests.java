@@ -51,4 +51,18 @@ public class QueenTests {
         assertTrue(result);
     }
 
+    @Test
+    public void isValidMove_Queen_yMovNeg_returnTrue() {
+        Piece queen = new Queen(PieceColor.BLACK);
+
+        Location start = new Location(7, 7);
+        Location chosen = new Location(7, 0);
+
+        Board board = new Board(false);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
 }
