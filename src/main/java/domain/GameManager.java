@@ -18,6 +18,10 @@ public class GameManager {
             throw new IllegalStateException("Maximum number of players allowed is 2.");
         }
 
+        if (players.get(0).getPlayerColor() == players.get(1).getPlayerColor()) {
+            throw new IllegalStateException("Players cannot have the same color.");
+        }
+
         this.isGameRunning = true;
     }
 

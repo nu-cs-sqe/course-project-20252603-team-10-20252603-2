@@ -43,4 +43,18 @@ public class GameManagerTests {
         assertDoesNotThrow(() -> game.start());
         assertTrue(game.isGameRunning());
     }
+
+    @Test
+    public void start_WithTwoPlayersOfTheSameColor_ThrowsException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.BLACK));
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            game.start();
+        });
+
+        assertTrue(exception.getMessage().contains("Players cannot have the same color."));
+        assertFalse(game.isGameRunning());
+    }
 }
