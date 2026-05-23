@@ -191,5 +191,21 @@ public class QueenTests {
         assertTrue(result);
     }
 
+    @Test
+    public void isValidMove_Queen_xMovNegFriendlyEnd_returnFalse() {
+        Piece queen = new Queen(PieceColor.WHITE);
+        Piece blocker = new Pawn(PieceColor.WHITE);
+
+        Location start = new Location(7, 7);
+        Location chosen = new Location(0, 7);
+
+        Board board = new Board(false);
+        board.setPiece(chosen, blocker);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 }
