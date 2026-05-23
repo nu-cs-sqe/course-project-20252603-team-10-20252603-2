@@ -221,5 +221,19 @@ public class QueenTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Queen_LMov1_returnFalse() {
+        Piece queen = new Queen(PieceColor.WHITE);
+
+        Location start = new Location(3, 3);
+        Location chosen = new Location(5, 2);
+
+        Board board = new Board(false);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 }
