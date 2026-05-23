@@ -19,7 +19,7 @@
 | 12          | "WHITE" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal                | True            | yes          |
 | 13          | "WHITE" | [0][0]         | [3][3]          | friendly                 | True           | friendly diagonal               | False           | yes          |
 | 14          | "BLACK" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal (black bishop) | True            | yes          |
-| 15          | "BLACK" | [0][0]         | [7][7]          | empty                    | False          | valid move + blocked path       | False           | no           |
+| 15          | "BLACK" | [0][0]         | [7][7]          | empty                    | False          | valid move + blocked path       | False           | yes          |
 | 16          | "BLACK" | [0][0]         | [7][7]          | empty                    | True           | valid move (black)              | True            | no           |
 
 ### STEPS FOR BVA: `isValidMove()` for Bishop

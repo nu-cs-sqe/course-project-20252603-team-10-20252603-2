@@ -214,4 +214,27 @@ public class BishopTests {
 
         assertTrue(result);
     }
+
+    @Test
+    public void isValidMove_Bishop_blockedDiagonal_returnFalse() {
+        Piece bishop = new Bishop(PieceColor.WHITE);
+
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(7, 7);
+
+
+        Board board = new Board(false);
+
+
+        Piece blockingPiece = new Bishop(PieceColor.BLACK);
+        board.setPiece(new Location(1, 1), blockingPiece);
+
+
+        boolean result = bishop.isValidMove(start, chosen, board);
+
+
+        assertFalse(result);
+    }
+
 }

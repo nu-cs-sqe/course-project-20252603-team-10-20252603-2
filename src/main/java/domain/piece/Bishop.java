@@ -27,6 +27,32 @@ public class Bishop extends Piece {
             if (this.isSameColor(target)) return false;
         }
 
+        int rowDirection = 0;
+        int colDirection = 0;
+
+        if (end.getX() > start.getX()) {
+            rowDirection = 1;
+        } else {
+            rowDirection = -1;
+        }
+
+        if (end.getY() > start.getY()) {
+            colDirection = 1;
+        } else {
+            colDirection = -1;
+        }
+
+        int currentRow = start.getX() + rowDirection;
+        int currentCol = start.getY() + colDirection;
+
+        while (currentRow != end.getX() && currentCol != end.getY()) {
+            if (board.isPieceHere(new Location(currentRow, currentCol))) {
+                return false;
+            }
+            currentRow += rowDirection;
+            currentCol += colDirection;
+        }
+
         return true;
     }
 }
