@@ -4,19 +4,24 @@
 <module name="Checker">
     <property name="severity" value="warning"/>
 
+    <module name="FileTabCharacter"/>
     <module name="LineLength">
         <property name="max" value="100"/>
     </module>
     <module name="NewlineAtEndOfFile"/>
 
-<!--    TODO: add line to handle commented out code? -->
+    <module name="RegexpSingleline">
+        <property name="format" value="^\s*//\s*(if|for|while|return|public|private|protected|class|int|String|boolean)\b"/>
+        <property name="message" value="Possible commented-out code. Delete it instead."/>
+        <property name="ignoreComments" value="false"/>
+    </module>
 
     <module name="TreeWalker">
 
         <module name="TypeName"/>
         <module name="MethodName"/>
         <module name="ParameterName"/>
-        <module name="VariableName"/>
+        <module name="LocalVariableName"/>
         <module name="MemberName"/>
         <module name="ConstantName"/>
         <module name="PackageName"/>
