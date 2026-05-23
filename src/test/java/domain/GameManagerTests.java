@@ -57,4 +57,18 @@ public class GameManagerTests {
         assertTrue(exception.getMessage().contains("Players cannot have the same color."));
         assertFalse(game.isGameRunning());
     }
+
+    @Test
+    public void changeTurns_StartsWithWhite_IsTrue() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+
+        game.start();
+
+        Color actual = game.getCurrentPlayer().getPlayerColor();
+        Color expected = Color.WHITE;
+
+        assertEquals(actual, expected);
+    }
 }
