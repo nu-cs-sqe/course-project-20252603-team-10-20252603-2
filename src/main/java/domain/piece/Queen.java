@@ -16,6 +16,10 @@ public class Queen extends Piece {
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
 
+        if (start.equals(end)) {
+            return false;
+        }
+
         if (board.isPieceHere(end)) {
             Piece blocker = board.getPiece(end);
             if (blocker.getColor() == this.getColor()) return false;
