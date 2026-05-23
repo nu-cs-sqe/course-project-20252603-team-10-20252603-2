@@ -14,6 +14,8 @@ public class GameManager {
     public void start() throws IllegalStateException {
         if (players.size() < 2) {
             throw new IllegalStateException("Not enough players in the game.");
+        } else if (players.size() > 2) {
+            throw new IllegalStateException("Maximum number of players allowed is 2.");
         }
     }
 
