@@ -71,4 +71,19 @@ public class GameManagerTests {
 
         assertEquals(actual, expected);
     }
+
+    @Test
+    public void changeTurns_WhiteToBlack_IsSuccessful() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+
+        game.start();
+        game.changeTurns();
+
+        Color actual = game.getCurrentPlayer().getPlayerColor();
+        Color expected = Color.BLACK;
+
+        assertEquals(actual, expected);
+    }
 }
