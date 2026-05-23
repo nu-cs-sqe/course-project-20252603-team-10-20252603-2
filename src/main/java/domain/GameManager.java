@@ -17,6 +17,8 @@ public class GameManager {
         } else if (players.size() > 2) {
             throw new IllegalStateException("Maximum number of players allowed is 2.");
         }
+
+        this.isGameRunning = true;
     }
 
     public boolean isGameRunning() {

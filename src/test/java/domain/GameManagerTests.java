@@ -33,4 +33,14 @@ public class GameManagerTests {
         assertTrue(exception.getMessage().contains("Maximum number of players allowed is 2."));
         assertFalse(game.isGameRunning());
     }
+
+    @Test
+    public void start_WithTwoPlayers_IsSuccessful() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+
+        assertDoesNotThrow(() -> game.start());
+        assertTrue(game.isGameRunning());
+    }
 }
