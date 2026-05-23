@@ -16,8 +16,10 @@ public class Queen extends Piece {
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
 
-//        Location blocker = new Location(3, 0);
-//        if (board.isPieceHere(blocker) == true) return false;
+        if (board.isPieceHere(end)) {
+            Piece blocker = board.getPiece(end);
+            if (blocker.getColor() == this.getColor()) return false;
+        }
 
         boolean xMovement = (start.getY() == end.getY()) && (start.getX() != end.getX());
         boolean yMovement = (start.getY() != end.getY()) && (start.getX() == end.getX());
@@ -30,7 +32,7 @@ public class Queen extends Piece {
         boolean diagonalMovement = (diffX == diffY);
 
         if (diagonalMovement) {
-            for (int i = 1; i < diffX - 1; i++) {
+            for (int i = 1; i < diffX - 2; i++) {
                 Location locationCheck = new Location(start.getX() + (i * dirY), start.getY() + (i * dirY));
 
                 if (board.isPieceHere(locationCheck) == true) return false;
@@ -41,29 +43,27 @@ public class Queen extends Piece {
         };
 
         if (yMovement) {
-            for (int i = 1; i < diffY - 1; i++) {
+            for (int i = 1; i < diffY - 2; i++) {
                 Location locationCheck = new Location(start.getX(), start.getY() + (i * dirY));
 
                 if (board.isPieceHere(locationCheck) == true) return false;
 
             }
+
             return true;
         };
 
         if (xMovement) {
-
-            for (int i = 1; i < diffX - 1; i++) {
+            for (int i = 1; i < diffX - 2; i++) {
                 Location locationCheck = new Location(start.getX() + (i * dirX), start.getY());
 
                 if (board.isPieceHere(locationCheck) == true) return false;
 
             }
+
             return true;
         }
 
-
-
-        //  TODO: complete method
         return false;
     }
 }
