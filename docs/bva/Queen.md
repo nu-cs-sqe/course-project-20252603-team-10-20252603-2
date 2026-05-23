@@ -19,7 +19,7 @@
 | 13          | "WHITE" | x=7, y=7       | x=0, y=7        | FRIENDLY                 | True                             | x movement (- direction) | False           | yes          |
 | 14          | "WHITE" | x=5, y=7       | x=5, y=7        | FRIENDLY (same square)   | True                             | same square              | False           | yes          |
 | 15          | "WHITE" | x=3, y=3       | x=5, y=2        | EMPTY                    | True                             | L movement #1            | False           | yes          |
-| 16          | "BLACK" | x=3, y=3       | x=5, y=4        | EMPTY                    | True                             | L movement #2            | False           | no           |
+| 16          | "BLACK" | x=3, y=3       | x=4, y=1        | EMPTY                    | True                             | L movement #3            | False           | no           |
 
 
 ### STEPS FOR BVA: `isValidMove()` for Queen
