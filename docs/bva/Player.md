@@ -62,25 +62,3 @@
 | Blocking Piece | True: No pieces between Attacker and King. <br/>False: At least one piece (friendly or enemy) exists on the line of sight.                                                            |
 | Movement pattern | Pawn: One square diagonally forward. <br/>Knight: Exactly "L-shape" away. <br/>Rook: Same row or column.<br/>Bishop: same diagonal. <br/>Queen: diagonal, same row or same column     |
 
-**Method under test: isCurrentTurn()**
-
-|  | System under test | Expected output | Implemented? |
-| :---- | :---- | :---- |:-------------|
-| Test Case 1 | Current player’s turn | isCurrentTurn() returns true  | yes          |
-| Test Case 2 | Opposing player’s turn | isCurrentTurn() returns false  | yes          |
-
-### STEPS FOR BVA: `isCurrentTurn()`
-
-1. Data types
-* Input: 
-  * Cases
-    * Player’s color: WHITE
-    * Player’s color: BLACK
-* Output: boolean
-2. Test Cases
-* Input:
-    * Player’s color: WHITE
-    * Player’s color: BLACK
-* Output: boolean
-    * True
-    * False
