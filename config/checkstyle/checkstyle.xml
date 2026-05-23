@@ -13,7 +13,6 @@
     <module name="RegexpSingleline">
         <property name="format" value="^\s*//\s*(if|for|while|return|public|private|protected|class|int|String|boolean)\b"/>
         <property name="message" value="Possible commented-out code. Delete it instead."/>
-        <property name="ignoreComments" value="false"/>
     </module>
 
     <module name="TreeWalker">
@@ -33,7 +32,6 @@
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
         <module name="NoWhitespaceBefore"/>
-        <module name="ParenPad"/>
         <module name="EmptyLineSeparator"/>
         <module name="OneStatementPerLine"/>
         <module name="MultipleVariableDeclarations"/>
@@ -62,7 +60,7 @@
         <module name="AvoidStarImport"/>
         <module name="UnusedImports"/>
         <module name="RedundantImport"/>
-        <module name="CustomImportOrder"/>
+
 
 
         <module name="EmptyCatchBlock"/>
@@ -73,12 +71,8 @@
         <module name="FallThrough"/>
 
         <module name="TodoComment"/>
-        <module name="JavadocMethod">
-            <property name="scope" value="public"/>
-        </module>
-        <module name="JavadocType">
-            <property name="scope" value="public"/>
-        </module>
+        <module name="JavadocMethod"/>
+        <module name="JavadocType"/>
 
         <module name="MagicNumber">
             <property name="ignoreNumbers" value="-1,0,1,2,8"/>
@@ -95,7 +89,6 @@
 
         <module name="NoFinalizer"/>
         <module name="ModifierOrder"/>
-        <module name="FinalParameters"/>
 
 
     </module>

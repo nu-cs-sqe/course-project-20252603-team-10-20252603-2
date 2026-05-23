@@ -35,6 +35,7 @@ tasks.test {
 }
 
 checkstyle{
+    toolVersion = "10.21.1"
     isIgnoreFailures = false
     configFile=file("config/checkstyle/checkstyle.xml")
 }
