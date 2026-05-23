@@ -30,7 +30,7 @@
 |:------------|:-----------------------------------|:-----------------------------------------------------------------------------------------|:-------------|
 | Test Case 1 | Transitioning from white to black. | UI change to show that it is the black player’s move. Only that player can move a piece. | yes          |
 | Test Case 2 | Transitioning from black to white. | UI change to show that it is the white player’s move. Only that player can move a piece. | yes          |
-| Test Case 3 | A tie/draw.                        | Neither player can move a piece, notification that the game ended in a draw.             | no           |
+| Test Case 3 | A tie/draw.                        | Neither player can move a piece, notification that the game ended in a draw.             | yes          |
 | Test Case 4 | Game initially starts with White.  | The current player is White.                                                             | yes          |
 
 

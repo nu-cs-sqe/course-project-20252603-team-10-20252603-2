@@ -102,4 +102,22 @@ public class GameManagerTests {
 
         assertEquals(actual, expected);
     }
+
+    @Test
+    public void changeTurns_Draw_ThrowsException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+        game.start();
+
+        for (int i = 0; i < 50; i++) {
+            game.incrementDrawCounter();
+        }
+
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            game.changeTurns();
+        });
+
+        assertTrue(exception.getMessage().contains("Game is a draw."));
+    }
 }

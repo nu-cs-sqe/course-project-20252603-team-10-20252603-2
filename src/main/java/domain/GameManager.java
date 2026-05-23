@@ -11,6 +11,17 @@ public class GameManager {
     private Player whitePlayer;
     private Player blackPlayer;
     private Player currentPlayer;
+    private boolean isGameADraw;
+    private int consecutiveDrawMoves = 0;
+
+    public void incrementDrawCounter() {
+        this.consecutiveDrawMoves++;
+    }
+
+    public boolean isGameADraw() {
+        System.out.println("MOVES: " +consecutiveDrawMoves);
+        return consecutiveDrawMoves >= 50;
+    }
 
     public void addPlayer(Player player) {
         players.add(player);
@@ -41,8 +52,13 @@ public class GameManager {
         currentPlayer = whitePlayer;
     }
 
-    public void changeTurns() {
-        currentPlayer = (currentPlayer == whitePlayer) ? blackPlayer : whitePlayer;
+    public void changeTurns() throws IllegalStateException {
+        if (!isGameADraw()) {
+            currentPlayer = (currentPlayer == whitePlayer) ? blackPlayer : whitePlayer;
+        } else {
+            System.out.println("HERE");
+            throw new IllegalStateException("Game is a draw.");
+        }
     }
 
     public boolean isGameRunning() {
