@@ -1,8 +1,10 @@
 package domain;
+
 import java.util.Objects;
 
 public class Location {
     private final int x;
+
     private final int y;
 
     public Location(int x, int y) {

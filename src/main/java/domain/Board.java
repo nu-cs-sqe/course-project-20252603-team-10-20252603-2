@@ -7,11 +7,12 @@ import static domain.piece.PieceColor.*;
 public class Board {
 
     private static final int TOTAL_ROWS = 8;
+
     private static final int TOTAL_COLS = 8;
+
     private Piece[][] pieces;
 
-
-    public Board(boolean init){
+    public Board(boolean init) {
         pieces = new Piece[TOTAL_ROWS][TOTAL_COLS];
         if (init) {
             initializeBoard();
@@ -19,7 +20,7 @@ public class Board {
 
     }
 
-    private void initializeBoard(){
+    private void initializeBoard() {
 
         // Initialize pawns
         for (int i = 0; i < TOTAL_COLS; i++) {
@@ -55,7 +56,7 @@ public class Board {
 
     public Piece[][] getSnapshot() {
         Piece[][] snapshot = new Piece[TOTAL_ROWS][TOTAL_COLS];
-        for(int i = 0; i < TOTAL_ROWS; i++) {
+        for (int i = 0; i < TOTAL_ROWS; i++) {
             for (int j = 0; j < TOTAL_COLS; j++) {
                 if (pieces[i][j] != null) {
                     snapshot[i][j] = pieces[i][j].makeCopy();

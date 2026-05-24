@@ -9,7 +9,9 @@ import java.util.Map;
 public class Player {
 
     private final Color playerColor;
+
     private int points = 0;
+
     private static final Map<String, Integer> PIECE_VALUES = Map.of(
             "pawn", 1,
             "knight", 3,
