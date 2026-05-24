@@ -6,8 +6,8 @@ import static domain.piece.PieceColor.*;
 
 public class Board {
 
-    private final int TOTAL_ROWS = 8;
-    private final int TOTAL_COLS = 8;
+    private static final int TOTAL_ROWS = 8;
+    private static final int TOTAL_COLS = 8;
     private Piece[][] pieces;
 
 
