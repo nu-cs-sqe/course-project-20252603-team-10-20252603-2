@@ -133,4 +133,19 @@ public class GameManagerTests {
 
         assertFalse(gameOver);
     }
+
+    @Test
+    public void isGameOver_DrawConditionMet_ReturnsTrue() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+        game.start();
+
+        for (int i = 0; i < 50; i++) {
+            game.incrementDrawCounter();
+        }
+
+        boolean gameOver = game.isGameOver();
+        assertTrue(gameOver);
+    }
 }
