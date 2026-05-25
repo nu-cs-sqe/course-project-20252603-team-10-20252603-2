@@ -1,10 +1,11 @@
 package domain.piece;
 
+import constants.Color;
 import domain.Board;
 import domain.Location;
 
 public class Pawn extends Piece {
-    public Pawn(PieceColor color) {
+    public Pawn(Color color) {
         super(PieceType.PAWN, color);
     }
 
@@ -23,7 +24,7 @@ public class Pawn extends Piece {
         }
 
         //  is it too far?
-        int direction = (getColor() == PieceColor.WHITE) ? -1 : 1;
+        int direction = (getColor() == Color.WHITE) ? -1 : 1;
 
         int dist_x = end.getX() - start.getX();
         int dist_y = end.getY() - start.getY();
@@ -32,7 +33,7 @@ public class Pawn extends Piece {
         boolean twoForward = (dist_x == direction * 2 && dist_y == 0);
         boolean oneForwardDiagonal = (dist_x == direction && Math.abs(dist_y) == 1);
 
-        boolean onStartRow = (getColor() == PieceColor.WHITE && start.getX() == 6) || (getColor() == PieceColor.BLACK && start.getX() == 1);
+        boolean onStartRow = (getColor() == Color.WHITE && start.getX() == 6) || (getColor() == Color.BLACK && start.getX() == 1);
 
         if (!(oneForward || oneForwardDiagonal || twoForward)) {
             return false;
@@ -53,5 +54,11 @@ public class Pawn extends Piece {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean hasValidMoves() {
+        //  TODO: complete method
+        return false;
     }
 }

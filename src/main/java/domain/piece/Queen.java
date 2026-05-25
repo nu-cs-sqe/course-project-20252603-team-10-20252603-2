@@ -2,9 +2,10 @@ package domain.piece;
 
 import domain.Board;
 import domain.Location;
+import constants.Color;
 
 public class Queen extends Piece {
-    public Queen(PieceColor color) {
+    public Queen(Color color) {
         super(PieceType.QUEEN, color);
     }
 
@@ -15,6 +16,12 @@ public class Queen extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
+        //  TODO: complete method
+        return false;
+    }
+
+    @Override
+    public boolean hasValidMoves() {
         //  TODO: complete method
         return false;
     }

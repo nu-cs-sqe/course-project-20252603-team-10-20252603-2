@@ -1,6 +1,7 @@
 package domain;
 
 import constants.Color;
+import domain.piece.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +12,14 @@ public class GameManager {
     private Player whitePlayer;
     private Player blackPlayer;
     private Player currentPlayer;
-    private boolean isGameADraw;
     private int consecutiveDrawMoves = 0;
+    private Board board;
 
     public void incrementDrawCounter() {
         this.consecutiveDrawMoves++;
     }
 
     public boolean isGameADraw() {
-        System.out.println("MOVES: " +consecutiveDrawMoves);
         return consecutiveDrawMoves >= 50;
     }
 
@@ -38,6 +38,7 @@ public class GameManager {
             throw new IllegalStateException("Players cannot have the same color.");
         }
         assignPlayers(players.get(0), players.get(1));
+        board = new Board(true);
         this.isGameRunning = true;
     }
 
@@ -67,5 +68,11 @@ public class GameManager {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public boolean isGameOver() {
+        Color playerColor = currentPlayer.getPlayerColor();
+        boolean hasValidMoves = !board.getValidPiecesByColor(playerColor).isEmpty();
+        return isGameADraw() || currentPlayer.isInCheck() && !hasValidMoves;
     }
 }

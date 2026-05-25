@@ -2,10 +2,10 @@ package domain.piece;
 
 import domain.Board;
 import domain.Location;
-
+import constants.Color;
 
 public class Rook extends Piece {
-    public Rook(PieceColor color) {
+    public Rook(Color color) {
         super(PieceType.ROOK, color);
     }
 
@@ -64,5 +64,11 @@ public class Rook extends Piece {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean hasValidMoves() {
+        //  TODO: complete method
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 package domain;
 
 import constants.Color;
+import domain.piece.King;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -119,5 +120,17 @@ public class GameManagerTests {
         });
 
         assertTrue(exception.getMessage().contains("Game is a draw."));
+    }
+
+    @Test
+    public void isGameOver_KingNotInCheck_ReturnsFalse() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+        game.start();
+
+        boolean gameOver = game.isGameOver();
+
+        assertFalse(gameOver);
     }
 }

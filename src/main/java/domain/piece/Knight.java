@@ -2,9 +2,10 @@ package domain.piece;
 
 import domain.Board;
 import domain.Location;
+import constants.Color;
 
 public class Knight extends Piece {
-    public Knight(PieceColor color) {
+    public Knight(Color color) {
         super(PieceType.KNIGHT, color);
     }
 
@@ -36,6 +37,12 @@ public class Knight extends Piece {
 
         if (isL1 || isL2 || isL3 || isL4 || isL5 || isL6 || isL7 || isL8) return true;
 
+        return false;
+    }
+
+    @Override
+    public boolean hasValidMoves() {
+        //  TODO: complete method
         return false;
     }
 }

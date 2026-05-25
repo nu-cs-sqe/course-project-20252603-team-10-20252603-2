@@ -2,7 +2,12 @@ package domain;
 
 import domain.piece.*;
 
-import static domain.piece.PieceColor.*;
+import java.util.ArrayList;
+import java.util.List;
+import constants.Color;
+
+import static constants.Color.BLACK;
+import static constants.Color.WHITE;
 
 public class Board {
 
@@ -80,4 +85,17 @@ public class Board {
         pieces[location.getX()][location.getY()] = piece;
     }
 
+    // TODO: requires BVA and testing (basic functionality written for isValidMove)
+    public List<Piece> getValidPiecesByColor(Color color) {
+        List<Piece> validPiecesByColor = new ArrayList<>();
+        for (int i = 0; i < TOTAL_ROWS; i++) {
+            for (int j = 0; j < TOTAL_COLS; j++) {
+                Piece piece = pieces[i][j];
+                if (piece != null && piece.getColor() == color && piece.hasValidMoves()) {
+                    validPiecesByColor.add(piece);
+                }
+            }
+        }
+        return validPiecesByColor;
+    }
 }
