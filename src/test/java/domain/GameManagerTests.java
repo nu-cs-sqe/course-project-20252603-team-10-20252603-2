@@ -179,4 +179,27 @@ public class GameManagerTests {
         assertTrue(game.isGameOver());
         EasyMock.verify(mockedPlayer, mockedBoard);
     }
+
+    @Test
+    public void isGameOver_PlayerHasMoves_ReturnsFalse() {
+        GameManager game = new GameManager();
+        Player mockedPlayer = EasyMock.createMock(Player.class);
+        Board mockedBoard = EasyMock.createMock(Board.class);
+
+        EasyMock.expect(mockedPlayer.getPlayerColor()).andReturn(Color.WHITE).anyTimes();
+
+        List<Piece> validPieces = List.of(new Pawn(Color.WHITE));
+        EasyMock.expect(mockedBoard.getValidPiecesByColor(Color.WHITE))
+                .andReturn(validPieces).anyTimes();
+
+        EasyMock.replay(mockedPlayer, mockedBoard);
+
+        game.addPlayer(mockedPlayer);
+        game.addPlayer(new Player(Color.BLACK));
+        game.assignPlayers(mockedPlayer, new Player(Color.BLACK));
+        game.setBoard(mockedBoard);
+
+        assertFalse(game.isGameOver());
+        EasyMock.verify(mockedPlayer, mockedBoard);
+    }
 }
