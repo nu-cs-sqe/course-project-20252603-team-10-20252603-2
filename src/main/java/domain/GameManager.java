@@ -70,9 +70,26 @@ public class GameManager {
         return currentPlayer;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
     public boolean isGameOver() {
+        if (isGameADraw()) {
+            return true;
+        }
+
         Color playerColor = currentPlayer.getPlayerColor();
         boolean hasValidMoves = !board.getValidPiecesByColor(playerColor).isEmpty();
-        return isGameADraw() || currentPlayer.isInCheck() && !hasValidMoves;
+
+        if (!hasValidMoves) {
+            return true;
+        }
+
+        return false;
     }
 }

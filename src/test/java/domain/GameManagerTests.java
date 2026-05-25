@@ -2,7 +2,14 @@ package domain;
 
 import constants.Color;
 import domain.piece.King;
+import domain.piece.Pawn;
+import domain.piece.Piece;
+import domain.piece.Rook;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -147,5 +154,29 @@ public class GameManagerTests {
 
         boolean gameOver = game.isGameOver();
         assertTrue(gameOver);
+    }
+
+    @Test
+    public void isGameOver_Checkmate_ReturnsTrue() {
+        GameManager game = new GameManager();
+
+        Player mockedPlayer = EasyMock.createMock(Player.class);
+        Board mockedBoard = EasyMock.createMock(Board.class);
+
+        EasyMock.expect(mockedPlayer.getPlayerColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockedPlayer.isInCheck()).andReturn(true).anyTimes();
+
+        EasyMock.expect(mockedBoard.getValidPiecesByColor(Color.WHITE))
+                .andReturn(new ArrayList<>()).anyTimes();
+
+        EasyMock.replay(mockedPlayer, mockedBoard);
+
+        game.addPlayer(mockedPlayer);
+        game.addPlayer(new Player(Color.BLACK));
+        game.assignPlayers(mockedPlayer, new Player(Color.BLACK));
+        game.setBoard(mockedBoard);
+
+        assertTrue(game.isGameOver());
+        EasyMock.verify(mockedPlayer, mockedBoard);
     }
 }
