@@ -1,10 +1,8 @@
 package domain;
 
 import constants.Color;
-import domain.piece.King;
 import domain.piece.Pawn;
 import domain.piece.Piece;
-import domain.piece.Rook;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 

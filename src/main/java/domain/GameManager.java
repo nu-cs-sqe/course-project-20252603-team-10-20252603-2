@@ -1,7 +1,6 @@
 package domain;
 
 import constants.Color;
-import domain.piece.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
