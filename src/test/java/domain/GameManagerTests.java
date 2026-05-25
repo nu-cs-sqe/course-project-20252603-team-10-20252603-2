@@ -132,13 +132,27 @@ public class GameManagerTests {
     @Test
     public void isGameOver_KingNotInCheck_ReturnsFalse() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+
+        Player blackPlayer = new Player(Color.BLACK);
+        Player whitePlayer = new Player(Color.WHITE);
+        game.addPlayer(blackPlayer);
+        game.addPlayer(whitePlayer);
         game.start();
+
+        Board mockedBoard = EasyMock.createMock(Board.class);
+
+        List<Piece> dummyValidPieces = List.of(new Pawn(Color.WHITE));
+        EasyMock.expect(mockedBoard.getValidPiecesByColor(Color.WHITE))
+                .andReturn(dummyValidPieces).anyTimes();
+
+        EasyMock.replay(mockedBoard);
+
+        game.setBoard(mockedBoard);
 
         boolean gameOver = game.isGameOver();
 
         assertFalse(gameOver);
+        EasyMock.verify(mockedBoard);
     }
 
     @Test
