@@ -1,4 +1,4 @@
-# Week 3 (04/13/2026-04/19/2026)
+**# Week 3 (04/13/2026-04/19/2026)
 **Planning and Progress Tracking**:
 1. [done] Vivian: Setup project (gradle build, update README) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/commit/90b11d664c289456050b47fad14c6b3d38928f15)
 2. [done] Cate: Meet with team, accept GitHub project, choose game (2D chess)
@@ -38,3 +38,9 @@
 2. [done] Cate: pushed revisions to comply with all spotbugs errors in main branch (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
 3. [25% done] Cate: completed and pushed more code revisions to comply with checkstyle (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
 4. [done] Cate: Jacoco and pitest implementation for mutation and code coverage (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/41)
+5. [done] Vivian: Addressed PR comments and merged Player Class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
+6. [50% done] Vivian: BVA for GameManager class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
+
+# Week 9 (05/25/2026-05/31/2026)
+
+
