@@ -39,8 +39,13 @@
 4. [not started] Cate: Code and test implementation for isValidMove (type=Queen)
 
 # Week 8 (05/18/2026-05/24/2026)
-1. [done] Vivian: Addressed PR comments and merged Player Class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
-2. [50% done] Vivian: BVA for GameManager class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
+**Planning and Progress Tracking**:
+1. [done] Cate: Code and test implementation for isValidMove (type=Queen) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/37)
+2. [done] Cate: pushed revisions to comply with all spotbugs errors in main branch (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
+3. [25% done] Cate: completed and pushed more code revisions to comply with checkstyle (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
+4. [done] Cate: Jacoco and pitest implementation for mutation and code coverage (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/41)
+5. [done] Vivian: Addressed PR comments and merged Player Class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
+6. [50% done] Vivian: BVA for GameManager class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
 
 # Week 9 (05/25/2026-05/31/2026)
 
