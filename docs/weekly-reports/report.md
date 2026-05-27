@@ -1,4 +1,4 @@
-# Week 3 (04/13/2026-04/19/2026)
+**# Week 3 (04/13/2026-04/19/2026)
 **Planning and Progress Tracking**:
 1. [done] Vivian: Setup project (gradle build, update README) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/commit/90b11d664c289456050b47fad14c6b3d38928f15)
 2. [done] Cate: Meet with team, accept GitHub project, choose game (2D chess)
@@ -37,4 +37,11 @@
 2. [done] Cate: Code and test implementation for isValidMove (type=Knight) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/29)
 3. [done] Cate: Pushed implementation of spotbugs and checkstyle (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
 4. [not started] Cate: Code and test implementation for isValidMove (type=Queen)
+
+# Week 8 (05/18/2026-05/24/2026)
+1. [done] Vivian: Addressed PR comments and merged Player Class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
+2. [50% done] Vivian: BVA for GameManager class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
+
+# Week 9 (05/25/2026-05/31/2026)
+
 
