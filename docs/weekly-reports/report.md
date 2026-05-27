@@ -13,6 +13,8 @@
 2. [done] Cate: Code and passing tests for isSameColor() (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/6)
 3. [done] Cate: BVA for Piece isValidMove() (type=Pawn) complete (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/6)
 4. [10% done] Cate: Code and test implementation for isValidMove (type=Pawn)
+5. [done] Samreen: BVA for Piece isValidMove() (type=Rook) complete https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18
+6. [10% done] Samreen: Implementation for isValidMove (type=Rook) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18
 
 # Week 6 (05/5/2026-05/10/2026)
 **Planning and Progress Tracking**:
@@ -24,6 +26,10 @@
 6. [done] Vivian: Feedback written for Pawn Class Implementation by Cate (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/14)
 7. [done] Vivian: BVA for Player class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
 8. [50% done] Vivian: Implementation for Player class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
+9. [done] Samreen: Provide feedback on Pawn and Player classes
+9. [done] Samreen: Implementation for isValidMove (type=Rook) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18
+10. [done] Samreen: Address any comments and merge changes for isValidMove (type=Rook) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18
+11. [20% done] Samreen: BVA for Piece isValidMove() (type=Bishop) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/27
 
 # Week 7 (05/11/2026-05/17/2026)
 **Planning and Progress Tracking**:
