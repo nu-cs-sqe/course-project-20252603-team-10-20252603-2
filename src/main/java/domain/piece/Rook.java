@@ -21,7 +21,7 @@ public class Rook extends Piece {
             return false;
         }
 
-        // Rook can only move horizontally or vertically any number of (empty) squares (within board)
+        // Rook can only move horizontally or vertically
         boolean isHorizontal = (start.getX() == end.getX());
         boolean isVertical = (start.getY() == end.getY());
 
@@ -60,7 +60,9 @@ public class Rook extends Piece {
 
         if (board.isPieceHere(end)) {
             Piece target = board.getPiece(end);
-            if (this.isSameColor(target)) return false;
+            if (this.isSameColor(target)) {
+                return false;
+            }
         }
 
         return true;

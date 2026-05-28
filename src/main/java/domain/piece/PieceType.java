@@ -9,6 +9,7 @@ public enum PieceType {
     KING("King");
 
     private final String name;
+
     PieceType(String name) {
         this.name = name;
     }
