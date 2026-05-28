@@ -56,7 +56,6 @@ public class GameManager {
         if (!isGameADraw()) {
             currentPlayer = (currentPlayer == whitePlayer) ? blackPlayer : whitePlayer;
         } else {
-            System.out.println("HERE");
             throw new IllegalStateException("Game is a draw.");
         }
     }

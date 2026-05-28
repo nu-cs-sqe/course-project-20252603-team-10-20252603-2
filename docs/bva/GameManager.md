@@ -6,8 +6,9 @@
 |:------------|:--------------------------------------------| :---- |:-------------|
 | Test Case 1 | Starting with 2 players                     | Game initializes successfully, players are assigned black/white, no exception | yes          |
 | Test Case 2 | Starting with 1 players                     | Game fails to initialize due to insufficient number of players and returns an exception. | yes          |
-| Test Case 3 | Starting with \>2 players                   | Game fails to start and returns an exception. | yes          |
-| Test Case 4 | Starting with 2 players with the same color | Game fails to start and returns an exception. | yes          |
+| Test Case 3 | Starting with 0 players                     | Game fails to initialize due to insufficient number of players and returns an exception. | yes          |
+| Test Case 4 | Starting with \>2 players                   | Game fails to start and returns an exception. | yes          |
+| Test Case 5 | Starting with 2 players with the same color | Game fails to start and returns an exception. | yes          |
 
 ### STEPS FOR BVA: `start()`
 
@@ -16,6 +17,7 @@
   * Input number of players \== 0
   * Input number of players \== 1
   * Input number of players \== 2
+  * Input number of players \== 3
 * Output: void/Exception
 2. Test Cases: 
 * All combinations
