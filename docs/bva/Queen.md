@@ -21,7 +21,7 @@
 | 15          | "WHITE" | x=3, y=3       | x=5, y=2        | EMPTY                    | True                             | L movement #1            | False           | yes          |
 | 16          | "BLACK" | x=3, y=3       | x=4, y=1        | EMPTY                    | True                             | L movement #3            | False           | yes          |
 | 17          | "WHITE" | x=0, y=0       | x=7, y=7        | EMPTY                    | False (enemy piece @ x=6,y=6)    | diagonal (+ direction)   | False           | yes          |
-| 18          | "WHITE" | x=7, y=0       | x=0, y=7        | EMPTY                    | True                             | diagonal mixed direction | True            | no           |
+| 18          | "WHITE" | x=7, y=0       | x=0, y=7        | EMPTY                    | True                             | diagonal mixed direction | True            | yes          |
 
 
 ### STEPS FOR BVA: `isValidMove()` for Queen
