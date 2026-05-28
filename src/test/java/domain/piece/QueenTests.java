@@ -249,5 +249,22 @@ public class QueenTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Queen_diagonalPosMidEndBlocker_returnFalse() {
+        Piece queen = new Queen(PieceColor.WHITE);
+        Piece blocker = new Pawn(PieceColor.BLACK);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(7, 7);
+        Location blocking_loc = new Location(6, 6);
+
+        Board board = new Board(false);
+        board.setPiece(blocking_loc, blocker);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 }

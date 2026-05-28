@@ -36,7 +36,7 @@ public class Queen extends Piece {
         boolean diagonalMovement = (diffX == diffY);
 
         if (diagonalMovement) {
-            for (int i = 1; i < diffX - 2; i++) {
+            for (int i = 1; i < diffX; i++) {
                 Location locationCheck = new Location(start.getX() + (i * dirY), start.getY() + (i * dirY));
 
                 if (board.isPieceHere(locationCheck) == true) return false;
@@ -47,7 +47,7 @@ public class Queen extends Piece {
         };
 
         if (yMovement) {
-            for (int i = 1; i < diffY - 2; i++) {
+            for (int i = 1; i < diffY; i++) {
                 Location locationCheck = new Location(start.getX(), start.getY() + (i * dirY));
 
                 if (board.isPieceHere(locationCheck) == true) return false;
@@ -58,7 +58,7 @@ public class Queen extends Piece {
         };
 
         if (xMovement) {
-            for (int i = 1; i < diffX - 2; i++) {
+            for (int i = 1; i < diffX; i++) {
                 Location locationCheck = new Location(start.getX() + (i * dirX), start.getY());
 
                 if (board.isPieceHere(locationCheck) == true) return false;
