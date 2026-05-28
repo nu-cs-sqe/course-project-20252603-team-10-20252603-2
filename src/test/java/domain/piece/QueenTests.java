@@ -296,6 +296,22 @@ public class QueenTests {
         assertTrue(result);
     }
 
+    @Test
+    public void isValidMove_Queen_mutantTestYDirEnemyBlocker_returnTrue() {
+        Piece queen = new Queen(PieceColor.BLACK);
+        Piece blocker = new Queen(PieceColor.WHITE);
+
+        Location start = new Location(0, 0);
+        Location chosen = new Location(0, 7);
+
+        Board board = new Board(false);
+        board.setPiece(chosen, blocker);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
 
 
 }
