@@ -7,7 +7,6 @@ import domain.Location;
 public abstract class Piece {
     private final PieceType type;
     private final Color color;
-    private boolean hasValidMoves;
 
     public Piece(PieceType type, Color color) {
         this.type = type;

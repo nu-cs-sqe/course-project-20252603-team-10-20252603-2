@@ -69,14 +69,25 @@ public class GameManager {
     }
 
     public Board getBoard() {
-        return board;
+        if (this.board == null) {
+            return null;
+        }
+        return new Board(this.board);
     }
 
     public void setBoard(Board board) {
-        this.board = board;
+        if (board == null) {
+            this.board = null;
+        } else {
+            this.board = new Board(board);
+        }
     }
 
     public boolean isGameOver() {
+        if (currentPlayer == null || board == null) {
+            return false;
+        }
+
         if (isGameADraw()) {
             return true;
         }

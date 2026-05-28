@@ -6,8 +6,6 @@ import domain.piece.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import constants.Color;
-
 import static constants.Color.BLACK;
 import static constants.Color.WHITE;
 
@@ -24,6 +22,19 @@ public class Board {
             initializeBoard();
         }
 
+    }
+
+    public Board(Board other) {
+        this.pieces = new Piece[TOTAL_ROWS][TOTAL_COLS];
+        if (other != null && other.pieces != null) {
+            for (int i = 0; i < TOTAL_ROWS; i++) {
+                for (int j = 0; j < TOTAL_COLS; j++) {
+                    if (other.pieces[i][j] != null) {
+                        this.pieces[i][j] = other.pieces[i][j].makeCopy();
+                    }
+                }
+            }
+        }
     }
 
     private void initializeBoard(){
