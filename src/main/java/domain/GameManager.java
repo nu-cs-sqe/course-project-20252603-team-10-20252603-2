@@ -84,7 +84,7 @@ public class GameManager {
         Color playerColor = currentPlayer.getPlayerColor();
         boolean hasValidMoves = !board.getValidPiecesByColor(playerColor).isEmpty();
 
-        if (!hasValidMoves) {
+        if (currentPlayer.isInCheck() && !hasValidMoves) {
             return true;
         }
 
