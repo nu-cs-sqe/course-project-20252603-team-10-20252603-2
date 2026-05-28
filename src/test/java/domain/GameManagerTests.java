@@ -211,6 +211,7 @@ public class GameManagerTests {
         Board mockedBoard = EasyMock.createMock(Board.class);
 
         EasyMock.expect(mockedPlayer.getPlayerColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockedPlayer.isInCheck()).andReturn(false).anyTimes();
 
         List<Piece> validPieces = List.of(new Pawn(Color.WHITE));
         EasyMock.expect(mockedBoard.getValidPiecesByColor(Color.WHITE))
