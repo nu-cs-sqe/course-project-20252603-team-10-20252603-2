@@ -42,6 +42,7 @@
   * Input player color \== “B”
   * Input player color \== “W”
 * Output: void/Exception
+  * Function does not return anything, but currentPlayer should be changed.
 2. Test Cases
 * All combinations
   * “B” → “W”
