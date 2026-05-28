@@ -24,7 +24,7 @@
 | 18          | "WHITE" | x=7, y=0       | x=0, y=7        | EMPTY                    | True                             | diagonal mixed direction  | True            | yes          |
 | 19          | "WHITE" | x=0, y=0       | x=7, y=7        | ENEMY                    | True                             | diagonal (+ direction)    | True            | yes          |
 | 20          | "BLACK" | x=0, y=0       | x=0, y=7        | ENEMY                    | True                             | y movement (+ direction)  | True            | yes          |
-| 21          | "BLACK" | x=0, y=0       | x=7, y=0        | ENEMY                    | True                             | x movement (+ direction)  | True            | no           |
+| 21          | "BLACK" | x=0, y=0       | x=7, y=0        | ENEMY                    | True                             | x movement (+ direction)  | True            | yes          |
 | 22          | "BLACK" | x=0, y=0       | x=0, y=7        | EMPTY                    | False (enemy piece @ x=0,y=6)    | y movement (+ direction)  | False           | no           |
 | 23          | "BLACK" | x=0, y=0       | x=7, y=0        | EMPTY                    | False (enemy piece @ x=6,y=0)    | x movement (+ direction)  | False           | no           |
 | 24          | "WHITE" | x=7, y=0       | x=0, y=7        | EMPTY                    | False (enemy piece @ x=1,y=6)    | diagonal mixed direction  | False           | no           |
