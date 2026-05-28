@@ -27,8 +27,6 @@
 | 21          | "BLACK" | x=0, y=0       | x=7, y=0        | ENEMY                    | True                             | x movement (+ direction) | True            | yes          |
 | 22          | "BLACK" | x=0, y=7       | x=0, y=0        | EMPTY                    | False (enemy piece @ x=0,y=1)    | y movement (- direction) | False           | yes          |
 | 23          | "BLACK" | x=7, y=0       | x=0, y=0        | EMPTY                    | False (enemy piece @ x=1,y=0)    | x movement (- direction) | False           | yes          |
-| 24          | "WHITE" | x=7, y=7       | x=0, y=0        | EMPTY                    | False (enemy piece @ x=1,y=1)    | diagonal (- direction)   | False           | no           |
-
 
 
 
