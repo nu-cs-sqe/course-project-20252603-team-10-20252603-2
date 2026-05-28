@@ -30,8 +30,9 @@ public class Queen extends Piece {
 
         int diffX = Math.abs(start.getX() - end.getX());
         int diffY = Math.abs(start.getY() - end.getY());
-        int dirX = (Math.abs(start.getX() - end.getX()) == (start.getX() - end.getX())) ? -1 : 1;
-        int dirY = (Math.abs(start.getY() - end.getY()) == (start.getY() - end.getY())) ? -1 : 1;
+
+        int dirX = Integer.compare(end.getX(), start.getX());
+        int dirY = Integer.compare(end.getY(), start.getY());
 
         boolean diagonalMovement = (diffX == diffY);
 
