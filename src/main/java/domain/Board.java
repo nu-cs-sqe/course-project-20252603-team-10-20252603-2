@@ -1,9 +1,11 @@
 package domain;
 
+import constants.Color;
 import domain.piece.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import constants.Color;
 
 import static constants.Color.BLACK;
@@ -11,8 +13,8 @@ import static constants.Color.WHITE;
 
 public class Board {
 
-    private final int TOTAL_ROWS = 8;
-    private final int TOTAL_COLS = 8;
+    private static final int TOTAL_ROWS = 8;
+    private static final int TOTAL_COLS = 8;
     private Piece[][] pieces;
 
 
@@ -60,7 +62,7 @@ public class Board {
 
     public Piece[][] getSnapshot() {
         Piece[][] snapshot = new Piece[TOTAL_ROWS][TOTAL_COLS];
-        for(int i = 0; i < TOTAL_ROWS; i++) {
+        for (int i = 0; i < TOTAL_ROWS; i++) {
             for (int j = 0; j < TOTAL_COLS; j++) {
                 if (pieces[i][j] != null) {
                     snapshot[i][j] = pieces[i][j].makeCopy();
