@@ -14,4 +14,14 @@ public class LocationTests {
         assertEquals(first, second);
         assertEquals(first.hashCode(), second.hashCode());
     }
+
+    @Test
+    void locationConstructor_x0y0_returnsValidLocationObj() {
+        Location loc = new Location(0, 0);
+
+        assertEquals(0, loc.getX());
+        assertEquals(0, loc.getY());
+    }
+
+
 }
