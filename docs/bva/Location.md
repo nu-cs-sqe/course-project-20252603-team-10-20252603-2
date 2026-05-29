@@ -1,13 +1,37 @@
 
-### Method under test: NOT COMPLETE, Location BVA possible tests
+### Method under test: Location() Constructor
 
-| Test Number | Start position   | Expected output        | Implemented? |
-|-------------|------------------|------------------------|--------------|
-| 1           | x=-1 y=3         | N/A, can't set         | no           |
-| 2           | x=3 y=-1         | N/A, can't set         | no           |
-| 3           | x=3 y=8          | N/A, can't set         | no           |
-| 4           | x=8 y=3          | N/A, can't set         | no           |
-| 5           | x=6 y=6          | N/A, can't set         | no           |
-| 6           | x=6 y=6          | N/A, can't set         | no           |
-| 7           | x=6 y=6          | N/A, can't set         | no           |
-| 8           | x=6 y=6          | N/A, can't set         | no           |
+| Test Number | x coord | y coord | Expected output           | Implemented? |
+|-------------|---------|---------|---------------------------|--------------|
+| 1           | 0       | 0       | Location obj              | no           |
+| 2           | 7       | 7       | Location obj              | no           |
+| 3           | 0       | 7       | Location obj              | no           |
+| 4           | 7       | 0       | Location obj              | no           |
+| 5           | -1      | 0       | IllegalArgumentException  | no           |
+| 6           | 8       | 0       | IllegalArgumentException  | no           |
+| 7           | 0       | -1      | IllegalArgumentException  | no           |
+| 8           | 0       | 8       | IllegalArgumentException  | no           |
+
+### STEPS FOR BVA: `Location()`
+1) input equivalence classes and output equivalence classes
+* Input:
+  * an x value on the board between 0 and 7
+  * a y value on the board between 0 and 7
+* Output: 
+  * A Location object (valid coords)
+  * Illegal argument exception
+
+2) and 3) determine data types and values
+* Input: 
+  * x: cases
+    * case 1: valid value in interval [0,7]
+    * case 2: invalid value (x<0 or x>7)
+  * y: cases
+    * case 1: valid value in interval [0,7]
+    * case 2: invalid value (y<0 or y>7)
+* Output: cases
+  * case 1: A Location object (valid coords)
+  * case 2: Illegal argument exception
+
+4) test cases (see above)
+
