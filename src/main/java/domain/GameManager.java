@@ -1,6 +1,9 @@
 package domain;
 
 import constants.Color;
+import domain.piece.King;
+import domain.piece.Piece;
+import domain.piece.PieceType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,9 +96,32 @@ public class GameManager {
         }
 
         Color playerColor = currentPlayer.getPlayerColor();
+
+        Location kingLocation = null;
+        King alliedKing = null;
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Location loc = new Location(i, j);
+                if (board.isPieceHere(loc)) {
+                    Piece p = board.getPiece(loc);
+                    if (p.getColor() == playerColor && p.getType() == PieceType.KING) {
+                        kingLocation = loc;
+                        alliedKing = (King) p;
+                        break;
+                    }
+                }
+            }
+            if (kingLocation != null) break;
+        }
+
         boolean hasValidMoves = !board.getValidPiecesByColor(playerColor).isEmpty();
 
-        if (currentPlayer.isInCheck() && !hasValidMoves) {
+        if (alliedKing != null && alliedKing.isInCheck(kingLocation, board) && !hasValidMoves) {
+            return true;
+        }
+
+        if (alliedKing != null && !alliedKing.isInCheck(kingLocation, board) && !hasValidMoves) {
             return true;
         }
 

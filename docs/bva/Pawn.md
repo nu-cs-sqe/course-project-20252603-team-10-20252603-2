@@ -90,7 +90,7 @@
 | 2           | WHITE | [6,0]          | Friendly piece at [5,0], Enemy at [4,0], diagonal spaces are empty | FALSE           | yes          |                
 | 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [4,4]. Enemy piece sits diagonally at [4,5]. | TRUE            | yes          |
 | 4           | BLACK | [7,3]          | Stuck at the absolute edge                                                                   | FALSE           | yes            |
-| 5           | WHITE | [1,7]          | Pinned against its own White King by an enemy Black Rook along a row  | FALSE           | no           |
+| 5           | WHITE | [7,1]          | Pinned against its own White King by an enemy Black Rook along a row  | FALSE           | no           |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Pawn
 

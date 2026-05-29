@@ -40,9 +40,4 @@ public class Player {
     public void incrementPoints(String piece) {
         points += getPieceValue(piece);
     }
-
-    // placeholder return value because Board + King piece has not been implemented yet
-    public boolean isInCheck() {
-        return false;
-    }
 }

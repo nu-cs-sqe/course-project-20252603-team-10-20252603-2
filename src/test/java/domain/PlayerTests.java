@@ -72,11 +72,4 @@ public class PlayerTests {
         assertEquals(47, actual);
     }
 
-    @Test
-    public void isInCheck_ReturnsFalse() {
-        Player player = new Player(Color.WHITE);
-        boolean isInCheck = player.isInCheck();
-
-        assertFalse(isInCheck);
-    }
 }

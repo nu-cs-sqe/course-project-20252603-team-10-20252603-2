@@ -1,8 +1,10 @@
 package domain;
 
+import domain.piece.King;
 import domain.piece.Pawn;
 import domain.piece.Piece;
 import constants.Color;
+import domain.piece.Rook;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -285,6 +287,26 @@ public class PawnTests {
 
         Board board = new Board(false);
         board.setPiece(location, pawn);
+
+        boolean result = pawn.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasValidMoves_PawnTrapped_ReturnsFalse() {
+        Piece pawn = new Pawn(Color.WHITE);
+        Piece king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+
+        Location location = new Location(7, 1);
+        Location kingLocation = new Location(7, 0);
+        Location rookLocation = new Location(7, 7);
+
+        Board board = new Board(false);
+        board.setPiece(location, pawn);
+        board.setPiece(kingLocation, king);
+        board.setPiece(rookLocation, rook);
 
         boolean result = pawn.hasValidMoves(location, board);
 

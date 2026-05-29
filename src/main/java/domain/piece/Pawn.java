@@ -67,6 +67,41 @@ public class Pawn extends Piece {
                 return false;
             }
         }
+        Piece originalTarget = board.getPiece(end);
+
+        board.setPiece(end, this);
+        board.setPiece(start, null);
+
+        Location kingLocation = null;
+        King alliedKing = null;
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Location loc = new Location(i, j);
+                if (board.isPieceHere(loc)) {
+                    Piece p = board.getPiece(loc);
+                    if (p.getColor() == this.getColor() && p.getType() == PieceType.KING) {
+                        kingLocation = loc;
+                        alliedKing = (King) p;
+                        break;
+                    }
+                }
+            }
+            if (kingLocation != null) break;
+        }
+
+        boolean exposesKing = false;
+        if (alliedKing != null) {
+            exposesKing = alliedKing.isInCheck(kingLocation, board);
+        }
+
+        board.setPiece(start, this);
+        board.setPiece(end, originalTarget);
+
+        if (exposesKing) {
+            return false;
+        }
+
         return true;
     }
 
