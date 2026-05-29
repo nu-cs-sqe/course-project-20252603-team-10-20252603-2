@@ -71,8 +71,26 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean hasValidMoves() {
-        //  TODO: complete method
+    public boolean hasValidMoves(Location currentPosition, Board board) {
+        int direction = (this.getColor() == Color.BLACK) ? 1 : -1;
+        int currX = currentPosition.getX();
+        int currY = currentPosition.getY();
+
+        Location[] possibleTargets = {
+                new Location(currX + direction, currY),
+                new Location(currX + 2 * direction, currY),
+                new Location(currX + direction, currY - 1),
+                new Location(currX + direction, currY + 1)
+        };
+
+        for (Location target : possibleTargets) {
+            if (target.getX() >= 0 && target.getX() < 8 && target.getY() >= 0 && target.getY() < 8) {
+                if (isValidMove(currentPosition, target, board)) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 }

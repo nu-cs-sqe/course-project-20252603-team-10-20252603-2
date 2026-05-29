@@ -222,7 +222,19 @@ public class PawnTests {
         assertFalse(result);
     }
 
+    @Test
+    public void hasValidMoves_Pawn_NotBlocked_ReturnsTrue() {
+        Piece pawn = new Pawn(Color.WHITE);
 
+        Location location = new Location(6, 0);
+
+        Board board = new Board(false);
+        board.setPiece(location, pawn);
+
+        boolean result = pawn.hasValidMoves(location, board);
+
+        assertTrue(result);
+    }
 }
 
 

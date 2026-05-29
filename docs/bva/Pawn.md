@@ -81,3 +81,35 @@
         * too far (INVALID)
 * output:
     * a yes/no answer: boolean
+
+### Method under test: `hasValidMoves()` for Pawn
+
+| Test Number | Color | Start position | Board State                                                        | Expected Output | Implemented? |
+|-------------|-------|----------------|--------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                        | TRUE            | no           |               
+| 2           | WHITE | [6,0]          | Friendly piece at [5,0], Enemy at [4,0], diagonal spaces are empty | FALSE           | no           |                
+| 3           | WHITE | [5,4]          | Friendly piece blocking one step forward at [4,4]. Enemy piece sits diagonally at [4,5]. | FALSE           |   no           |
+| 4           | BLACK | [7,3]          | Stuck at the absolute edge                                                                   | FALSE           |   no           |
+| 5           | WHITE | [1,7]          | Pinned against its own White King by an enemy Black Rook along a row matrix sweep line  | FALSE           |   no           |
+
+### STEPS FOR BVA: `hasValidMoves()` for Pawn
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * pawn color
+    * piece start position (row, column)
+    * state of the board (Board)
+    * path is clear?
+    * status of the King (isInCheck())
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * pawn color: cases
+    * piece start position (row, column): array indices
+    * path is clear?: boolean
+    * state of the board: cases
+    * status of the King: boolean
+* output:
+    * a yes/no answer: boolean

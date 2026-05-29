@@ -104,7 +104,8 @@ public class Board {
         for (int i = 0; i < TOTAL_ROWS; i++) {
             for (int j = 0; j < TOTAL_COLS; j++) {
                 Piece piece = pieces[i][j];
-                if (piece != null && piece.getColor() == color && piece.hasValidMoves()) {
+                Location location = new Location(i, j);
+                if (piece != null && piece.getColor() == color && piece.hasValidMoves(location, this)) {
                     validPiecesByColor.add(piece);
                 }
             }
