@@ -3,24 +3,24 @@
 ### Method under test: `isValidMove()` for Bishop
 
 
-| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern                | Expected output | Implemented? |
-|-------------|---------|----------------|-----------------|--------------------------|----------------|---------------------------------|-----------------|--------------|
-| 1           | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square                     | False           | yes          |
-| 2           | "WHITE" | [0][0]         | [1][1]          | EMPTY                    | True           | 1 diagonal - up + right         | True            | yes          |
-| 3           | "WHITE" | [0][7]         | [1][6]          | EMPTY                    | True           | 1 diagonal - up + left          | True            | yes          |
-| 4           | "WHITE" | [7][0]         | [6][1]          | EMPTY                    | True           | 1 diagonal - down + right       | True            | yes          |
-| 5           | "WHITE" | [7][7]         | [6][6]          | EMPTY                    | True           | 1 diagonal - down + left        | True            | yes          |
-| 6           | "WHITE" | [0][0]         | [7][7]          | EMPTY                    | True           | 7 diagonal - up + right         | True            | yes          |
-| 7           | "WHITE" | [0][7]         | [7][0]          | EMPTY                    | True           | 7 diagonal - up + left          | True            | yes          |
-| 8           | "WHITE" | [7][0]         | [0][7]          | EMPTY                    | True           | 7 diagonal - down + right       | True            | yes          |
-| 9           | "WHITE" | [7][7]         | [0][0]          | EMPTY                    | True           | diagonal - down + left          | True            | yes          |
-| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | True           | vertical                        | False           | yes          |
-| 11          | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | True           | horizontal                      | False           | yes          |
-| 12          | "WHITE" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal                | True            | yes          |
-| 13          | "WHITE" | [0][0]         | [3][3]          | friendly                 | True           | friendly diagonal               | False           | yes          |
-| 14          | "BLACK" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal (black bishop) | True            | yes          |
-| 15          | "BLACK" | [0][0]         | [7][7]          | empty                    | False          | valid move + blocked path       | False           | yes          |
-| 16          | "BLACK" | [0][0]         | [7][7]          | empty                    | True           | valid move (black)              | True            | yes          |
+| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern              | Expected output | Implemented? |
+|-------------|---------|----------------|-----------------|--------------------------|----------------|-------------------------------|-----------------|--------------|
+| 1           | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square                   | False           | yes          |
+| 2           | "WHITE" | [0][0]         | [1][1]          | EMPTY                    | True           | 1 diagonal (row++, col++) min | True            | yes          |
+| 3           | "WHITE" | [0][7]         | [1][6]          | EMPTY                    | True           | 1 diagonal (row++, col--) min | True            | yes          |
+| 4           | "WHITE" | [7][0]         | [6][1]          | EMPTY                    | True           | 1 diagonal (row--, col++) min | True            | yes          |
+| 5           | "WHITE" | [7][7]         | [6][6]          | EMPTY                    | True           | 1 diagonal (row--, col--) min | True            | yes          |
+| 6           | "WHITE" | [0][0]         | [7][7]          | EMPTY                    | True           | 7 diagonal (row++, col++) max | True            | yes          |
+| 7           | "WHITE" | [0][7]         | [7][0]          | EMPTY                    | True           | 7 diagonal (row++, col--) max | True            | yes          |
+| 8           | "WHITE" | [7][0]         | [0][7]          | EMPTY                    | True           | 7 diagonal (row--, col++) max | True            | yes          |
+| 9           | "WHITE" | [7][7]         | [0][0]          | EMPTY                    | True           | 7 diagonal (row--, col--) max | True            | yes          |
+| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | True           | vertical                      | False           | yes          |
+| 11          | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | True           | horizontal                    | False           | yes          |
+| 12          | "WHITE" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal              | True            | yes          |
+| 13          | "WHITE" | [0][0]         | [3][3]          | friendly                 | True           | friendly diagonal             | False           | yes          |
+| 14          | "BLACK" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal              | True            | yes          |
+| 15          | "BLACK" | [0][0]         | [7][7]          | empty                    | False          | valid move + blocked path     | False           | yes          |
+| 16          | "BLACK" | [0][0]         | [7][7]          | empty                    | True           | valid move                    | True            | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Bishop
 
@@ -71,14 +71,14 @@
     * path is clear?: boolean
         * True, False
     * movement pattern (one of the chess movement types, or not): cases
-        * one diagonal - up + right
-        * one diagonal - up + left
-        * one diagonal - down + right
-        * one diagonal - down + left
-        * one diagonal - up + right 
-        * one diagonal - up + left
-        * one diagonal - down + right
-        * one diagonal - down + left
+        * 1 diagonal (row++, col++) - min distance
+        * 1 diagonal (row++, col--) - min distance
+        * 1 diagonal (row--, col++) - min distance
+        * 1 diagonal (row--, col--) - min distance 
+        * 7 diagonal (row++, col++) - max distance 
+        * 7 diagonal (row++, col--) - max distance 
+        * 7 diagonal (row--, col++) - max distance 
+        * diagonal (row--, col--) - max distance
         * any vertical (invalid)
         * any horizontal (invalid)
         * same square (invalid)

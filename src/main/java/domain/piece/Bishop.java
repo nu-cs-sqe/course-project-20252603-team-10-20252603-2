@@ -45,7 +45,7 @@ public class Bishop extends Piece {
         int currentRow = start.getX() + rowDirection;
         int currentCol = start.getY() + colDirection;
 
-        while (currentRow != end.getX() && currentCol != end.getY()) {
+        while (currentRow != end.getX()) {
             if (board.isPieceHere(new Location(currentRow, currentCol))) {
                 return false;
             }

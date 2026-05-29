@@ -39,7 +39,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_OneDiagonalUpAndRight_returnTrue() {
+    public void isValidMove_Bishop_oneDiag1_returnTrue() {
         Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(0, 0);
@@ -53,7 +53,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_OneDiagonalUpAndLeft_returnTrue() {
+    public void isValidMove_Bishop_oneDiag2_returnTrue() {
         Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(0, 7);
@@ -67,7 +67,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_OneDiagonalDownAndRight_returnTrue() {
+    public void isValidMove_Bishop_oneDiag3_returnTrue() {
         Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(7, 0);
@@ -81,7 +81,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_OneDiagonalDownAndLeft_returnTrue() {
+    public void isValidMove_Bishop_oneDiag4_returnTrue() {
         Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(7, 7);
@@ -95,7 +95,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_SevenDiagonalUpAndRight_returnTrue() {
+    public void isValidMove_Bishop_sevenDiag1_returnTrue() {
         Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(0, 0);
@@ -109,7 +109,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_SevenDiagonalUpAndLeft_returnTrue() {
+    public void isValidMove_Bishop_sevenDiag2_returnTrue() {
         Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(0, 7);
@@ -123,7 +123,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_SevenDiagonalDownAndRight_returnTrue() {
+    public void isValidMove_Bishop_sevenDiag3_returnTrue() {
         Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(7, 0);
@@ -137,7 +137,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_SevenDiagonalDownAndLeft_returnTrue() {
+    public void isValidMove_Bishop_sevenDiag4_returnTrue() {
         Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(7, 7);
@@ -183,14 +183,14 @@ public class BishopTests {
 
     @Test
     public void isValidMove_Bishop_DiagonalFriendlyDestination_returnFalse() {
-        Piece bishop = new Bishop(PieceColor.BLACK);
+        Piece bishop = new Bishop(PieceColor.WHITE);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(3, 3);
 
         Board board = new Board(false);
 
-        Piece friendlyPiece = new Bishop(PieceColor.BLACK);
+        Piece friendlyPiece = new Bishop(PieceColor.WHITE);
         board.setPiece(new Location(3, 3), friendlyPiece);
 
         boolean result = bishop.isValidMove(start, chosen, board);
@@ -217,7 +217,7 @@ public class BishopTests {
 
     @Test
     public void isValidMove_Bishop_blockedDiagonal_returnFalse() {
-        Piece bishop = new Bishop(PieceColor.WHITE);
+        Piece bishop = new Bishop(PieceColor.BLACK);
 
 
         Location start = new Location(0, 0);
@@ -227,7 +227,7 @@ public class BishopTests {
         Board board = new Board(false);
 
 
-        Piece blockingPiece = new Bishop(PieceColor.BLACK);
+        Piece blockingPiece = new Bishop(PieceColor.WHITE);
         board.setPiece(new Location(1, 1), blockingPiece);
 
 
@@ -238,7 +238,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_BlackBishop_SevenDiagonalUpAndRight_returnTrue() {
+    public void isValidMove_BlackBishop_sevenDiag1_returnTrue() {
         Piece bishop = new Bishop(PieceColor.BLACK);
 
         Location start = new Location(0, 0);
