@@ -87,7 +87,9 @@ public class Pawn extends Piece {
                     }
                 }
             }
-            if (kingLocation != null) break;
+            if (kingLocation != null)  {
+                break;
+            };
         }
 
         boolean exposesKing = false;

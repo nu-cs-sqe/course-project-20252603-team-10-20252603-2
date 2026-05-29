@@ -1,10 +1,8 @@
 package domain;
 
-import domain.piece.King;
-import domain.piece.Pawn;
-import domain.piece.Piece;
+import domain.piece.*;
 import constants.Color;
-import domain.piece.Rook;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -295,25 +293,37 @@ public class PawnTests {
 
     @Test
     public void hasValidMoves_PawnTrapped_ReturnsFalse() {
+        // mocking for now because isInCheck() still needs to be implemented
         Piece pawn = new Pawn(Color.WHITE);
-        Piece king = new King(Color.WHITE);
+
+        King mockedKing = EasyMock.createMock(King.class);
         Piece rook = new Rook(Color.BLACK);
 
         Location location = new Location(7, 1);
         Location kingLocation = new Location(7, 0);
         Location rookLocation = new Location(7, 7);
 
+        EasyMock.expect(mockedKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockedKing.getColor()).andReturn(Color.WHITE).anyTimes();
+
+        EasyMock.expect(mockedKing.makeCopy()).andReturn(mockedKing).anyTimes();
+
+        EasyMock.expect(mockedKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.isA(Board.class)))
+                .andReturn(true).anyTimes();
+
+        EasyMock.replay(mockedKing);
+
         Board board = new Board(false);
         board.setPiece(location, pawn);
-        board.setPiece(kingLocation, king);
+        board.setPiece(kingLocation, mockedKing);
         board.setPiece(rookLocation, rook);
 
         boolean result = pawn.hasValidMoves(location, board);
 
         assertFalse(result);
+
+        EasyMock.verify(mockedKing);
     }
-
-
 }
 
 

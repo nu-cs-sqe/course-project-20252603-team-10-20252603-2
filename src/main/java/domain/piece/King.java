@@ -11,7 +11,7 @@ public class King extends Piece{
 
     public boolean isInCheck(Location location, Board board) {
         // TODO: need ot implement
-        return true;
+        return false;
     }
 
     @Override
