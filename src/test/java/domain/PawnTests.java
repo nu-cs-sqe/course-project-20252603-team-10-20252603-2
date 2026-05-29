@@ -277,6 +277,21 @@ public class PawnTests {
         assertTrue(result);
     }
 
+    @Test
+    public void hasValidMoves_PawnAtEdge_ReturnsFalse() {
+        Piece pawn = new Pawn(Color.BLACK);
+
+        Location location = new Location(7, 3);
+
+        Board board = new Board(false);
+        board.setPiece(location, pawn);
+
+        boolean result = pawn.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
+
 }
 
 
