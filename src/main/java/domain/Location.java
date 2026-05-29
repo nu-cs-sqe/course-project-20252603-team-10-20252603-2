@@ -30,8 +30,8 @@ public class Location {
             return false;
         }
 
-        Location compare_obj = (Location) obj;
-        return (this.x == compare_obj.x) && (this.y == compare_obj.y);
+        Location compareObj = (Location) obj;
+        return (this.x == compareObj.x) && (this.y == compareObj.y);
     }
 
     @Override
