@@ -4,7 +4,7 @@
 | Test Number | x coord | y coord | Expected output           | Implemented? |
 |-------------|---------|---------|---------------------------|--------------|
 | 1           | 0       | 0       | Location obj              | yes          |
-| 2           | 7       | 7       | Location obj              | no           |
+| 2           | 7       | 7       | Location obj              | yes          |
 | 3           | 0       | 7       | Location obj              | no           |
 | 4           | 7       | 0       | Location obj              | no           |
 | 5           | -1      | 0       | IllegalArgumentException  | no           |
