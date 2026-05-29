@@ -237,7 +237,7 @@ public class PawnTests {
     }
 
     @Test
-    public void hasValidMoves_PawnBlockedVertically_ReturnsTrue() {
+    public void hasValidMoves_PawnBlockedVertically_ReturnsFalse() {
         Piece pawn = new Pawn(Color.WHITE);
         Piece enemyPawn = new Pawn(Color.BLACK);
         Piece friendlyPawn = new Pawn(Color.WHITE);
@@ -254,6 +254,27 @@ public class PawnTests {
         boolean result = pawn.hasValidMoves(location, board);
 
         assertFalse(result);
+    }
+
+
+    @Test
+    public void hasValidMoves_PawnBlockedDiagonally_ReturnsTrue() {
+        Piece pawn = new Pawn(Color.BLACK);
+        Piece enemyPawn = new Pawn(Color.WHITE);
+        Piece friendlyPawn = new Pawn(Color.BLACK);
+
+        Location location = new Location(5, 4);
+        Location enemyLocation = new Location(4, 5);
+        Location friendlyLocation = new Location(4,4);
+
+        Board board = new Board(false);
+        board.setPiece(location, pawn);
+        board.setPiece(enemyLocation, enemyPawn);
+        board.setPiece(friendlyLocation, friendlyPawn);
+
+        boolean result = pawn.hasValidMoves(location, board);
+
+        assertTrue(result);
     }
 
 }
