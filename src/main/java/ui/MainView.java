@@ -11,9 +11,9 @@ public class MainView extends JFrame {
     private String player1Name;
     private String player2Name;
 
-    public MainView(String Player1Name, String Player2Name) {
-        this.player1Name = Player1Name;
-        this.player2Name = Player2Name;
+    public MainView(String player1Name, String player2Name) {
+        this.player1Name = player1Name;
+        this.player2Name = player2Name;
 
         configureMainView();
         addGameStatsView();
@@ -23,14 +23,14 @@ public class MainView extends JFrame {
         validate();
     }
 
-    private void configureMainView(){
+    private void configureMainView() {
         setTitle("Team 10 Chess Game GUI Example :)!");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 1200);
         setLocationRelativeTo(null); // Center the window on the screen
     }
 
-    private void addGameStatsView(){
+    private void addGameStatsView() {
         gameStatsView = new GameStatsView(player1Name, player2Name);
         add(gameStatsView, BorderLayout.PAGE_START);
     }

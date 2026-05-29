@@ -2,12 +2,11 @@ package ui;
 
 import javax.swing.*;
 
-public class Main{
+public class Main {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() ->{
+        SwingUtilities.invokeLater(() -> {
             new WelcomeView().setVisible(true);
         });
     }
-
 }

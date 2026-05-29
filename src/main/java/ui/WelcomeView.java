@@ -17,6 +17,10 @@ public class WelcomeView extends JFrame {
         createWelcomeScreenUI();
     }
 
+    private void validatePlayerNames(JTextField player1NameField, JTextField player2NameField) {
+
+    }
+
     private void createWelcomeScreenUI() {
         JPanel welcomePanel = new JPanel(new GridBagLayout());
         welcomePanel.setBackground(new Color(104, 76, 150)); // NU Purple 80
@@ -68,7 +72,8 @@ public class WelcomeView extends JFrame {
         startGameButton.setBackground(Color.WHITE);
         startGameButton.setForeground(Color.BLACK);
 
-        startGameButton.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2, true));
+        startGameButton.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255),
+                2, true));
         startGameButton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Hand cursor on hover
         startGameButton.addActionListener(e -> {
             // Get player names
@@ -84,6 +89,9 @@ public class WelcomeView extends JFrame {
             // Create and show the main game screen
             MainView mainScreen = new MainView(player1Name, player2Name);
             mainScreen.setVisible(true);
+
+            System.out.println(e);
+
         });
         gbc.gridx = 0;
         gbc.gridy = 3;

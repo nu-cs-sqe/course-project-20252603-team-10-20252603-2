@@ -57,7 +57,7 @@ public class BoardView extends JPanel {
         }
     }
 
-    private void loadPieceImages(){
+    private void loadPieceImages() {
 
         whitePieceImages = new HashMap<>();
         blackPieceImages = new HashMap<>();
@@ -77,7 +77,7 @@ public class BoardView extends JPanel {
         loadOnePieceImage(PieceType.KING, PieceColor.BLACK, "images/black_king.png");
     }
 
-    private void loadOnePieceImage(PieceType type, PieceColor color, String imagePath){
+    private void loadOnePieceImage(PieceType type, PieceColor color, String imagePath) {
         InputStream imageInputStream = getClass().getClassLoader().getResourceAsStream(imagePath);
         BufferedImage image = null;
         try {
@@ -85,17 +85,19 @@ public class BoardView extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if (color.equals(PieceColor.BLACK))
+        if (color.equals(PieceColor.BLACK)) {
             blackPieceImages.put(type, image);
-        else
+        }
+        else {
             this.whitePieceImages.put(type, image);
+        }
     }
 
-    private void drawPieces(Graphics g){
+    private void drawPieces(Graphics g) {
 
         Piece[][] boardSnapshot = boardController.getBoardSnapshot();
 
-        for(int row = 0; row < BOARD_SIZE; row++) {
+        for (int row = 0; row < BOARD_SIZE; row++) {
             for (int col = 0; col < BOARD_SIZE; col++) {
                 Piece piece = boardSnapshot[row][col];
                 if (piece != null) {
@@ -108,7 +110,7 @@ public class BoardView extends JPanel {
         }
     }
 
-    private void drawSelectedSquare(Graphics g){
+    private void drawSelectedSquare(Graphics g) {
         g.setColor(SELECTED_SQUARE_COLOR);
         g.fillRect(selectedCol * TILE_SIZE, selectedRow * TILE_SIZE, TILE_SIZE, TILE_SIZE);
     }
@@ -128,5 +130,4 @@ public class BoardView extends JPanel {
             boardController.handleSquareClick(new Location(selectedCol, selectedRow));
         }
     }
-
 }
