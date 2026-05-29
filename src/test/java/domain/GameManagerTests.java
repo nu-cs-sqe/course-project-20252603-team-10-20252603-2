@@ -215,4 +215,40 @@ public class GameManagerTests {
         EasyMock.verify(mockedPlayer, mockedKing);
     }
 
+    @Test
+    public void isGameOver_PlayerHasMoves_ReturnsFalse() {
+        GameManager game = new GameManager();
+
+        Player mockedPlayer = EasyMock.createMock(Player.class);
+        King mockedKing = EasyMock.createMock(King.class);
+
+        Board realBoard = new Board(false);
+        Location kingLocation = new Location(7, 4);
+        realBoard.setPiece(kingLocation, mockedKing);
+
+        realBoard.setPiece(new Location(6, 4), new Pawn(Color.WHITE));
+
+        EasyMock.expect(mockedPlayer.getPlayerColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockedKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockedKing.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockedKing.makeCopy()).andReturn(mockedKing).anyTimes();
+
+        EasyMock.expect(mockedKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.isA(Board.class)))
+                .andReturn(false).anyTimes();
+
+        EasyMock.expect(mockedKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.isA(Board.class)))
+                .andReturn(false).anyTimes();
+
+        EasyMock.replay(mockedPlayer, mockedKing);
+
+        game.addPlayer(mockedPlayer);
+        game.addPlayer(new Player(Color.BLACK));
+        game.assignPlayers(mockedPlayer, new Player(Color.BLACK));
+
+        game.setBoard(realBoard);
+
+        assertFalse(game.isGameOver());
+        EasyMock.verify(mockedPlayer, mockedKing);
+    }
+
 }
