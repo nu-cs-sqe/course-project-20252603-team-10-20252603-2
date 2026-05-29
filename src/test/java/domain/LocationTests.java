@@ -31,5 +31,13 @@ public class LocationTests {
         assertEquals(7, loc.getY());
     }
 
+    @Test
+    void locationConstructor_x0y7_returnsValidLocationObj() {
+        Location loc = new Location(0, 7);
+
+        assertEquals(0, loc.getX());
+        assertEquals(7, loc.getY());
+    }
+
 
 }
