@@ -162,5 +162,15 @@ public class BoardTests {
         assertTrue(board.isPieceHere(location));
     }
 
+    @Test
+    void isPieceHere_onePiecex7y7_returnsTrue() {
+        Board board = new Board(false);
+        Location location = new Location(7,7);
+
+        board.setPiece(location, new Pawn(PieceColor.BLACK));
+
+        assertTrue(board.isPieceHere(location));
+    }
+
 }
 
