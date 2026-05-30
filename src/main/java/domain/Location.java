@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class Location {
+public final class Location {
 
     private static final int MIN_COORD = 0;
 
