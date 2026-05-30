@@ -5,7 +5,7 @@
 | Test # | Board setup? | Expected Output                                  | Implemented? |
 |--------|--------------|--------------------------------------------------|--------------|
 | 1      | false        | empty board                                      | yes          | 
-| 2      | true         | init board (B/W pawns in correct place)          | no           | 
+| 2      | true         | init board (B/W pawns in correct place)          | yes          | 
 | 3      | true         | init board (W major pieces in correct place)     | no           | 
 | 4      | true         | init board (B major pieces in correct place)     | no           | 
 | 5      | true         | init board (non starting rows (2-5) are empty)   | no           | 
