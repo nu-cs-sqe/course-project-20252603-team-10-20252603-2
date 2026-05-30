@@ -43,7 +43,7 @@
 |-------------|----------------------|--------------------|-------------------|--------------|
 | 1           | Location(x=1, y=1)   | same object        | true              | yes          |
 | 2           | Location(x=3, y=4)   | Location(x=3, y=4) | true              | yes          |
-| 3           | Location(x=3, y=4)   | Location(x=4, y=4) | false             | no           |
+| 3           | Location(x=3, y=4)   | Location(x=4, y=4) | false             | yes          |
 | 4           | Location(x=3, y=4)   | Location(x=3, y=3) | false             | no           |
 | 5           | Location(x=3, y=4)   | "hello"            | false             | no           |
 | 6           | Location(x=3, y=4)   | null               | false             | no           |
