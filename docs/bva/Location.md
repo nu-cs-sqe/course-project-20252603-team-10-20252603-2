@@ -9,7 +9,7 @@
 | 4           | 7       | 0       | Location obj              | yes          |
 | 5           | -1      | 0       | IllegalArgumentException  | yes          |
 | 6           | 8       | 0       | IllegalArgumentException  | yes          |
-| 7           | 0       | -1      | IllegalArgumentException  | no           |
+| 7           | 0       | -1      | IllegalArgumentException  | yes          |
 | 8           | 0       | 8       | IllegalArgumentException  | no           |
 
 ### STEPS FOR BVA: `Location()`
