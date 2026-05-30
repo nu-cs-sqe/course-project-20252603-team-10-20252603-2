@@ -36,7 +36,7 @@
 | 2      | empty w/ white pawn at x=0 y=0 | x=0 y=0  | true            | yes          | 
 | 3      | empty w/ black pawn at x=7 y=7 | x=7 y=7  | true            | yes          | 
 | 4      | initialized board              | x=1 y=0  | true            | yes          | 
-| 5      | initialized board              | x=3 y=3  | false           | no           | 
+| 5      | initialized board              | x=3 y=3  | false           | yes          | 
 
 
 1) input equivalence classes and output equivalence classes
