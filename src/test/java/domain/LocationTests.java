@@ -87,7 +87,7 @@ public class LocationTests {
     }
 
     @Test
-    void equals_diffLocDiffX_returnTrue() {
+    void equals_diffLocDiffX_returnFalse() {
         Location first = new Location(3, 4);
         Location second = new Location(4, 4);
 
@@ -95,7 +95,7 @@ public class LocationTests {
     }
 
     @Test
-    void equals_diffLocDiffY_returnTrue() {
+    void equals_diffLocDiffY_returnFalse() {
         Location first = new Location(3, 4);
         Location second = new Location(3, 3);
 
@@ -103,7 +103,7 @@ public class LocationTests {
     }
 
     @Test
-    void equals_compareToString_returnTrue() {
+    void equals_compareToString_returnFalse() {
         Location first = new Location(3, 4);
         String second = "hello";
 
