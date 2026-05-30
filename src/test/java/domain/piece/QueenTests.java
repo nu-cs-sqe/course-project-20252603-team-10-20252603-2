@@ -362,6 +362,22 @@ public class QueenTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Queen_mutantDiagonalMidBoard_returnTrue() {
+        Piece queen = new Queen(PieceColor.WHITE);
+
+        Location start = new Location(1, 2);
+        Location chosen = new Location(3, 4);
+
+        Board board = new Board(false);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
+
+
 
 
 }
