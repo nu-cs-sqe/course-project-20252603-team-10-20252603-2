@@ -241,7 +241,17 @@ public class BoardTests {
         assertSame(piece, board.getPiece(location));
     }
 
+    @Test
+    void setPiece_emptyBoardx7y7_setsBlackKnight() {
+        Board board = new Board(false);
+        Location location = new Location(7,7);
+        Knight piece = new Knight(PieceColor.BLACK);
 
+        board.setPiece(location, piece);
+
+        assertTrue(board.isPieceHere(location));
+        assertSame(piece, board.getPiece(location));
+    }
 
 
 
