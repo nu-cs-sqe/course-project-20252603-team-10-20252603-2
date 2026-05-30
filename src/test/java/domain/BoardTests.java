@@ -253,7 +253,23 @@ public class BoardTests {
         assertSame(piece, board.getPiece(location));
     }
 
+    @Test
+    void setPiece_occupiedSquarex0y0_setsBlackQueen() {
+        Board board = new Board(false);
+        Location location = new Location(0,0);
+        Queen piece = new Queen(PieceColor.BLACK);
+        Pawn occupier = new Pawn(PieceColor.WHITE);
 
+        board.setPiece(location, occupier);
+
+        assertTrue(board.isPieceHere(location));
+        assertSame(occupier, board.getPiece(location));
+
+        board.setPiece(location, piece);
+
+        assertTrue(board.isPieceHere(location));
+        assertSame(piece, board.getPiece(location));
+    }
 
 }
 
