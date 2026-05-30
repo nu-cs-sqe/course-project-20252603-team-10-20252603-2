@@ -46,7 +46,7 @@
 | 3           | Location(x=3, y=4)   | Location(x=4, y=4) | false             | yes          |
 | 4           | Location(x=3, y=4)   | Location(x=3, y=3) | false             | yes          |
 | 5           | Location(x=3, y=4)   | "hello"            | false             | yes          |
-| 6           | Location(x=3, y=4)   | null               | false             | no           |
+| 6           | Location(x=3, y=4)   | null               | false             | yes          |
 
 
 ### STEPS FOR BVA: `equals()`

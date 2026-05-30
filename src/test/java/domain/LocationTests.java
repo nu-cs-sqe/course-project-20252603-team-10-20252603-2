@@ -110,5 +110,12 @@ public class LocationTests {
         assertFalse(first.equals(second));
     }
 
+    @Test
+    void equals_compareToNull_returnFalse() {
+        Location first = new Location(3, 4);
+
+        assertFalse(first.equals(null));
+    }
+
 
 }
