@@ -8,6 +8,13 @@ public class Location {
     private final int y;
 
     public Location(int x, int y) {
+        boolean xOutOfBounds = (x < 0) || (x > 7);
+        boolean yOutOfBounds = (y < 0) || (y > 7);
+
+        if (xOutOfBounds || yOutOfBounds) {
+            throw new IllegalArgumentException("Coordinates must be between 0 and 7");
+        }
+
         this.x = x;
         this.y = y;
     }

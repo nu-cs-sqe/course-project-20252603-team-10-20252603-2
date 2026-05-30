@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LocationTests {
 
@@ -45,6 +46,12 @@ public class LocationTests {
 
         assertEquals(7, loc.getX());
         assertEquals(0, loc.getY());
+    }
+
+    @Test
+    void locationConstructor_xneg1y0_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> new Location(-1, 0));
+
     }
 
 
