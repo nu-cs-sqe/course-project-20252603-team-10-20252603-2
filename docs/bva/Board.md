@@ -74,7 +74,7 @@
 | 1      | empty                           | x=0 y=0  | null            | yes          | 
 | 2      | empty w/ white pawn at x=0 y=0  | x=0 y=0  | white pawn      | yes          | 
 | 3      | empty w/ black queen at x=7 y=7 | x=7 y=7  | black queen     | yes          | 
-| 4      | initialized board               | x=0 y=0  | black rook      | no           | 
+| 4      | initialized board               | x=0 y=0  | black rook      | yes          | 
 | 5      | initialized board               | x=7 y=1  | white knight    | no           | 
 
 

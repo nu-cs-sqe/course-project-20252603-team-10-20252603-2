@@ -218,6 +218,17 @@ public class BoardTests {
         assertSame(piece, board.getPiece(location));
     }
 
+    @Test
+    void getPiece_initBoardx0y0_returnsBlackRook() {
+        Board board = new Board(true);
+        Location location = new Location(0,0);
+        Rook piece = new Rook(PieceColor.BLACK);
+
+        board.setPiece(location, piece);
+
+        assertSame(piece, board.getPiece(location));
+    }
+
 
 
 }
