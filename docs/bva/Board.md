@@ -8,7 +8,7 @@
 | 2      | true         | init board (B/W pawns in correct place)          | yes          | 
 | 3      | true         | init board (W major pieces in correct place)     | yes          | 
 | 4      | true         | init board (B major pieces in correct place)     | yes          | 
-| 5      | true         | init board (non starting rows (2-5) are empty)   | no           | 
+| 5      | true         | init board (non starting rows (2-5) are empty)   | yes          | 
 
 1) input equivalence classes and output equivalence classes
    * input equiv class:

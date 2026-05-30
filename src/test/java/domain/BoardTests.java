@@ -19,6 +19,14 @@ public class BoardTests {
         }
     }
 
+    private void assertMiddleEmpty(Board board) {
+        for (int x = 2; x < 5 ; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                assertFalse(board.isPieceHere(new Location(x,y)));
+            }
+        }
+    }
+
     private void assertPawnRow(Board board, Integer row, PieceColor color) {
         for (int y = 0; y < BOARD_SIZE; y++) {
             Location loc = new Location(row, y);
@@ -83,6 +91,14 @@ public class BoardTests {
         Board board = new Board(true);
 
         assertMajorRow(board, 0, PieceColor.BLACK);
+
+    }
+
+    @Test
+    void initBoard_init_returnsInitBoardCheckEmptyMiddle() {
+        Board board = new Board(true);
+
+        assertMiddleEmpty(board);
 
     }
 
