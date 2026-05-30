@@ -61,6 +61,15 @@ public class BoardTests {
         }
     }
 
+    private void assertSnapshotEmpty(Piece[][] snapshot) {
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                assertNull(snapshot[x][y]);
+            }
+        }
+    }
+
+
     @Test
     void initBoard_noInit_returnsEmptyBoard() {
         Board board = new Board(false);
@@ -99,6 +108,16 @@ public class BoardTests {
         Board board = new Board(true);
 
         assertMiddleEmpty(board);
+
+    }
+
+    @Test
+    void getSnapshot_emptyBoard_returnsAllNull() {
+        Board board = new Board(false);
+
+        Piece[][] snapshot = board.getSnapshot();
+
+        assertSnapshotEmpty(snapshot);
 
     }
 
