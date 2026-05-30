@@ -207,6 +207,17 @@ public class BoardTests {
         assertSame(piece, board.getPiece(location));
     }
 
+    @Test
+    void getPiece_blackQueenx7y7_returnsBlackQueen() {
+        Board board = new Board(false);
+        Location location = new Location(7,7);
+        Queen piece = new Queen(PieceColor.BLACK);
+
+        board.setPiece(location, piece);
+
+        assertSame(piece, board.getPiece(location));
+    }
+
 
 
 }
