@@ -65,7 +65,6 @@
 * Input:
   * location object: pointer
     * location object
-    * null (CANT SET)
   * something to compare: cases
     * another location obj
     * the exact location obj
