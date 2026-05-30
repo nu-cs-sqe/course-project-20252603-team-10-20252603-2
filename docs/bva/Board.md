@@ -109,7 +109,7 @@
 
 | Test # | Board state                              | Location | Piece Obj    | Expected Output                                  | Implemented? |
 |--------|------------------------------------------|----------|--------------|--------------------------------------------------|--------------|
-| 1      | empty                                    | x=0 y=0  | WHITE PAWN   | isPieceHere == True, getPiece() == WHITE PAWN    | no           | 
+| 1      | empty                                    | x=0 y=0  | WHITE PAWN   | isPieceHere == True, getPiece() == WHITE PAWN    | yes          | 
 | 2      | empty                                    | x=7 y=7  | BLACK KNIGHT | isPieceHere == True, getPiece() == BLACK KNIGHT  | no           | 
 | 3      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | BLACK QUEEN  | isPieceHere == True, getPiece() == BLACK QUEEN   | no           | 
 | 4      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | null         | isPieceHere == False, getPiece() == null         | no           | 
