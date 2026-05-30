@@ -252,6 +252,23 @@ public class PawnTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Pawn_whiteTwoForwardMidBlocked_returnFalse() {
+        Piece pawn = new Pawn(PieceColor.WHITE);
+        Piece blocker = new Pawn(PieceColor.BLACK);
+
+        Location start = new Location(6, 0);
+        Location chosen = new Location(4, 0);
+        Location blockLocation = new Location(5, 0);
+
+        Board board = new Board(false);
+        board.setPiece(blockLocation, blocker);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 }
 
