@@ -77,6 +77,16 @@
 
 ### Method under test: hashCode() (override required by system, added basic test confirming consistency with equals())
 
-| Test Number | Location 1         | Location 2          | Expected output         | Implemented? |
-|-------------|--------------------|---------------------|-------------------------|--------------|
-| 1           | Location(x=1, y=1) | Location(x=1, y=1)  | same hash code returned | yes          |
+| Test Number | Location 1         | Location 2         | Expected output            | Implemented? |
+|-------------|--------------------|--------------------|----------------------------|--------------|
+| 1           | Location(x=1, y=1) | Location(x=1, y=1) | same hash code returned    | yes          |
+| 2           | Location(x=3, y=4) | N/A                | Objects.hash(3,4) returned | no           |
+
+### TEST DESIGN for hashCode()
+
+1) Input equivalence classes and output equivalence classes
+* Input: Location object w/ valid coordinates
+* Output: Integer hash code
+2) and 3) Determine data types and values
+* Input: pointer to location object (coordinates (x,y) in valid range [0,7])
+* Output: integer hash code
