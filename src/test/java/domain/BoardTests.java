@@ -172,5 +172,13 @@ public class BoardTests {
         assertTrue(board.isPieceHere(location));
     }
 
+    @Test
+    void isPieceHere_initBoardBlackPawn_returnsTrue() {
+        Board board = new Board(true);
+        Location location = new Location(1,0);
+
+        assertTrue(board.isPieceHere(location));
+    }
+
 }
 
