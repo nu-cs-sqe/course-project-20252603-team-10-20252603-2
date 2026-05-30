@@ -144,5 +144,13 @@ public class BoardTests {
 
     }
 
+    @Test
+    void isPieceHere_emptyBoardx0y0_returnsFalse() {
+        Board board = new Board(false);
+        Location location = new Location(0,0);
+
+        assertFalse(board.isPieceHere(location));
+    }
+
 }
 
