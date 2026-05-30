@@ -222,6 +222,20 @@ public class PawnTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Pawn_whiteTwoForwardNotStartRow_returnFalse() {
+        Piece pawn = new Pawn(PieceColor.WHITE);
+
+        Location start = new Location(5, 0);
+        Location chosen = new Location(3, 0);
+
+        Board board = new Board(false);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
 
 }
 
