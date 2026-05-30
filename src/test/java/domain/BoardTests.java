@@ -188,5 +188,13 @@ public class BoardTests {
         assertFalse(board.isPieceHere(location));
     }
 
+    @Test
+    void getPiece_emptyBoardx0y0_returnsNull() {
+        Board board = new Board(false);
+        Location location = new Location(0,0);
+
+        assertNull(board.getPiece(location));
+    }
+
 }
 

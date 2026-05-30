@@ -71,7 +71,7 @@
 
 | Test # | Board state                     | Location | Expected Output | Implemented? |
 |--------|---------------------------------|----------|-----------------|--------------|
-| 1      | empty                           | x=0 y=0  | null            | no           | 
+| 1      | empty                           | x=0 y=0  | null            | yes          | 
 | 2      | empty w/ white pawn at x=0 y=0  | x=0 y=0  | white pawn      | no           | 
 | 3      | empty w/ black queen at x=7 y=7 | x=7 y=7  | black queen     | no           | 
 | 4      | initialized board               | x=0 y=0  | black rook      | no           | 
