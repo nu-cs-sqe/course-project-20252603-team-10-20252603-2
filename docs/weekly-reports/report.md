@@ -1,4 +1,4 @@
-# Week 3 (04/13/2026-04/19/2026)
+**# Week 3 (04/13/2026-04/19/2026)
 **Planning and Progress Tracking**:
 1. [done] Vivian: Setup project (gradle build, update README) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/commit/90b11d664c289456050b47fad14c6b3d38928f15)
 2. [done] Cate: Meet with team, accept GitHub project, choose game (2D chess)
@@ -13,6 +13,8 @@
 2. [done] Cate: Code and passing tests for isSameColor() (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/6)
 3. [done] Cate: BVA for Piece isValidMove() (type=Pawn) complete (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/6)
 4. [10% done] Cate: Code and test implementation for isValidMove (type=Pawn)
+5. [done] Samreen: BVA for Piece isValidMove() (type=Rook) complete https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18
+6. [10% done] Samreen: Implementation for isValidMove (type=Rook) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18
 
 # Week 6 (05/5/2026-05/10/2026)
 **Planning and Progress Tracking**:
@@ -24,9 +26,27 @@
 6. [done] Vivian: Feedback written for Pawn Class Implementation by Cate (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/14)
 7. [done] Vivian: BVA for Player class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
 8. [50% done] Vivian: Implementation for Player class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
+9. [done] Samreen: Provide feedback on Pawn and Player classes
+9. [done] Samreen: Implementation for isValidMove (type=Rook) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18
+10. [done] Samreen: Address any comments and merge changes for isValidMove (type=Rook) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/18
+11. [20% done] Samreen: BVA for Piece isValidMove() (type=Bishop) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/27
 
-# Week X (XX/XX/2026-XX/XX/2026) TEMPLATE (You can change the format to whatever the team likes better)
+# Week 7 (05/11/2026-05/17/2026)
 **Planning and Progress Tracking**:
-1. [done] Person: Task (Links to PR)
-2. [not started] Person: Task (Links to PR)
-3. [80% done] Person: Task (Links to PR)
+1. [done] Cate: Addressed and merged isValidMove feedback and updates from Vivian and Samreen (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/14)
+2. [done] Cate: Code and test implementation for isValidMove (type=Knight) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/29)
+3. [done] Cate: Pushed implementation of spotbugs and checkstyle (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
+4. [not started] Cate: Code and test implementation for isValidMove (type=Queen)
+
+# Week 8 (05/18/2026-05/24/2026)
+**Planning and Progress Tracking**:
+1. [done] Cate: Code and test implementation for isValidMove (type=Queen) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/37)
+2. [done] Cate: pushed revisions to comply with all spotbugs errors in main branch (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
+3. [25% done] Cate: completed and pushed more code revisions to comply with checkstyle (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
+4. [done] Cate: Jacoco and pitest implementation for mutation and code coverage (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/41)
+5. [done] Vivian: Addressed PR comments and merged Player Class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
+6. [50% done] Vivian: BVA for GameManager class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
+
+# Week 9 (05/25/2026-05/31/2026)
+
+
