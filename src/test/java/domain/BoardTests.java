@@ -27,7 +27,7 @@ public class BoardTests {
         }
     }
 
-    private void assertPawnRow(Board board, Integer row, PieceColor color) {
+    private void assertPawnRow(Board board, int row, PieceColor color) {
         for (int y = 0; y < BOARD_SIZE; y++) {
             Location loc = new Location(row, y);
 
@@ -38,7 +38,7 @@ public class BoardTests {
         }
     }
 
-    private void assertMajorRow(Board board, Integer row, PieceColor color) {
+    private void assertMajorRow(Board board, int row, PieceColor color) {
 
         List<Class<? extends Piece>> expectedPieces = List.of(
                 Rook.class,
