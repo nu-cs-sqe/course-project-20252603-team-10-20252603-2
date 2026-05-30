@@ -78,5 +78,13 @@ public class LocationTests {
         assertTrue(first.equals(first));
     }
 
+    @Test
+    void equals_diffLocSameCoord_returnTrue() {
+        Location first = new Location(3, 4);
+        Location second = new Location(3, 4);
+
+        assertTrue(first.equals(second));
+    }
+
 
 }
