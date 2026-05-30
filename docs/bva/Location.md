@@ -10,7 +10,7 @@
 | 5           | -1      | 0       | IllegalArgumentException  | yes          |
 | 6           | 8       | 0       | IllegalArgumentException  | yes          |
 | 7           | 0       | -1      | IllegalArgumentException  | yes          |
-| 8           | 0       | 8       | IllegalArgumentException  | no           |
+| 8           | 0       | 8       | IllegalArgumentException  | yes          |
 
 ### STEPS FOR BVA: `Location()`
 1) input equivalence classes and output equivalence classes
