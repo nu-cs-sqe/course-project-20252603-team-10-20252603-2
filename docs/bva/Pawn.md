@@ -20,8 +20,9 @@
 | 12          | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True           | sideways         | False                  | yes          |
 | 13          | "BLACK" | x=0, y=0       | x=2, y=0        | EMPTY                    | False          | two forward      | False                  | yes          |
 | 14          | "BLACK" | x=2, y=0       | x=4, y=0        | EMPTY                    | True           | two forward      | False (non first turn) | yes          |
-| 15          | "WHITE" | x=5, y=7       | x=3, y=7        | EMPTY                    | True           | two forward      | False (non first turn) | no           |
-| 16          | "WHITE" | x=5, y=0       | x=3, y=0        | EMPTY                    | True           | two forward      | False                  | no           |
+| 15          | "WHITE" | x=5, y=7       | x=3, y=7        | EMPTY                    | True           | two forward      | False (non first turn) | yes          |
+| 16          | "WHITE" | x=5, y=0       | x=3, y=0        | EMPTY                    | True           | two forward      | False                  | yes          |
+| 17          | "WHITE" | x=6, y=0       | x=5, y=0        | ENEMY                    | false          | one forward      | False                  | no           |
 
 
 
