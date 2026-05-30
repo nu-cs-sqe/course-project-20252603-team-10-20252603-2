@@ -150,6 +150,6 @@
 | Test # | Board state                     | Expected Output                                         | Implemented? |
 |--------|---------------------------------|---------------------------------------------------------|--------------|
 | 1      | empty board                     | snapshot with only nulls                                | yes          | 
-| 2      | board with one piece at x=0,y=0 | snapshot with piece at same location                    | no           | 
+| 2      | board with one piece at x=0,y=0 | snapshot with piece at same location                    | yes          | 
 | 3      | board with one piece at x=7,y=7 | snapshot != original object reference                   | no           |
 

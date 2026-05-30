@@ -69,6 +69,18 @@ public class BoardTests {
         }
     }
 
+    private void assertSnapshotCopiedPiece(Board board, Piece original, Location location) {
+        board.setPiece(location, original);
+
+        Piece[][] snapshot = board.getSnapshot();
+        Piece copy = snapshot[location.getX()][location.getY()];
+
+        assertTrue(board.isPieceHere(location));
+        assertNotSame(original, copy);
+        assertEquals(original.getType(), copy.getType());
+        assertEquals(original.getColor(), copy.getColor());
+    }
+
 
     @Test
     void initBoard_noInit_returnsEmptyBoard() {
@@ -118,6 +130,17 @@ public class BoardTests {
         Piece[][] snapshot = board.getSnapshot();
 
         assertSnapshotEmpty(snapshot);
+
+    }
+
+    @Test
+    void getSnapshot_onePiece_returnsSnapshotSamePiece() {
+        Board board = new Board(false);
+        Pawn piece = new Pawn(PieceColor.BLACK);
+        Location location = new Location(0,0);
+        board.setPiece(location, piece);
+
+        assertSnapshotCopiedPiece(board, piece, location);
 
     }
 
