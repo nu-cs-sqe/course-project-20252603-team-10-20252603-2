@@ -73,3 +73,10 @@
 * Output: boolean (t/f)
 
 4) test cases (see above)
+
+
+### Method under test: hashCode() (override required by system, added basic test confirming consistency with equals())
+
+| Test Number | Location 1         | Location 2          | Expected output         | Implemented? |
+|-------------|--------------------|---------------------|-------------------------|--------------|
+| 1           | Location(x=1, y=1) | Location(x=1, y=1)  | same hash code returned | yes          |
