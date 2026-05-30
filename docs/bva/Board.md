@@ -1,10 +1,10 @@
 # Test / BVA Analysis for Board
 
-### Method under test: initializeBoard()
+### Method under test: initializeBoard() (more functional testing than true BVA)
 
 | Test # | Board setup? | Expected Output                                  | Implemented? |
 |--------|--------------|--------------------------------------------------|--------------|
-| 1      | false        | empty board                                      | no           | 
+| 1      | false        | empty board                                      | yes          | 
 | 2      | true         | init board (B/W pawns in correct place)          | no           | 
 | 3      | true         | init board (W major pieces in correct place)     | no           | 
 | 4      | true         | init board (B major pieces in correct place)     | no           | 
@@ -35,8 +35,8 @@
 | 1      | empty                       | x=0 y=0  | false           | no           | 
 | 2      | empty w/ 1 piece at x=0 y=0 | x=0 y=0  | true            | no           | 
 | 3      | empty w/ 1 piece at x=7 y=7 | x=7 y=7  | true            | no           | 
-| 4      | initialized board            | x=1 y=0  | true            | no           | 
-| 5      | initialized board            | x=3 y=3  | false           | no           | 
+| 4      | initialized board           | x=1 y=0  | true            | no           | 
+| 5      | initialized board           | x=3 y=3  | false           | no           | 
 
 
 1) input equivalence classes and output equivalence classes
@@ -74,8 +74,8 @@
 | 1      | empty                           | x=0 y=0  | null            | no           | 
 | 2      | empty w/ white pawn at x=0 y=0  | x=0 y=0  | white pawn      | no           | 
 | 3      | empty w/ black queen at x=7 y=7 | x=7 y=7  | black queen     | no           | 
-| 4      | initialized board                | x=0 y=0  | black rook      | no           | 
-| 5      | initialized board                | x=7 y=1  | white knight    | no           | 
+| 4      | initialized board               | x=0 y=0  | black rook      | no           | 
+| 5      | initialized board               | x=7 y=1  | white knight    | no           | 
 
 
 1) input equivalence classes and output equivalence classes
