@@ -94,5 +94,13 @@ public class LocationTests {
         assertFalse(first.equals(second));
     }
 
+    @Test
+    void equals_diffLocDiffY_returnTrue() {
+        Location first = new Location(3, 4);
+        Location second = new Location(3, 3);
+
+        assertFalse(first.equals(second));
+    }
+
 
 }
