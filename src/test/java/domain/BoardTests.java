@@ -196,5 +196,14 @@ public class BoardTests {
         assertNull(board.getPiece(location));
     }
 
+    @Test
+    void getPiece_whitePawnx0y0_returnsWhitePawn() {
+        Board board = new Board(false);
+        Location location = new Location(0,0);
+        Pawn piece = new Pawn(PieceColor.WHITE);
+
+        assertSame(piece, board.getPiece(location));
+    }
+
 }
 
