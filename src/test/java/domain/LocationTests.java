@@ -54,5 +54,11 @@ public class LocationTests {
 
     }
 
+    @Test
+    void locationConstructor_x8y0_throwsException() {
+        assertThrows(IllegalArgumentException.class, () -> new Location(8, 0));
+
+    }
+
 
 }
