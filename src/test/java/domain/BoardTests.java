@@ -78,5 +78,13 @@ public class BoardTests {
 
     }
 
+    @Test
+    void initBoard_init_returnsInitBoardCheckMajorBlack() {
+        Board board = new Board(true);
+
+        assertMajorRow(board, 0, PieceColor.BLACK);
+
+    }
+
 }
 
