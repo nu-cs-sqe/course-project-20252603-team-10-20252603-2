@@ -112,7 +112,7 @@
 | 1      | empty                                    | x=0 y=0  | WHITE PAWN   | isPieceHere == True, getPiece() == WHITE PAWN    | yes          | 
 | 2      | empty                                    | x=7 y=7  | BLACK KNIGHT | isPieceHere == True, getPiece() == BLACK KNIGHT  | yes          | 
 | 3      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | BLACK QUEEN  | isPieceHere == True, getPiece() == BLACK QUEEN   | yes          | 
-| 4      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | null         | isPieceHere == False, getPiece() == null         | no           | 
+| 4      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | null         | isPieceHere == False, getPiece() == null         | yes          | 
 
 1) input equivalence classes and output equivalence classes
     * input equiv class:
