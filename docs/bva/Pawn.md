@@ -23,7 +23,7 @@
 | 15          | "WHITE" | x=5, y=0       | x=3, y=0        | EMPTY                    | True                       | two forward      | False (non first turn) | yes          |
 | 16          | "WHITE" | x=6, y=0       | x=5, y=0        | ENEMY                    | false                      | one forward      | False                  | yes          |
 | 17          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | false (blocked at x=5,y=0) | two forward      | False                  | yes          |
-| 18          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | True                   | no           |
+| 18          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | True                   | yes          |
 
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
