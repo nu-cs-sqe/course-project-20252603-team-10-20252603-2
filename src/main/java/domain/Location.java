@@ -3,13 +3,18 @@ package domain;
 import java.util.Objects;
 
 public class Location {
+
+    private static final int MIN_COORD = 0;
+
+    private static final int MAX_COORD = 7;
+
     private final int x;
 
     private final int y;
 
     public Location(int x, int y) {
-        boolean xOutOfBounds = (x < 0) || (x > 7);
-        boolean yOutOfBounds = (y < 0) || (y > 7);
+        boolean xOutOfBounds = (x < MIN_COORD) || (x > MAX_COORD);
+        boolean yOutOfBounds = (y < MIN_COORD) || (y > MAX_COORD);
 
         if (xOutOfBounds || yOutOfBounds) {
             throw new IllegalArgumentException("Coordinates must be between 0 and 7");
@@ -37,8 +42,8 @@ public class Location {
             return false;
         }
 
-        Location compare_obj = (Location) obj;
-        return (this.x == compare_obj.x) && (this.y == compare_obj.y);
+        Location compareObj = (Location) obj;
+        return (this.x == compareObj.x) && (this.y == compareObj.y);
     }
 
     @Override
