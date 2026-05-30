@@ -20,55 +20,35 @@ public class Queen extends Piece {
             return false;
         }
 
-        if (board.isPieceHere(end)) {
-            Piece blocker = board.getPiece(end);
-            if (blocker.getColor() == this.getColor()) return false;
-        }
-
-        boolean xMovement = (start.getY() == end.getY()) && (start.getX() != end.getX());
-        boolean yMovement = (start.getY() != end.getY()) && (start.getX() == end.getX());
-
         int diffX = Math.abs(start.getX() - end.getX());
         int diffY = Math.abs(start.getY() - end.getY());
 
         int dirX = Integer.compare(end.getX(), start.getX());
         int dirY = Integer.compare(end.getY(), start.getY());
 
-        boolean diagonalMovement = (diffX == diffY);
+        boolean bishopMovement = diffX == diffY;
+        boolean rookMovement = (start.getX() == end.getX()) || (start.getY() == end.getY());
 
-        if (diagonalMovement) {
-            for (int i = 1; i < diffX; i++) {
-                Location locationCheck = new Location(start.getX() + (i * dirX), start.getY() + (i * dirY));
-
-                if (board.isPieceHere(locationCheck) == true) return false;
-
-            }
-
-            return true;
+        if (!bishopMovement && !rookMovement) {
+            return false;
         }
 
-        if (yMovement) {
-            for (int i = 1; i < diffY; i++) {
-                Location locationCheck = new Location(start.getX(), start.getY() + (i * dirY));
+        Location currSquare = new Location(start.getX() + dirX, start.getY() + dirY);
 
-                if (board.isPieceHere(locationCheck) == true) return false;
-
+        while(!currSquare.equals(end)) {
+            if (board.isPieceHere(currSquare)) {
+                return false;
             }
 
-            return true;
+            currSquare = new Location(currSquare.getX() + dirX, currSquare.getY() + dirY);
         }
 
-        if (xMovement) {
-            for (int i = 1; i < diffX; i++) {
-                Location locationCheck = new Location(start.getX() + (i * dirX), start.getY());
-
-                if (board.isPieceHere(locationCheck) == true) return false;
-
-            }
-
-            return true;
+        if (board.isPieceHere(end)) {
+            Piece blocker = board.getPiece(end);
+            return !this.isSameColor(blocker);
         }
 
-        return false;
+        return true;
+
     }
 }
