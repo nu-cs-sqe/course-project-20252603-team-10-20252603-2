@@ -35,3 +35,12 @@
   * “B”, “W” --> F 
   * “W”, “W” --> T 
   * “W”, “B” --> F
+
+
+### Method under test: `getType()` (no BVA required, basic getter)
+
+| Test # | Piece      | Expected output | Implemented? |
+|--------|------------|-----------------|--------------|
+| 1      | BLACK pawn | PAWN            | yes          |
+
+
