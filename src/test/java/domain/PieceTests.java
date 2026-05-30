@@ -44,4 +44,10 @@ public class PieceTests {
         assertEquals(PieceType.PAWN, piece.getType());
     }
 
+    @Test
+    public void toString_whitePawn_returnString() {
+        Piece piece = new Pawn(PieceColor.WHITE);
+        assertEquals("WHITE PAWN", piece.toString());
+    }
+
 }

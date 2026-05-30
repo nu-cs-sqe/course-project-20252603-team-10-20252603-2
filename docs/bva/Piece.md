@@ -44,3 +44,10 @@
 | 1      | BLACK pawn | PAWN            | yes          |
 
 
+### Method under test: `toString()` (no BVA required, testing for code coverage)
+
+| Test # | Piece      | Expected output | Implemented? |
+|--------|------------|-----------------|--------------|
+| 1      | WHITE pawn | "WHITE PAWN"    | yes          |
+
+
