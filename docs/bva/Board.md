@@ -30,13 +30,13 @@
 
 ### Method under test: isPieceHere()
 
-| Test # | Board state                 | Location | Expected Output | Implemented? |
-|--------|-----------------------------|----------|-----------------|--------------|
-| 1      | empty                       | x=0 y=0  | false           | yes          | 
-| 2      | empty w/ 1 piece at x=0 y=0 | x=0 y=0  | true            | no           | 
-| 3      | empty w/ 1 piece at x=7 y=7 | x=7 y=7  | true            | no           | 
-| 4      | initialized board           | x=1 y=0  | true            | no           | 
-| 5      | initialized board           | x=3 y=3  | false           | no           | 
+| Test # | Board state                      | Location | Expected Output | Implemented? |
+|--------|----------------------------------|----------|-----------------|--------------|
+| 1      | empty                            | x=0 y=0  | false           | yes          | 
+| 2      | empty w/ white pawn at x=0 y=0   | x=0 y=0  | true            | yes          | 
+| 3      | empty w/ 1 piece at x=7 y=7      | x=7 y=7  | true            | no           | 
+| 4      | initialized board                | x=1 y=0  | true            | no           | 
+| 5      | initialized board                | x=3 y=3  | false           | no           | 
 
 
 1) input equivalence classes and output equivalence classes
