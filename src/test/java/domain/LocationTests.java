@@ -102,5 +102,13 @@ public class LocationTests {
         assertFalse(first.equals(second));
     }
 
+    @Test
+    void equals_compareToString_returnTrue() {
+        Location first = new Location(3, 4);
+        String second = "hello";
+
+        assertFalse(first.equals(second));
+    }
+
 
 }
