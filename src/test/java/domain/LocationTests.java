@@ -2,8 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LocationTests {
 
@@ -70,6 +69,13 @@ public class LocationTests {
     void locationConstructor_x0y8_throwsException() {
         assertThrows(IllegalArgumentException.class, () -> new Location(0, 8));
 
+    }
+
+    @Test
+    void equals_sameLoc_returnTrue() {
+        Location first = new Location(1, 1);
+
+        assertTrue(first.equals(first));
     }
 
 

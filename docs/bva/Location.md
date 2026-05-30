@@ -41,7 +41,7 @@
 
 | Test Number | Location             | Comparison         | Expected output   | Implemented? |
 |-------------|----------------------|--------------------|-------------------|--------------|
-| 1           | Location(x=1, y=1)   | same object        | true              | no           |
+| 1           | Location(x=1, y=1)   | same object        | true              | yes          |
 | 2           | Location(x=3, y=4)   | Location(x=3, y=4) | true              | no           |
 | 3           | Location(x=3, y=4)   | Location(x=4, y=4) | false             | no           |
 | 4           | Location(x=3, y=4)   | Location(x=3, y=3) | false             | no           |
