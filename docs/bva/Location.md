@@ -35,3 +35,42 @@
 
 4) test cases (see above)
 
+
+
+### Method under test: equals()
+
+| Test Number | Location             | Comparison         | Expected output   | Implemented? |
+|-------------|----------------------|--------------------|-------------------|--------------|
+| 1           | Location(x=1, y=1)   | same object        | true              | no           |
+| 2           | Location(x=3, y=4)   | Location(x=3, y=4) | true              | no           |
+| 3           | Location(x=3, y=4)   | Location(x=4, y=4) | false             | no           |
+| 4           | Location(x=3, y=4)   | Location(x=3, y=3) | false             | no           |
+| 5           | Location(x=3, y=4)   | "hello"            | false             | no           |
+| 6           | Location(x=3, y=4)   | null               | false             | no           |
+
+
+### STEPS FOR BVA: `equals()`
+1) input equivalence classes and output equivalence classes
+* Input:
+  * a location object
+  * something to compare the location object to 
+    * another location obj
+    * the exact location obj
+    * non location object
+    * null
+* Output:
+  * a yes/no answer
+
+2) and 3) determine data types and values
+* Input:
+  * location object: pointer
+    * location object
+    * null (CANT SET)
+  * something to compare: cases
+    * another location obj
+    * the exact location obj
+    * non location object
+    * null
+* Output: boolean (t/f)
+
+4) test cases (see above)
