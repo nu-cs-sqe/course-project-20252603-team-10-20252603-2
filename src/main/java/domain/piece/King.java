@@ -3,7 +3,7 @@ package domain.piece;
 import domain.Board;
 import domain.Location;
 
-public class King extends Piece{
+public class King extends Piece {
     public King(PieceColor color) {
         super(PieceType.KING, color);
     }

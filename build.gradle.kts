@@ -1,5 +1,10 @@
+import com.github.spotbugs.snom.Confidence
+import com.github.spotbugs.snom.Effort
+
 plugins {
     id("java")
+    checkstyle
+    id("com.github.spotbugs") version "6.0.25"
     jacoco
     id("info.solidsoft.pitest") version "1.15.0"
 }
@@ -33,6 +38,36 @@ tasks.test {
     finalizedBy(tasks.pitest)
 }
 
+checkstyle {
+    toolVersion = "10.21.1"
+    isIgnoreFailures = false
+    configFile=file("config/checkstyle/checkstyle.xml")
+}
+
+tasks.withType<Checkstyle>().configureEach {
+    reports {
+        xml.required = false
+        html.required = true
+    }
+}
+
+spotbugs {
+    toolVersion.set("4.9.8")
+    ignoreFailures = false
+    showStackTraces = true
+    showProgress = true
+    effort = Effort.MAX
+    reportLevel = Confidence.LOW
+    maxHeapSize = "1g"
+}
+
+tasks.spotbugsMain {
+    reports.create("html") {
+        required = true
+        outputLocation = layout.buildDirectory.file("reports/spotbugs/spotbugs.html")
+        setStylesheet("fancy-hist.xsl")
+    }
+}
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)

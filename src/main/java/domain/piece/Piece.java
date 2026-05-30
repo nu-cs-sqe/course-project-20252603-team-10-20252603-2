@@ -5,6 +5,7 @@ import domain.Location;
 
 public abstract class Piece {
     private final PieceType type;
+
     private final PieceColor color;
 
     public Piece(PieceType type, PieceColor color) {
