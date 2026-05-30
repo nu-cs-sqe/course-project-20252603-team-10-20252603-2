@@ -1,0 +1,157 @@
+# Test / BVA Analysis for Board
+
+### Method under test: initializeBoard()
+
+| Test # | Board setup? | Expected Output                                  | Implemented? |
+|--------|--------------|--------------------------------------------------|--------------|
+| 1      | false        | empty board                                      | no           | 
+| 2      | true         | init board (B/W pawns in correct place)          | no           | 
+| 3      | true         | init board (W major pieces in correct place)     | no           | 
+| 4      | true         | init board (B major pieces in correct place)     | no           | 
+| 5      | true         | init board (non starting rows (2-5) are empty)   | no           | 
+
+1) input equivalence classes and output equivalence classes
+   * input equiv class:
+     * whether you want to setup the board or not (yes/no)
+   * output equiv class:
+     * initialized chess board OR empty chess board
+2) BVA catalog classes
+   * input: boolean
+   * output: cases
+     1) initialized board
+     2) empty board
+3) BVA catalog classes -- values
+   * input:
+     * true
+     * false
+   * output
+     * board with standard chess setup 
+     * board with no pieces
+
+### Method under test: isPieceHere()
+
+| Test # | Board state                 | Location | Expected Output | Implemented? |
+|--------|-----------------------------|----------|-----------------|--------------|
+| 1      | empty                       | x=0 y=0  | false           | no           | 
+| 2      | empty w/ 1 piece at x=0 y=0 | x=0 y=0  | true            | no           | 
+| 3      | empty w/ 1 piece at x=7 y=7 | x=7 y=7  | true            | no           | 
+| 4      | initialized board            | x=1 y=0  | true            | no           | 
+| 5      | initialized board            | x=3 y=3  | false           | no           | 
+
+
+1) input equivalence classes and output equivalence classes
+    * input equiv class:
+        * a location on the board
+        * the state of the board at that location
+    * output equiv class:
+        * yes/no answer
+2) BVA catalog classes
+    * input:
+      * location: array indices
+      * board state: cases
+    * output: boolean
+3) BVA catalog classes -- values
+    * input:
+        * location (2d array indices)
+          * [0][0]
+          * [7][7]
+          * [-1][5] CANT SET
+          * [5][-1] CANT SET
+          * [8][5] CANT SET
+          * [5][8] CANT SET
+        * board state (cases)
+          * case 1: piece present
+          * case 2: no piece present
+    * output
+        * true
+        * false
+
+
+### Method under test: getPiece()
+
+| Test # | Board state                     | Location | Expected Output | Implemented? |
+|--------|---------------------------------|----------|-----------------|--------------|
+| 1      | empty                           | x=0 y=0  | null            | no           | 
+| 2      | empty w/ white pawn at x=0 y=0  | x=0 y=0  | white pawn      | no           | 
+| 3      | empty w/ black queen at x=7 y=7 | x=7 y=7  | black queen     | no           | 
+| 4      | initialized board                | x=0 y=0  | black rook      | no           | 
+| 5      | initialized board                | x=7 y=1  | white knight    | no           | 
+
+
+1) input equivalence classes and output equivalence classes
+    * input equiv class:
+        * a location on the board
+        * the state of the board at that location
+    * output equiv class:
+        * Piece obj
+        * null (SHOULD BE AVOIDED BY USING IN TANDEM WITH isPieceHere())
+2) BVA catalog classes
+    * input:
+        * location: array indices
+        * board state: cases
+    * output: pointer
+3) BVA catalog classes -- values
+    * input:
+        * location (2d array indices)
+            * [0][0]
+            * [7][7]
+            * [-1][5] CANT SET
+            * [5][-1] CANT SET
+            * [8][5] CANT SET
+            * [5][8] CANT SET
+        * board state (cases)
+            * case 1: piece present
+            * case 2: no piece present
+    * output
+        * return null pointer
+        * return Piece obj
+
+    
+### Method under test: setPiece()
+
+| Test # | Board state                              | Location | Piece Obj    | Expected Output                                  | Implemented? |
+|--------|------------------------------------------|----------|--------------|--------------------------------------------------|--------------|
+| 1      | empty                                    | x=0 y=0  | WHITE PAWN   | isPieceHere == True, getPiece() == WHITE PAWN    | no           | 
+| 2      | empty                                    | x=7 y=7  | BLACK KNIGHT | isPieceHere == True, getPiece() == BLACK KNIGHT  | no           | 
+| 3      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | BLACK QUEEN  | isPieceHere == True, getPiece() == BLACK QUEEN   | no           | 
+| 4      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | null         | isPieceHere == False, getPiece() == null         | no           | 
+
+1) input equivalence classes and output equivalence classes
+    * input equiv class:
+        * a location on the board
+        * piece obj
+    * output equiv class:
+        * updated board state
+2) BVA catalog classes
+    * input:
+        * location: array indices
+        * piece obj: cases
+    * output: cases (diff board states)
+3) BVA catalog classes -- values
+    * input:
+        * location (2d array indices)
+            * [0][0]
+            * [7][7]
+            * [-1][5] CANT SET
+            * [5][-1] CANT SET
+            * [8][5] CANT SET
+            * [5][8] CANT SET
+        * piece obj
+            * piece object
+            * null
+    * output
+        * piece added
+        * piece replaced
+        * piece removed
+
+
+### Method under test: getSnapshot(), functional testing (NOT BVA)
+
+| Test # | Board state                     | Expected Output                                         | Implemented? |
+|--------|---------------------------------|---------------------------------------------------------|--------------|
+| 1      | empty board                     | snapshot with only nulls                                | no           | 
+| 2      | board with one piece at x=0,y=0 | snapshot with piece at same location                    | no           | 
+| 3      | board with one piece at x=7,y=7 | snapshot != original object reference                   | no           | 
+| 4      | initialized board               | snapshot has copied pieces in the initialized positions | no           | 
+
+
