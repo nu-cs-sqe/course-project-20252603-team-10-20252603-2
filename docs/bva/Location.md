@@ -80,7 +80,7 @@
 | Test Number | Location 1         | Location 2         | Expected output            | Implemented? |
 |-------------|--------------------|--------------------|----------------------------|--------------|
 | 1           | Location(x=1, y=1) | Location(x=1, y=1) | same hash code returned    | yes          |
-| 2           | Location(x=3, y=4) | N/A                | Objects.hash(3,4) returned | no           |
+| 2           | Location(x=3, y=4) | N/A                | Objects.hash(3,4) returned | yes          |
 
 ### TEST DESIGN for hashCode()
 

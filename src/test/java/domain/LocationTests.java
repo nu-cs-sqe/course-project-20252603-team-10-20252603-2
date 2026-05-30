@@ -2,6 +2,8 @@ package domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LocationTests {
@@ -13,6 +15,13 @@ public class LocationTests {
 
         assertEquals(first, second);
         assertEquals(first.hashCode(), second.hashCode());
+    }
+
+    @Test
+    void hashCode_loc34_returnsExpectedHashCode() {
+        Location loc = new Location(3, 4);
+
+        assertEquals(Objects.hash(3,4), loc.hashCode());
     }
 
     @Test
