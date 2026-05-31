@@ -2,8 +2,6 @@ package domain;
 
 import constants.Color;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class Player {
