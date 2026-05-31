@@ -35,4 +35,21 @@ public class KingTests {
 
         assertTrue(king.isInCheck(kingPos, board));
     }
+
+    @Test
+    public void isInCheck_EnemyRookBlockedByFriendly_ReturnsFalse() {
+        King king = new King(PieceColor.WHITE);
+        Piece rook = new Rook(PieceColor.BLACK);
+        Piece blocker = new Pawn(PieceColor.WHITE);
+        Location kingPos = new Location(4, 4);
+        Location rookPos = new Location(4, 7);
+        Location blockerPiece = new Location(4, 6);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(rookPos, rook);
+        board.setPiece(blockerPiece, blocker);
+
+        assertFalse(king.isInCheck(kingPos, board));
+    }
 }
