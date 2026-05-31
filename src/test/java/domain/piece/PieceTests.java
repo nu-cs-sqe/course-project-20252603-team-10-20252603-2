@@ -1,9 +1,7 @@
-package domain;
+package domain.piece;
 
 import org.junit.jupiter.api.Test;
-import domain.piece.*;
 import constants.Color;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

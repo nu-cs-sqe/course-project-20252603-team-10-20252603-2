@@ -1,9 +1,8 @@
-package domain;
+package domain.piece;
 
-import domain.piece.Rook;
-import domain.piece.Piece;
-import constants.Color;
-import org.junit.jupiter.api.Test;
+import domain.Board;
+import domain.Location;
+import constants.Color;import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

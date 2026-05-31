@@ -1,6 +1,7 @@
-package domain;
+package domain.piece;
 
 import constants.Color;
+import domain.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
