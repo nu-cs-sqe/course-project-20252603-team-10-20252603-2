@@ -8,7 +8,7 @@
 | 2           | WHITE | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | none                 | True                    | yes          |
 | 3           | WHITE | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | friendly at x=4, y=6 | False                   | yes          |
 | 4           | WHITE | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | enemy at x=4, y=6    | False                   | no           |
-| 5           | WHITE | x=4, y=4      | Rook          | BLACK          | x=0, y=4          | none                 | True                    | no           |
+| 5           | WHITE | x=4, y=4      | Rook          | BLACK          | x=0, y=4          | none                 | True                    | yes          |
 | 6           | WHITE | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | none                 | True                    | no           |
 | 7           | WHITE | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | friendly at x=3, y=3 | False                   | no           |
 | 8           | WHITE | x=4, y=4      | Knight        | BLACK          | x=2, y=3          | n/a                  | True                    | no           |
@@ -17,8 +17,8 @@
 | 11          | WHITE | x=4, y=4      | Pawn          | WHITE          | x=3, y=3          | none                 | False (friendly)        | no           |
 | 12          | BLACK | x=4, y=4      | Pawn          | WHITE          | x=5, y=3          | none                 | True                    | no           |
 | 13          | WHITE | x=4, y=4      | Pawn          | BLACK          | x=5, y=3          | none                 | False (wrong direction) | no           |
-| 14          | WHITE | x=4, y=4      | Queen         | BLACK          | x=4, y=7          | none                 | True (rook-like)        | no           |
-| 15          | WHITE | x=4, y=4      | Queen         | BLACK          | x=1, y=1          | none                 | True (bishop-like)      | no           |
+| 14          | WHITE | x=4, y=4      | Queen         | BLACK          | x=4, y=7          | none                 | True                    | no           |
+| 15          | WHITE | x=4, y=4      | Queen         | BLACK          | x=1, y=1          | none                 | True                    | no           |
 | 16          | WHITE | x=4, y=4      | Kign          | BLACK          | x=3, y=4          | none                 | True                    | no           |
 | 17          | WHITE | x=4, y=4      | King          | BLACK          | x=2, y=4          | none                 | False (too far)         | no           |
 | 18          | WHITE | x=0, y=0      | Rook          | BLACK          | x=0, y=7          | none                 | True (corner)           | no           |
