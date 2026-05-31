@@ -15,7 +15,7 @@ public class PlayerTests {
     public void getColor_PlayerWhite_ReturnsWhite() {
         Player player = new Player(Color.WHITE);
         Color actual = player.getPlayerColor();
-        assertEquals(actual, Color.WHITE);
+        assertEquals(Color.WHITE, actual);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class PlayerTests {
         Number actual = player.getPoints();
         Number expected = 0;
 
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
