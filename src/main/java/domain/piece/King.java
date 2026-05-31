@@ -9,7 +9,16 @@ public class King extends Piece{
         super(PieceType.KING, color);
     }
 
-    public boolean isInCheck(Location location, Board board) {
+    public boolean isInCheck(Location kingLocation, Board board) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Location location = new Location(i, j);
+                if (!board.isPieceHere(location)) continue;
+                Piece piece = board.getPiece(location);
+                if (piece.isSameColor(this)) continue;
+                if (piece.isValidMove(location, kingLocation, board)) return true;
+            }
+        }
         return false;
     }
 
