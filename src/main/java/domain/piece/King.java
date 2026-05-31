@@ -9,6 +9,10 @@ public class King extends Piece{
         super(PieceType.KING, color);
     }
 
+    public boolean isInCheck(Location location, Board board) {
+        return false;
+    }
+
     @Override
     public Piece makeCopy() {
         return new King(this.getColor());

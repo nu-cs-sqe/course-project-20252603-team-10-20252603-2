@@ -4,7 +4,7 @@
 
 | Test Number | Color | King Location | Attacker Type | Attacker Color | Attacker Location | Pieces Blocking Path | Expected Output         | Implemented? |
 |-------------|-------|---------------|---------------|----------------|-------------------|----------------------|-------------------------|--------------|
-| 1           | WHITE | x=4, y=4      | none          | none           | none              | none                 | False                   | no           |
+| 1           | WHITE | x=4, y=4      | none          | none           | none              | none                 | False                   | yes          |
 | 2           | WHITE | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | none                 | True                    | no           |
 | 3           | WHITE | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | friendly at x=4, y=6 | False                   | no           |
 | 4           | WHITE | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | enemy at x=4, y=6    | False                   | no           |
