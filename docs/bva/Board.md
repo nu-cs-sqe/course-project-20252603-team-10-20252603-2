@@ -112,7 +112,7 @@
 | 1      | empty                                    | x=0 y=0  | WHITE PAWN   | isPieceHere == True, getPiece() == WHITE PAWN    | yes          | 
 | 2      | empty                                    | x=7 y=7  | BLACK KNIGHT | isPieceHere == True, getPiece() == BLACK KNIGHT  | yes          | 
 | 3      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | BLACK QUEEN  | isPieceHere == True, getPiece() == BLACK QUEEN   | yes          | 
-| 4      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | null         | isPieceHere == False, getPiece() == null         | yes          | 
+
 
 1) input equivalence classes and output equivalence classes
     * input equiv class:
@@ -136,12 +136,41 @@
             * [5][8] CANT SET
         * piece obj
             * piece object
-            * null
     * output
-        * piece added
-        * piece replaced
-        * piece removed
+        * piece added to the board at specified location
+        * current piece on board at specified location replaced with new piece
 
+
+### Method under test: removePiece()
+
+| Test # | Board state                              | Location | Expected Output                                  | Implemented? |
+|--------|------------------------------------------|----------|--------------------------------------------------|--------------| 
+| 1      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | isPieceHere == False, getPiece() == null         | no           | 
+| 2      | occupied square (BLACK QUEEN) at x=7 y=7 | x=7 y=7  | isPieceHere == False, getPiece() == null         | no           | 
+| 3      | empty square                             | x=0 y=7  | isPieceHere == False, getPiece() == null         | no           | 
+
+
+1) input equivalence classes and output equivalence classes
+    * input equiv class:
+        * a location on the board
+    * output equiv class:
+        * updated board state (specified location on the board is set to null)
+2) BVA catalog classes
+    * input:
+        * location: array indices
+    * output: cases (diff board states)
+3) BVA catalog classes -- values
+    * input:
+        * location (2d array indices)
+            * [0][0]
+            * [7][7]
+            * [-1][5] CANT SET
+            * [5][-1] CANT SET
+            * [8][5] CANT SET
+            * [5][8] CANT SET
+    * output
+        * occupied square becomes empty
+        * empty square remains empty
 
 ### Method under test: getSnapshot(), functional testing (NOT BVA)
 
