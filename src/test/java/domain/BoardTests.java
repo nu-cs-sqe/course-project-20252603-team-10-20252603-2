@@ -272,6 +272,17 @@ public class BoardTests {
     }
 
     @Test
+    void setPiece_attemptSetNullx7y7_throwsException() {
+        Board board = new Board(false);
+        Location location = new Location(7,7);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> board.setPiece(location, null)
+        );
+    }
+
+    @Test
     void removePiece_occupiedSquarex0y0_setsNull() {
         Board board = new Board(false);
         Location location = new Location(0,0);
