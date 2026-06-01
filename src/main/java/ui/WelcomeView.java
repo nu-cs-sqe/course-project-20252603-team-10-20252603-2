@@ -8,17 +8,15 @@ public class WelcomeView extends JFrame {
     private JTextField player1NameField;
     private JTextField player2NameField;
 
-    public WelcomeView() {
+    public WelcomeView() { }
+
+    public void initialize() {
         setTitle("Welcome Screen!");
         setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         createWelcomeScreenUI();
-    }
-
-    private void validatePlayerNames(JTextField player1NameField, JTextField player2NameField) {
-
     }
 
     private void createWelcomeScreenUI() {

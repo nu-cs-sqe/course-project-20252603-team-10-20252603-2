@@ -7,10 +7,6 @@ public class GameStatsView extends JPanel {
 
     private JLabel currentPlayerLabel;
 
-    public JLabel getCurrentPlayerLabel() {
-        return currentPlayerLabel;
-    }
-
     public GameStatsView(String player1Name, String player2Name) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(true);

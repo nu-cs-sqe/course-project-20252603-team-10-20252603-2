@@ -19,6 +19,9 @@ public class BoardController {
     public void handleSquareClick(Location location) {
         // TODO
         System.out.println("TEST: Square clicked at " + location.getX() + ", " + location.getY());
+        if (boardView == null) {
+            return;
+        }
     }
 
     public Piece[][] getBoardSnapshot() {

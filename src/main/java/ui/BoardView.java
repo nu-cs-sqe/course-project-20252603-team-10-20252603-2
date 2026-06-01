@@ -16,32 +16,41 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BoardView extends JPanel {
+public final class BoardView extends JPanel {
+    private static final long serialVersionUID = 1L;
     private static final int BOARD_SIZE = 8;
     private static final int TILE_SIZE = 100; // size of each square in pixels
-    private final Color LIGHT_SQUARE_COLOR = new Color(240, 217, 181);
-    private final Color DARK_SQUARE_COLOR = new Color(181, 136, 99);
+    private final Color lightSquareColor = new Color(240, 217, 181);
+    private final Color darkSquareColor = new Color(181, 136, 99);
 
     private final Color SELECTED_SQUARE_COLOR = new Color(164, 149, 195); // NU Purple 40
     private int selectedRow = -1;
     private int selectedCol = -1;
 
-    private Map<PieceType, Image> whitePieceImages;
-    private Map<PieceType, Image> blackPieceImages;
-
-    private BoardController boardController;
+    private transient Map<PieceType, Image> whitePieceImages;
+    private transient Map<PieceType, Image> blackPieceImages;
+    private transient BoardController boardController;
 
     public BoardView(BoardController boardController) {
+        if (boardController == null) {
+            throw new IllegalArgumentException("BoardController cannot be null.");
+        }
         setPreferredSize(new Dimension(BOARD_SIZE * TILE_SIZE, BOARD_SIZE * TILE_SIZE));
-        loadPieceImages();
-        this.boardController = boardController;
+        assignController(boardController);
         boardController.setBoardView(this);
         addMouseListener(new BoardMouseListener());
+    }
+
+    private void assignController(BoardController controller) {
+        this.boardController = controller;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (whitePieceImages == null || blackPieceImages == null) {
+            loadPieceImages();
+        }
         drawBoard(g);
         drawSelectedSquare(g);
         drawPieces(g); // draw piece after draw selected square to ensure piece image is on top
@@ -50,7 +59,7 @@ public class BoardView extends JPanel {
     private void drawBoard(Graphics g) {
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (int col = 0; col < BOARD_SIZE; col++) {
-                Color squareColor = (row + col) % 2 == 0 ? LIGHT_SQUARE_COLOR : DARK_SQUARE_COLOR;
+                Color squareColor = (row + col) % 2 == 0 ? lightSquareColor : darkSquareColor;
                 g.setColor(squareColor);
                 g.fillRect(col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             }
@@ -79,17 +88,21 @@ public class BoardView extends JPanel {
 
     private void loadOnePieceImage(PieceType type, PieceColor color, String imagePath) {
         InputStream imageInputStream = getClass().getClassLoader().getResourceAsStream(imagePath);
-        BufferedImage image = null;
+
+        if (imageInputStream == null) {
+            System.err.println(imagePath);
+            return;
+        }
+
         try {
-            image = ImageIO.read(imageInputStream);
+            BufferedImage image = ImageIO.read(imageInputStream);
+            if (color.equals(PieceColor.BLACK)) {
+                blackPieceImages.put(type, image);
+            } else {
+                this.whitePieceImages.put(type, image);
+            }
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        if (color.equals(PieceColor.BLACK)) {
-            blackPieceImages.put(type, image);
-        }
-        else {
-            this.whitePieceImages.put(type, image);
+            System.err.println(imagePath);
         }
     }
 
@@ -104,7 +117,8 @@ public class BoardView extends JPanel {
                     Image pieceImage = piece.getColor() == PieceColor.WHITE ?
                             whitePieceImages.get(piece.getType()) :
                             blackPieceImages.get(piece.getType());
-                    g.drawImage(pieceImage, col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE, this);
+                    g.drawImage(pieceImage, col * TILE_SIZE,
+                            row * TILE_SIZE, TILE_SIZE, TILE_SIZE, this);
                 }
             }
         }

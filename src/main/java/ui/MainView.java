@@ -3,11 +3,11 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView extends JFrame {
-    private BoardView boardView;
-    private BoardController boardController;
+public final class MainView extends JFrame {
+    private transient BoardView boardView;
+    private transient BoardController boardController;
 
-    private GameStatsView gameStatsView;
+    private transient GameStatsView gameStatsView;
     private String player1Name;
     private String player2Name;
 
