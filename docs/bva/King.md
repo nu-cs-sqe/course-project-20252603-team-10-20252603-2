@@ -11,18 +11,17 @@
 | 5           | WHITE | x=4, y=4      | Rook          | BLACK          | x=0, y=4          | none                 | True                    | yes          |
 | 6           | WHITE | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | none                 | True                    | yes          |
 | 7           | WHITE | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | friendly at x=3, y=3 | False                   | yes          |
-| 8           | WHITE | x=4, y=4      | Knight        | BLACK          | x=2, y=3          | n/a                  | True                    | no           |
-| 9           | WHITE | x=4, y=4      | Pawn          | BLACK          | x=3, y=3          | none                 | True                    | no           |
-| 10          | WHITE | x=4, y=4      | Pawn          | BLACK          | x=3, y=5          | none                 | True                    | no           |
-| 11          | WHITE | x=4, y=4      | Pawn          | WHITE          | x=3, y=3          | none                 | False (friendly)        | no           |
-| 12          | BLACK | x=4, y=4      | Pawn          | WHITE          | x=5, y=3          | none                 | True                    | no           |
-| 13          | WHITE | x=4, y=4      | Pawn          | BLACK          | x=5, y=3          | none                 | False (wrong direction) | no           |
-| 14          | WHITE | x=4, y=4      | Queen         | BLACK          | x=4, y=7          | none                 | True                    | no           |
-| 15          | WHITE | x=4, y=4      | Queen         | BLACK          | x=1, y=1          | none                 | True                    | no           |
-| 16          | WHITE | x=4, y=4      | Kign          | BLACK          | x=3, y=4          | none                 | True                    | no           |
-| 17          | WHITE | x=4, y=4      | King          | BLACK          | x=2, y=4          | none                 | False (too far)         | no           |
-| 18          | WHITE | x=0, y=0      | Rook          | BLACK          | x=0, y=7          | none                 | True (corner)           | no           |
-| 19          | WHITE | x=7, y=7      | Rook          | BLACK          | x=7, y=0          | none                 | True (corner)           | no           |
+| 8           | WHITE | x=4, y=4      | Knight        | BLACK          | x=2, y=3          | n/a                  | True                    | yes          |
+| 9           | WHITE | x=4, y=4      | Pawn          | BLACK          | x=3, y=3          | none                 | True                    | yes          |
+| 10          | WHITE | x=4, y=4      | Pawn          | WHITE          | x=3, y=3          | none                 | False (friendly)        | no           |
+| 11          | BLACK | x=4, y=4      | Pawn          | WHITE          | x=5, y=3          | none                 | True                    | no           |
+| 12          | WHITE | x=4, y=4      | Pawn          | BLACK          | x=5, y=3          | none                 | False (wrong direction) | no           |
+| 13          | WHITE | x=4, y=4      | Queen         | BLACK          | x=4, y=7          | none                 | True                    | no           |
+| 14          | WHITE | x=4, y=4      | Queen         | BLACK          | x=1, y=1          | none                 | True                    | no           |
+| 15          | WHITE | x=4, y=4      | Kign          | BLACK          | x=3, y=4          | none                 | True                    | no           |
+| 16          | WHITE | x=4, y=4      | King          | BLACK          | x=2, y=4          | none                 | False (too far)         | no           |
+| 17          | WHITE | x=0, y=0      | Rook          | BLACK          | x=0, y=7          | none                 | True (corner)           | no           |
+| 18          | WHITE | x=7, y=7      | Rook          | BLACK          | x=7, y=0          | none                 | True (corner)           | no           |
 
 ### STEPS FOR BVA: `isInCheck()` for King
 
