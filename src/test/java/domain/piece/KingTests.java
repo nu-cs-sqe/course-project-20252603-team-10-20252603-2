@@ -298,4 +298,15 @@ public class KingTests {
 
         assertTrue(king.isValidMove(start, end, board));
     }
+    @Test
+    public void isValidMove_King_OneIncreasingRow_ReturnsTrue() {
+        King king = new King(Color.WHITE);
+        Location start = new Location(4, 7);
+        Location end = new Location(5, 7);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
+    }
 }
