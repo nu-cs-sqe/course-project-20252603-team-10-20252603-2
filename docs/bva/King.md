@@ -83,9 +83,9 @@
 
 | Test Number | Color | Start position | Chosen position | Chosen position contents | Expected output          | Implemented? |
 |-------------|-------|----------------|-----------------|--------------------------|--------------------------|--------------|
-| 1           | WHITE | x=0, y=0       | x=0, y=0        | EMPTY                    | False                    | no           |
-| 2           | WHITE | x=0, y=0       | x=0, y=2        | EMPTY                    | False                    | no           |
-| 3           | WHITE | x=7, y=7       | x=5, y=7        | EMPTY                    | False                    | no           |
+| 1           | WHITE | x=0, y=0       | x=0, y=0        | EMPTY                    | False                    | yes          |
+| 2           | WHITE | x=0, y=0       | x=0, y=2        | EMPTY                    | False                    | yes          |
+| 3           | WHITE | x=7, y=7       | x=5, y=7        | EMPTY                    | False                    | yes          |
 | 4           | WHITE | x=7, y=4       | x=7, y=5        | EMPTY                    | True                     | no           |
 | 5           | WHITE | x=0, y=4       | x=0, y=3        | EMPTY                    | True                     | no           |
 | 6           | WHITE | x=4, y=0       | x=3, y=0        | EMPTY                    | True                     | no           |
