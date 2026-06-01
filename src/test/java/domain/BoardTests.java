@@ -288,5 +288,22 @@ public class BoardTests {
         assertNull(board.getPiece(location));
     }
 
+    @Test
+    void removePiece_occupiedSquarex7y7_setsNull() {
+        Board board = new Board(false);
+        Location location = new Location(7,7);
+        Queen occupier = new Queen(PieceColor.BLACK);
+
+        board.setPiece(location, occupier);
+
+        assertTrue(board.isPieceHere(location));
+        assertSame(occupier, board.getPiece(location));
+
+        board.removePiece(location);
+
+        assertFalse(board.isPieceHere(location));
+        assertNull(board.getPiece(location));
+    }
+
 }
 
