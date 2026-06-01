@@ -2,7 +2,7 @@ package ui;
 
 import domain.Location;
 import domain.piece.Piece;
-import domain.piece.PieceColor;
+import constants.Color;
 import domain.piece.PieceType;
 
 import javax.imageio.ImageIO;
@@ -20,10 +20,10 @@ public final class BoardView extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final int BOARD_SIZE = 8;
     private static final int TILE_SIZE = 100; // size of each square in pixels
-    private final Color lightSquareColor = new Color(240, 217, 181);
-    private final Color darkSquareColor = new Color(181, 136, 99);
+    private final java.awt.Color lightSquareColor = new java.awt.Color(240, 217, 181);
+    private final java.awt.Color darkSquareColor = new java.awt.Color(181, 136, 99);
 
-    private final Color SELECTED_SQUARE_COLOR = new Color(164, 149, 195); // NU Purple 40
+    private final java.awt.Color SELECTED_SQUARE_COLOR = new java.awt.Color(164, 149, 195); // NU Purple 40
     private int selectedRow = -1;
     private int selectedCol = -1;
 
@@ -59,7 +59,7 @@ public final class BoardView extends JPanel {
     private void drawBoard(Graphics g) {
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (int col = 0; col < BOARD_SIZE; col++) {
-                Color squareColor = (row + col) % 2 == 0 ? lightSquareColor : darkSquareColor;
+                java.awt.Color squareColor = (row + col) % 2 == 0 ? lightSquareColor : darkSquareColor;
                 g.setColor(squareColor);
                 g.fillRect(col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             }
@@ -71,22 +71,22 @@ public final class BoardView extends JPanel {
         whitePieceImages = new HashMap<>();
         blackPieceImages = new HashMap<>();
 
-        loadOnePieceImage(PieceType.PAWN, PieceColor.WHITE, "images/white_pawn.png");
-        loadOnePieceImage(PieceType.ROOK, PieceColor.WHITE, "images/white_rook.png");
-        loadOnePieceImage(PieceType.KNIGHT, PieceColor.WHITE, "images/white_knight.png");
-        loadOnePieceImage(PieceType.BISHOP, PieceColor.WHITE, "images/white_bishop.png");
-        loadOnePieceImage(PieceType.QUEEN, PieceColor.WHITE, "images/white_queen.png");
-        loadOnePieceImage(PieceType.KING, PieceColor.WHITE, "images/white_king.png");
+        loadOnePieceImage(PieceType.PAWN, Color.WHITE, "images/white_pawn.png");
+        loadOnePieceImage(PieceType.ROOK, Color.WHITE, "images/white_rook.png");
+        loadOnePieceImage(PieceType.KNIGHT, Color.WHITE, "images/white_knight.png");
+        loadOnePieceImage(PieceType.BISHOP, Color.WHITE, "images/white_bishop.png");
+        loadOnePieceImage(PieceType.QUEEN, Color.WHITE, "images/white_queen.png");
+        loadOnePieceImage(PieceType.KING, Color.WHITE, "images/white_king.png");
 
-        loadOnePieceImage(PieceType.PAWN, PieceColor.BLACK, "images/black_pawn.png");
-        loadOnePieceImage(PieceType.ROOK, PieceColor.BLACK, "images/black_rook.png");
-        loadOnePieceImage(PieceType.KNIGHT, PieceColor.BLACK, "images/black_knight.png");
-        loadOnePieceImage(PieceType.BISHOP, PieceColor.BLACK, "images/black_bishop.png");
-        loadOnePieceImage(PieceType.QUEEN, PieceColor.BLACK, "images/black_queen.png");
-        loadOnePieceImage(PieceType.KING, PieceColor.BLACK, "images/black_king.png");
+        loadOnePieceImage(PieceType.PAWN, Color.BLACK, "images/black_pawn.png");
+        loadOnePieceImage(PieceType.ROOK, Color.BLACK, "images/black_rook.png");
+        loadOnePieceImage(PieceType.KNIGHT, Color.BLACK, "images/black_knight.png");
+        loadOnePieceImage(PieceType.BISHOP, Color.BLACK, "images/black_bishop.png");
+        loadOnePieceImage(PieceType.QUEEN, Color.BLACK, "images/black_queen.png");
+        loadOnePieceImage(PieceType.KING, Color.BLACK, "images/black_king.png");
     }
 
-    private void loadOnePieceImage(PieceType type, PieceColor color, String imagePath) {
+    private void loadOnePieceImage(PieceType type, Color color, String imagePath) {
         InputStream imageInputStream = getClass().getClassLoader().getResourceAsStream(imagePath);
 
         if (imageInputStream == null) {
@@ -96,7 +96,7 @@ public final class BoardView extends JPanel {
 
         try {
             BufferedImage image = ImageIO.read(imageInputStream);
-            if (color.equals(PieceColor.BLACK)) {
+            if (color.equals(Color.BLACK)) {
                 blackPieceImages.put(type, image);
             } else {
                 this.whitePieceImages.put(type, image);
@@ -114,7 +114,7 @@ public final class BoardView extends JPanel {
             for (int col = 0; col < BOARD_SIZE; col++) {
                 Piece piece = boardSnapshot[row][col];
                 if (piece != null) {
-                    Image pieceImage = piece.getColor() == PieceColor.WHITE ?
+                    Image pieceImage = piece.getColor() == Color.WHITE ?
                             whitePieceImages.get(piece.getType()) :
                             blackPieceImages.get(piece.getType());
                     g.drawImage(pieceImage, col * TILE_SIZE,
