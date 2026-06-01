@@ -152,4 +152,17 @@ public class KingTests {
 
         assertFalse(king.isInCheck(kingPos, board));
     }
+    @Test
+    public void isInCheck_EnemyQueen_ReturnsTrue() {
+        King king = new King(PieceColor.WHITE);
+        Piece queen = new Queen(PieceColor.BLACK);
+        Location kingPos = new Location(4, 4);
+        Location queenPos = new Location(4, 0);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(queenPos, queen);
+
+        assertTrue(king.isInCheck(kingPos, board));
+    }
 }
