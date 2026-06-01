@@ -255,7 +255,7 @@ public class KingTests {
         assertFalse(king.isValidMove(start, end, board));
     }
     @Test
-    public void isValidMove_King_TwoSquaresVerticalReturnsFalse() {
+    public void isValidMove_King_TwoSquaresVertical_ReturnsFalse() {
         King king = new King(Color.WHITE);
         Location start = new Location(7, 7);
         Location end = new Location(5, 7);
@@ -264,5 +264,16 @@ public class KingTests {
         board.setPiece(start, king);
 
         assertFalse(king.isValidMove(start, end, board));
+    }
+    @Test
+    public void isValidMove_King_OneRightReturnsTrue() {
+        King king = new King(Color.WHITE);
+        Location start = new Location(7, 4);
+        Location end = new Location(7, 5);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
     }
 }

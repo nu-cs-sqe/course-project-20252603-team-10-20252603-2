@@ -39,8 +39,17 @@ public class King extends Piece{
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
-        //  TODO: complete method
-        return false;
+        if (start.equals(end)) {
+            return false;
+        }
+
+        int diffX = Math.abs(start.getX() - end.getX());
+        int diffY = Math.abs(start.getY() - end.getY());
+
+        if (diffX > 1 || diffY > 1) {
+            return false;
+        }
+        return true;
     }
 
     @Override
