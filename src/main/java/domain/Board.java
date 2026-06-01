@@ -66,19 +66,25 @@ public class Board {
         return snapshot;
     }
 
-    // TODO: requires BVA and completed code (basic functionality written for isValidMove)
     public boolean isPieceHere(Location location) {
         return pieces[location.getX()][location.getY()] != null;
     }
 
-    // TODO: requires BVA and completed code (basic functionality written for isValidMove)
     public Piece getPiece(Location location) {
         return pieces[location.getX()][location.getY()];
     }
 
-    // TODO: requires BVA and testing (basic functionality written for isValidMove)
     public void setPiece(Location location, Piece piece) {
+        if (piece == null) {
+            throw new IllegalArgumentException("piece cannot be null");
+        }
         pieces[location.getX()][location.getY()] = piece;
     }
+
+    public void removePiece(Location location) {
+        pieces[location.getX()][location.getY()] = null;
+    }
+
+
 
 }
