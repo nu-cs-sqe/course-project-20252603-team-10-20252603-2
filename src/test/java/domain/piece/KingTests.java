@@ -80,4 +80,18 @@ public class KingTests {
 
         assertFalse(king.isInCheck(kingPos, board));
     }
+
+    @Test
+    public void isInCheck_EnemyBishopDiagonalClear_ReturnsTrue() {
+        King king = new King(PieceColor.WHITE);
+        Piece bishop = new Bishop(PieceColor.BLACK);
+        Location kingPos = new Location(4, 4);
+        Location bishopPos = new Location(2, 2);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(bishopPos, bishop);
+
+        assertTrue(king.isInCheck(kingPos, board));
+    }
 }

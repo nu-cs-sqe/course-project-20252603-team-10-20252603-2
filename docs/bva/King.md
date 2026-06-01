@@ -9,7 +9,7 @@
 | 3           | WHITE | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | friendly at x=4, y=6 | False                   | yes          |
 | 4           | WHITE | x=4, y=4      | Rook          | WHITE          | x=4, y=7          | none                 | False                   | yes          |
 | 5           | WHITE | x=4, y=4      | Rook          | BLACK          | x=0, y=4          | none                 | True                    | yes          |
-| 6           | WHITE | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | none                 | True                    | no           |
+| 6           | WHITE | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | none                 | True                    | yes          |
 | 7           | WHITE | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | friendly at x=3, y=3 | False                   | no           |
 | 8           | WHITE | x=4, y=4      | Knight        | BLACK          | x=2, y=3          | n/a                  | True                    | no           |
 | 9           | WHITE | x=4, y=4      | Pawn          | BLACK          | x=3, y=3          | none                 | True                    | no           |
