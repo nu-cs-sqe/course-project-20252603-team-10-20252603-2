@@ -16,10 +16,20 @@ public class King extends Piece{
                 if (!board.isPieceHere(location)) continue;
                 Piece piece = board.getPiece(location);
                 if (piece.isSameColor(this)) continue;
-                if (piece.isValidMove(location, kingLocation, board)) return true;
+                if (piece.getType() == PieceType.KING) {
+                    if (canKingAttack(location, kingLocation)) return true;
+                } else {
+                    if (piece.isValidMove(location, kingLocation, board)) return true;
+                }
             }
         }
         return false;
+    }
+
+    private boolean canKingAttack(Location from, Location kingPos) {
+        int rowDistance = Math.abs(kingPos.getX() - from.getX());
+        int colDistance = Math.abs(kingPos.getY() - from.getY());
+        return rowDistance <= 1 && colDistance <= 1 && !(rowDistance == 0 && colDistance == 0);
     }
 
     @Override
