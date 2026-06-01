@@ -139,4 +139,17 @@ public class KingTests {
 
         assertTrue(king.isInCheck(kingPos, board));
     }
+    @Test
+    public void isInCheck_EnemyPawnWrongDirection_ReturnsFalse() {
+        King king = new King(PieceColor.WHITE);
+        Piece pawn = new Pawn(PieceColor.BLACK);
+        Location kingPos = new Location(4, 4);
+        Location pawnPos = new Location(5, 3);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(pawnPos, pawn);
+
+        assertFalse(king.isInCheck(kingPos, board));
+    }
 }
