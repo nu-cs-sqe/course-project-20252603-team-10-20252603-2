@@ -70,7 +70,7 @@ public class Pawn extends Piece {
         Piece originalTarget = board.getPiece(end);
 
         board.setPiece(end, this);
-        board.setPiece(start, null);
+        board.removePiece(start);
 
         Location kingLocation = null;
         King alliedKing = null;
@@ -98,7 +98,11 @@ public class Pawn extends Piece {
         }
 
         board.setPiece(start, this);
-        board.setPiece(end, originalTarget);
+        if (originalTarget != null) {
+            board.setPiece(end, originalTarget);
+        } else {
+            board.removePiece(end);
+        }
 
         if (exposesKing) {
             return false;
