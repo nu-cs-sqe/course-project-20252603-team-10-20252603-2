@@ -11,22 +11,6 @@ public class BoardTests {
 
     private static final int BOARD_SIZE = 8;
 
-    private void assertBoardIsEmpty(Board board) {
-        for (int x = 0; x < BOARD_SIZE ; x++) {
-            for (int y = 0; y < BOARD_SIZE; y++) {
-                assertFalse(board.isPieceHere(new Location(x,y)));
-            }
-        }
-    }
-
-    private void assertMiddleEmpty(Board board) {
-        for (int x = 2; x < 5 ; x++) {
-            for (int y = 0; y < BOARD_SIZE; y++) {
-                assertFalse(board.isPieceHere(new Location(x,y)));
-            }
-        }
-    }
-
     private void assertPawnRow(Board board, int row, PieceColor color) {
         for (int y = 0; y < BOARD_SIZE; y++) {
             Location loc = new Location(row, y);
@@ -61,32 +45,15 @@ public class BoardTests {
         }
     }
 
-    private void assertSnapshotEmpty(Piece[][] snapshot) {
-        for (int x = 0; x < BOARD_SIZE; x++) {
-            for (int y = 0; y < BOARD_SIZE; y++) {
-                assertNull(snapshot[x][y]);
-            }
-        }
-    }
-
-    private void assertSnapshotCopiedPiece(Board board, Piece original, Location location) {
-        board.setPiece(location, original);
-
-        Piece[][] snapshot = board.getSnapshot();
-        Piece copy = snapshot[location.getX()][location.getY()];
-
-        assertTrue(board.isPieceHere(location));
-        assertNotSame(original, copy);
-        assertEquals(original.getType(), copy.getType());
-        assertEquals(original.getColor(), copy.getColor());
-    }
-
-
     @Test
     void initBoard_noInit_returnsEmptyBoard() {
         Board board = new Board(false);
 
-        assertBoardIsEmpty(board);
+        for (int x = 0; x < BOARD_SIZE ; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                assertFalse(board.isPieceHere(new Location(x,y)));
+            }
+        }
 
     }
 
@@ -119,7 +86,11 @@ public class BoardTests {
     void initBoard_init_returnsInitBoardCheckEmptyMiddle() {
         Board board = new Board(true);
 
-        assertMiddleEmpty(board);
+        for (int x = 2; x < 5 ; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                assertFalse(board.isPieceHere(new Location(x,y)));
+            }
+        }
 
     }
 
@@ -129,18 +100,28 @@ public class BoardTests {
 
         Piece[][] snapshot = board.getSnapshot();
 
-        assertSnapshotEmpty(snapshot);
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                assertNull(snapshot[x][y]);
+            }
+        }
 
     }
 
     @Test
     void getSnapshot_onePiece_returnsSnapshotSamePiece() {
         Board board = new Board(false);
-        Pawn piece = new Pawn(PieceColor.BLACK);
+        Pawn original = new Pawn(PieceColor.BLACK);
         Location location = new Location(0,0);
-        board.setPiece(location, piece);
+        board.setPiece(location, original);
 
-        assertSnapshotCopiedPiece(board, piece, location);
+        Piece[][] snapshot = board.getSnapshot();
+        Piece copy = snapshot[location.getX()][location.getY()];
+
+        assertTrue(board.isPieceHere(location));
+        assertNotSame(original, copy);
+        assertEquals(original.getType(), copy.getType());
+        assertEquals(original.getColor(), copy.getColor());
 
     }
 
@@ -328,4 +309,3 @@ public class BoardTests {
     }
 
 }
-
