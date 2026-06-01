@@ -94,4 +94,35 @@ public class KingTests {
 
         assertTrue(king.isInCheck(kingPos, board));
     }
+
+    @Test
+    public void isInCheck_EnemyBishopBlocked_ReturnsFalse() {
+        King king = new King(PieceColor.WHITE);
+        Piece bishop = new Bishop(PieceColor.BLACK);
+        Piece blocker = new Pawn(PieceColor.WHITE);
+        Location kingPos = new Location(4, 4);
+        Location bishopPos = new Location(2, 2);
+        Location blockerPos = new Location(3, 3);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(bishopPos, bishop);
+        board.setPiece(blockerPos, blocker);
+
+        assertFalse(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isInCheck_EnemyKnightLShape_ReturnsTrue() {
+        King king = new King(PieceColor.WHITE);
+        Piece knight = new Knight(PieceColor.BLACK);
+        Location kingPos = new Location(4, 4);
+        Location knightPos = new Location(2, 3);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(knightPos, knight);
+
+        assertTrue(king.isInCheck(kingPos, board));
+    }
 }
