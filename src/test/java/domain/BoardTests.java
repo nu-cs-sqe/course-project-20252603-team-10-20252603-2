@@ -1,5 +1,6 @@
 package domain;
 
+import constants.Color;
 import domain.piece.*;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ public class BoardTests {
 
     private static final int BOARD_SIZE = 8;
 
-    private void assertPawnRow(Board board, int row, PieceColor color) {
+    private void assertPawnRow(Board board, int row, Color color) {
         for (int y = 0; y < BOARD_SIZE; y++) {
             Location loc = new Location(row, y);
 
@@ -22,7 +23,7 @@ public class BoardTests {
         }
     }
 
-    private void assertMajorRow(Board board, int row, PieceColor color) {
+    private void assertMajorRow(Board board, int row, Color color) {
 
         List<Class<? extends Piece>> expectedPieces = List.of(
                 Rook.class,
@@ -61,8 +62,8 @@ public class BoardTests {
     void initBoard_init_returnsInitBoardCheckPawns() {
         Board board = new Board(true);
 
-        assertPawnRow(board, 1, PieceColor.BLACK);
-        assertPawnRow(board, 6, PieceColor.WHITE);
+        assertPawnRow(board, 1, Color.BLACK);
+        assertPawnRow(board, 6, Color.WHITE);
 
     }
 
@@ -70,7 +71,7 @@ public class BoardTests {
     void initBoard_init_returnsInitBoardCheckMajorWhite() {
         Board board = new Board(true);
 
-        assertMajorRow(board, 7, PieceColor.WHITE);
+        assertMajorRow(board, 7, Color.WHITE);
 
     }
 
@@ -78,7 +79,7 @@ public class BoardTests {
     void initBoard_init_returnsInitBoardCheckMajorBlack() {
         Board board = new Board(true);
 
-        assertMajorRow(board, 0, PieceColor.BLACK);
+        assertMajorRow(board, 0, Color.BLACK);
 
     }
 
@@ -111,7 +112,7 @@ public class BoardTests {
     @Test
     void getSnapshot_onePiece_returnsSnapshotSamePiece() {
         Board board = new Board(false);
-        Pawn original = new Pawn(PieceColor.BLACK);
+        Pawn original = new Pawn(Color.BLACK);
         Location location = new Location(0,0);
         board.setPiece(location, original);
 
@@ -138,7 +139,7 @@ public class BoardTests {
         Board board = new Board(false);
         Location location = new Location(0,0);
 
-        board.setPiece(location, new Pawn(PieceColor.WHITE));
+        board.setPiece(location, new Pawn(Color.WHITE));
 
         assertTrue(board.isPieceHere(location));
     }
@@ -148,7 +149,7 @@ public class BoardTests {
         Board board = new Board(false);
         Location location = new Location(7,7);
 
-        board.setPiece(location, new Pawn(PieceColor.BLACK));
+        board.setPiece(location, new Pawn(Color.BLACK));
 
         assertTrue(board.isPieceHere(location));
     }
@@ -181,7 +182,7 @@ public class BoardTests {
     void getPiece_whitePawnx0y0_returnsWhitePawn() {
         Board board = new Board(false);
         Location location = new Location(0,0);
-        Pawn piece = new Pawn(PieceColor.WHITE);
+        Pawn piece = new Pawn(Color.WHITE);
 
         board.setPiece(location, piece);
 
@@ -192,7 +193,7 @@ public class BoardTests {
     void getPiece_blackQueenx7y7_returnsBlackQueen() {
         Board board = new Board(false);
         Location location = new Location(7,7);
-        Queen piece = new Queen(PieceColor.BLACK);
+        Queen piece = new Queen(Color.BLACK);
 
         board.setPiece(location, piece);
 
@@ -203,7 +204,7 @@ public class BoardTests {
     void getPiece_initBoardx0y0_returnsBlackRook() {
         Board board = new Board(true);
         Location location = new Location(0,0);
-        Rook piece = new Rook(PieceColor.BLACK);
+        Rook piece = new Rook(Color.BLACK);
 
         board.setPiece(location, piece);
 
@@ -214,7 +215,7 @@ public class BoardTests {
     void setPiece_emptyBoardx0y0_setsWhitePawn() {
         Board board = new Board(false);
         Location location = new Location(0,0);
-        Pawn piece = new Pawn(PieceColor.WHITE);
+        Pawn piece = new Pawn(Color.WHITE);
 
         board.setPiece(location, piece);
 
@@ -226,7 +227,7 @@ public class BoardTests {
     void setPiece_emptyBoardx7y7_setsBlackKnight() {
         Board board = new Board(false);
         Location location = new Location(7,7);
-        Knight piece = new Knight(PieceColor.BLACK);
+        Knight piece = new Knight(Color.BLACK);
 
         board.setPiece(location, piece);
 
@@ -238,8 +239,8 @@ public class BoardTests {
     void setPiece_occupiedSquarex0y0_setsBlackQueen() {
         Board board = new Board(false);
         Location location = new Location(0,0);
-        Queen piece = new Queen(PieceColor.BLACK);
-        Pawn occupier = new Pawn(PieceColor.WHITE);
+        Queen piece = new Queen(Color.BLACK);
+        Pawn occupier = new Pawn(Color.WHITE);
 
         board.setPiece(location, occupier);
 
@@ -267,7 +268,7 @@ public class BoardTests {
     void removePiece_occupiedSquarex0y0_setsNull() {
         Board board = new Board(false);
         Location location = new Location(0,0);
-        Pawn occupier = new Pawn(PieceColor.WHITE);
+        Pawn occupier = new Pawn(Color.WHITE);
 
         board.setPiece(location, occupier);
 
@@ -284,7 +285,7 @@ public class BoardTests {
     void removePiece_occupiedSquarex7y7_setsNull() {
         Board board = new Board(false);
         Location location = new Location(7,7);
-        Queen occupier = new Queen(PieceColor.BLACK);
+        Queen occupier = new Queen(Color.BLACK);
 
         board.setPiece(location, occupier);
 
