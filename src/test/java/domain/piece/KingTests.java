@@ -1,5 +1,6 @@
 package domain.piece;
 
+import constants.Color;
 import domain.Board;
 import domain.Location;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ public class KingTests {
 
     @Test
     public void isInCheck_NoAttackingPieces_ReturnsFalse() {
-        King king = new King(PieceColor.WHITE);
+        King king = new King(Color.WHITE);
 
         Location kingPosition = new Location(4, 4);
 
@@ -23,8 +24,8 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyRookSameRowClearPath_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        Piece rook = new Rook(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
 
         Location kingPos = new Location(4, 4);
         Location rookPos = new Location(4, 7);
@@ -38,9 +39,9 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyRookBlockedByFriendly_ReturnsFalse() {
-        King king = new King(PieceColor.WHITE);
-        Piece rook = new Rook(PieceColor.BLACK);
-        Piece blocker = new Pawn(PieceColor.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+        Piece blocker = new Pawn(Color.WHITE);
         Location kingPos = new Location(4, 4);
         Location rookPos = new Location(4, 7);
         Location blockerPiece = new Location(4, 6);
@@ -55,8 +56,8 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyRookSameColClear_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        Piece rook = new Rook(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location rookPos = new Location(0, 4);
 
@@ -69,8 +70,8 @@ public class KingTests {
 
     @Test
     public void isInCheck_FriendlyRookSameRow_ReturnsFalse() {
-        King king = new King(PieceColor.WHITE);
-        Piece rook = new Rook(PieceColor.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.WHITE);
         Location kingPos = new Location(4, 4);
         Location rookPos = new Location(4, 7);
 
@@ -83,8 +84,8 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyBishopDiagonalClear_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        Piece bishop = new Bishop(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece bishop = new Bishop(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location bishopPos = new Location(2, 2);
 
@@ -97,9 +98,9 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyBishopBlocked_ReturnsFalse() {
-        King king = new King(PieceColor.WHITE);
-        Piece bishop = new Bishop(PieceColor.BLACK);
-        Piece blocker = new Pawn(PieceColor.WHITE);
+        King king = new King(Color.WHITE);
+        Piece bishop = new Bishop(Color.BLACK);
+        Piece blocker = new Pawn(Color.WHITE);
         Location kingPos = new Location(4, 4);
         Location bishopPos = new Location(2, 2);
         Location blockerPos = new Location(3, 3);
@@ -114,8 +115,8 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyKnightLShape_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        Piece knight = new Knight(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece knight = new Knight(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location knightPos = new Location(2, 3);
 
@@ -128,8 +129,8 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyPawnCorrectDirection_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        Piece pawn = new Pawn(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece pawn = new Pawn(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location pawnPos = new Location(3, 3);
 
@@ -141,8 +142,8 @@ public class KingTests {
     }
     @Test
     public void isInCheck_EnemyPawnWrongDirection_ReturnsFalse() {
-        King king = new King(PieceColor.WHITE);
-        Piece pawn = new Pawn(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece pawn = new Pawn(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location pawnPos = new Location(5, 3);
 
@@ -154,8 +155,8 @@ public class KingTests {
     }
     @Test
     public void isInCheck_EnemyQueen_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        Piece queen = new Queen(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece queen = new Queen(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location queenPos = new Location(4, 0);
 
@@ -168,8 +169,8 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyQueen2_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        Piece queen = new Queen(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece queen = new Queen(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location queenPos = new Location(1, 7);
 
@@ -181,8 +182,8 @@ public class KingTests {
     }
     @Test
     public void isInCheck_FriendlyPawnSameDiagonal_ReturnsFalse() {
-        King king = new King(PieceColor.WHITE);
-        Piece pawn = new Pawn(PieceColor.WHITE);
+        King king = new King(Color.WHITE);
+        Piece pawn = new Pawn(Color.WHITE);
         Location kingPos = new Location(4, 4);
         Location pawnPos = new Location(3, 3);
 
@@ -194,8 +195,8 @@ public class KingTests {
     }
     @Test
     public void isInCheck_AdjacentEnemyKing_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        King enemyKing = new King(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location enemyPos = new Location(3, 4);
 
@@ -208,8 +209,8 @@ public class KingTests {
 
     @Test
     public void isInCheck_EnemyKingTooFar_ReturnsFalse() {
-        King king = new King(PieceColor.WHITE);
-        King enemyKing = new King(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
         Location kingPos = new Location(4, 4);
         Location enemyPos = new Location(2, 4);
 
@@ -221,8 +222,8 @@ public class KingTests {
     }
     @Test
     public void isInCheck_EnemyRookSameRow_ReturnsTrue() {
-        King king = new King(PieceColor.WHITE);
-        Piece rook = new Rook(PieceColor.BLACK);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
         Location kingPos = new Location(7, 7);
         Location rookPos = new Location(7, 0);
 
