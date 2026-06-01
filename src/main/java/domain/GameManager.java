@@ -17,6 +17,13 @@ public class GameManager {
     private int consecutiveDrawMoves = 0;
     private Board board;
 
+    public GameManager() {
+        this.board = null;
+        this.whitePlayer = null;
+        this.blackPlayer = null;
+        this.currentPlayer = null;
+    }
+
     public void incrementDrawCounter() {
         this.consecutiveDrawMoves++;
     }
