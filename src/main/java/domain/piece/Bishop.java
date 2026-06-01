@@ -2,9 +2,10 @@ package domain.piece;
 
 import domain.Board;
 import domain.Location;
+import constants.Color;
 
 public class Bishop extends Piece {
-    public Bishop(PieceColor color) {
+    public Bishop(Color color) {
         super(PieceType.BISHOP, color);
     }
 
@@ -54,5 +55,11 @@ public class Bishop extends Piece {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean hasValidMoves() {
+        //  TODO: complete method
+        return false;
     }
 }

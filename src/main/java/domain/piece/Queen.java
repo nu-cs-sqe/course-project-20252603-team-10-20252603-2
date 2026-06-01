@@ -2,9 +2,10 @@ package domain.piece;
 
 import domain.Board;
 import domain.Location;
+import constants.Color;
 
 public class Queen extends Piece {
-    public Queen(PieceColor color) {
+    public Queen(Color color) {
         super(PieceType.QUEEN, color);
     }
 
@@ -40,7 +41,7 @@ public class Queen extends Piece {
             for (int i = 1; i < diffX; i++) {
                 Location locationCheck = new Location(start.getX() + (i * dirX), start.getY() + (i * dirY));
 
-                if (board.isPieceHere(locationCheck) == true) return false;
+                if (board.isPieceHere(locationCheck)) return false;
 
             }
 
@@ -51,7 +52,7 @@ public class Queen extends Piece {
             for (int i = 1; i < diffY; i++) {
                 Location locationCheck = new Location(start.getX(), start.getY() + (i * dirY));
 
-                if (board.isPieceHere(locationCheck) == true) return false;
+                if (board.isPieceHere(locationCheck)) return false;
 
             }
 
@@ -62,13 +63,19 @@ public class Queen extends Piece {
             for (int i = 1; i < diffX; i++) {
                 Location locationCheck = new Location(start.getX() + (i * dirX), start.getY());
 
-                if (board.isPieceHere(locationCheck) == true) return false;
+                if (board.isPieceHere(locationCheck)) return false;
 
             }
 
             return true;
         }
 
+        return false;
+    }
+
+    @Override
+    public boolean hasValidMoves() {
+        //  TODO: complete method
         return false;
     }
 }
