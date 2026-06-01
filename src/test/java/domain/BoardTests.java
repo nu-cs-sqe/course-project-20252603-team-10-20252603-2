@@ -305,5 +305,16 @@ public class BoardTests {
         assertNull(board.getPiece(location));
     }
 
+    @Test
+    void removePiece_emptySquarex0y7_staysNull() {
+        Board board = new Board(false);
+        Location location = new Location(0,7);
+
+        board.removePiece(location);
+
+        assertFalse(board.isPieceHere(location));
+        assertNull(board.getPiece(location));
+    }
+
 }
 

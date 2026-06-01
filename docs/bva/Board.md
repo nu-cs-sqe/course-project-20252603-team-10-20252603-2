@@ -148,7 +148,7 @@
 |--------|------------------------------------------|----------|--------------------------------------------------|--------------| 
 | 1      | occupied square (WHITE PAWN) at x=0 y=0  | x=0 y=0  | isPieceHere == False, getPiece() == null         | yes          | 
 | 2      | occupied square (BLACK QUEEN) at x=7 y=7 | x=7 y=7  | isPieceHere == False, getPiece() == null         | yes          | 
-| 3      | empty square                             | x=0 y=7  | isPieceHere == False, getPiece() == null         | no           | 
+| 3      | empty square                             | x=0 y=7  | isPieceHere == False, getPiece() == null         | yes          | 
 
 
 1) input equivalence classes and output equivalence classes
