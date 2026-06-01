@@ -48,6 +48,71 @@
   * “B” → “W”
   * “W” → “B”
 
+**Method under test: isCheckmate()**
+|             | System under test                                          | Expected output | Implemented? |
+|:------------|:-----------------------------------------------------------| :---- |:-------------|
+| Test Case 1 | King is in check and has no other valid moves.             | Returns true, game notification that the game is over. | no          |
+| Test Case 2 | King is in check and has 1 valid move.                   | Returns false, the game continues. | no          |
+| Test Case 3 | King is not in check and has >=1 valid move.               | Returns false, the game continues. | no          |
+| Test Case 4 | King is in check and has >1 valid move.                | Returns false, the game continues. | no          |
+| Test Case 5 | King is not in check and has 0 valid moves.               | Returns false, the game is a stalemate. | no          |
+
+### STEPS FOR BVA: `isCheckmate()`
+1. Data Types
+* Input: cases
+  * isInCheck() for the King -> boolean
+  * playerHasValidMoves() -> boolean
+* Output: boolean
+2. Test Cases
+* All combinations
+  * isInCheck() && hasValidMoves() == 0 --> TRUE
+  * isInCheck() && hasValidMoves() == 1 --> FALSE
+  * !isInCheck() && hasValidMoves() > 1--> FALSE
+  * isInCheck() && hasValidMoves() > 1 --> FALSE
+  * !isInCheck() && hasValidMoves() == 0 --> FALSE
+
+**Method under test: findKingLocation()**
+
+|             | System under test                 | Expected output | Implemented? |
+|:------------|:----------------------------------|:----------------|:-------------|
+| Test Case 1 | King at [0][0]                    | Location(0,0)   | no           |
+| Test Case 2 | King at [7][7]                    | Location(7,7)   | no          |
+| Test Case 3 | King at [4][4]                    | Location(4,4)   | no          |
+| Test Case 4 | King does not exist on the board. | null            | no          |
+
+### STEPS FOR BVA: `findKingLocation()`
+1. Data Types
+* Input:
+  * Location[][]
+* Output: boolean
+2. Test Cases
+* All combinations
+  * King at [0][0]
+  * King at [7][7]
+  * King at [4][4]
+  * King does not exist
+
+**Method under test: isStalemate()**
+
+|             | System under test                                 | Expected output                          | Implemented? |
+|:------------|:--------------------------------------------------|:-----------------------------------------|:-------------|
+| Test Case 1 | King is not in check and player has 0 valid moves | Returns true, game is a draw.            | no           |
+| Test Case 2 | King is not in check and player has 1 valid move  | Returns false, the game continues.       | no          |
+| Test Case 3 | King is in check and has no other valid moves.    | Returns false, game ends on a checkmate. | no          |
+| Test Case 4 | King is not in check and has >1 valid moves.      | Returns false, the game continues.       | no          |
+
+### STEPS FOR BVA: `isStalemate()`
+1. Data Types
+* Input: cases
+  * isInCheck() for the King -> boolean
+  * playerHasValidMoves() -> boolean
+* Output: boolean
+2. Test Cases
+* All combinations
+  * isInCheck() && hasValidMoves() == 0 --> FALSE
+  * !isInCheck() && hasValidMoves() == 1--> FALSE
+  * !isInCheck() && hasValidMoves() > 1 --> FALSE
+  * !isInCheck() && hasValidMoves() == 0 --> TRUE
 **Method under test: isGameOver()**
 
 |             | System under test                                          | Expected output | Implemented? |

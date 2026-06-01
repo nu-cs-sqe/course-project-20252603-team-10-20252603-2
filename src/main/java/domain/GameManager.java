@@ -90,41 +90,47 @@ public class GameManager {
         if (currentPlayer == null || board == null) {
             return false;
         }
+        return isGameADraw() || isCheckmate() || isStalemate();
+    }
 
-        if (isGameADraw()) {
-            return true;
-        }
+    public boolean isCheckmate() {
+        if (currentPlayer == null || board == null) {
+            return false;
+        };
 
-        Color playerColor = currentPlayer.getPlayerColor();
+        Location kingLocation = findKingLocation(currentPlayer.getPlayerColor());
+        if (kingLocation == null) return false;
 
-        Location kingLocation = null;
-        King alliedKing = null;
+        King alliedKing = (King) board.getPiece(kingLocation);
+        boolean hasValidMoves = !board.getValidPiecesByColor(currentPlayer.getPlayerColor()).isEmpty();
 
+        return alliedKing.isInCheck(kingLocation, board) && !hasValidMoves;
+    }
+
+    public boolean isStalemate() {
+        if (currentPlayer == null || board == null) return false;
+
+        Location kingLocation = findKingLocation(currentPlayer.getPlayerColor());
+        if (kingLocation == null) return false;
+
+        King alliedKing = (King) board.getPiece(kingLocation);
+        boolean hasValidMoves = !board.getValidPiecesByColor(currentPlayer.getPlayerColor()).isEmpty();
+
+        return !alliedKing.isInCheck(kingLocation, board) && !hasValidMoves;
+    }
+
+    private Location findKingLocation(Color playerColor) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Location loc = new Location(i, j);
                 if (board.isPieceHere(loc)) {
                     Piece p = board.getPiece(loc);
                     if (p.getColor() == playerColor && p.getType() == PieceType.KING) {
-                        kingLocation = loc;
-                        alliedKing = (King) p;
-                        break;
+                        return loc;
                     }
                 }
             }
-            if (kingLocation != null) break;
         }
-
-        boolean hasValidMoves = !board.getValidPiecesByColor(playerColor).isEmpty();
-
-        if (alliedKing != null && alliedKing.isInCheck(kingLocation, board) && !hasValidMoves) {
-            return true;
-        }
-
-        if (alliedKing != null && !alliedKing.isInCheck(kingLocation, board) && !hasValidMoves) {
-            return true;
-        }
-
-        return false;
+        return null;
     }
 }
