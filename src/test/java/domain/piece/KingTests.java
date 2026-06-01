@@ -266,7 +266,7 @@ public class KingTests {
         assertFalse(king.isValidMove(start, end, board));
     }
     @Test
-    public void isValidMove_King_OneRightReturnsTrue() {
+    public void isValidMove_King_OneIncreasingCol_ReturnsTrue() {
         King king = new King(Color.WHITE);
         Location start = new Location(7, 4);
         Location end = new Location(7, 5);
@@ -277,10 +277,21 @@ public class KingTests {
         assertTrue(king.isValidMove(start, end, board));
     }
     @Test
-    public void isValidMove_King_OneLeftReturnsTrue() {
+    public void isValidMove_King_OneDecreasingCol_ReturnsTrue() {
         King king = new King(Color.WHITE);
         Location start = new Location(0, 4);
         Location end = new Location(0, 3);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
+    }
+    @Test
+    public void isValidMove_King_OneDecreasingRow_ReturnsTrue() {
+        King king = new King(Color.WHITE);
+        Location start = new Location(4, 0);
+        Location end = new Location(3, 0);
 
         Board board = new Board(false);
         board.setPiece(start, king);
