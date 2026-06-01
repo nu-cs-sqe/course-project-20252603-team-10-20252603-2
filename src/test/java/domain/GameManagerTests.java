@@ -1,10 +1,7 @@
 package domain;
 
 import constants.Color;
-import domain.piece.King;
-import domain.piece.Pawn;
-import domain.piece.Piece;
-import domain.piece.PieceType;
+import domain.piece.*;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
@@ -251,4 +248,5 @@ public class GameManagerTests {
         EasyMock.verify(mockedPlayer, mockedKing);
     }
 
+    // TODO: tests for isCheckMate(), isStalemate(), and findKingLocation() will be implemented after King piece has been completed
 }
