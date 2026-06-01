@@ -17,7 +17,7 @@
 | 11          | WHITE      | x=4, y=4      | Pawn          | BLACK          | x=5, y=3          | none                 | False (wrong direction) | yes          |
 | 12          | WHITE      | x=4, y=4      | Queen         | BLACK          | x=4, y=0          | none                 | True                    | yes          |
 | 13          | WHITE      | x=4, y=4      | Queen         | BLACK          | x=1, y=7          | none                 | True                    | yes          |
-| 14          | WHITE      | x=4, y=4      | Kign          | BLACK          | x=3, y=4          | none                 | True                    | no           |
+| 14          | WHITE      | x=4, y=4      | Kign          | BLACK          | x=3, y=4          | none                 | True                    | yes          |
 | 15          | WHITE      | x=4, y=4      | King          | BLACK          | x=2, y=4          | none                 | False (too far)         | no           |
 | 16          | WHITE      | x=0, y=0      | Rook          | BLACK          | x=0, y=7          | none                 | True (corner)           | no           |
 | 17          | WHITE      | x=7, y=7      | Rook          | BLACK          | x=7, y=0          | none                 | True (corner)           | no           |
