@@ -81,25 +81,24 @@
 
 ## Method under test: `isValidMove()` for King
 
-| Test Number | Color | Start position | Chosen position | Chosen position contents | Expected output | Implemented? |
-|-------------|-------|----------------|-----------------|--------------------------|-----------------|--------------|
-| 1           | WHITE | x=4, y=4       | x=4, y=4        | EMPTY                    | False           | no           |
-| 2           | WHITE | x=4, y=4       | x=4, y=6        | EMPTY                    | False (too far) | no           |
-| 3           | WHITE | x=4, y=4       | x=2, y=4        | EMPTY                    | False (too far) | no           |
-| 4           | WHITE | x=4, y=4       | x=5, y=4        | EMPTY                    | True            | no           |
-| 5           | WHITE | x=4, y=4       | x=3, y=4        | EMPTY                    | True            | no           |
-| 6           | WHITE | x=4, y=4       | x=4, y=5        | EMPTY                    | True            | no           |
-| 7           | WHITE | x=4, y=4       | x=4, y=3        | EMPTY                    | True            | no           |
-| 8           | WHITE | x=4, y=4       | x=3, y=3        | EMPTY                    | True (diagonal) | no           |
-| 9           | WHITE | x=4, y=4       | x=3, y=5        | EMPTY                    | True (diagonal) | no           |
-| 10          | WHITE | x=4, y=4       | x=5, y=3        | EMPTY                    | True (diagonal) | no           |
-| 11          | WHITE | x=4, y=4       | x=5, y=5        | EMPTY                    | True (diagonal) | no           |
-| 12          | WHITE | x=4, y=4       | x=3, y=3        | friendly                 | False           | no           |
-| 13          | WHITE | x=4, y=4       | x=3, y=3        | enemy                    | True (capture)  | no           |
-| 14          | WHITE | x=4, y=4       | x=3, y=3        | EMPTY                    | False           | no           |
-| 15          | WHITE | x=0, y=0       | x=0, y=1        | EMPTY                    | True            | no           |
-| 16          | WHITE | x=7, y=7       | x=6, y=7        | EMPTY                    | True            | no           |
-| 17          | WHITE | x=4, y=4       | x=3, y=3        | enemy KING               | False           | no           |
+| Test Number | Color | Start position | Chosen position | Chosen position contents | Expected output          | Implemented? |
+|-------------|-------|----------------|-----------------|--------------------------|--------------------------|--------------|
+| 1           | WHITE | x=0, y=0       | x=0, y=0        | EMPTY                    | False                    | no           |
+| 2           | WHITE | x=0, y=0       | x=0, y=2        | EMPTY                    | False                    | no           |
+| 3           | WHITE | x=7, y=7       | x=5, y=7        | EMPTY                    | False                    | no           |
+| 4           | WHITE | x=7, y=4       | x=7, y=5        | EMPTY                    | True                     | no           |
+| 5           | WHITE | x=0, y=4       | x=0, y=3        | EMPTY                    | True                     | no           |
+| 6           | WHITE | x=4, y=0       | x=3, y=0        | EMPTY                    | True                     | no           |
+| 7           | WHITE | x=4, y=7       | x=5, y=7        | EMPTY                    | True                     | no           |
+| 8           | WHITE | x=0, y=0       | x=1, y=1        | EMPTY                    | True                     | no           |
+| 9           | WHITE | x=0, y=7       | x=1, y=6        | EMPTY                    | True                     | no           |
+| 10          | WHITE | x=7, y=0       | x=6, y=1        | EMPTY                    | True                     | no           |
+| 11          | WHITE | x=7, y=7       | x=6, y=6        | EMPTY                    | True                     | no           |
+| 12          | WHITE | x=7, y=7       | x=6, y=7        | friendly                 | False                    | no           |
+| 13          | WHITE | x=0, y=0       | x=1, y=1        | enemy                    | True                     | no           |
+| 14          | WHITE | x=4, y=4       | x=3, y=4        | EMPTY                    | False (moves into check) | no           |
+| 15          | BLACK | x=0, y=0       | x=0, y=1        | EMPTY                    | True                     | no           |
+| 16          | BLACK | x=7, y=7       | x=6, y=7        | EMPTY                    | True                     | no           |
 
 ### STEPS FOR BVA: `isValidMove()` for King
 
