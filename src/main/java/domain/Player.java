@@ -2,8 +2,6 @@ package domain;
 
 import constants.Color;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class Player {
@@ -39,11 +37,6 @@ public class Player {
     // using String as input instead of Piece for now
     public void incrementPoints(String piece) {
         points += getPieceValue(piece);
-    }
-
-    // GameManager has not been implemented, so for now setting the current player color as WHITE
-    public boolean isCurrentTurn() {
-        return this.playerColor == Color.WHITE;
     }
 
     // placeholder return value because Board + King piece has not been implemented yet

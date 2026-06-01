@@ -1,18 +1,22 @@
 package domain;
 
+import constants.Color;
 import domain.piece.*;
 
-import static domain.piece.PieceColor.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static constants.Color.BLACK;
+import static constants.Color.WHITE;
 
 public class Board {
 
     private static final int TOTAL_ROWS = 8;
-
     private static final int TOTAL_COLS = 8;
-
     private Piece[][] pieces;
 
-    public Board(boolean init) {
+
+    public Board(boolean init){
         pieces = new Piece[TOTAL_ROWS][TOTAL_COLS];
         if (init) {
             initializeBoard();
@@ -20,7 +24,20 @@ public class Board {
 
     }
 
-    private void initializeBoard() {
+    public Board(Board other) {
+        this.pieces = new Piece[TOTAL_ROWS][TOTAL_COLS];
+        if (other != null && other.pieces != null) {
+            for (int i = 0; i < TOTAL_ROWS; i++) {
+                for (int j = 0; j < TOTAL_COLS; j++) {
+                    if (other.pieces[i][j] != null) {
+                        this.pieces[i][j] = other.pieces[i][j].makeCopy();
+                    }
+                }
+            }
+        }
+    }
+
+    private void initializeBoard(){
 
         // Initialize pawns
         for (int i = 0; i < TOTAL_COLS; i++) {
@@ -80,11 +97,22 @@ public class Board {
         }
         pieces[location.getX()][location.getY()] = piece;
     }
-
+    
     public void removePiece(Location location) {
         pieces[location.getX()][location.getY()] = null;
     }
-
-
-
+    
+    // TODO: requires BVA and testing (basic functionality written for testing purposes)
+    public List<Piece> getValidPiecesByColor(Color color) {
+        List<Piece> validPiecesByColor = new ArrayList<>();
+        for (int i = 0; i < TOTAL_ROWS; i++) {
+            for (int j = 0; j < TOTAL_COLS; j++) {
+                Piece piece = pieces[i][j];
+                if (piece != null && piece.getColor() == color && piece.hasValidMoves()) {
+                    validPiecesByColor.add(piece);
+                }
+            }
+        }
+        return validPiecesByColor;
+    }
 }
