@@ -282,6 +282,7 @@ public class PawnTests {
         Piece pawn = new Pawn(Color.BLACK);
 
         Location location = new Location(7, 3);
+        System.out.println("X: " + location.getX());
 
         Board board = new Board(false);
         board.setPiece(location, pawn);

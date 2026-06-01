@@ -113,16 +113,22 @@ public class Pawn extends Piece {
         int currX = currentPosition.getX();
         int currY = currentPosition.getY();
 
-        Location[] possibleTargets = {
-                new Location(currX + direction, currY),
-                new Location(currX + 2 * direction, currY),
-                new Location(currX + direction, currY - 1),
-                new Location(currX + direction, currY + 1)
+        int[][] potentialCoordinates = {
+                {currX + direction, currY},
+                {currX + 2 * direction, currY},
+                {currX + direction, currY - 1},
+                {currX + direction, currY + 1}
         };
 
-        for (Location target : possibleTargets) {
-            if (target.getX() >= 0 && target.getX() < 8 && target.getY() >= 0 && target.getY() < 8) {
-                if (isValidMove(currentPosition, target, board)) {
+        for (int[] coord : potentialCoordinates) {
+            int targetX = coord[0];
+            int targetY = coord[1];
+
+            if (targetX >= 0 && targetX <= 7 && targetY >= 0 && targetY <= 7) {
+
+                Location target = new Location(targetX, targetY);
+
+                if (this.isValidMove(currentPosition, target, board)) {
                     return true;
                 }
             }
