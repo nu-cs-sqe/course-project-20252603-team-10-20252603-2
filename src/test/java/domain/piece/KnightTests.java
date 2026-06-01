@@ -1,8 +1,7 @@
-package domain;
+package domain.piece;
 
-import domain.piece.Knight;
-import domain.piece.Pawn;
-import domain.piece.Piece;
+import domain.Board;
+import domain.Location;
 import constants.Color;
 import org.junit.jupiter.api.Test;
 

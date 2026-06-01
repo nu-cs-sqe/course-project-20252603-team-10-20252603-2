@@ -1,6 +1,7 @@
-package domain;
+package domain.piece;
 
 import constants.Color;
+import domain.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,16 +15,16 @@ public class PlayerTests {
     public void getColor_PlayerWhite_ReturnsWhite() {
         Player player = new Player(Color.WHITE);
         Color actual = player.getPlayerColor();
-        assertEquals(actual, Color.WHITE);
+        assertEquals(Color.WHITE, actual);
     }
 
     @Test
-    public void getPoints_ZeroPoints_ReturnsZero(){
+    public void getPoints_ZeroPoints_ReturnsZero() {
         Player player = new Player(Color.WHITE);
         Number actual = player.getPoints();
         Number expected = 0;
 
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -36,7 +37,7 @@ public class PlayerTests {
     }
 
     @Test
-    public void getPoints_CapturedQueen_ReturnsNine(){
+    public void getPoints_CapturedQueen_ReturnsNine() {
         Player player = new Player(Color.WHITE);
         player.incrementPoints("queen");
 
@@ -48,7 +49,8 @@ public class PlayerTests {
     public void getPoints_AllPiecesCaptured_Returns39() {
         Player player = new Player(Color.WHITE);
 
-        List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "bishop", "bishop", "knight", "knight", "queen", "rook", "rook"));
+        List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "bishop",
+                "bishop", "knight", "knight", "queen", "rook", "rook"));
 
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));
@@ -62,7 +64,8 @@ public class PlayerTests {
     public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns47() {
         Player player = new Player(Color.WHITE);
 
-        List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "queen", "bishop", "bishop", "knight", "knight", "queen", "rook", "rook"));
+        List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "queen",
+                "bishop", "bishop", "knight", "knight", "queen", "rook", "rook"));
 
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));
