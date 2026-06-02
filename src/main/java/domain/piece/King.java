@@ -49,6 +49,13 @@ public class King extends Piece{
         if (diffX > 1 || diffY > 1) {
             return false;
         }
+
+        if (board.isPieceHere(end)) {
+            Piece target = board.getPiece(end);
+            if (target.getColor() == this.getColor()) {
+                return false;
+            }
+        }
         return true;
     }
 

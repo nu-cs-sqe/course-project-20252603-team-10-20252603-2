@@ -354,4 +354,18 @@ public class KingTests {
 
         assertTrue(king.isValidMove(start, end, board));
     }
-}
+    @Test
+    public void isValidMove_King_FriendlyDestination_ReturnsFalse() {
+        King king = new King(Color.WHITE);
+        Piece friendly = new Pawn(Color.WHITE);
+        Location start = new Location(7, 7);
+        Location end = new Location(6, 7);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+        board.setPiece(end, friendly);
+
+        assertFalse(king.isValidMove(start, end, board));
+    }
+
+    }
