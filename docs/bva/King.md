@@ -98,7 +98,6 @@
 | 13          | WHITE | x=0, y=0       | x=1, y=1        | enemy                    | True                     | yes          |
 | 14          | WHITE | x=4, y=4       | x=3, y=4        | EMPTY                    | False (moves into check) | no           |
 | 15          | BLACK | x=0, y=0       | x=0, y=1        | EMPTY                    | True                     | no           |
-| 16          | BLACK | x=7, y=7       | x=6, y=7        | EMPTY                    | True                     | no           |
 
 ### STEPS FOR BVA: `isValidMove()` for King
 

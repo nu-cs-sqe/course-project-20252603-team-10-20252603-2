@@ -381,4 +381,15 @@ public class KingTests {
 
         assertTrue(king.isValidMove(start, end, board));
     }
+    @Test
+    public void isValidMove_BlackKing_ValidMove_ReturnsTrue() {
+        King king = new King(Color.BLACK);
+        Location start = new Location(0, 0);
+        Location end = new Location(0, 1);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
+    }
 }
