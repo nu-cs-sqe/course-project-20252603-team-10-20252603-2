@@ -367,5 +367,18 @@ public class KingTests {
 
         assertFalse(king.isValidMove(start, end, board));
     }
+    @Test
+    public void isValidMove_King_CaptureEnemy_ReturnsTrue() {
+        King king = new King(Color.WHITE);
 
+        Location start = new Location(0, 0);
+        Location end = new Location(1, 1);
+
+        Piece enemy = new Pawn(Color.BLACK);
+        Board board = new Board(false);
+        board.setPiece(start, king);
+        board.setPiece(end, enemy);
+
+        assertTrue(king.isValidMove(start, end, board));
     }
+}
