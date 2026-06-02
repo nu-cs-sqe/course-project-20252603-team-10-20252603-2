@@ -320,4 +320,16 @@ public class KingTests {
 
         assertTrue(king.isValidMove(start, end, board));
     }
+    @Test
+    public void isValidMove_King_Diagonal2_ReturnsTrue() {
+        King king = new King(Color.WHITE);
+        Location start = new Location(0, 7);
+        Location end = new Location(1, 6);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
+    }
+
 }

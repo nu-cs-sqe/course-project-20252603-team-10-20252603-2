@@ -91,7 +91,7 @@
 | 6           | WHITE | x=4, y=0       | x=3, y=0        | EMPTY                    | True                     | yes          |
 | 7           | WHITE | x=4, y=7       | x=5, y=7        | EMPTY                    | True                     | yes          |
 | 8           | WHITE | x=0, y=0       | x=1, y=1        | EMPTY                    | True                     | yes          |
-| 9           | WHITE | x=0, y=7       | x=1, y=6        | EMPTY                    | True                     | no           |
+| 9           | WHITE | x=0, y=7       | x=1, y=6        | EMPTY                    | True                     | yes          |
 | 10          | WHITE | x=7, y=0       | x=6, y=1        | EMPTY                    | True                     | no           |
 | 11          | WHITE | x=7, y=7       | x=6, y=6        | EMPTY                    | True                     | no           |
 | 12          | WHITE | x=7, y=7       | x=6, y=7        | friendly                 | False                    | no           |
