@@ -331,5 +331,15 @@ public class KingTests {
 
         assertTrue(king.isValidMove(start, end, board));
     }
+    @Test
+    public void isValidMove_King_Diagonal3_ReturnsTrue() {
+        King king = new King(Color.WHITE);
+        Location start = new Location(7, 0);
+        Location end = new Location(6, 1);
 
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
+    }
 }
