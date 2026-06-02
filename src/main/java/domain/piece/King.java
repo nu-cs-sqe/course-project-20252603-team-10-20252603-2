@@ -56,7 +56,21 @@ public class King extends Piece{
                 return false;
             }
         }
-        return true;
+        Piece originalPiece = board.getPiece(end);
+
+        board.setPiece(end, this);
+        board.removePiece(start);
+
+        boolean inCheck = this.isInCheck(end, board);
+
+        board.setPiece(start, this);
+        if (originalPiece != null) {
+            board.setPiece(end, originalPiece);
+        } else {
+            board.removePiece(end);
+        }
+
+        return !inCheck;
     }
 
     @Override
