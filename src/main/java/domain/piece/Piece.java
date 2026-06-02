@@ -1,14 +1,14 @@
 package domain.piece;
 
+import constants.Color;
 import domain.Board;
 import domain.Location;
 
 public abstract class Piece {
     private final PieceType type;
+    private final Color color;
 
-    private final PieceColor color;
-
-    public Piece(PieceType type, PieceColor color) {
+    public Piece(PieceType type, Color color) {
         this.type = type;
         this.color = color;
     }
@@ -17,7 +17,7 @@ public abstract class Piece {
         return type;
     }
 
-    public PieceColor getColor() {
+    public Color getColor() {
         return color;
     }
 
@@ -28,6 +28,9 @@ public abstract class Piece {
     public abstract Piece makeCopy();
 
     public abstract boolean isValidMove(Location start, Location end, Board board);
+
+    // TODO: implement for each piece whether they have any valid moves
+    public abstract boolean hasValidMoves();
 
     @Override
     public String toString() {

@@ -3,6 +3,7 @@ package domain.piece;
 import domain.Board;
 import domain.Location;
 import org.junit.jupiter.api.Test;
+import constants.Color;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,7 +12,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_xMovPos_returnTrue() {
-        Piece queen = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.WHITE);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 0);
@@ -25,7 +26,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_QueenBlack_xMovPos_returnTrue() {
-        Piece queen = new Queen(PieceColor.BLACK);
+        Piece queen = new Queen(Color.BLACK);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 0);
@@ -39,7 +40,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_xMovNeg_returnTrue() {
-        Piece queen = new Queen(PieceColor.BLACK);
+        Piece queen = new Queen(Color.BLACK);
 
         Location start = new Location(7, 7);
         Location chosen = new Location(0, 7);
@@ -53,7 +54,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_yMovNeg_returnTrue() {
-        Piece queen = new Queen(PieceColor.BLACK);
+        Piece queen = new Queen(Color.BLACK);
 
         Location start = new Location(7, 7);
         Location chosen = new Location(7, 0);
@@ -67,7 +68,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_yMovPos_returnTrue() {
-        Piece queen = new Queen(PieceColor.BLACK);
+        Piece queen = new Queen(Color.BLACK);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(0, 7);
@@ -81,7 +82,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_diagonalPos_returnTrue() {
-        Piece queen = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.WHITE);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 7);
@@ -95,7 +96,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_diagonalNeg_returnTrue() {
-        Piece queen = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.WHITE);
 
         Location start = new Location(7, 7);
         Location chosen = new Location(0, 0);
@@ -109,8 +110,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_xMovPosFriendlyBlock_returnFalse() {
-        Piece queen = new Queen(PieceColor.BLACK);
-        Piece blocker = new Pawn(PieceColor.BLACK);
+        Piece queen = new Queen(Color.BLACK);
+        Piece blocker = new Pawn(Color.BLACK);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 0);
@@ -126,8 +127,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_xMovPosEnemyBlock_returnFalse() {
-        Piece queen = new Queen(PieceColor.BLACK);
-        Piece blocker = new Pawn(PieceColor.WHITE);
+        Piece queen = new Queen(Color.BLACK);
+        Piece blocker = new Pawn(Color.WHITE);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 0);
@@ -143,8 +144,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_yMovPosEnemyBlock_returnFalse() {
-        Piece queen = new Queen(PieceColor.BLACK);
-        Piece blocker = new Pawn(PieceColor.WHITE);
+        Piece queen = new Queen(Color.BLACK);
+        Piece blocker = new Pawn(Color.WHITE);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(0, 7);
@@ -160,8 +161,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_diagonalPosEnemyBlock_returnFalse() {
-        Piece queen = new Queen(PieceColor.WHITE);
-        Piece blocker = new Pawn(PieceColor.BLACK);
+        Piece queen = new Queen(Color.WHITE);
+        Piece blocker = new Pawn(Color.BLACK);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 7);
@@ -177,8 +178,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_xMovNegEnemyEnd_returnTrue() {
-        Piece queen = new Queen(PieceColor.WHITE);
-        Piece blocker = new Pawn(PieceColor.BLACK);
+        Piece queen = new Queen(Color.WHITE);
+        Piece blocker = new Pawn(Color.BLACK);
 
         Location start = new Location(7, 7);
         Location chosen = new Location(0, 7);
@@ -193,8 +194,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_xMovNegFriendlyEnd_returnFalse() {
-        Piece queen = new Queen(PieceColor.WHITE);
-        Piece blocker = new Pawn(PieceColor.WHITE);
+        Piece queen = new Queen(Color.WHITE);
+        Piece blocker = new Pawn(Color.WHITE);
 
         Location start = new Location(7, 7);
         Location chosen = new Location(0, 7);
@@ -209,7 +210,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_sameSquare_returnFalse() {
-        Piece queen = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.WHITE);
 
         Location start = new Location(5, 7);
         Location chosen = new Location(5, 7);
@@ -223,7 +224,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_LMov1_returnFalse() {
-        Piece queen = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.WHITE);
 
         Location start = new Location(3, 3);
         Location chosen = new Location(5, 2);
@@ -237,7 +238,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_LMov3_returnFalse() {
-        Piece queen = new Queen(PieceColor.BLACK);
+        Piece queen = new Queen(Color.BLACK);
 
         Location start = new Location(3, 3);
         Location chosen = new Location(4, 1);
@@ -251,8 +252,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_diagonalPosMidEndBlocker_returnFalse() {
-        Piece queen = new Queen(PieceColor.WHITE);
-        Piece blocker = new Pawn(PieceColor.BLACK);
+        Piece queen = new Queen(Color.WHITE);
+        Piece blocker = new Pawn(Color.BLACK);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 7);
@@ -268,7 +269,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_diagonal70to07_returnTrue() {
-        Piece queen = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.WHITE);
 
         Location start = new Location(7, 0);
         Location chosen = new Location(0, 7);
@@ -282,8 +283,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_mutantTestDiagonalPosEnemy_returnTrue() {
-        Piece queen = new Queen(PieceColor.WHITE);
-        Piece blocker = new Queen(PieceColor.BLACK);
+        Piece queen = new Queen(Color.WHITE);
+        Piece blocker = new Queen(Color.BLACK);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 7);
@@ -298,8 +299,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_mutantTestYDirEnemyBlocker_returnTrue() {
-        Piece queen = new Queen(PieceColor.BLACK);
-        Piece blocker = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.BLACK);
+        Piece blocker = new Queen(Color.WHITE);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(0, 7);
@@ -314,8 +315,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_mutantTestXDirEnemyBlocker_returnTrue() {
-        Piece queen = new Queen(PieceColor.BLACK);
-        Piece blocker = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.BLACK);
+        Piece blocker = new Queen(Color.WHITE);
 
         Location start = new Location(0, 0);
         Location chosen = new Location(7, 0);
@@ -330,8 +331,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_mutantTestYNegEnemyPath_returnFalse() {
-        Piece queen = new Queen(PieceColor.BLACK);
-        Piece blocker = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.BLACK);
+        Piece blocker = new Queen(Color.WHITE);
 
         Location start = new Location(0, 7);
         Location chosen = new Location(0, 0);
@@ -347,8 +348,8 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_mutantTestXNegEnemyPath_returnFalse() {
-        Piece queen = new Queen(PieceColor.BLACK);
-        Piece blocker = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.BLACK);
+        Piece blocker = new Queen(Color.WHITE);
 
         Location start = new Location(7, 0);
         Location chosen = new Location(0, 0);
