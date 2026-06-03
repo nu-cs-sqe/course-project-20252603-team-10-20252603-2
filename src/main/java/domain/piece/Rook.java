@@ -2,10 +2,10 @@ package domain.piece;
 
 import domain.Board;
 import domain.Location;
-
+import constants.Color;
 
 public class Rook extends Piece {
-    public Rook(PieceColor color) {
+    public Rook(Color color) {
         super(PieceType.ROOK, color);
     }
 
@@ -21,7 +21,6 @@ public class Rook extends Piece {
             return false;
         }
 
-        // Rook can only move horizontally or vertically
         boolean isHorizontal = (start.getX() == end.getX());
         boolean isVertical = (start.getY() == end.getY());
 
@@ -29,7 +28,6 @@ public class Rook extends Piece {
             return false;
         }
 
-        // check if the path is clear by looping through each pos
         int colDirection = 0;
         int rowDirection = 0;
 
@@ -60,11 +58,15 @@ public class Rook extends Piece {
 
         if (board.isPieceHere(end)) {
             Piece target = board.getPiece(end);
-            if (this.isSameColor(target)) {
-                return false;
-            }
+            if (this.isSameColor(target)) return false;
         }
 
         return true;
+    }
+
+    @Override
+    public boolean hasValidMoves() {
+        //  TODO: complete method
+        return false;
     }
 }
