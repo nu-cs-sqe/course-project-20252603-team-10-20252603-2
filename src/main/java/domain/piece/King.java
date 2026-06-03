@@ -39,6 +39,16 @@ public class King extends Piece{
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
+        if (!isValidMovementPattern(start, end)) {
+            return false;
+        }
+        if (!isValidDestination(end, board)) {
+            return false;
+        }
+        return !doesMoveKingIntoCheck(start, end, board);
+    }
+
+    private boolean isValidMovementPattern(Location start, Location end) {
         if (start.equals(end)) {
             return false;
         }
@@ -46,16 +56,18 @@ public class King extends Piece{
         int diffX = Math.abs(start.getX() - end.getX());
         int diffY = Math.abs(start.getY() - end.getY());
 
-        if (diffX > 1 || diffY > 1) {
-            return false;
-        }
+        return diffX <= 1 && diffY <= 1;
+    }
 
+    private boolean isValidDestination(Location end, Board board) {
         if (board.isPieceHere(end)) {
             Piece target = board.getPiece(end);
-            if (target.getColor() == this.getColor()) {
-                return false;
-            }
+            return target.getColor() != this.getColor();
         }
+        return true;
+    }
+
+    private boolean doesMoveKingIntoCheck(Location start, Location end, Board board) {
         Piece originalPiece = board.getPiece(end);
 
         board.setPiece(end, this);
@@ -70,7 +82,7 @@ public class King extends Piece{
             board.removePiece(end);
         }
 
-        return !inCheck;
+        return inCheck;
     }
 
     @Override
