@@ -227,4 +227,21 @@ public class GameManagerTests {
         assertFalse(game.isGameOver());
         EasyMock.verify(mockedPlayer, mockedBoard);
     }
+
+    @Test
+    public void movePiece_nullLoc1_returnFalse() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+        game.start();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        boolean movePiece = game.movePiece(new Location(4,0), new Location(5,0));
+
+        assertFalse(movePiece);
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+
+
+    }
+
 }

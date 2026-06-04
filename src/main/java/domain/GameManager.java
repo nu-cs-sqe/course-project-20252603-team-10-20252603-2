@@ -63,7 +63,7 @@ public class GameManager {
     public boolean isGameRunning() {
         return isGameRunning;
     }
-
+    
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
@@ -99,6 +99,10 @@ public class GameManager {
             return true;
         }
 
+        return false;
+    }
+
+    public boolean movePiece(Location start, Location end) {
         return false;
     }
 }
