@@ -117,6 +117,7 @@ public class GameManager {
         if (pieceToMove.isValidMove(start, end, board)) {
             board.setPiece(end, pieceToMove);
             board.removePiece(start);
+            this.changeTurns();
             return true;
         }
 

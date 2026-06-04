@@ -249,8 +249,8 @@ public class GameManagerTests {
         game.addPlayer(new Player(Color.BLACK));
         game.addPlayer(new Player(Color.WHITE));
         game.start();
-        Player currentPlayer = game.getCurrentPlayer();
         game.changeTurns();
+        Player currentPlayer = game.getCurrentPlayer();
 
         boolean movePiece = game.movePiece(new Location(0,1), new Location(2,0));
 
@@ -258,4 +258,5 @@ public class GameManagerTests {
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
 
     }
+
 }
