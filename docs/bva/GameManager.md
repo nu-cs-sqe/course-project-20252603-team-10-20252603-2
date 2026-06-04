@@ -71,3 +71,75 @@
   * King isInCheck() == true && there are >= 1 valid moves → ❌
   * King isInCheck() == false && there are 0 valid moves → Stalemate
   * King isInCheck() == false && there are >= 1 valid moves → ❌
+
+
+**Method under test: movePiece()**
+
+| Test Number | Current Turn | Location 1 | Location 2 | Piece being moved | Location 2 contents | Expected output                                 | Implemented? |
+|:------------|:-------------|:-----------|:-----------|:------------------|:--------------------|:------------------------------------------------|:-------------|
+| 1           | WHITE        | (0,0)      | (0,2)      | null              | empty               | False (board/turn unchanged)                    | no           |                                          
+| 2           | BLACK        | (0,0)      | (2,1)      | BLACK KNIGHT      | empty               | True  (board/turn updated)                      | no           |                                         
+| 3           | WHITE        | (7,6)      | (7,4)      | WHITE ROOK        | empty               | True  (board/turn updated)                      | no           |                                          
+| 4           | BLACK        | (0,0)      | (0,4)      | BLACK ROOK        | friendly            | False (board/turn unchanged)                    | no           |                                         
+| 5           | BLACK        | (0,0)      | (6,0)      | BLACK ROOK        | enemy               | True  (board/turn updated, point count updated) | no           |                                         
+| 6           | WHITE        | (0,0)      | (2,1)      | WHITE QUEEN       | empty               | False (board/turn unchanged)                    | no           |                                         
+| 7           | WHITE        | (0,0)      | (2,0)      | BLACK QUEEN       | empty               | False (board/turn unchanged)                    | no           |                                         
+
+
+### STEPS FOR BVA: `movePiece()`
+
+1. Data Types
+* Input: 
+  * color of current turn
+  * piece being moved
+  * location 1
+  * location 2
+  * State of location 2
+* Output:
+  * A yes or no answer (could we move the piece)
+  * Side effects:
+    * board state updated/unchanged
+    * turn changed/unchanged
+    * points updated if captured
+2. BVA catalog types
+* Input:
+  * color of current turn: cases
+  * Piece: pointer
+  * Location 1: array indices
+  * Location 2: array indices
+  * State of location 2: cases
+* Output
+  * Yes/no: Boolean (T/F)
+  * Side effects: cases
+3. Values
+* Input:
+  * Color of current turn: cases
+    * BLACK
+    * WHITE
+  * Piece: pointer
+    * Real piece object
+    * Null pointer
+  * Location 1: array indices
+    * all indices are 0 at same time: [0][0]
+    * all largest valid value: [7][7]
+    * first index -1: [-1][3], CANT SET
+    * second index -1: [3][-1] , CANT SET
+    * first element too big: [8][3], CANT SET
+    * second element too big: [3][8], CANT SET
+  * Location 2: array indices
+    * all indices are 0 at same time: [0][0]
+    * all largest valid value: [7][7]
+    * first index -1: [-1][3], CANT SET
+    * second index -1: [3][-1] , CANT SET
+    * first element too big: [8][3], CANT SET
+    * second element too big: [3][8], CANT SET
+  * State of location 2:
+    * empty square
+    * friendly square
+    * enemy square
+* Output
+  * Boolean (T/F)
+  * Side effects: cases
+    * board state updated/unchanged
+    * turn changed/unchanged
+    * points updated if captured
