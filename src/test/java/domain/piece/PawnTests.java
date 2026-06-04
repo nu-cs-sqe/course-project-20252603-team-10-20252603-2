@@ -224,7 +224,7 @@ public class PawnTests {
 
     @Test
     public void isValidMove_Pawn_whiteTwoForwardNotStartRow_returnFalse() {
-        Piece pawn = new Pawn(PieceColor.WHITE);
+        Piece pawn = new Pawn(Color.WHITE);
 
         Location start = new Location(5, 0);
         Location chosen = new Location(3, 0);
@@ -238,8 +238,8 @@ public class PawnTests {
 
     @Test
     public void isValidMove_Pawn_whiteOneForwardBlocked_returnFalse() {
-        Piece pawn = new Pawn(PieceColor.WHITE);
-        Piece blocker = new Pawn(PieceColor.BLACK);
+        Piece pawn = new Pawn(Color.WHITE);
+        Piece blocker = new Pawn(Color.BLACK);
 
         Location start = new Location(6, 0);
         Location chosen = new Location(5, 0);
@@ -254,8 +254,8 @@ public class PawnTests {
 
     @Test
     public void isValidMove_Pawn_whiteTwoForwardMidBlocked_returnFalse() {
-        Piece pawn = new Pawn(PieceColor.WHITE);
-        Piece blocker = new Pawn(PieceColor.BLACK);
+        Piece pawn = new Pawn(Color.WHITE);
+        Piece blocker = new Pawn(Color.BLACK);
 
         Location start = new Location(6, 0);
         Location chosen = new Location(4, 0);
@@ -271,7 +271,7 @@ public class PawnTests {
 
     @Test
     public void isValidMove_Pawn_whiteTwoForward_returnTrue() {
-        Piece pawn = new Pawn(PieceColor.WHITE);
+        Piece pawn = new Pawn(Color.WHITE);
 
         Location start = new Location(6, 0);
         Location chosen = new Location(4, 0);

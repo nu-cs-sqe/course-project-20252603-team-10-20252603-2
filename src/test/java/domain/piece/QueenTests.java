@@ -365,7 +365,7 @@ public class QueenTests {
 
     @Test
     public void isValidMove_Queen_mutantDiagonalMidBoard_returnTrue() {
-        Piece queen = new Queen(PieceColor.WHITE);
+        Piece queen = new Queen(Color.WHITE);
 
         Location start = new Location(1, 2);
         Location chosen = new Location(3, 4);

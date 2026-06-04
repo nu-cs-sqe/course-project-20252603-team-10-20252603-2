@@ -2,8 +2,8 @@ package domain.piece;
 
 import org.junit.jupiter.api.Test;
 import constants.Color;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceTests {
     @Test
@@ -40,13 +40,13 @@ public class PieceTests {
 
     @Test
     public void getType_blackPawn_returnFalse() {
-        Piece piece = new Pawn(PieceColor.BLACK);
+        Piece piece = new Pawn(Color.BLACK);
         assertEquals(PieceType.PAWN, piece.getType());
     }
 
     @Test
     public void toString_whitePawn_returnString() {
-        Piece piece = new Pawn(PieceColor.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         assertEquals("WHITE PAWN", piece.toString());
     }
 
