@@ -7,6 +7,7 @@ import domain.piece.Piece;
 public class BoardController {
     private BoardView boardView;
     private Board board;
+    private Location selectedLocation;
 
     public BoardController() {
         this.board = new Board(true);
@@ -22,6 +23,20 @@ public class BoardController {
         if (boardView == null) {
             return;
         }
+        if (selectedLocation == null) {
+            handleFirstClick(location);
+        } else {
+            handleSecondClick(location);
+        }
+
+    }
+
+    public void handleFirstClick(Location location) {
+        selectedLocation = location;
+    }
+
+    public void handleSecondClick(Location location) {
+        selectedLocation = null;
     }
 
     public Piece[][] getBoardSnapshot() {
