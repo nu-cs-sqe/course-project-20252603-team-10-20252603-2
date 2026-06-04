@@ -48,5 +48,8 @@
 6. [50% done] Vivian: BVA for GameManager class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
 
 # Week 9 (05/25/2026-05/31/2026)
+1. [done] Vivian: Initial implementation for GameManager (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
+2. [15% done] Vivian: Implement hasValidMoves() for all Pieces (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/46)
+3. [15% done] Vivian: Start GUI implementation (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/48)
 
 
