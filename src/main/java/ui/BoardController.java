@@ -1,16 +1,22 @@
 package ui;
 
+import constants.Color;
 import domain.Board;
+import domain.GameManager;
 import domain.Location;
+import domain.Player;
 import domain.piece.Piece;
 
 public class BoardController {
     private BoardView boardView;
-    private Board board;
+    private GameManager gameManager;
     private Location selectedLocation;
 
     public BoardController() {
-        this.board = new Board(true);
+        this.gameManager = new GameManager();
+        gameManager.addPlayer(new Player(Color.WHITE));
+        gameManager.addPlayer(new Player(Color.BLACK));
+        gameManager.start();
     }
 
     void setBoardView(BoardView boardView) {
@@ -32,7 +38,20 @@ public class BoardController {
     }
 
     public void handleFirstClick(Location location) {
+        Board board = gameManager.getBoard();
+        if (!board.isPieceHere(location)) {
+            return;
+        }
+
+        Piece selectedPiece = board.getPiece(location);
+        Player currentPlayer = gameManager.getCurrentPlayer();
+
+        if (selectedPiece.getColor() != currentPlayer.getPlayerColor()) {
+            return;
+        }
+
         selectedLocation = location;
+
     }
 
     public void handleSecondClick(Location location) {
@@ -40,6 +59,7 @@ public class BoardController {
     }
 
     public Piece[][] getBoardSnapshot() {
-        return this.board.getSnapshot();
+        Board board = gameManager.getBoard();
+        return board.getSnapshot();
     }
 }
