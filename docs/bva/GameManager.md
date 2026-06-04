@@ -75,15 +75,15 @@
 
 **Method under test: movePiece()**
 
-| Test Number | Current Turn | Location 1 | Location 2 | Piece being moved | Location 2 contents | Expected output                                 | Implemented? |
-|:------------|:-------------|:-----------|:-----------|:------------------|:--------------------|:------------------------------------------------|:-------------|
-| 1           | WHITE        | (0,0)      | (0,2)      | null              | empty               | False (board/turn unchanged)                    | no           |                                          
-| 2           | BLACK        | (0,0)      | (2,1)      | BLACK KNIGHT      | empty               | True  (board/turn updated)                      | no           |                                         
-| 3           | WHITE        | (7,6)      | (7,4)      | WHITE ROOK        | empty               | True  (board/turn updated)                      | no           |                                          
-| 4           | BLACK        | (0,0)      | (0,4)      | BLACK ROOK        | friendly            | False (board/turn unchanged)                    | no           |                                         
-| 5           | BLACK        | (0,0)      | (6,0)      | BLACK ROOK        | enemy               | True  (board/turn updated, point count updated) | no           |                                         
-| 6           | WHITE        | (0,0)      | (2,1)      | WHITE QUEEN       | empty               | False (board/turn unchanged)                    | no           |                                         
-| 7           | WHITE        | (0,0)      | (2,0)      | BLACK QUEEN       | empty               | False (board/turn unchanged)                    | no           |                                         
+| Test Number | Current Turn | Location 1            | Location 2 | Piece being moved | Location 2 contents | Expected output                                 | Implemented? |
+|:------------|:-------------|:----------------------|:-----------|:------------------|:--------------------|:------------------------------------------------|:-------------|
+| 1           | WHITE        | (4,0)                 | (5,0)      | null              | empty               | False (board/turn unchanged)                    | no           |
+| 2           | BLACK        | (0,1)                 | (2,0)      | BLACK KNIGHT      | empty               | True  (board/turn updated)                      | no           |                                         
+| 3           | WHITE        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | True  (board/turn updated)                      | no           |                                          
+| 4           | BLACK        | (0,0)                 | (1,0)      | BLACK ROOK        | friendly            | False (board/turn unchanged)                    | no           |                                         
+| 5           | BLACK        | (2,0) (custom board)  | (6,0)      | BLACK ROOK        | enemy               | True  (board/turn updated, point count updated) | no           |                                         
+| 6           | WHITE        | (5,7) (custom board)  | (2,1)      | WHITE QUEEN       | empty               | False (board/turn unchanged)                    | no           |                                         
+| 7           | BLACK        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | False (board/turn unchanged)                    | no           |                                         
 
 
 ### STEPS FOR BVA: `movePiece()`
@@ -120,15 +120,15 @@
     * Real piece object
     * Null pointer
   * Location 1: array indices
-    * all indices are 0 at same time: [0][0]
-    * all largest valid value: [7][7]
+    * all indices are 0 at same time: [0][0] already tested in Location and in PieceType Tests
+    * all largest valid value: [7][7] already tested in Location and in PieceType Tests
     * first index -1: [-1][3], CANT SET
     * second index -1: [3][-1] , CANT SET
     * first element too big: [8][3], CANT SET
     * second element too big: [3][8], CANT SET
   * Location 2: array indices
-    * all indices are 0 at same time: [0][0]
-    * all largest valid value: [7][7]
+    * all indices are 0 at same time: [0][0] already tested in Location and in PieceType Tests
+    * all largest valid value: [7][7] already tested in Location and in PieceType Tests
     * first index -1: [-1][3], CANT SET
     * second index -1: [3][-1] , CANT SET
     * first element too big: [8][3], CANT SET
