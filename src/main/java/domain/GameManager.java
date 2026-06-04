@@ -1,6 +1,7 @@
 package domain;
 
 import constants.Color;
+import domain.piece.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,6 +104,22 @@ public class GameManager {
     }
 
     public boolean movePiece(Location start, Location end) {
+        if (!board.isPieceHere(start)) {
+            return false;
+        }
+
+        Piece pieceToMove = this.board.getPiece(start);
+
+        if (board.isPieceHere(end)) {
+            return false;
+        }
+
+        if (pieceToMove.isValidMove(start, end, board)) {
+            board.setPiece(end, pieceToMove);
+            board.removePiece(start);
+            return true;
+        }
+
         return false;
     }
 }
