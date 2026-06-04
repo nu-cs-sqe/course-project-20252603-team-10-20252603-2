@@ -109,6 +109,11 @@ public class GameManager {
         }
 
         Piece pieceToMove = this.board.getPiece(start);
+        Player currentPlayer = this.currentPlayer;
+
+        if (pieceToMove.getColor() != currentPlayer.getPlayerColor()) {
+            return false;
+        }
 
         if (board.isPieceHere(end)) {
             return false;
