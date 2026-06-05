@@ -38,6 +38,7 @@ public class BoardController {
     }
 
     public void handleFirstClick(Location location) {
+        System.out.println("TEST: Square first click at " + location.getX() + ", " + location.getY());
         Board board = gameManager.getBoard();
         if (!board.isPieceHere(location)) {
             return;
@@ -54,8 +55,17 @@ public class BoardController {
 
     }
 
-    public void handleSecondClick(Location location) {
+    public void handleSecondClick(Location endLocation) {
+        System.out.println("TEST: Square second click at " + endLocation.getX() + ", " + endLocation.getY());
+        Location startLocation = selectedLocation;
         selectedLocation = null;
+
+        gameManager.movePiece(startLocation, endLocation);
+
+        if (boardView != null) {
+            boardView.repaint();
+        }
+
     }
 
     public Piece[][] getBoardSnapshot() {
