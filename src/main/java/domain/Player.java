@@ -7,6 +7,8 @@ import java.util.Map;
 
 public class Player {
 
+    private final String playerName;
+
     private final Color playerColor;
 
     private int points = 0;
@@ -19,10 +21,13 @@ public class Player {
             PieceType.QUEEN, 9
     );
 
-    public Player(Color playerColor) {
+    public Player(String playerName, Color playerColor) {
+        this.playerName = playerName;
         this.playerColor = playerColor;
     }
 
+    public String getPlayerName() { return playerName; }
+    
     public Color getPlayerColor() {
         return playerColor;
     }

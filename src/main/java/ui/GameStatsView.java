@@ -7,6 +7,8 @@ import java.awt.*;
 
 public class GameStatsView extends JPanel {
 
+    private JLabel player1Label;
+    private JLabel player2Label;
     private JLabel currentPlayerLabel;
 
     public GameStatsView(String player1Name, String player2Name) {
@@ -18,17 +20,16 @@ public class GameStatsView extends JPanel {
         playerInfoLabel.setFont(new Font("Arial", Font.BOLD, 30));
         playerInfoLabel.setForeground(new Color(255, 255, 255));
 
-        JLabel player1Label = new JLabel("\t\t\tPlayer 1: " + player1Name +
-                " (Team: " + "White" + ")");
+        player1Label = new JLabel("\t\t\tPlayer 1: " + player1Name +
+                " (Team: " + "White" + "), Points: 0");
         player1Label.setFont(new Font("Arial", Font.BOLD, 20));
         player1Label.setForeground(new Color(255, 255, 255));
 
-        JLabel player2Label = new JLabel("\t\t\tPlayer 2: " + player2Name +
-                " (Team: " + "Black" + ")");
+        player2Label = new JLabel("\t\t\tPlayer 2: " + player2Name +
+                " (Team: " + "Black" + "), Points: 0");
         player2Label.setFont(new Font("Arial", Font.BOLD, 20));
         player2Label.setForeground(new Color(255, 255, 255));
 
-        //FIXME: hardcoded for now, but should be updated dynamically
         currentPlayerLabel = new JLabel("Current Player: " + player1Name);
         currentPlayerLabel.setFont(new Font("Arial", Font.BOLD, 30));
         currentPlayerLabel.setForeground(new Color(255, 255, 255));
@@ -39,7 +40,15 @@ public class GameStatsView extends JPanel {
         add(currentPlayerLabel);
     }
 
+//    TODO: currently displaying color instead of player name
     public void updateCurrentPlayer(String name) {
         currentPlayerLabel.setText("Current Player: " + name);
+    }
+
+    public void updatePoints(Player player1, Player player2) {
+        player1Label.setText("\t\t\tPlayer 1: " + player1.getPlayerName() +
+                " (Team: " + "White" + "), Points: " + player1.getPoints());
+        player2Label.setText("\t\t\tPlayer 2: " + player2.getPlayerName() +
+                " (Team: " + "Black" + "), Points: " + player2.getPoints());
     }
 }

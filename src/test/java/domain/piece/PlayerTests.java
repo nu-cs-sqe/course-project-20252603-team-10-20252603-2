@@ -13,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTests {
     @Test
     public void getColor_PlayerWhite_ReturnsWhite() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player("Player1", Color.WHITE);
         Color actual = player.getPlayerColor();
         assertEquals(Color.WHITE, actual);
     }
 
     @Test
     public void getPoints_ZeroPoints_ReturnsZero() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player("Player1", Color.WHITE);
         Number actual = player.getPoints();
         Number expected = 0;
 
@@ -29,7 +29,7 @@ public class PlayerTests {
 
     @Test
     public void getPoints_CapturedPawn_ReturnsOne() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player("Player1", Color.WHITE);
         player.incrementPoints(PieceType.PAWN);
 
         int actual = player.getPoints();
@@ -38,7 +38,7 @@ public class PlayerTests {
 
     @Test
     public void getPoints_CapturedQueen_ReturnsNine() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player("Player1", Color.WHITE);
         player.incrementPoints(PieceType.QUEEN);
 
         int actual = player.getPoints();
@@ -47,7 +47,7 @@ public class PlayerTests {
 
     @Test
     public void getPoints_AllPiecesCaptured_Returns39() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player("Player1", Color.WHITE);
 
         List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.BISHOP,
                 PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
@@ -62,7 +62,7 @@ public class PlayerTests {
 
     @Test
     public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns47() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player("Player1", Color.WHITE);
 
         List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.QUEEN,
                 PieceType.BISHOP, PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
@@ -77,7 +77,7 @@ public class PlayerTests {
 
     @Test
     public void isInCheck_ReturnsFalse() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player("Player1", Color.WHITE);
         boolean isInCheck = player.isInCheck();
 
         assertFalse(isInCheck);

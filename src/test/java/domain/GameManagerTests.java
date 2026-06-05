@@ -27,7 +27,7 @@ public class GameManagerTests {
     @Test
     public void start_WithOnePlayer_ThrowsException() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player("Player1", Color.BLACK));
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             game.start();
@@ -40,9 +40,9 @@ public class GameManagerTests {
     @Test
     public void start_WithThreePlayers_ThrowsException() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
-        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.addPlayer(new Player("Player3", Color.BLACK));
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             game.start();
         });
@@ -54,8 +54,8 @@ public class GameManagerTests {
     @Test
     public void start_WithTwoPlayers_IsSuccessful() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
 
         assertDoesNotThrow(() -> game.start());
         assertTrue(game.isGameRunning());
@@ -64,8 +64,8 @@ public class GameManagerTests {
     @Test
     public void start_WithTwoPlayersOfTheSameColor_ThrowsException() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.BLACK));
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             game.start();
@@ -78,8 +78,8 @@ public class GameManagerTests {
     @Test
     public void changeTurns_StartsWithWhite_IsTrue() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
 
         game.start();
 
@@ -92,8 +92,8 @@ public class GameManagerTests {
     @Test
     public void changeTurns_WhiteToBlack_IsSuccessful() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
 
         game.start();
         game.changeTurns();
@@ -107,8 +107,8 @@ public class GameManagerTests {
     @Test
     public void changeTurns_BlackToWhite_IsSuccessful() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
 
         game.start();
         game.changeTurns();
@@ -123,8 +123,8 @@ public class GameManagerTests {
     @Test
     public void changeTurns_Draw_ThrowsException() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
 
         for (int i = 0; i < 50; i++) {
@@ -142,8 +142,8 @@ public class GameManagerTests {
     public void isGameOver_KingNotInCheck_ReturnsFalse() {
         GameManager game = new GameManager();
 
-        Player blackPlayer = new Player(Color.BLACK);
-        Player whitePlayer = new Player(Color.WHITE);
+        Player blackPlayer = new Player("Player1", Color.BLACK);
+        Player whitePlayer = new Player("Player2", Color.WHITE);
         game.addPlayer(blackPlayer);
         game.addPlayer(whitePlayer);
         game.start();
@@ -167,8 +167,8 @@ public class GameManagerTests {
     @Test
     public void isGameOver_DrawConditionMet_ReturnsTrue() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
 
         for (int i = 0; i < 50; i++) {
@@ -195,8 +195,8 @@ public class GameManagerTests {
         EasyMock.replay(mockedPlayer, mockedBoard);
 
         game.addPlayer(mockedPlayer);
-        game.addPlayer(new Player(Color.BLACK));
-        game.assignPlayers(mockedPlayer, new Player(Color.BLACK));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.assignPlayers(mockedPlayer, new Player("Player1", Color.BLACK));
         game.setBoard(mockedBoard);
 
         assertTrue(game.isGameOver());
@@ -219,8 +219,8 @@ public class GameManagerTests {
         EasyMock.replay(mockedPlayer, mockedBoard);
 
         game.addPlayer(mockedPlayer);
-        game.addPlayer(new Player(Color.BLACK));
-        game.assignPlayers(mockedPlayer, new Player(Color.BLACK));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.assignPlayers(mockedPlayer, new Player("Player1", Color.BLACK));
         game.setBoard(mockedBoard);
 
         assertFalse(game.isGameOver());
@@ -230,8 +230,8 @@ public class GameManagerTests {
     @Test
     public void movePiece_nullLoc1_returnFalse() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
         Player currentPlayer = game.getCurrentPlayer();
 
@@ -247,8 +247,8 @@ public class GameManagerTests {
     @Test
     public void movePiece_moveBlackKnightx0y1tox2y0_returnTrue() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
         game.changeTurns();
 
@@ -272,8 +272,8 @@ public class GameManagerTests {
     @Test
     public void movePiece_moveWhiteKnightx7y6tox5y5_returnTrue() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
         Player currentPlayer = game.getCurrentPlayer();
 
@@ -294,8 +294,8 @@ public class GameManagerTests {
     @Test
     public void movePiece_moveBlackRookx0y0tox1y0_returnFalse() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
         game.changeTurns();
         Player currentPlayer = game.getCurrentPlayer();
@@ -319,8 +319,8 @@ public class GameManagerTests {
     @Test
     public void movePiece_moveBlackRookx2y0tox6y0_returnTrue() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
         game.changeTurns();
         Player currentPlayer = game.getCurrentPlayer();
@@ -341,15 +341,15 @@ public class GameManagerTests {
         assertEquals(Color.BLACK, moved.getColor());
 
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
-        assertEquals(currentPlayer.getPoints(), 1);
+        assertEquals(1, currentPlayer.getPoints());
 
     }
 
     @Test
     public void movePiece_moveWhiteQueenx5y7tox1y1_returnFalse() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
         Player currentPlayer = game.getCurrentPlayer();
 
@@ -378,8 +378,8 @@ public class GameManagerTests {
     @Test
     public void movePiece_moveWhiteKnightx7y6tox5y5_returnFalse() {
         GameManager game = new GameManager();
-        game.addPlayer(new Player(Color.BLACK));
-        game.addPlayer(new Player(Color.WHITE));
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
         game.start();
         game.changeTurns();
         Player currentPlayer = game.getCurrentPlayer();

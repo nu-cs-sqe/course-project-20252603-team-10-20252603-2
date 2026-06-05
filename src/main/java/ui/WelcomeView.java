@@ -1,5 +1,8 @@
 package ui;
 
+import domain.GameManager;
+import domain.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -80,12 +83,17 @@ public class WelcomeView extends JFrame {
 
             // FIXME: perform input validation on player names
 
+            GameManager gameManager = new GameManager();
+            gameManager.addPlayer(new Player(player1Name, constants.Color.WHITE));
+            gameManager.addPlayer(new Player(player2Name, constants.Color.BLACK));
+            gameManager.start();
+
             // Hide the welcome screen
             setVisible(false);
             dispose(); // Dispose of this frame to free up resources
 
             // Create and show the main game screen
-            MainView mainScreen = new MainView(player1Name, player2Name);
+            MainView mainScreen = new MainView(gameManager, player1Name, player2Name);
             mainScreen.setVisible(true);
 
             System.out.println(e);

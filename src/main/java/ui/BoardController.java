@@ -13,11 +13,8 @@ public class BoardController {
     private GameManager gameManager;
     private Location selectedLocation;
 
-    public BoardController() {
-        this.gameManager = new GameManager();
-        gameManager.addPlayer(new Player(Color.WHITE));
-        gameManager.addPlayer(new Player(Color.BLACK));
-        gameManager.start();
+    public BoardController(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     void setBoardView(BoardView boardView) {
@@ -66,7 +63,8 @@ public class BoardController {
         boolean movePiece = gameManager.movePiece(startLocation, endLocation);
 
         if (movePiece) {
-            gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerColor().toString());
+            gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerName());
+            gameStatsView.updatePoints(gameManager.getWhitePlayer(), gameManager.getBlackPlayer());
         }
 
         if (boardView != null) {
