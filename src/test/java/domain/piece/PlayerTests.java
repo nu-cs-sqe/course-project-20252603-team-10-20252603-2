@@ -30,7 +30,7 @@ public class PlayerTests {
     @Test
     public void getPoints_CapturedPawn_ReturnsOne() {
         Player player = new Player(Color.WHITE);
-        player.incrementPoints("pawn");
+        player.incrementPoints(PieceType.PAWN);
 
         int actual = player.getPoints();
         assertEquals(1, actual);
@@ -39,7 +39,7 @@ public class PlayerTests {
     @Test
     public void getPoints_CapturedQueen_ReturnsNine() {
         Player player = new Player(Color.WHITE);
-        player.incrementPoints("queen");
+        player.incrementPoints(PieceType.QUEEN);
 
         int actual = player.getPoints();
         assertEquals(9, actual);
@@ -49,8 +49,8 @@ public class PlayerTests {
     public void getPoints_AllPiecesCaptured_Returns39() {
         Player player = new Player(Color.WHITE);
 
-        List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "bishop",
-                "bishop", "knight", "knight", "queen", "rook", "rook"));
+        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.BISHOP,
+                PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
 
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));
@@ -64,8 +64,8 @@ public class PlayerTests {
     public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns47() {
         Player player = new Player(Color.WHITE);
 
-        List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "queen",
-                "bishop", "bishop", "knight", "knight", "queen", "rook", "rook"));
+        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.QUEEN,
+                PieceType.BISHOP, PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
 
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));
