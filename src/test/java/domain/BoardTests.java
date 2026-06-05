@@ -329,4 +329,15 @@ public class BoardTests {
         assertEquals(new Location(7,7), kingLocation);
     }
 
+    @Test
+    void findKingLocation_twoKingsFindBlack_returnsx0y0() {
+        Board board = new Board(false);
+        board.setPiece(new Location(0,0), new King(Color.BLACK));
+        board.setPiece(new Location(7,7), new King(Color.WHITE));
+
+        Location kingLocation = board.findKingLocation(Color.BLACK);
+
+        assertEquals(new Location(0,0), kingLocation);
+    }
+
 }
