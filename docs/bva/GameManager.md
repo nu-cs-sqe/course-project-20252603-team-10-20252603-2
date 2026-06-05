@@ -83,7 +83,7 @@
 | 4           | BLACK        | (0,0)                 | (1,0)      | BLACK ROOK        | friendly            | False (board/turn unchanged)                          | yes          |                                         
 | 5           | BLACK        | (2,0) (custom board)  | (6,0)      | BLACK ROOK        | enemy               | True  (board/turn updated, point count updated)       | yes          |                                         
 | 6           | WHITE        | (5,7) (custom board)  | (1,1)      | WHITE QUEEN       | empty               | False (board/turn unchanged, point NOT count updated) | yes          |                                         
-| 7           | BLACK        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | False (board/turn unchanged)                          | no           |                                         
+| 7           | BLACK        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | False (board/turn unchanged)                          | yes          |                                         
 
 
 ### STEPS FOR BVA: `movePiece()`

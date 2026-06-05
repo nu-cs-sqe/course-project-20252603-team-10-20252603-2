@@ -335,4 +335,20 @@ public class GameManagerTests {
 
     }
 
+    @Test
+    public void movePiece_moveWhiteKnightx7y6tox5y5_returnFalse() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+        game.start();
+        game.changeTurns();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        boolean movePiece = game.movePiece(new Location(7,6), new Location(5,5));
+
+        assertFalse(movePiece);
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+
+    }
+
 }
