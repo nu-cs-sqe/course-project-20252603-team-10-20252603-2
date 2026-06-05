@@ -75,15 +75,15 @@
 
 **Method under test: movePiece()**
 
-| Test Number | Current Turn | Location 1            | Location 2 | Piece being moved | Location 2 contents | Expected output                                 | Implemented? |
-|:------------|:-------------|:----------------------|:-----------|:------------------|:--------------------|:------------------------------------------------|:-------------|
-| 1           | WHITE        | (4,0)                 | (5,0)      | null              | empty               | False (board/turn unchanged)                    | yes          |
-| 2           | BLACK        | (0,1)                 | (2,0)      | BLACK KNIGHT      | empty               | True  (board/turn updated)                      | yes          |                                         
-| 3           | WHITE        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | True  (board/turn updated)                      | yes          |                                          
-| 4           | BLACK        | (0,0)                 | (1,0)      | BLACK ROOK        | friendly            | False (board/turn unchanged)                    | yes          |                                         
-| 5           | BLACK        | (2,0) (custom board)  | (6,0)      | BLACK ROOK        | enemy               | True  (board/turn updated, point count updated) | yes          |                                         
-| 6           | WHITE        | (5,7) (custom board)  | (2,1)      | WHITE QUEEN       | empty               | False (board/turn unchanged)                    | no           |                                         
-| 7           | BLACK        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | False (board/turn unchanged)                    | no           |                                         
+| Test Number | Current Turn | Location 1            | Location 2 | Piece being moved | Location 2 contents | Expected output                                       | Implemented? |
+|:------------|:-------------|:----------------------|:-----------|:------------------|:--------------------|:------------------------------------------------------|:-------------|
+| 1           | WHITE        | (4,0)                 | (5,0)      | null              | empty               | False (board/turn unchanged)                          | yes          |
+| 2           | BLACK        | (0,1)                 | (2,0)      | BLACK KNIGHT      | empty               | True  (board/turn updated)                            | yes          |                                         
+| 3           | WHITE        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | True  (board/turn updated)                            | yes          |                                          
+| 4           | BLACK        | (0,0)                 | (1,0)      | BLACK ROOK        | friendly            | False (board/turn unchanged)                          | yes          |                                         
+| 5           | BLACK        | (2,0) (custom board)  | (6,0)      | BLACK ROOK        | enemy               | True  (board/turn updated, point count updated)       | yes          |                                         
+| 6           | WHITE        | (5,7) (custom board)  | (1,1)      | WHITE QUEEN       | empty               | False (board/turn unchanged, point NOT count updated) | no           |                                         
+| 7           | BLACK        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | False (board/turn unchanged)                          | no           |                                         
 
 
 ### STEPS FOR BVA: `movePiece()`
