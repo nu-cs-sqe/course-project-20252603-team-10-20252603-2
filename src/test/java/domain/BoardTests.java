@@ -353,4 +353,17 @@ public class BoardTests {
         assertEquals(new Location(1,1), kingLocation);
     }
 
+    @Test
+    void findKingLocation_movedWhiteKing_returnsx6y7() {
+        Board board = new Board(false);
+        board.setPiece(new Location(7,7), new King(Color.BLACK));
+
+        board.setPiece(new Location(6,7), board.getPiece(new Location(7,7)));
+        board.removePiece(new Location(7,7));
+
+        Location kingLocation = board.findKingLocation(Color.BLACK);
+
+        assertEquals(new Location(6,7), kingLocation);
+    }
+
 }
