@@ -1,10 +1,7 @@
 package domain;
 
 import constants.Color;
-import domain.piece.Pawn;
-import domain.piece.Piece;
-import domain.piece.Queen;
-import domain.piece.Rook;
+import domain.piece.*;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
@@ -241,6 +238,8 @@ public class GameManagerTests {
         boolean movePiece = game.movePiece(new Location(4,0), new Location(5,0));
 
         assertFalse(movePiece);
+        assertNull(game.getBoard().getPiece(new Location(4,0)));
+        assertNull(game.getBoard().getPiece(new Location(5,0)));
         assertEquals(currentPlayer, game.getCurrentPlayer());
 
     }
@@ -252,11 +251,20 @@ public class GameManagerTests {
         game.addPlayer(new Player(Color.WHITE));
         game.start();
         game.changeTurns();
+
         Player currentPlayer = game.getCurrentPlayer();
+        Piece piece = game.getBoard().getPiece(new Location(0,1));
 
         boolean movePiece = game.movePiece(new Location(0,1), new Location(2,0));
 
         assertTrue(movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(0,1)));
+
+        Piece moved = game.getBoard().getPiece(new Location(2,0));
+        assertEquals(PieceType.KNIGHT, moved.getType());
+        assertEquals(Color.BLACK, moved.getColor());
+
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
 
     }
@@ -272,6 +280,13 @@ public class GameManagerTests {
         boolean movePiece = game.movePiece(new Location(7,6), new Location(5,5));
 
         assertTrue(movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(7,6)));
+
+        Piece moved = game.getBoard().getPiece(new Location(5,5));
+        assertEquals(PieceType.KNIGHT, moved.getType());
+        assertEquals(Color.WHITE, moved.getColor());
+
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
 
     }
@@ -288,6 +303,15 @@ public class GameManagerTests {
         boolean movePiece = game.movePiece(new Location(0,0), new Location(1,0));
 
         assertFalse(movePiece);
+
+        Piece notMovedRook = game.getBoard().getPiece(new Location(0,0));
+        assertEquals(PieceType.ROOK, notMovedRook.getType());
+        assertEquals(Color.BLACK, notMovedRook.getColor());
+
+        Piece notMovedPawn = game.getBoard().getPiece(new Location(1,0));
+        assertEquals(PieceType.PAWN, notMovedPawn.getType());
+        assertEquals(Color.BLACK, notMovedPawn.getColor());
+
         assertEquals(currentPlayer, game.getCurrentPlayer());
 
     }
@@ -309,6 +333,13 @@ public class GameManagerTests {
         boolean movePiece = game.movePiece(new Location(2,0), new Location(6,0));
 
         assertTrue(movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(2,0)));
+
+        Piece moved = game.getBoard().getPiece(new Location(6,0));
+        assertEquals(PieceType.ROOK, moved.getType());
+        assertEquals(Color.BLACK, moved.getColor());
+
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
         assertEquals(currentPlayer.getPoints(), 1);
 
@@ -330,6 +361,15 @@ public class GameManagerTests {
         boolean movePiece = game.movePiece(new Location(5,7), new Location(1,1));
 
         assertFalse(movePiece);
+
+        Piece notMovedPawn = game.getBoard().getPiece(new Location(1,1));
+        assertEquals(PieceType.PAWN, notMovedPawn.getType());
+        assertEquals(Color.BLACK, notMovedPawn.getColor());
+
+        Piece notMovedQueen = game.getBoard().getPiece(new Location(5,7));
+        assertEquals(PieceType.QUEEN, notMovedQueen.getType());
+        assertEquals(Color.WHITE, notMovedQueen.getColor());
+
         assertEquals(currentPlayer, game.getCurrentPlayer());
         assertEquals(0, currentPlayer.getPoints());
 
@@ -347,6 +387,13 @@ public class GameManagerTests {
         boolean movePiece = game.movePiece(new Location(7,6), new Location(5,5));
 
         assertFalse(movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(5,5)));
+
+        Piece notMovedKnight = game.getBoard().getPiece(new Location(7,6));
+        assertEquals(PieceType.KNIGHT, notMovedKnight.getType());
+        assertEquals(Color.WHITE, notMovedKnight.getColor());
+
         assertEquals(currentPlayer, game.getCurrentPlayer());
 
     }
