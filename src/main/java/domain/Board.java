@@ -117,6 +117,16 @@ public class Board {
     }
 
     public Location findKingLocation(Color color) {
+        for (int x = 0; x< TOTAL_ROWS; x++) {
+            for (int y = 0; y < TOTAL_COLS; y++) {
+                Piece piece = pieces[x][y];
+                if (piece != null && piece.getType() == PieceType.KING && piece.getColor() == color) {
+                    return new Location(x, y);
+                }
+            }
+        }
+
         return null;
+
     }
 }
