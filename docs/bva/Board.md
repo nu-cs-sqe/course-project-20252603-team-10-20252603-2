@@ -188,7 +188,7 @@
 | 1      | empty board                                                | BLACK      | null            | yes          | 
 | 2      | board with BLACK king at x=0,y=0 and WHITE king at x=7 y=7 | WHITE      | Location(7,7)   | yes          |
 | 3      | board with BLACK king at x=0,y=0 and WHITE king at x=7 y=7 | BLACK      | Location(0,0)   | yes          |
-| 4      | board with BLACK king at x=0,y=0 then moved to x=1 y=1     | BLACK      | Location(1,1)   | no           |
+| 4      | board with BLACK king at x=0,y=0 then moved to x=1 y=1     | BLACK      | Location(1,1)   | yes          |
 | 5      | board with WHITE king at x=7,y=7 then moved to x=6 y=7     | BLACK      | Location(6,7)   | no           |
 
 
