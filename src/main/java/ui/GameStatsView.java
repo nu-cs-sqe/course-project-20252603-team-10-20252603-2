@@ -1,5 +1,7 @@
 package ui;
 
+import domain.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -35,5 +37,9 @@ public class GameStatsView extends JPanel {
         add(player1Label);
         add(player2Label);
         add(currentPlayerLabel);
+    }
+
+    public void updateCurrentPlayer(String name) {
+        currentPlayerLabel.setText("Current Player: " + name);
     }
 }

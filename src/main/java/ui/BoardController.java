@@ -9,6 +9,7 @@ import domain.piece.Piece;
 
 public class BoardController {
     private BoardView boardView;
+    private GameStatsView gameStatsView;
     private GameManager gameManager;
     private Location selectedLocation;
 
@@ -22,6 +23,8 @@ public class BoardController {
     void setBoardView(BoardView boardView) {
         this.boardView = boardView;
     }
+
+    void setGameStatsView(GameStatsView gameStatsView) { this.gameStatsView = gameStatsView; }
 
     public void handleSquareClick(Location location) {
         // TODO
@@ -60,7 +63,11 @@ public class BoardController {
         Location startLocation = selectedLocation;
         selectedLocation = null;
 
-        gameManager.movePiece(startLocation, endLocation);
+        boolean movePiece = gameManager.movePiece(startLocation, endLocation);
+
+        if (movePiece) {
+            gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerColor().toString());
+        }
 
         if (boardView != null) {
             boardView.repaint();

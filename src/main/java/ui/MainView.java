@@ -36,6 +36,8 @@ public final class MainView extends JFrame {
     }
     private void addBoardView() {
         boardController = new BoardController();
+        boardController.setGameStatsView(gameStatsView);
+
         boardView = new BoardView(boardController);
         add(boardView, BorderLayout.CENTER);
     }
