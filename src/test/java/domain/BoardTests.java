@@ -309,4 +309,13 @@ public class BoardTests {
         assertNull(board.getPiece(location));
     }
 
+    @Test
+    void findKingLocation_emptyBoard_returnsNull() {
+        Board board = new Board(false);
+
+        Location kingLocation = board.findKingLocation(Color.BLACK);
+
+        assertNull(kingLocation);
+    }
+
 }

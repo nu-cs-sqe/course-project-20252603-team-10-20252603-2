@@ -115,4 +115,8 @@ public class Board {
         }
         return validPiecesByColor;
     }
+
+    public Location findKingLocation(Color color) {
+        return null;
+    }
 }

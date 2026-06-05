@@ -185,7 +185,7 @@
 
 | Test # | Board state                                                | King color | Expected Output | Implemented? |
 |--------|------------------------------------------------------------|------------|-----------------|--------------|
-| 1      | empty board                                                | BLACK      | null            | no           | 
+| 1      | empty board                                                | BLACK      | null            | yes          | 
 | 2      | board with BLACK king at x=0,y=0 and WHITE king at x=7 y=7 | WHITE      | Location(7,7)   | no           |
 | 3      | board with BLACK king at x=0,y=0 and WHITE king at x=7 y=7 | BLACK      | Location(0,0)   | no           |
 | 4      | board with BLACK king at x=0,y=0 then moved to x=1 y=1     | BLACK      | Location(1,1)   | no           |
