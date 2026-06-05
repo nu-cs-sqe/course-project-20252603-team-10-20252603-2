@@ -115,11 +115,11 @@ public class GameManager {
             return false;
         }
 
-        if (board.isPieceHere(end)) {
-            return false;
-        }
-
         if (pieceToMove.isValidMove(start, end, board)) {
+            if (board.isPieceHere(end)) {
+                Piece capturedPiece = board.getPiece(end);
+                this.currentPlayer.incrementPoints(capturedPiece.getType());
+            }
             board.setPiece(end, pieceToMove);
             board.removePiece(start);
             this.changeTurns();
