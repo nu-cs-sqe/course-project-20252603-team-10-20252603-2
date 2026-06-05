@@ -139,9 +139,14 @@ public final class BoardView extends JPanel {
 
             // FIXME: perform input validation
 
-            repaint();
+            boolean selected = boardController.handleSquareClick(new Location(selectedRow, selectedCol));
 
-            boardController.handleSquareClick(new Location(selectedRow, selectedCol));
+            if (!selected) {
+                selectedCol = -1;
+                selectedRow = -1;
+            }
+
+            repaint();
         }
     }
 }

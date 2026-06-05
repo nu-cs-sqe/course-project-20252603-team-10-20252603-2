@@ -23,35 +23,33 @@ public class BoardController {
 
     void setGameStatsView(GameStatsView gameStatsView) { this.gameStatsView = gameStatsView; }
 
-    public void handleSquareClick(Location location) {
+    public boolean handleSquareClick(Location location) {
         // TODO
         System.out.println("TEST: Square clicked at " + location.getX() + ", " + location.getY());
-        if (boardView == null) {
-            return;
-        }
         if (selectedLocation == null) {
-            handleFirstClick(location);
-        } else {
-            handleSecondClick(location);
+            return handleFirstClick(location);
         }
+        handleSecondClick(location);
+        return false;
 
     }
 
-    public void handleFirstClick(Location location) {
+    public boolean handleFirstClick(Location location) {
         System.out.println("TEST: Square first click at " + location.getX() + ", " + location.getY());
         Board board = gameManager.getBoard();
         if (!board.isPieceHere(location)) {
-            return;
+            return false;
         }
 
         Piece selectedPiece = board.getPiece(location);
         Player currentPlayer = gameManager.getCurrentPlayer();
 
         if (selectedPiece.getColor() != currentPlayer.getPlayerColor()) {
-            return;
+            return false;
         }
 
         selectedLocation = location;
+        return true;
 
     }
 
