@@ -3,6 +3,7 @@ package domain;
 import constants.Color;
 import domain.piece.Pawn;
 import domain.piece.Piece;
+import domain.piece.Queen;
 import domain.piece.Rook;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
@@ -310,6 +311,27 @@ public class GameManagerTests {
         assertTrue(movePiece);
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
         assertEquals(currentPlayer.getPoints(), 1);
+
+    }
+
+    @Test
+    public void movePiece_moveWhiteQueenx5y7tox1y1_returnFalse() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player(Color.WHITE));
+        game.start();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        Queen piece = new Queen(Color.WHITE);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(5,7), piece);
+        game.setBoard(updatedBoard);
+
+        boolean movePiece = game.movePiece(new Location(5,7), new Location(1,1));
+
+        assertFalse(movePiece);
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+        assertEquals(0, currentPlayer.getPoints());
 
     }
 
