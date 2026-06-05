@@ -141,7 +141,7 @@ public final class BoardView extends JPanel {
 
             repaint();
 
-            boardController.handleSquareClick(new Location(selectedCol, selectedRow));
+            boardController.handleSquareClick(new Location(selectedRow, selectedCol));
         }
     }
 }
