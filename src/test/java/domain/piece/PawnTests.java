@@ -293,37 +293,24 @@ public class PawnTests {
     }
 
     @Test
-    public void hasValidMoves_PawnTrapped_returnsFalse() {
-        // mocking for now because isInCheck() still needs to be implemented
-        Piece pawn = new Pawn(Color.WHITE);
+    public void hasValidMoves_pawnTrapped_returnsFalse() {
+        Board board = new Board(false);
 
-        King mockedKing = EasyMock.createMock(King.class);
+        Piece pawn = new Pawn(Color.WHITE);
+        King realKing = new King(Color.WHITE);
         Piece rook = new Rook(Color.BLACK);
 
-        Location location = new Location(7, 1);
+        Location pawnLocation = new Location(7, 1);
         Location kingLocation = new Location(7, 0);
         Location rookLocation = new Location(7, 7);
 
-        EasyMock.expect(mockedKing.getType()).andReturn(PieceType.KING).anyTimes();
-        EasyMock.expect(mockedKing.getColor()).andReturn(Color.WHITE).anyTimes();
-
-        EasyMock.expect(mockedKing.makeCopy()).andReturn(mockedKing).anyTimes();
-
-        EasyMock.expect(mockedKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.isA(Board.class)))
-                .andReturn(true).anyTimes();
-
-        EasyMock.replay(mockedKing);
-
-        Board board = new Board(false);
-        board.setPiece(location, pawn);
-        board.setPiece(kingLocation, mockedKing);
+        board.setPiece(pawnLocation, pawn);
+        board.setPiece(kingLocation, realKing);
         board.setPiece(rookLocation, rook);
 
-        boolean result = pawn.hasValidMoves(location, board);
+        boolean result = pawn.hasValidMoves(pawnLocation, board);
 
         assertFalse(result);
-
-        EasyMock.verify(mockedKing);
     }
 }
 
