@@ -235,9 +235,9 @@ public class GameManagerTests {
         game.start();
         Player currentPlayer = game.getCurrentPlayer();
 
-        boolean movePiece = game.movePiece(new Location(4,0), new Location(5,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(4,0), new Location(5,0));
 
-        assertFalse(movePiece);
+        assertEquals(GameManager.MoveResult.NO_PIECE_SELECTED, movePiece);
         assertNull(game.getBoard().getPiece(new Location(4,0)));
         assertNull(game.getBoard().getPiece(new Location(5,0)));
         assertEquals(currentPlayer, game.getCurrentPlayer());
@@ -255,9 +255,9 @@ public class GameManagerTests {
         Player currentPlayer = game.getCurrentPlayer();
         Piece piece = game.getBoard().getPiece(new Location(0,1));
 
-        boolean movePiece = game.movePiece(new Location(0,1), new Location(2,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(0,1), new Location(2,0));
 
-        assertTrue(movePiece);
+        assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
 
         assertNull(game.getBoard().getPiece(new Location(0,1)));
 
@@ -277,9 +277,9 @@ public class GameManagerTests {
         game.start();
         Player currentPlayer = game.getCurrentPlayer();
 
-        boolean movePiece = game.movePiece(new Location(7,6), new Location(5,5));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(7,6), new Location(5,5));
 
-        assertTrue(movePiece);
+        assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
 
         assertNull(game.getBoard().getPiece(new Location(7,6)));
 
@@ -300,9 +300,9 @@ public class GameManagerTests {
         game.changeTurns();
         Player currentPlayer = game.getCurrentPlayer();
 
-        boolean movePiece = game.movePiece(new Location(0,0), new Location(1,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(0,0), new Location(1,0));
 
-        assertFalse(movePiece);
+        assertEquals(GameManager.MoveResult.INVALID_MOVE, movePiece);
 
         Piece notMovedRook = game.getBoard().getPiece(new Location(0,0));
         assertEquals(PieceType.ROOK, notMovedRook.getType());
@@ -330,9 +330,9 @@ public class GameManagerTests {
         updatedBoard.setPiece(new Location(2,0), piece);
         game.setBoard(updatedBoard);
 
-        boolean movePiece = game.movePiece(new Location(2,0), new Location(6,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(2,0), new Location(6,0));
 
-        assertTrue(movePiece);
+        assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
 
         assertNull(game.getBoard().getPiece(new Location(2,0)));
 
@@ -358,9 +358,9 @@ public class GameManagerTests {
         updatedBoard.setPiece(new Location(5,7), piece);
         game.setBoard(updatedBoard);
 
-        boolean movePiece = game.movePiece(new Location(5,7), new Location(1,1));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(5,7), new Location(1,1));
 
-        assertFalse(movePiece);
+        assertEquals(GameManager.MoveResult.INVALID_MOVE, movePiece);
 
         Piece notMovedPawn = game.getBoard().getPiece(new Location(1,1));
         assertEquals(PieceType.PAWN, notMovedPawn.getType());
@@ -384,9 +384,9 @@ public class GameManagerTests {
         game.changeTurns();
         Player currentPlayer = game.getCurrentPlayer();
 
-        boolean movePiece = game.movePiece(new Location(7,6), new Location(5,5));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(7,6), new Location(5,5));
 
-        assertFalse(movePiece);
+        assertEquals(GameManager.MoveResult.WRONG_PLAYER_PIECE, movePiece);
 
         assertNull(game.getBoard().getPiece(new Location(5,5)));
 

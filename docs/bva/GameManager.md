@@ -75,15 +75,15 @@
 
 **Method under test: movePiece()**
 
-| Test Number | Current Turn | Location 1            | Location 2 | Piece being moved | Location 2 contents | Expected output                                       | Implemented? |
-|:------------|:-------------|:----------------------|:-----------|:------------------|:--------------------|:------------------------------------------------------|:-------------|
-| 1           | WHITE        | (4,0)                 | (5,0)      | null              | empty               | False (board/turn unchanged)                          | yes          |
-| 2           | BLACK        | (0,1)                 | (2,0)      | BLACK KNIGHT      | empty               | True  (board/turn updated)                            | yes          |                                         
-| 3           | WHITE        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | True  (board/turn updated)                            | yes          |                                          
-| 4           | BLACK        | (0,0)                 | (1,0)      | BLACK ROOK        | friendly            | False (board/turn unchanged)                          | yes          |                                         
-| 5           | BLACK        | (2,0) (custom board)  | (6,0)      | BLACK ROOK        | enemy               | True  (board/turn updated, point count updated)       | yes          |                                         
-| 6           | WHITE        | (5,7) (custom board)  | (1,1)      | WHITE QUEEN       | empty               | False (board/turn unchanged, point NOT count updated) | yes          |                                         
-| 7           | BLACK        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | False (board/turn unchanged)                          | yes          |                                         
+| Test Number | Current Turn | Location 1            | Location 2 | Piece being moved | Location 2 contents | Expected output                                                              | Implemented? |
+|:------------|:-------------|:----------------------|:-----------|:------------------|:--------------------|:-----------------------------------------------------------------------------|:-------------|
+| 1           | WHITE        | (4,0)                 | (5,0)      | null              | empty               | MoveResult.NO_PIECE_SELECTED (board/turn unchanged)                          | yes          |
+| 2           | BLACK        | (0,1)                 | (2,0)      | BLACK KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated)                                     | yes          |                                         
+| 3           | WHITE        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated)                                     | yes          |                                          
+| 4           | BLACK        | (0,0)                 | (1,0)      | BLACK ROOK        | friendly            | MoveResult.INVALID_MOVE (board/turn unchanged)                               | yes          |                                         
+| 5           | BLACK        | (2,0) (custom board)  | (6,0)      | BLACK ROOK        | enemy               | MoveResult.SUCCESS  (board/turn updated, point count updated)                | yes          |                                         
+| 6           | WHITE        | (5,7) (custom board)  | (1,1)      | WHITE QUEEN       | empty               | MoveResult.INVALID_MOVE (board/turn unchanged, point NOT count updated)      | yes          |                                         
+| 7           | BLACK        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.WRONG_PLAYER_PIECE (board/turn unchanged)                         | yes          |                                         
 
 
 ### STEPS FOR BVA: `movePiece()`
@@ -96,7 +96,8 @@
   * location 2
   * State of location 2
 * Output:
-  * A yes or no answer (could we move the piece)
+  * A varying output that tells me if the piece move was successful or, if not, what the problem was
+    * e.g. no piece selected, wrong player's piece selected, invalid move, success, pawn must be promoted
   * Side effects:
     * board state updated/unchanged
     * turn changed/unchanged
@@ -109,7 +110,7 @@
   * Location 2: array indices
   * State of location 2: cases
 * Output
-  * Yes/no: Boolean (T/F)
+  * move result: cases:
   * Side effects: cases
 3. Values
 * Input:
@@ -138,7 +139,12 @@
     * friendly square
     * enemy square
 * Output
-  * Boolean (T/F)
+  * move result: cases:
+    * NO_PIECE_SELECTED
+    * WRONG_PLAYER_PIECE
+    * INVALID_MOVE
+    * SUCCESS
+    * PROMOTION_REQUIRED
   * Side effects: cases
     * board state updated/unchanged
     * turn changed/unchanged
