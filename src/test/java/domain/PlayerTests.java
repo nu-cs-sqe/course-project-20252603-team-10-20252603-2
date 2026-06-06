@@ -35,7 +35,7 @@ public class PlayerTests {
 
     @Test
     public void getPoints_capturedPawn_returnsOne() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player(Color.BLACK);
         player.incrementPoints("pawn");
 
         int actual = player.getPoints();
@@ -53,7 +53,7 @@ public class PlayerTests {
 
     @Test
     public void getPoints_allPiecesCaptured_returns39() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player(Color.BLACK);
 
         List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "bishop",
                 "bishop", "knight", "knight", "queen", "rook", "rook"));
@@ -83,7 +83,7 @@ public class PlayerTests {
 
     @Test
     public void isInCheck_returnsFalse() {
-        Player player = new Player(Color.WHITE);
+        Player player = new Player(Color.BLACK);
         boolean isInCheck = player.isInCheck();
 
         assertFalse(isInCheck);
