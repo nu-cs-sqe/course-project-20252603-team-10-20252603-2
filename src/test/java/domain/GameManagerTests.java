@@ -151,4 +151,12 @@ public class GameManagerTests {
 
         assertFalse(game.isGameOver());
     }
+
+    @Test
+    public void isGameOver_DrawConditionMet_ReturnsTrue() {
+        for (int i = 0; i < 50; i++) {
+            game.incrementDrawCounter();
+        }
+        assertTrue(game.isGameOver());
+    }
 }
