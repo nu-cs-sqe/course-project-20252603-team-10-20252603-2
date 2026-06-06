@@ -154,16 +154,16 @@
 
 **Method under test: promotePawn()**
 
-| Test Number | PIECE        | Location | Replace with | Expected output                                        | Implemented? |
-|:------------|:-------------|:---------|:-------------|:-------------------------------------------------------|:-------------|
-| 1           | WHITE PAWN   | (0,0)    | QUEEN        | white pawn replaced with white queen                   | yes          |
-| 2           | BLACK PAWN   | (7,7)    | QUEEN        | black pawn replaced with black queen                   | yes          |
-| 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                  | yes          |
-| 4           | WHITE PAWN   | (0,0)    | BISHOP       | white pawn replaced with white bishop                  | yes          |
-| 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                    | yes          |
-| 6           | null         | (0,0)    | ROOK         | IllegalArgumentException (cannot upgrade null)         | no           |
-| 7           | BLACK KNIGHT | (7,7)    | QUEEN        | IllegalArgumentException (cannot upgrade non pawn)     | no           |
-| 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException (invalid piece to promote to) | no           |
+| Test Number | PIECE        | Location | Replace with | Expected output                                                  | Implemented? |
+|:------------|:-------------|:---------|:-------------|:-----------------------------------------------------------------|:-------------|
+| 1           | WHITE PAWN   | (0,0)    | QUEEN        | white pawn replaced with white queen                             | yes          |
+| 2           | BLACK PAWN   | (7,7)    | QUEEN        | black pawn replaced with black queen                             | yes          |
+| 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                            | yes          |
+| 4           | WHITE PAWN   | (0,0)    | BISHOP       | white pawn replaced with white bishop                            | yes          |
+| 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                              | yes          |
+| 6           | null         | (0,0)    | ROOK         | IllegalArgumentException ("Piece is not eligible for promotion") | yes          |
+| 7           | BLACK KNIGHT | (7,7)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion") | no           |
+| 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException (invalid piece to promote to)           | no           |
 
 
 ### STEPS FOR BVA: `promotePawn()`

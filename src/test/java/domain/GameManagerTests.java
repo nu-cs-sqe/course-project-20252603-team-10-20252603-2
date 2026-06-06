@@ -528,4 +528,23 @@ public class GameManagerTests {
 
     }
 
+    @Test
+    public void promotePawn_nullToRook_throwIllegalArgException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Board updatedBoard = game.getBoard();
+        updatedBoard.removePiece(new Location(0,0));
+        game.setBoard(updatedBoard);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            game.promotePawn(new Location(0,0), PieceType.ROOK);
+        });
+
+        assertTrue(exception.getMessage().contains("Piece is not eligible for promotion."));
+
+    }
+
 }

@@ -119,6 +119,11 @@ public class GameManager {
     }
 
     private boolean isPromotionMove(Piece piece, Location location) {
+
+        if (piece == null) {
+            return false;
+        }
+
         if (piece.getType() != PieceType.PAWN) {
             return false;
         }
@@ -164,10 +169,14 @@ public class GameManager {
         return MoveResult.INVALID_MOVE;
     }
 
-//    TODO: BVA and fleshed out implementation (basic version implemented for end-to-end pawn promotion GUI)
     public void promotePawn(Location location, PieceType newType) {
-        Piece pawn = board.getPiece(location);
-        Color color = pawn.getColor();
+        Piece piece = board.getPiece(location);
+
+        if (!isPromotionMove(piece, location)) {
+            throw new IllegalArgumentException("Piece is not eligible for promotion.");
+        }
+
+        Color color = piece.getColor();
 
         switch(newType) {
             case QUEEN:
