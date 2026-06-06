@@ -2,11 +2,9 @@ package domain;
 
 import constants.Color;
 import domain.piece.*;
-import org.easymock.EasyMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameManagerTests {
@@ -24,7 +22,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void start_WithZeroPlayers_ThrowsException() {
+    public void start_withZeroPlayers_throwsException() {
         GameManager newGame = new GameManager();
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
@@ -36,7 +34,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void start_WithOnePlayer_ThrowsException() {
+    public void start_withOnePlayer_throwsException() {
         GameManager newGame = new GameManager();
         newGame.addPlayer(new Player(Color.BLACK));
 
@@ -49,7 +47,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void start_WithThreePlayers_ThrowsException() {
+    public void start_withThreePlayers_throwsException() {
         GameManager newGame = new GameManager();
         newGame.addPlayer(new Player(Color.BLACK));
         newGame.addPlayer(new Player(Color.WHITE));
@@ -63,13 +61,13 @@ public class GameManagerTests {
     }
 
     @Test
-    public void start_WithTwoPlayers_IsSuccessful() {
+    public void start_withPlayers_isSuccessful() {
         assertDoesNotThrow(() -> game.start());
         assertTrue(game.isGameRunning());
     }
 
     @Test
-    public void start_WithTwoPlayersOfTheSameColor_ThrowsException() {
+    public void start_withPlayersOfTheSameColor_throwsException() {
         GameManager newGame = new GameManager();
         newGame.addPlayer(new Player(Color.BLACK));
         newGame.addPlayer(new Player(Color.BLACK));
@@ -83,7 +81,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void changeTurns_StartsWithWhite_IsTrue() {
+    public void changeTurns_startsWithWhite_isTrue() {
         Color actual = game.getCurrentPlayer().getPlayerColor();
         Color expected = Color.WHITE;
 
@@ -91,7 +89,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void changeTurns_WhiteToBlack_IsSuccessful() {
+    public void changeTurns_whiteToBlack_isSuccessful() {
         game.changeTurns();
 
         Color actual = game.getCurrentPlayer().getPlayerColor();
@@ -101,7 +99,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void changeTurns_BlackToWhite_IsSuccessful() {
+    public void changeTurns_blackToWhite_isSuccessful() {
         game.changeTurns();
         game.changeTurns();
 
@@ -112,7 +110,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void changeTurns_Draw_ThrowsException() {
+    public void changeTurns_draw_throwsException() {
         for (int i = 0; i < 50; i++) {
             game.incrementDrawCounter();
         }
@@ -124,7 +122,7 @@ public class GameManagerTests {
         assertTrue(exception.getMessage().contains("Game is a draw."));
     }
     @Test
-    public void isGameOver_CheckmateCondition_ReturnsTrue() {
+    public void isGameOver_checkmateCondition_returnsTrue() {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
         board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
         board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
@@ -134,7 +132,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isGameOver_StalemateCondition_ReturnsTrue() {
+    public void isGameOver_stalemateCondition_returnsTrue() {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
         board.setPiece(new Location(1, 2), new Queen(Color.BLACK));
         board.setPiece(new Location(2, 1), new King(Color.BLACK));
@@ -144,7 +142,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isGameOver_NormalGamePlayContinue_ReturnsFalse() {
+    public void isGameOver_normalGamePlayContinue_returnsFalse() {
         board.setPiece(new Location(4, 4), new King(Color.WHITE));
         board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
         game.setBoard(board);
@@ -153,7 +151,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isGameOver_DrawConditionMet_ReturnsTrue() {
+    public void isGameOver_drawConditionMet_returnsTrue() {
         for (int i = 0; i < 50; i++) {
             game.incrementDrawCounter();
         }
@@ -161,7 +159,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isStalemate_NotInCheckZeroMoves_ReturnsTrue() {
+    public void isStalemate_notInCheckZeroMoves_returnsTrue() {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
         board.setPiece(new Location(1, 2), new Queen(Color.BLACK));
         board.setPiece(new Location(2, 1), new King(Color.BLACK));
@@ -171,7 +169,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isStalemate_NotInCheckOneMove_ReturnsFalse() {
+    public void isStalemate_notInCheckOneMove_returnsFalse() {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
 
         board.setPiece(new Location(1, 0), new Pawn(Color.WHITE));
@@ -181,7 +179,7 @@ public class GameManagerTests {
         assertFalse(game.isStalemate());
     }
     @Test
-    public void isStalemate_InCheckZeroMoves_ReturnsFalse() {
+    public void isStalemate_inCheckZeroMoves_returnsFalse() {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
         board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
         board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
@@ -190,7 +188,7 @@ public class GameManagerTests {
         assertFalse(game.isStalemate());
     }
     @Test
-    public void isStalemate_NotInCheckMultipleMoves_ReturnsFalse() {
+    public void isStalemate_notInCheckMultipleMoves_returnsFalse() {
         Board standardBoard = new Board(true);
 
         standardBoard.removePiece(new Location(5, 4));
@@ -202,7 +200,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isCheckmate_InCheckZeroMoves_ReturnsTrue() {
+    public void isCheckmate_inCheckZeroMoves_returnsTrue() {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
         board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
         board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
@@ -212,7 +210,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isCheckmate_InCheckOneMove_ReturnsFalse() {
+    public void isCheckmate_inCheckOneMove_returnsFalse() {
         Board standardBoard = new Board(true);
 
         game.setBoard(standardBoard);
@@ -221,7 +219,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isCheckmate_NotInCheckAtLeastOneMove_ReturnsFalse() {
+    public void isCheckmate_notInCheckAtLeastOneMove_returnsFalse() {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
         board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
         game.setBoard(board);

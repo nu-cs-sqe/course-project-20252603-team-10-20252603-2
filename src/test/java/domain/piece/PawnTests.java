@@ -223,7 +223,7 @@ public class PawnTests {
     }
 
     @Test
-    public void hasValidMoves_Pawn_NotBlocked_ReturnsTrue() {
+    public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
         Piece pawn = new Pawn(Color.WHITE);
 
         Location location = new Location(6, 0);
@@ -237,7 +237,7 @@ public class PawnTests {
     }
 
     @Test
-    public void hasValidMoves_PawnBlockedVertically_ReturnsFalse() {
+    public void hasValidMoves_PawnBlockedVertically_returnsFalse() {
         Piece pawn = new Pawn(Color.WHITE);
         Piece enemyPawn = new Pawn(Color.BLACK);
         Piece friendlyPawn = new Pawn(Color.WHITE);
@@ -258,7 +258,7 @@ public class PawnTests {
 
 
     @Test
-    public void hasValidMoves_PawnBlockedDiagonally_ReturnsTrue() {
+    public void hasValidMoves_PawnBlockedDiagonally_returnsTrue() {
         Piece pawn = new Pawn(Color.BLACK);
         Piece enemyPawn = new Pawn(Color.WHITE);
         Piece friendlyPawn = new Pawn(Color.BLACK);
@@ -278,7 +278,7 @@ public class PawnTests {
     }
 
     @Test
-    public void hasValidMoves_PawnAtEdge_ReturnsFalse() {
+    public void hasValidMoves_PawnAtEdge_returnsFalse() {
         Piece pawn = new Pawn(Color.BLACK);
 
         Location location = new Location(7, 3);
@@ -293,7 +293,7 @@ public class PawnTests {
     }
 
     @Test
-    public void hasValidMoves_PawnTrapped_ReturnsFalse() {
+    public void hasValidMoves_PawnTrapped_returnsFalse() {
         // mocking for now because isInCheck() still needs to be implemented
         Piece pawn = new Pawn(Color.WHITE);
 
