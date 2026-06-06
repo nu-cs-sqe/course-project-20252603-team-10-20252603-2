@@ -228,7 +228,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void movePiece_nullLoc1_returnFalse() {
+    public void movePiece_nullLoc1_returnNO_PIECE_SELECTED() {
         GameManager game = new GameManager();
         game.addPlayer(new Player("Player1", Color.BLACK));
         game.addPlayer(new Player("Player2", Color.WHITE));
@@ -245,7 +245,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void movePiece_moveBlackKnightx0y1tox2y0_returnTrue() {
+    public void movePiece_moveBlackKnightx0y1tox2y0_returnSUCCESS() {
         GameManager game = new GameManager();
         game.addPlayer(new Player("Player1", Color.BLACK));
         game.addPlayer(new Player("Player2", Color.WHITE));
@@ -270,7 +270,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void movePiece_moveWhiteKnightx7y6tox5y5_returnTrue() {
+    public void movePiece_moveWhiteKnightx7y6tox5y5_returnSUCCESS() {
         GameManager game = new GameManager();
         game.addPlayer(new Player("Player1", Color.BLACK));
         game.addPlayer(new Player("Player2", Color.WHITE));
@@ -292,7 +292,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void movePiece_moveBlackRookx0y0tox1y0_returnFalse() {
+    public void movePiece_moveBlackRookx0y0tox1y0_returnINVALID_MOVE() {
         GameManager game = new GameManager();
         game.addPlayer(new Player("Player1", Color.BLACK));
         game.addPlayer(new Player("Player2", Color.WHITE));
@@ -317,7 +317,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void movePiece_moveBlackRookx2y0tox6y0_returnTrue() {
+    public void movePiece_moveBlackRookx2y0tox6y0_returnSUCCESS() {
         GameManager game = new GameManager();
         game.addPlayer(new Player("Player1", Color.BLACK));
         game.addPlayer(new Player("Player2", Color.WHITE));
@@ -346,7 +346,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void movePiece_moveWhiteQueenx5y7tox1y1_returnFalse() {
+    public void movePiece_moveWhiteQueenx5y7tox1y1_returnINVALID_MOVE() {
         GameManager game = new GameManager();
         game.addPlayer(new Player("Player1", Color.BLACK));
         game.addPlayer(new Player("Player2", Color.WHITE));
@@ -376,7 +376,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void movePiece_moveWhiteKnightx7y6tox5y5_returnFalse() {
+    public void movePiece_moveWhiteKnightx7y6tox5y5_returnWRONG_PLAYER_PIECE() {
         GameManager game = new GameManager();
         game.addPlayer(new Player("Player1", Color.BLACK));
         game.addPlayer(new Player("Player2", Color.WHITE));
