@@ -1,7 +1,7 @@
 package domain;
 
 import constants.Color;
-import domain.piece.Piece;
+import domain.piece.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,9 @@ public class GameManager {
     private Player currentPlayer;
     private int consecutiveDrawMoves = 0;
     private Board board;
+
+    private static final int WHITE_PROMOTION_ROW = 0;
+    private static final int BLACK_PROMOTION_ROW = 7;
 
     public void incrementDrawCounter() {
         this.consecutiveDrawMoves++;
@@ -107,16 +110,37 @@ public class GameManager {
         return false;
     }
 
-    public boolean movePiece(Location start, Location end) {
-        if (!board.isPieceHere(start)) {
+    public enum MoveResult {
+        INVALID_MOVE,
+        NO_PIECE_SELECTED,
+        WRONG_PLAYER_PIECE,
+        SUCCESS,
+        PROMOTION_REQUIRED,
+    }
+
+    private boolean isPromotionMove(Piece piece, Location location) {
+        if (piece.getType() != PieceType.PAWN) {
             return false;
+        }
+
+        if (piece.getColor() == Color.BLACK) {
+            return location.getX() == BLACK_PROMOTION_ROW;
+        }
+
+        return location.getX() == WHITE_PROMOTION_ROW;
+
+    }
+
+    public MoveResult movePiece(Location start, Location end) {
+        if (!board.isPieceHere(start)) {
+            return MoveResult.NO_PIECE_SELECTED;
         }
 
         Piece pieceToMove = this.board.getPiece(start);
         Player currentPlayer = this.currentPlayer;
 
         if (pieceToMove.getColor() != currentPlayer.getPlayerColor()) {
-            return false;
+            return MoveResult.WRONG_PLAYER_PIECE;
         }
 
         if (pieceToMove.isValidMove(start, end, board)) {
@@ -124,12 +148,45 @@ public class GameManager {
                 Piece capturedPiece = board.getPiece(end);
                 this.currentPlayer.incrementPoints(capturedPiece.getType());
             }
+
             board.setPiece(end, pieceToMove);
             board.removePiece(start);
+
+            if (isPromotionMove(pieceToMove, end)) {
+                return MoveResult.PROMOTION_REQUIRED;
+            }
+
             this.changeTurns();
-            return true;
+            return MoveResult.SUCCESS;
+
         }
 
-        return false;
+        return MoveResult.INVALID_MOVE;
     }
+
+//    TODO: BVA and fleshed out implementation (basic version implemented for end-to-end pawn promotion GUI)
+    public void promotePawn(Location location, PieceType newType) {
+        Piece pawn = board.getPiece(location);
+        Color color = pawn.getColor();
+
+        switch(newType) {
+            case QUEEN:
+                board.setPiece(location, new Queen(color));
+                break;
+            case ROOK:
+                board.setPiece(location, new Rook(color));
+                break;
+            case BISHOP:
+                board.setPiece(location, new Bishop(color));
+                break;
+            case KNIGHT:
+                board.setPiece(location, new Knight(color));
+                break;
+
+        }
+
+    }
+
+
+
 }

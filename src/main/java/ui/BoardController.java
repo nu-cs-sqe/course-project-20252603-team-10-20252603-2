@@ -6,6 +6,9 @@ import domain.GameManager;
 import domain.Location;
 import domain.Player;
 import domain.piece.Piece;
+import domain.piece.PieceType;
+
+import javax.swing.*;
 
 public class BoardController {
     private BoardView boardView;
@@ -24,8 +27,6 @@ public class BoardController {
     void setGameStatsView(GameStatsView gameStatsView) { this.gameStatsView = gameStatsView; }
 
     public boolean handleSquareClick(Location location) {
-        // TODO
-        System.out.println("TEST: Square clicked at " + location.getX() + ", " + location.getY());
         if (selectedLocation == null) {
             return handleFirstClick(location);
         }
@@ -35,7 +36,6 @@ public class BoardController {
     }
 
     public boolean handleFirstClick(Location location) {
-        System.out.println("TEST: Square first click at " + location.getX() + ", " + location.getY());
         Board board = gameManager.getBoard();
         if (!board.isPieceHere(location)) {
             return false;
@@ -54,15 +54,70 @@ public class BoardController {
     }
 
     public void handleSecondClick(Location endLocation) {
-        System.out.println("TEST: Square second click at " + endLocation.getX() + ", " + endLocation.getY());
         Location startLocation = selectedLocation;
         selectedLocation = null;
 
-        boolean movePiece = gameManager.movePiece(startLocation, endLocation);
+        GameManager.MoveResult result = gameManager.movePiece(startLocation, endLocation);
 
-        if (movePiece) {
-            gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerName());
-            gameStatsView.updatePoints(gameManager.getWhitePlayer(), gameManager.getBlackPlayer());
+        switch (result) {
+            case SUCCESS:
+                gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerName());
+                gameStatsView.updatePoints(gameManager.getWhitePlayer(), gameManager.getBlackPlayer());
+                break;
+            case PROMOTION_REQUIRED:
+                PieceType[] options = {
+                        PieceType.QUEEN,
+                        PieceType.KNIGHT,
+                        PieceType.ROOK,
+                        PieceType.BISHOP,
+                };
+
+                PieceType choice = (PieceType) JOptionPane.showInputDialog(
+                        boardView,
+                        "Select a piece for promotion.",
+                        "Pawn promotion",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        PieceType.QUEEN
+                );
+
+                if (choice != null) {
+                    gameManager.promotePawn(endLocation, choice);
+                } else {
+                    gameManager.promotePawn(endLocation, PieceType.QUEEN);
+                }
+
+                gameManager.changeTurns();
+                gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerName());
+                gameStatsView.updatePoints(gameManager.getWhitePlayer(), gameManager.getBlackPlayer());
+
+                break;
+            case INVALID_MOVE:
+                JOptionPane.showMessageDialog(
+                        boardView,
+                        "That move is not legal.",
+                        "Invalid Move",
+                        JOptionPane.WARNING_MESSAGE
+                        );
+                break;
+            case WRONG_PLAYER_PIECE:
+                JOptionPane.showMessageDialog(
+                        boardView,
+                        "You cannot move a piece that's not on your team.",
+                        "Wrong player piece",
+                        JOptionPane.WARNING_MESSAGE
+                        );
+                break;
+            case NO_PIECE_SELECTED:
+                JOptionPane.showMessageDialog(
+                        boardView,
+                        "You haven't selected a piece. Try again.",
+                        "No piece selected",
+                        JOptionPane.WARNING_MESSAGE
+                        );
+                break;
+
         }
 
         if (boardView != null) {
