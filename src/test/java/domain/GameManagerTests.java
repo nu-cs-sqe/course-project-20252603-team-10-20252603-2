@@ -142,4 +142,13 @@ public class GameManagerTests {
 
         assertTrue(game.isGameOver());
     }
+
+    @Test
+    public void isGameOver_NormalGamePlayContinue_ReturnsFalse() {
+        board.setPiece(new Location(4, 4), new King(Color.WHITE));
+        board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
+        game.setBoard(board);
+
+        assertFalse(game.isGameOver());
+    }
 }
