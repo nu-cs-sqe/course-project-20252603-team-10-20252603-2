@@ -228,4 +228,6 @@ public class GameManagerTests {
 
         assertFalse(game.isCheckmate());
     }
+
+    // TODO: last two tests of isCheckmate is waiting on King's hasValidMoves() implementation
 }

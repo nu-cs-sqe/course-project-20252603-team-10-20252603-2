@@ -71,27 +71,6 @@
   * isInCheck() && hasValidMoves() > 1 --> FALSE
   * !isInCheck() && hasValidMoves() == 0 --> FALSE
 
-**Method under test: findKingLocation()**
-
-|             | System under test                 | Expected output | Implemented? |
-|:------------|:----------------------------------|:----------------|:-------------|
-| Test Case 1 | King at [0][0]                    | Location(0,0)   | no           |
-| Test Case 2 | King at [7][7]                    | Location(7,7)   | no          |
-| Test Case 3 | King at [4][4]                    | Location(4,4)   | no          |
-| Test Case 4 | King does not exist on the board. | null            | no          |
-
-### STEPS FOR BVA: `findKingLocation()`
-1. Data Types
-* Input:
-  * Location[][]
-* Output: boolean
-2. Test Cases
-* All combinations
-  * King at [0][0]
-  * King at [7][7]
-  * King at [4][4]
-  * King does not exist
-
 **Method under test: isStalemate()**
 
 |             | System under test                                 | Expected output                          | Implemented? |
