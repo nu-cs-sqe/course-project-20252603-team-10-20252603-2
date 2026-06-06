@@ -210,4 +210,13 @@ public class GameManagerTests {
 
         assertTrue(game.isCheckmate());
     }
+
+    @Test
+    public void isCheckmate_InCheckOneMove_ReturnsFalse() {
+        Board standardBoard = new Board(true);
+
+        game.setBoard(standardBoard);
+
+        assertFalse(game.isCheckmate());
+    }
 }
