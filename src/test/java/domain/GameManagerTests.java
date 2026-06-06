@@ -169,4 +169,15 @@ public class GameManagerTests {
 
         assertTrue(game.isStalemate());
     }
+
+    @Test
+    public void isStalemate_NotInCheckOneMove_ReturnsFalse() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+
+        board.setPiece(new Location(1, 0), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
+        game.setBoard(board);
+
+        assertFalse(game.isStalemate());
+    }
 }
