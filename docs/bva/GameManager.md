@@ -158,7 +158,7 @@
 |:------------|:-------------|:---------|:-------------|:-------------------------------------------------------|:-------------|
 | 1           | WHITE PAWN   | (0,0)    | QUEEN        | white pawn replaced with white queen                   | yes          |
 | 2           | BLACK PAWN   | (7,7)    | QUEEN        | black pawn replaced with black queen                   | yes          |
-| 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                  | no           |
+| 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                  | yes          |
 | 4           | WHITE PAWN   | (0,0)    | BISHOP       | white pawn replaced with white bishop                  | no           |
 | 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                    | no           |
 | 6           | null         | (0,0)    | ROOK         | IllegalArgumentException (cannot upgrade null)         | no           |
