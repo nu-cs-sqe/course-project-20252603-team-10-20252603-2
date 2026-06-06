@@ -191,6 +191,8 @@ public class GameManager {
             case KNIGHT:
                 board.setPiece(location, new Knight(color));
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid promotion piece.");
 
         }
 

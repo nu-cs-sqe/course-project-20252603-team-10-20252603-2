@@ -163,7 +163,7 @@
 | 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                              | yes          |
 | 6           | null         | (0,0)    | ROOK         | IllegalArgumentException ("Piece is not eligible for promotion") | yes          |
 | 7           | BLACK KNIGHT | (7,7)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion") | yes          |
-| 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException (invalid piece to promote to)           | no           |
+| 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException ("Invalid promotion piece")             | yes          |
 
 
 ### STEPS FOR BVA: `promotePawn()`
