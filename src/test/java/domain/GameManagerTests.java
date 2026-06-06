@@ -448,4 +448,24 @@ public class GameManagerTests {
 
     }
 
+    @Test
+    public void promotePawn_blackPawnToQueen_pawnPromoted() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Pawn piece = new Pawn(Color.BLACK);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(7,7), piece);
+        game.setBoard(updatedBoard);
+
+        game.promotePawn(new Location(7,7), PieceType.QUEEN);
+
+        Piece promoted = game.getBoard().getPiece(new Location(7,7));
+        assertEquals(PieceType.QUEEN, promoted.getType());
+        assertEquals(Color.BLACK, promoted.getColor());
+
+    }
+
 }
