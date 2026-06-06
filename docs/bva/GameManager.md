@@ -160,7 +160,7 @@
 | 2           | BLACK PAWN   | (7,7)    | QUEEN        | black pawn replaced with black queen                   | yes          |
 | 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                  | yes          |
 | 4           | WHITE PAWN   | (0,0)    | BISHOP       | white pawn replaced with white bishop                  | yes          |
-| 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                    | no           |
+| 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                    | yes          |
 | 6           | null         | (0,0)    | ROOK         | IllegalArgumentException (cannot upgrade null)         | no           |
 | 7           | BLACK KNIGHT | (7,7)    | QUEEN        | IllegalArgumentException (cannot upgrade non pawn)     | no           |
 | 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException (invalid piece to promote to) | no           |
