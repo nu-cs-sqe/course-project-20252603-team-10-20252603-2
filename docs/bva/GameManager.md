@@ -150,3 +150,66 @@
     * board state updated/unchanged
     * turn changed/unchanged
     * points updated if captured
+
+
+**Method under test: promotePawn()**
+
+| Test Number | PIECE        | Location | Replace with | Expected output                                        | Implemented? |
+|:------------|:-------------|:---------|:-------------|:-------------------------------------------------------|:-------------|
+| 1           | WHITE PAWN   | (0,0)    | QUEEN        | white pawn replaced with white queen                   | no           |
+| 2           | BLACK PAWN   | (7,7)    | QUEEN        | black pawn replaced with black queen                   | no           |
+| 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                  | no           |
+| 4           | WHITE PAWN   | (0,0)    | BISHOP       | white pawn replaced with white bishop                  | no           |
+| 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                    | no           |
+| 6           | null         | (0,0)    | ROOK         | IllegalArgumentException (cannot upgrade null)         | no           |
+| 7           | BLACK KNIGHT | (7,7)    | QUEEN        | IllegalArgumentException (cannot upgrade non pawn)     | no           |
+| 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException (invalid piece to promote to) | no           |
+
+
+### STEPS FOR BVA: `promotePawn()`
+
+1. Data Types
+* Input:
+  * pawn object
+  * color of pawn
+  * location to promote pawn
+  * type of new piece (e.g. queen, rook, bishop, knight)
+* Output:
+  * void but the side effect of changing the pawn at the given location to the specified piece
+2. BVA catalog types
+* Input:
+  * pawn object: pointer
+  * color of pawn: cases
+  * location to promote pawn: array indices (2d)
+  * type of new piece: cases(e.g. queen, rook, bishop, knight)
+* Output
+  * void with side effects: cases
+3. Values
+* Input:
+  * pawn object: pointer
+    * pawn object
+    * different piece
+    * null
+  * color of pawn: cases
+    * BLACK
+    * WHITE
+  * location to promote pawn: array indices (2d)
+    * all indices are 0 at same time: [0][0] 
+    * all largest valid value: [7][7] 
+    * first index -1: [-1][3], CANT SET
+    * second index -1: [3][-1] , CANT SET
+    * first element too big: [8][3], CANT SET
+    * second element too big: [3][8], CANT SET
+  * type of new piece: cases
+    * QUEEN
+    * KNIGHT
+    * ROOK
+    * BISHOP
+* Output
+  * void with side effects: cases
+    * pawn -> queen
+    * pawn -> rook
+    * pawn -> bishop
+    * pawn -> knight
+    * non pawn rejected
+    * empty location rejected
