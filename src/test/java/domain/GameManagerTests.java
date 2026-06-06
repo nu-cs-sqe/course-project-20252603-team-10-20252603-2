@@ -159,4 +159,14 @@ public class GameManagerTests {
         }
         assertTrue(game.isGameOver());
     }
+
+    @Test
+    public void isStalemate_NotInCheckZeroMoves_ReturnsTrue() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(1, 2), new Queen(Color.BLACK));
+        board.setPiece(new Location(2, 1), new King(Color.BLACK));
+        game.setBoard(board);
+
+        assertTrue(game.isStalemate());
+    }
 }
