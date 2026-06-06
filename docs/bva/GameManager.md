@@ -96,10 +96,10 @@
 
 |             | System under test                                 | Expected output                          | Implemented? |
 |:------------|:--------------------------------------------------|:-----------------------------------------|:-------------|
-| Test Case 1 | King is not in check and player has 0 valid moves | Returns true, game is a draw.            | no           |
-| Test Case 2 | King is not in check and player has 1 valid move  | Returns false, the game continues.       | no          |
-| Test Case 3 | King is in check and has no other valid moves.    | Returns false, game ends on a checkmate. | no          |
-| Test Case 4 | King is not in check and has >1 valid moves.      | Returns false, the game continues.       | no          |
+| Test Case 1 | King is not in check and player has 0 valid moves | Returns true, game is a draw.            | yes          |
+| Test Case 2 | King is not in check and player has 1 valid move  | Returns false, the game continues.       | yes          |
+| Test Case 3 | King is in check and has no other valid moves.    | Returns false, game ends on a checkmate. | yes          |
+| Test Case 4 | King is not in check and has >1 valid moves.      | Returns false, the game continues.       | yes            |
 
 ### STEPS FOR BVA: `isStalemate()`
 1. Data Types

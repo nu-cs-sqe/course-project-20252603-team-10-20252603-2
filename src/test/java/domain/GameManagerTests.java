@@ -189,5 +189,15 @@ public class GameManagerTests {
 
         assertFalse(game.isStalemate());
     }
+    @Test
+    public void isStalemate_NotInCheckMultipleMoves_ReturnsFalse() {
+        Board standardBoard = new Board(true);
 
+        standardBoard.removePiece(new Location(5, 4));
+        standardBoard.removePiece(new Location(4, 4));
+
+        game.setBoard(standardBoard);
+
+        assertFalse(game.isStalemate());
+    }
 }
