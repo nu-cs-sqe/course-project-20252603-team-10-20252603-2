@@ -75,15 +75,16 @@
 
 **Method under test: movePiece()**
 
-| Test Number | Current Turn | Location 1            | Location 2 | Piece being moved | Location 2 contents | Expected output                                                              | Implemented? |
-|:------------|:-------------|:----------------------|:-----------|:------------------|:--------------------|:-----------------------------------------------------------------------------|:-------------|
-| 1           | WHITE        | (4,0)                 | (5,0)      | null              | empty               | MoveResult.NO_PIECE_SELECTED (board/turn unchanged)                          | yes          |
-| 2           | BLACK        | (0,1)                 | (2,0)      | BLACK KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated)                                     | yes          |                                         
-| 3           | WHITE        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated)                                     | yes          |                                          
-| 4           | BLACK        | (0,0)                 | (1,0)      | BLACK ROOK        | friendly            | MoveResult.INVALID_MOVE (board/turn unchanged)                               | yes          |                                         
-| 5           | BLACK        | (2,0) (custom board)  | (6,0)      | BLACK ROOK        | enemy               | MoveResult.SUCCESS  (board/turn updated, point count updated)                | yes          |                                         
-| 6           | WHITE        | (5,7) (custom board)  | (1,1)      | WHITE QUEEN       | empty               | MoveResult.INVALID_MOVE (board/turn unchanged, point NOT count updated)      | yes          |                                         
-| 7           | BLACK        | (7,6)                 | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.WRONG_PLAYER_PIECE (board/turn unchanged)                         | yes          |                                         
+| Test Number | Current Turn | Location 1           | Location 2 | Piece being moved | Location 2 contents | Expected output                                                               | Implemented? |
+|:------------|:-------------|:---------------------|:-----------|:------------------|:--------------------|:------------------------------------------------------------------------------|:-------------|
+| 1           | WHITE        | (4,0)                | (5,0)      | null              | empty               | MoveResult.NO_PIECE_SELECTED (board/turn unchanged)                           | yes          |
+| 2           | BLACK        | (0,1)                | (2,0)      | BLACK KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated)                                      | yes          |                                         
+| 3           | WHITE        | (7,6)                | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated)                                      | yes          |                                          
+| 4           | BLACK        | (0,0)                | (1,0)      | BLACK ROOK        | friendly            | MoveResult.INVALID_MOVE (board/turn unchanged)                                | yes          |                                         
+| 5           | BLACK        | (2,0) (custom board) | (6,0)      | BLACK ROOK        | enemy               | MoveResult.SUCCESS  (board/turn updated, point count updated)                 | yes          |                                         
+| 6           | WHITE        | (5,7) (custom board) | (1,1)      | WHITE QUEEN       | empty               | MoveResult.INVALID_MOVE (board/turn unchanged, point NOT count updated)       | yes          |                                         
+| 7           | BLACK        | (7,6)                | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.WRONG_PLAYER_PIECE (board/turn unchanged)                          | yes          |                                         
+| 8           | BLACK        | (6,0) (custom board) | (7,0)      | BLACK PAWN        | empty               | MoveResult.PROMOTION_REQUIRED (board updated, turn unchanged until promotion) | yes          |                                         
 
 
 ### STEPS FOR BVA: `movePiece()`

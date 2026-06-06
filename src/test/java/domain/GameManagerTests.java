@@ -398,4 +398,34 @@ public class GameManagerTests {
 
     }
 
+    @Test
+    public void movePiece_moveBlackPawnx6y0tox7y0_returnPROMOTION_REQUIRED() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        game.changeTurns();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        Pawn piece = new Pawn(Color.BLACK);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(6,0), piece);
+        updatedBoard.removePiece(new Location(7,0));
+        game.setBoard(updatedBoard);
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(6,0), new Location(7,0));
+
+        assertEquals(GameManager.MoveResult.PROMOTION_REQUIRED, movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(6,0)));
+
+        Piece moved = game.getBoard().getPiece(new Location(7,0));
+        assertEquals(PieceType.PAWN, moved.getType());
+        assertEquals(Color.BLACK, moved.getColor());
+
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+        assertEquals(0, currentPlayer.getPoints());
+
+    }
+
 }
