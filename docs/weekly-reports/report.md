@@ -48,5 +48,11 @@
 6. [50% done] Vivian: BVA for GameManager class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
 
 # Week 9 (05/25/2026-05/31/2026)
+1. [90% done] Cate: (pitest) killed all non-equiv mutants in main across all existing classes (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/50)
+2. [85% done] Cate: (jacoco) implemented 100% code coverage in non GUI files (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/50)
+3. [done] Cate: i18n planning documentation (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/issues/40)
+4. [done] Cate: finished queen piece final bugs and implemented revision feedback including code, testing, spotbugs, jacoco, checkstyle, pitest (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/37)
+5. [done] Cate: implemented location tests (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/20)
+6. [done] Cate: reviewed and gave feedback on Vivian and Samreens files for implement GUI, Bishop, King, GameManager
 
 
