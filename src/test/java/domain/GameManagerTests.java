@@ -200,4 +200,14 @@ public class GameManagerTests {
 
         assertFalse(game.isStalemate());
     }
+
+    @Test
+    public void isCheckmate_InCheckZeroMoves_ReturnsTrue() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
+        board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
+        game.setBoard(board);
+
+        assertTrue(game.isCheckmate());
+    }
 }
