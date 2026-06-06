@@ -1,7 +1,6 @@
-package domain.piece;
+package domain;
 
 import constants.Color;
-import domain.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,10 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTests {
     @Test
-    public void getColor_PlayerWhite_ReturnsWhite() {
+    public void getColor_PlayerWhite_returnsWhite() {
         Player player = new Player(Color.WHITE);
         Color actual = player.getPlayerColor();
         assertEquals(Color.WHITE, actual);
+    }
+
+    @Test
+    public void getColor_playerBlack_returnsBlack() {
+        Player player = new Player(Color.BLACK);
+        Color actual = player.getPlayerColor();
+        assertEquals(Color.BLACK, actual);
     }
 
     @Test
@@ -76,7 +82,7 @@ public class PlayerTests {
     }
 
     @Test
-    public void isInCheck_ReturnsFalse() {
+    public void isInCheck_returnsFalse() {
         Player player = new Player(Color.WHITE);
         boolean isInCheck = player.isInCheck();
 
