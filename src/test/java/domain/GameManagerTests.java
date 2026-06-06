@@ -547,4 +547,24 @@ public class GameManagerTests {
 
     }
 
+    @Test
+    public void promotePawn_blackKnightToQueen_throwIllegalArgException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Knight piece = new Knight(Color.BLACK);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(7,7), piece);
+        game.setBoard(updatedBoard);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            game.promotePawn(new Location(7,7), PieceType.QUEEN);
+        });
+
+        assertTrue(exception.getMessage().contains("Piece is not eligible for promotion."));
+
+    }
+
 }
