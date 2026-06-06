@@ -219,4 +219,13 @@ public class GameManagerTests {
 
         assertFalse(game.isCheckmate());
     }
+
+    @Test
+    public void isCheckmate_NotInCheckAtLeastOneMove_ReturnsFalse() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
+        game.setBoard(board);
+
+        assertFalse(game.isCheckmate());
+    }
 }
