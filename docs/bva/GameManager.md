@@ -156,7 +156,7 @@
 
 | Test Number | PIECE        | Location | Replace with | Expected output                                        | Implemented? |
 |:------------|:-------------|:---------|:-------------|:-------------------------------------------------------|:-------------|
-| 1           | WHITE PAWN   | (0,0)    | QUEEN        | white pawn replaced with white queen                   | no           |
+| 1           | WHITE PAWN   | (0,0)    | QUEEN        | white pawn replaced with white queen                   | yes          |
 | 2           | BLACK PAWN   | (7,7)    | QUEEN        | black pawn replaced with black queen                   | no           |
 | 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                  | no           |
 | 4           | WHITE PAWN   | (0,0)    | BISHOP       | white pawn replaced with white bishop                  | no           |
