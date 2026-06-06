@@ -25,7 +25,7 @@ public class PlayerTests {
     }
 
     @Test
-    public void getPoints_ZeroPoints_ReturnsZero() {
+    public void getPoints_zeroPoints_returnsZero() {
         Player player = new Player(Color.WHITE);
         Number actual = player.getPoints();
         Number expected = 0;
@@ -34,7 +34,7 @@ public class PlayerTests {
     }
 
     @Test
-    public void getPoints_CapturedPawn_ReturnsOne() {
+    public void getPoints_capturedPawn_returnsOne() {
         Player player = new Player(Color.WHITE);
         player.incrementPoints("pawn");
 
@@ -43,7 +43,7 @@ public class PlayerTests {
     }
 
     @Test
-    public void getPoints_CapturedQueen_ReturnsNine() {
+    public void getPoints_capturedQueen_returnsNine() {
         Player player = new Player(Color.WHITE);
         player.incrementPoints("queen");
 
@@ -52,7 +52,7 @@ public class PlayerTests {
     }
 
     @Test
-    public void getPoints_AllPiecesCaptured_Returns39() {
+    public void getPoints_allPiecesCaptured_returns39() {
         Player player = new Player(Color.WHITE);
 
         List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "bishop",
@@ -67,7 +67,7 @@ public class PlayerTests {
     }
 
     @Test
-    public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns47() {
+    public void getPoints_allPiecesCapturedWithPawnPromotedToQueen_returns47() {
         Player player = new Player(Color.WHITE);
 
         List<String> pieces = new ArrayList<>(Arrays.asList("pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "pawn", "queen",
