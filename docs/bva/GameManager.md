@@ -77,7 +77,7 @@
 | Test Number | Locale                         | Key               | Key exists ? | Expected Output          | Implemented? |
 |-------------|--------------------------------|-------------------|--------------|--------------------------|--------------|
 | 1           | none set                       | `start.game`      | yes          | `"Start Game"` (default) | yes          |
-| 2           | english                        | `start.game`      | yes          | `"Start Game"`           | no           |
+| 2           | english                        | `start.game`      | yes          | `"Start Game"`           | yes          |
 | 3           | spanish                        | `start.game`      | yes          | `"Iniciar Juego"`        | no           |
 | 4           | english then switch to spanish | `start.game`      | yes          | `"Iniciar Juego"`        | no           |
 | 5           | english                        | `nonexistent.key` | no           | `"nonexistent.key"`      | no           |

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -231,6 +232,13 @@ public class GameManagerTests {
     @Test
     public void getTextDefaultEnglishIfLocaleNotSet() {
         GameManager game = new GameManager();
+        assertEquals("Start Game", game.getText("start.game"));
+    }
+
+    @Test
+    public void getTextEnglishLocaleReturnsEnglish() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
         assertEquals("Start Game", game.getText("start.game"));
     }
 }
