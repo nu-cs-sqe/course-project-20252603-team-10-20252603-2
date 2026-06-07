@@ -230,15 +230,25 @@ public class GameManagerTests {
     }
 
     @Test
-    public void getTextDefaultEnglishIfLocaleNotSet() {
+    public void getMessageDefaultEnglishIfLocaleNotSet() {
         GameManager game = new GameManager();
-        assertEquals("Start Game", game.getText("start.game"));
+
+        assertEquals("Start Game", game.getMessage("start.game"));
     }
 
     @Test
-    public void getTextEnglishLocaleReturnsEnglish() {
+    public void getMessageEnglishLocaleReturnsEnglish() {
         GameManager game = new GameManager();
         game.setLocale(Locale.ENGLISH);
-        assertEquals("Start Game", game.getText("start.game"));
+
+        assertEquals("Start Game", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageSpanishLocaleReturnsSpanish() {
+        GameManager game = new GameManager();
+        game.setLocale(new Locale("es"));
+
+        assertEquals("Iniciar Juego", game.getMessage("start.game"));
     }
 }

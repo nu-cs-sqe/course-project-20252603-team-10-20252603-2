@@ -110,7 +110,7 @@ public class GameManager {
         messages = ResourceBundle.getBundle("messages", locale);
     }
 
-    public String getText(String key) {
+    public String getMessage(String key) {
         if (messages == null) {
             setLocale(Locale.ENGLISH);
         }

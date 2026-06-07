@@ -72,20 +72,20 @@
   * King isInCheck() == false && there are 0 valid moves → Stalemate
   * King isInCheck() == false && there are >= 1 valid moves → ❌
 
-## Method under test: `getText()` for GameManager
+## Method under test: `getMessage()` for GameManager
 
 | Test Number | Locale                         | Key               | Key exists ? | Expected Output          | Implemented? |
 |-------------|--------------------------------|-------------------|--------------|--------------------------|--------------|
 | 1           | none set                       | `start.game`      | yes          | `"Start Game"` (default) | yes          |
 | 2           | english                        | `start.game`      | yes          | `"Start Game"`           | yes          |
-| 3           | spanish                        | `start.game`      | yes          | `"Iniciar Juego"`        | no           |
+| 3           | spanish                        | `start.game`      | yes          | `"Iniciar Juego"`        | yes          |
 | 4           | english then switch to spanish | `start.game`      | yes          | `"Iniciar Juego"`        | no           |
 | 5           | english                        | `nonexistent.key` | no           | `"nonexistent.key"`      | no           |
 | 6           | english                        | `checkmate`       | yes          | `"Checkmate!"`           | no           |
 | 7           | spanish                        | `checkmate`       | yes          | `"¡Jaque mate!"`         | no           |
 | 8           | french (new locale)            | `start.game`      | yes          | `"Démarrer le jeu"`      | no           |
 
-### STEPS FOR BVA: `getText()`
+### STEPS FOR BVA: `getMessage()`
 
 1) input equivalence classes and output equivalence classes
 * input:
