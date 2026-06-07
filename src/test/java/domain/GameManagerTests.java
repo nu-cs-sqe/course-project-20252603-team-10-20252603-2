@@ -270,4 +270,18 @@ public class GameManagerTests {
         assertEquals("nonexistent.key", game.getMessage("nonexistent.key"));
     }
 
+    @Test
+    public void getMessageCheckmateEnglishReturnsCorrectMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("Checkmate!", game.getMessage("checkmate"));
+    }
+
+    @Test
+    public void getMessageCheckmateSpanishReturnsCorrectMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(new Locale("es"));
+        assertEquals("¡mate!", game.getMessage("checkmate"));
+    }
 }
+

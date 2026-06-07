@@ -81,8 +81,8 @@
 | 3           | spanish                        | `start.game`      | yes          | `"Iniciar Juego"`        | yes          |
 | 4           | english then switch to spanish | `start.game`      | yes          | `"Iniciar Juego"`        | yes          |
 | 5           | english                        | `nonexistent.key` | no           | `"nonexistent.key"`      | yes          |
-| 6           | english                        | `checkmate`       | yes          | `"Checkmate!"`           | no           |
-| 7           | spanish                        | `checkmate`       | yes          | `"¡Jaque mate!"`         | no           |
+| 6           | english                        | `checkmate`       | yes          | `"Checkmate!"`           | yes          |
+| 7           | spanish                        | `checkmate`       | yes          | `"¡mate!"`               | yes          |
 | 8           | french (new locale)            | `start.game`      | yes          | `"Démarrer le jeu"`      | no           |
 
 ### STEPS FOR BVA: `getMessage()`
