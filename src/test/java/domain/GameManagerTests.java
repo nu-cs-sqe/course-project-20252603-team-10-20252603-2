@@ -251,4 +251,14 @@ public class GameManagerTests {
 
         assertEquals("Iniciar Juego", game.getMessage("start.game"));
     }
+    @Test
+    public void getMessageCanSwitchLocaleEnglishToSpanish() {
+        GameManager game = new GameManager();
+
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("Start Game", game.getMessage("start.game"));
+
+        game.setLocale(new Locale("es"));
+        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+    }
 }
