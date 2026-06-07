@@ -83,7 +83,7 @@
 | 5           | english                        | `nonexistent.key` | no           | `"nonexistent.key"`      | yes          |
 | 6           | english                        | `checkmate`       | yes          | `"Checkmate!"`           | yes          |
 | 7           | spanish                        | `checkmate`       | yes          | `"¡mate!"`               | yes          |
-| 8           | french (new locale)            | `start.game`      | yes          | `"Démarrer le jeu"`      | no           |
+| 8           | french (new locale)            | `start.game`      | yes          | `"Lancer la partie"`     | yes          |
 
 ### STEPS FOR BVA: `getMessage()`
 

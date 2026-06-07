@@ -283,5 +283,12 @@ public class GameManagerTests {
         game.setLocale(new Locale("es"));
         assertEquals("¡mate!", game.getMessage("checkmate"));
     }
+
+    @Test
+    public void getMessageNewLocaleWorks() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.FRENCH);
+        assertEquals("Lancer la partie", game.getMessage("start.game"));
+    }
 }
 
