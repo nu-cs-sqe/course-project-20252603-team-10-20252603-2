@@ -16,15 +16,23 @@ public class Bishop extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
-        if (!isDiagonal(start, end)) return false;
-        if (!isDestValid(end, board)) return false;
-        if (!isPathClear(start, end, board)) return false;
+        if (!isDiagonal(start, end)) {
+            return false;
+        }
+        if (!isDestValid(end, board)) {
+            return false;
+        }
+        if (!isPathClear(start, end, board)) {
+            return false;
+        }
 
         return true;
     }
 
     private boolean isDiagonal(Location start, Location end) {
-        if (start.equals(end)) return false;
+        if (start.equals(end)) {
+            return false;
+        }
         int rowChange = Math.abs(end.getX() - start.getX());
         int colChange = Math.abs(end.getY() - start.getY());
 
