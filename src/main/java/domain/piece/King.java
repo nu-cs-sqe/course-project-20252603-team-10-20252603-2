@@ -5,13 +5,17 @@ import domain.Location;
 import constants.Color;
 
 public class King extends Piece{
+
+    private static final int NUM_ROWS = 8;
+    private static final int NUM_COLS = 8;
+
     public King(Color color) {
         super(PieceType.KING, color);
     }
 
     public boolean isInCheck(Location kingLocation, Board board) {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < NUM_ROWS; i++) {
+            for (int j = 0; j < NUM_COLS; j++) {
                 Location location = new Location(i, j);
                 if (!board.isPieceHere(location)) continue;
                 Piece piece = board.getPiece(location);
