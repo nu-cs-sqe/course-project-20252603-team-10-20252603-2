@@ -2,10 +2,7 @@ package domain;
 
 import constants.Color;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class GameManager {
     private ResourceBundle messages;
@@ -114,6 +111,10 @@ public class GameManager {
         if (messages == null) {
             setLocale(Locale.ENGLISH);
         }
-        return messages.getString(key);
+        try {
+            return messages.getString(key);
+        } catch (MissingResourceException e) {
+            return key;
+        }
     }
 }

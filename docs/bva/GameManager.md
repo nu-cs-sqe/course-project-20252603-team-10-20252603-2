@@ -79,8 +79,8 @@
 | 1           | none set                       | `start.game`      | yes          | `"Start Game"` (default) | yes          |
 | 2           | english                        | `start.game`      | yes          | `"Start Game"`           | yes          |
 | 3           | spanish                        | `start.game`      | yes          | `"Iniciar Juego"`        | yes          |
-| 4           | english then switch to spanish | `start.game`      | yes          | `"Iniciar Juego"`        | no           |
-| 5           | english                        | `nonexistent.key` | no           | `"nonexistent.key"`      | no           |
+| 4           | english then switch to spanish | `start.game`      | yes          | `"Iniciar Juego"`        | yes          |
+| 5           | english                        | `nonexistent.key` | no           | `"nonexistent.key"`      | yes          |
 | 6           | english                        | `checkmate`       | yes          | `"Checkmate!"`           | no           |
 | 7           | spanish                        | `checkmate`       | yes          | `"¡Jaque mate!"`         | no           |
 | 8           | french (new locale)            | `start.game`      | yes          | `"Démarrer le jeu"`      | no           |

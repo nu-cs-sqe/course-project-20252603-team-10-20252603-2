@@ -251,6 +251,7 @@ public class GameManagerTests {
 
         assertEquals("Iniciar Juego", game.getMessage("start.game"));
     }
+
     @Test
     public void getMessageCanSwitchLocaleEnglishToSpanish() {
         GameManager game = new GameManager();
@@ -261,4 +262,12 @@ public class GameManagerTests {
         game.setLocale(new Locale("es"));
         assertEquals("Iniciar Juego", game.getMessage("start.game"));
     }
+
+    @Test
+    public void getMessageMissingKeyReturnsFallbackMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("nonexistent.key", game.getMessage("nonexistent.key"));
+    }
+
 }
