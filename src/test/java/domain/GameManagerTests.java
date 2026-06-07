@@ -227,4 +227,10 @@ public class GameManagerTests {
         assertFalse(game.isGameOver());
         EasyMock.verify(mockedPlayer, mockedBoard);
     }
+
+    @Test
+    public void getTextDefaultEnglishIfLocaleNotSet() {
+        GameManager game = new GameManager();
+        assertEquals("Start Game", game.getText("start.game"));
+    }
 }

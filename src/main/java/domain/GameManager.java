@@ -4,8 +4,12 @@ import constants.Color;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class GameManager {
+    private ResourceBundle messages;
+
     private List<Player> players = new ArrayList<>();
     private boolean isGameRunning = false;
     private Player whitePlayer;
@@ -100,5 +104,16 @@ public class GameManager {
         }
 
         return false;
+    }
+
+    public void setLocale(Locale locale) {
+        messages = ResourceBundle.getBundle("messages", locale);
+    }
+
+    public String getText(String key) {
+        if (messages == null) {
+            setLocale(Locale.ENGLISH);
+        }
+        return messages.getString(key);
     }
 }
