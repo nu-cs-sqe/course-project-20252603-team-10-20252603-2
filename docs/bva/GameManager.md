@@ -71,3 +71,51 @@
   * King isInCheck() == true && there are >= 1 valid moves → ❌
   * King isInCheck() == false && there are 0 valid moves → Stalemate
   * King isInCheck() == false && there are >= 1 valid moves → ❌
+
+## Method under test: `getText()` for GameManager
+
+| Test Number | Locale                         | Key               | Key exists in bundle? | Expected Output          | Implemented? |
+|-------------|--------------------------------|-------------------|-----------------------|--------------------------|--------------|
+| 1           | none set                       | `start.game`      | yes                   | `"Start Game"` (default) | no           |
+| 2           | english                        | `start.game`      | yes                   | `"Start Game"`           | no           |
+| 3           | spanish                        | `start.game`      | yes                   | `"Iniciar Juego"`        | no           |
+| 4           | english then switch to spanish | `start.game`      | yes                   | `"Iniciar Juego"`        | no           |
+| 5           | english                        | `nonexistent.key` | no                    | `"nonexistent.key"`      | no           |
+| 6           | english                        | `checkmate`       | yes                   | `"Checkmate!"`           | no           |
+| 7           | spanish                        | `checkmate`       | yes                   | `"¡Jaque mate!"`         | no           |
+| 8           | french (new locale)            | `start.game`      | yes                   | `"Démarrer le jeu"`      | no           |
+
+### STEPS FOR BVA: `getText()`
+
+1) input equivalence classes and output equivalence classes
+* input:
+  * locale 
+  * key (the string)
+  * whether the key exists 
+* output:
+  * the translated string, or the key itself 
+
+2) BVA catalog classes
+* input:
+  * locale: cases
+  * key: cases
+  * key exists in bundle: boolean
+* output:
+  * a string: value
+
+3) BVA catalog classes -- values
+* input:
+  * locale: cases
+    * none set (should default to English)
+    * ENGLISH
+    * SPANISH
+    * ENGLISH then switch to SPANISH (supports changing locales)
+    * new locale being added (FRENCH)
+  * key: cases
+    * valid key that exists in the bundle
+    * invalid key that does not exist in the bundle
+  * key exists in bundle: boolean
+    * True 
+    * False 
+* output:
+  * a string: value
