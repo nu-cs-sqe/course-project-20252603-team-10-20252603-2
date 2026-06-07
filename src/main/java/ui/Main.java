@@ -6,7 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new WelcomeView().setVisible(true);
+            WelcomeView welcomeView = new WelcomeView();
+            welcomeView.initialize();
+            welcomeView.setVisible(true);
         });
     }
 }
