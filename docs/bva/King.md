@@ -146,3 +146,11 @@
         * False 
 * output:
     * a yes/no answer: boolean
+
+
+### Method under test: `makeCopy()` for King, basic functionality testing
+
+| Test Number | Color      | Expected output                                         | Implemented? |
+|-------------|------------|---------------------------------------------------------|--------------|
+| 1           | "BLACK"    | new non null king, same color same type and diff object | no           |
+| 2           | "WHITE"    | new non null king, same color same type and diff object | no           |
