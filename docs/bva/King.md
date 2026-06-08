@@ -146,3 +146,56 @@
         * False 
 * output:
     * a yes/no answer: boolean
+
+## Method under test: `hasValidMoves()` for King
+
+| Test Number | Color | Start position | Board State                                                     | Expected Output | Implemented? |
+|-------------|-------|----------------|-----------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [4,4]          | Clear board                                                     | TRUE            | no           |
+| 2           | WHITE | [0,0]          | Clear board                                                     | TRUE            | no           |
+| 3           | WHITE | [4,4]          | all 8 adjacent squares occupied by friendly pieces              | FALSE           | no           |
+| 4           | WHITE | [0,0]          | king in corner & 3 adjacent squares occupied by friendly pieces | FALSE           | no           |
+| 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                        | FALSE           | no           |
+| 6           | WHITE | [4,4]          | one adjacent square empty+safe, all others blocked              | TRUE            | no           |
+| 7           | WHITE | [4,4]          | one adjacent square has unprotected enemy piece                 | TRUE            | no           |
+| 8           | BLACK | [0,0]          | Clear board                                                     | TRUE            | no           |
+
+### STEPS FOR BVA: `hasValidMoves()` for King
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * king color
+    * king start position (row, column)
+    * state of the board (Board)
+    * are any adjacent squares that can be moved to without entering check?
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * king color: cases
+    * king start position (row, column): array indices
+    * state of the board: cases
+    * reachable adjacent square exists: boolean
+* output:
+    * a yes/no answer: boolean
+
+3) BVA catalog classes -- values
+* input:
+    * king color: cases
+        * WHITE, BLACK
+    * king start position (row, column): array indices
+        * all indices are 0 at same time: [0][0] (corner)
+        * all largest valid value: [7][7] (corner)
+        * center of board: [4][4]  
+    * state of the board: cases
+        * clear board 
+        * all adjacent squares are taken by friendly pieces 
+        * all adjacent squares would put the king into check
+        * one adjacent square empty and safe 
+        * one adjacent square has an unprotected enemy piece 
+    * reachable adjacent square exists: boolean
+        * True
+        * False
+* output:
+    * a yes/no answer: boolean

@@ -428,4 +428,19 @@ public class KingTests {
 
         assertFalse(king.isValidMove(start, end, board));
     }
+
+    @Test
+    public void hasValidMovesKingClearBoardReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+
+        assertTrue(king.hasValidMoves(kingPos, board));
+    }
 }
+

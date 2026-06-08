@@ -86,9 +86,8 @@ public class King extends Piece{
     }
 
     @Override
-    public boolean hasValidMoves() {
-        //  TODO: complete method
-        return false;
+    public boolean hasValidMoves(Location location, Board board) {
+        return true;
     }
 
 }
