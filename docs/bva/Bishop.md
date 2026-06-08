@@ -85,3 +85,10 @@
         * blocked path with valid direction
 * output:
     * a yes/no answer: boolean
+
+### Method under test: `makeCopy()` for Bishop, basic functionality testing
+
+| Test Number | Color      | Expected output                                           | Implemented? |
+|-------------|------------|-----------------------------------------------------------|--------------|
+| 1           | "BLACK"    | new non null bishop, same color same type and diff object | no           |
+| 2           | "WHITE"    | new non null bishop, same color same type and diff object | no           |
