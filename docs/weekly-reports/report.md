@@ -59,3 +59,6 @@
 5. [done] Samreen: Reviewed pawn hasValidMoves implementation by Vivian  (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/46)
 6. [50% done] Samreen: BVA for isValidMove and isInCheck for King class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/53)
 
+# Week 10 (06/1/2026-06/12/2026)
+1. [done] Vivian: hasValidMoves() for Knight (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/74)
+2. [done] Vivian: hasValidMoves() for Rook (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/72)
