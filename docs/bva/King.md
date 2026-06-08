@@ -154,9 +154,9 @@
 | 1           | WHITE | [4,4]          | Clear board                                                     | TRUE            | yes          |
 | 2           | WHITE | [0,0]          | Clear board                                                     | TRUE            | yes          |
 | 3           | WHITE | [4,4]          | all 8 adjacent squares occupied by friendly pieces              | FALSE           | yes          |
-| 4           | WHITE | [0,0]          | king in corner & 3 adjacent squares occupied by friendly pieces | FALSE           | no           |
-| 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                        | FALSE           | no           |
-| 6           | WHITE | [4,4]          | one adjacent square empty+safe, all others blocked              | TRUE            | no           |
+| 4           | WHITE | [0,0]          | king in corner & 3 adjacent squares occupied by friendly pieces | FALSE           | yes          |
+| 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                        | FALSE           | yes          |
+| 6           | WHITE | [4,4]          | one adjacent square empty+safe, all others blocked              | TRUE            | yes          |
 | 7           | WHITE | [4,4]          | one adjacent square has unprotected enemy piece                 | TRUE            | no           |
 | 8           | BLACK | [0,0]          | Clear board                                                     | TRUE            | no           |
 
