@@ -242,4 +242,22 @@ public class GameManagerTests {
         assertNull(game.getBoard());
     }
 
+    @Test
+    public void getBoard_BoardIsSet_ReturnsCopyOfBoard() {
+        GameManager game = new GameManager();
+
+        Board board = new Board(false);
+        Location location = new Location(0, 0);
+        Pawn pawn = new Pawn(Color.WHITE);
+        board.setPiece(location, pawn);
+
+        game.setBoard(board);
+
+        Board copiedBoard = game.getBoard();
+
+        assertNotNull(copiedBoard);
+        assertNotSame(board, copiedBoard);
+        assertTrue(copiedBoard.isPieceHere(location));
+    }
+
 }

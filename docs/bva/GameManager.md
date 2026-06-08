@@ -80,4 +80,4 @@
 | Test Case | System under test | Expected output       | Implemented? |
 |-----------|-------------------|-----------------------|--------------|
 | 1         | board == null     | returns null          | yes          |
-| 2         | board != null     | returns copy of board | no           |
+| 2         | board != null     | returns copy of board | yes          |
