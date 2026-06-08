@@ -444,4 +444,17 @@ public class KingTests {
         assertEquals(Color.BLACK, copy.getColor());
     }
 
+    @Test
+    public void makeCopy_King_white_returnsNewKingWithSameColorAndType() {
+        King original = new King(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(King.class, copy);
+        assertEquals(PieceType.KING, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
+    }
+
 }
