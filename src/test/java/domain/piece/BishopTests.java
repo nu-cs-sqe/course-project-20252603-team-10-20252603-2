@@ -4,7 +4,6 @@ import domain.piece.Bishop;
 import domain.piece.Piece;
 import constants.Color;
 import domain.piece.PieceType;
-import domain.piece.Rook;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -266,6 +265,19 @@ public class BishopTests {
         assertInstanceOf(Bishop.class, copy);
         assertEquals(PieceType.BISHOP, copy.getType());
         assertEquals(Color.BLACK, copy.getColor());
+    }
+
+    @Test
+    public void makeCopy_Bishop_white_returnsNewBishopWithSameColorAndType() {
+        Bishop original = new Bishop(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Bishop.class, copy);
+        assertEquals(PieceType.BISHOP, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
     }
 
 }

@@ -91,4 +91,4 @@
 | Test Number | Color      | Expected output                                           | Implemented? |
 |-------------|------------|-----------------------------------------------------------|--------------|
 | 1           | "BLACK"    | new non null bishop, same color same type and diff object | yes          |
-| 2           | "WHITE"    | new non null bishop, same color same type and diff object | no           |
+| 2           | "WHITE"    | new non null bishop, same color same type and diff object | yes          |
