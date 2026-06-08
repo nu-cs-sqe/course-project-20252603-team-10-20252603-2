@@ -95,13 +95,14 @@
 
 ### Method under test: `hasValidMoves()` for Knight
 
-| Test Number | Color | Start position | Board State                                                                        | Expected Output | Implemented? |
-|-------------|-------|----------------|------------------------------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [6,0]          | Clear board                                                                        | TRUE            | yes          |               
-| 2           | WHITE | [6,0]          | Friendly piece at [4, 1], [5,2],[7,2], diagonal spaces are empty                   | FALSE           | yes          |                
-| 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [3, 5].                                | TRUE            | yes          |
-| 4           | BLACK | [7,0]          | Stuck at the absolute edge, friendly pieces at [5, 1] and [6, 2]                   | FALSE           | yes          |
+| Test Number | Color | Start position | Board State                                                                    | Expected Output | Implemented? |
+|-------------|-------|----------------|--------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                                    | TRUE            | yes          |               
+| 2           | WHITE | [6,0]          | Friendly piece at [4, 1], [5,2],[7,2], diagonal spaces are empty               | FALSE           | yes          |                
+| 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [3, 5].                            | TRUE            | yes          |
+| 4           | BLACK | [7,0]          | Stuck at the absolute edge, friendly pieces at [5, 1] and [6, 2]               | FALSE           | yes          |
 | 5           | WHITE | [7,1]          | Pinned against its own White King [7, 0] by an enemy Black Rook [7, 7] along a row | FALSE           | yes          |
+| 6           | WHITE | [7,1]          | Blocked by enemy piece [5, 2]                                                  | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Knight
 
