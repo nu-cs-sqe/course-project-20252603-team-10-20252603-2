@@ -73,3 +73,11 @@
   * King isInCheck() == true && there are >= 1 valid moves → ❌
   * King isInCheck() == false && there are 0 valid moves → Stalemate
   * King isInCheck() == false && there are >= 1 valid moves → ❌
+
+
+**Method under test: getBoard(), basic functional testing**
+
+| Test Case | System under test | Expected output       | Implemented? |
+|-----------|-------------------|-----------------------|--------------|
+| 1         | board == null     | returns null          | no           |
+| 2         | board != null     | returns copy of board | no           |
