@@ -5,10 +5,16 @@ import domain.piece.King;
 import domain.piece.Piece;
 import domain.piece.PieceType;
 
+import java.util.MissingResourceException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 
 public class GameManager {
+    private ResourceBundle messages;
+
     private List<Player> players = new ArrayList<>();
     private boolean isGameRunning = false;
     private Player whitePlayer;
@@ -139,5 +145,20 @@ public class GameManager {
             }
         }
         return null;
+    }
+
+    public void setLocale(Locale locale) {
+        messages = ResourceBundle.getBundle("messages", locale);
+    }
+
+    public String getMessage(String key) {
+        if (messages == null) {
+            setLocale(Locale.ENGLISH);
+        }
+        try {
+            return messages.getString(key);
+        } catch (MissingResourceException e) {
+            return key;
+        }
     }
 }

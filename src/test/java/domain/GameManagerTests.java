@@ -5,6 +5,10 @@ import domain.piece.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameManagerTests {
@@ -227,5 +231,67 @@ public class GameManagerTests {
         assertFalse(game.isCheckmate());
     }
 
+    @Test
+    public void getMessageDefaultEnglishIfLocaleNotSet() {
+        GameManager game = new GameManager();
+
+        assertEquals("Start Game", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageEnglishLocaleReturnsEnglish() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
+
+        assertEquals("Start Game", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageSpanishLocaleReturnsSpanish() {
+        GameManager game = new GameManager();
+        game.setLocale(new Locale("es"));
+
+        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageCanSwitchLocaleEnglishToSpanish() {
+        GameManager game = new GameManager();
+
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("Start Game", game.getMessage("start.game"));
+
+        game.setLocale(new Locale("es"));
+        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageMissingKeyReturnsFallbackMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("nonexistent.key", game.getMessage("nonexistent.key"));
+    }
+
+    @Test
+    public void getMessageCheckmateEnglishReturnsCorrectMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("Checkmate!", game.getMessage("checkmate"));
+    }
+
+    @Test
+    public void getMessageCheckmateSpanishReturnsCorrectMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(new Locale("es"));
+        assertEquals("¡mate!", game.getMessage("checkmate"));
+    }
+
+    @Test
+    public void getMessageNewLocaleWorks() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.FRENCH);
+        assertEquals("Lancer la partie", game.getMessage("start.game"));
+    }
     // TODO: last two tests of isCheckmate is waiting on King's hasValidMoves() implementation
 }
+
