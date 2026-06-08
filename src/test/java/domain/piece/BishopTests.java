@@ -3,10 +3,14 @@ package domain;
 import domain.piece.Bishop;
 import domain.piece.Piece;
 import constants.Color;
+import domain.piece.PieceType;
+import domain.piece.Rook;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class BishopTests {
 
@@ -249,6 +253,19 @@ public class BishopTests {
         boolean result = bishop.isValidMove(start, chosen, board);
 
         assertTrue(result);
+    }
+
+    @Test
+    public void makeCopy_Bishop_black_returnsNewBishopWithSameColorAndType() {
+        Bishop original = new Bishop(Color.BLACK);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Bishop.class, copy);
+        assertEquals(PieceType.BISHOP, copy.getType());
+        assertEquals(Color.BLACK, copy.getColor());
     }
 
 }
