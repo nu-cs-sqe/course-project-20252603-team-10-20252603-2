@@ -140,7 +140,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isGameOver_KingNotInCheck_ReturnsFalse() {
+    public void isGameOver_KingNotInCheck_returnsFalse() {
         GameManager game = new GameManager();
 
         Player blackPlayer = new Player(Color.BLACK);
@@ -205,7 +205,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isGameOver_PlayerHasMoves_ReturnsFalse() {
+    public void isGameOver_PlayerHasMoves_returnsFalse() {
         GameManager game = new GameManager();
         Player mockedPlayer = EasyMock.createMock(Player.class);
         Board mockedBoard = EasyMock.createMock(Board.class);
