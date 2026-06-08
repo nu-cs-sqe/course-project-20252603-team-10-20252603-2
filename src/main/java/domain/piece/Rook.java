@@ -65,8 +65,41 @@ public class Rook extends Piece {
     }
 
     @Override
-    public boolean hasValidMoves(Location location, Board board) {
-        //  TODO: complete method
-        return true;
+    public boolean hasValidMoves(Location currentPosition, Board board) {
+        int currX = currentPosition.getX();
+        int currY = currentPosition.getY();
+
+        int[][] directions = {
+                {-1,  0},
+                { 1,  0},
+                { 0, -1},
+                { 0,  1}
+        };
+
+        for (int[] dir : directions) {
+            int dX = dir[0];
+            int dY = dir[1];
+
+            for (int step = 1; step < 8; step++) {
+                int targetX = currX + (dX * step);
+                int targetY = currY + (dY * step);
+
+                if (targetX < 0 || targetX > 7 || targetY < 0 || targetY > 7) {
+                    break;
+                }
+
+                Location target = new Location(targetX, targetY);
+
+                if (this.isValidMove(currentPosition, target, board)) {
+                    return true;
+                }
+
+                if (board.isPieceHere(target)) {
+                    break;
+                }
+            }
+        }
+
+        return false;
     }
 }
