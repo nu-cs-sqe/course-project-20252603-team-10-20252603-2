@@ -234,4 +234,12 @@ public class GameManagerTests {
 
         assertFalse(game.isGameOver());
     }
+
+    @Test
+    public void getBoard_BoardIsNull_ReturnsNull() {
+        GameManager game = new GameManager();
+
+        assertNull(game.getBoard());
+    }
+
 }
