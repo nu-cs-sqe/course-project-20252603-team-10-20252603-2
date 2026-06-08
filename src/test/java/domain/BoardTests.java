@@ -308,5 +308,4 @@ public class BoardTests {
         assertFalse(board.isPieceHere(location));
         assertNull(board.getPiece(location));
     }
-
 }

@@ -48,6 +48,50 @@
   * “B” → “W”
   * “W” → “B”
 
+**Method under test: isCheckmate()**
+|             | System under test                                          | Expected output | Implemented? |
+|:------------|:-----------------------------------------------------------| :---- |:-------------|
+| Test Case 1 | King is in check and has no other valid moves.             | Returns true, game notification that the game is over. | yes          |
+| Test Case 2 | King is in check and has 1 valid move.                   | Returns false, the game continues. | yes          |
+| Test Case 3 | King is not in check and has >=1 valid move.               | Returns false, the game continues. | yes          |
+| Test Case 4 | King is in check and has >1 valid move.                | Returns false, the game continues. | no          |
+| Test Case 5 | King is not in check and has 0 valid moves.               | Returns false, the game is a stalemate. | no          |
+
+### STEPS FOR BVA: `isCheckmate()`
+1. Data Types
+* Input: cases
+  * isInCheck() for the King -> boolean
+  * playerHasValidMoves() -> boolean
+* Output: boolean
+2. Test Cases
+* All combinations
+  * isInCheck() && hasValidMoves() == 0 --> TRUE
+  * isInCheck() && hasValidMoves() == 1 --> FALSE
+  * !isInCheck() && hasValidMoves() > 1--> FALSE
+  * isInCheck() && hasValidMoves() > 1 --> FALSE
+  * !isInCheck() && hasValidMoves() == 0 --> FALSE
+
+**Method under test: isStalemate()**
+
+|             | System under test                                 | Expected output                          | Implemented? |
+|:------------|:--------------------------------------------------|:-----------------------------------------|:-------------|
+| Test Case 1 | King is not in check and player has 0 valid moves | Returns true, game is a draw.            | yes          |
+| Test Case 2 | King is not in check and player has 1 valid move  | Returns false, the game continues.       | yes          |
+| Test Case 3 | King is in check and has no other valid moves.    | Returns false, game ends on a checkmate. | yes          |
+| Test Case 4 | King is not in check and has >1 valid moves.      | Returns false, the game continues.       | yes            |
+
+### STEPS FOR BVA: `isStalemate()`
+1. Data Types
+* Input: cases
+  * isInCheck() for the King -> boolean
+  * playerHasValidMoves() -> boolean
+* Output: boolean
+2. Test Cases
+* All combinations
+  * isInCheck() && hasValidMoves() == 0 --> FALSE
+  * !isInCheck() && hasValidMoves() == 1--> FALSE
+  * !isInCheck() && hasValidMoves() > 1 --> FALSE
+  * !isInCheck() && hasValidMoves() == 0 --> TRUE
 **Method under test: isGameOver()**
 
 |             | System under test                                          | Expected output | Implemented? |
