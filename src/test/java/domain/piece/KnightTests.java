@@ -342,4 +342,18 @@ public class KnightTests {
         assertTrue(result);
     }
 
+    @Test
+    public void hasValidMoves_knight_notBlocked_returnsTrue() {
+        Piece knight = new Knight(Color.WHITE);
+
+        Location location = new Location(6, 0);
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertTrue(result);
+    }
+
 }
