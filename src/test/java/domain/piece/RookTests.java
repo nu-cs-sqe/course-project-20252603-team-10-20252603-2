@@ -303,7 +303,7 @@ public class RookTests {
     }
 
     @Test
-    public void isValidMove_Rook_oneUpFromCorner_returnTrue() {
+    public void isValidMove_rook_oneUpFromCorner_returnTrue() {
         Piece rook = new Rook(Color.BLACK);
 
         Location start = new Location(7, 7);
@@ -312,6 +312,20 @@ public class RookTests {
         Board board = new Board(false);
 
         boolean result = rook.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void hasValidMoves_rook_notBlocked_returnsTrue() {
+        Piece rook = new Rook(Color.WHITE);
+
+        Location location = new Location(6, 0);
+
+        Board board = new Board(false);
+        board.setPiece(location, rook);
+
+        boolean result = rook.hasValidMoves(location, board);
 
         assertTrue(result);
     }
