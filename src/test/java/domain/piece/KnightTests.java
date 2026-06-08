@@ -356,4 +356,29 @@ public class KnightTests {
         assertTrue(result);
     }
 
+    @Test
+    public void hasValidMoves_knight_blockedByFriendlyPieces_returnsFalse() {
+        Piece knight = new Knight(Color.WHITE);
+        Piece friendlyKnight1 = new Knight(Color.WHITE);
+        Piece friendlyKnight2 = new Knight(Color.WHITE);
+        Piece friendlyKnight3 = new Knight(Color.WHITE);
+
+        Location location = new Location(6, 0);
+        Location friendlyKnightLocation1 = new Location(4, 1);
+        Location friendlyKnightLocation2 = new Location(5, 2);
+        Location friendlyKnightLocation3 = new Location(7, 2);
+
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+        board.setPiece(friendlyKnightLocation1, friendlyKnight1);
+        board.setPiece(friendlyKnightLocation2, friendlyKnight2);
+        board.setPiece(friendlyKnightLocation3, friendlyKnight3);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
+
 }

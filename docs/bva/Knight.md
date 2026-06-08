@@ -97,11 +97,11 @@
 
 | Test Number | Color | Start position | Board State                                                                        | Expected Output | Implemented? |
 |-------------|-------|----------------|------------------------------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [6,0]          | Clear board                                                                        | TRUE            | no           |               
-| 2           | WHITE | [6,0]          | Friendly piece at [4, 1], Enemy at [5,2], diagonal spaces are empty                | FALSE           | no           |                
-| 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [3, 5].                                | TRUE            | no          |
-| 4           | BLACK | [7,0]          | Stuck at the absolute edge, friendly pieces at [5, 1] and [6, 2]                   | FALSE           | no          |
-| 5           | WHITE | [7,1]          | Pinned against its own White King [7, 0] by an enemy Black Rook [7, 7] along a row | FALSE           | no          |
+| 1           | WHITE | [6,0]          | Clear board                                                                        | TRUE            | yes          |               
+| 2           | WHITE | [6,0]          | Friendly piece at [4, 1], [5,2],[7,2], diagonal spaces are empty                   | FALSE           | yes          |                
+| 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [3, 5].                                | TRUE            | no           |
+| 4           | BLACK | [7,0]          | Stuck at the absolute edge, friendly pieces at [5, 1] and [6, 2]                   | FALSE           | no           |
+| 5           | WHITE | [7,1]          | Pinned against its own White King [7, 0] by an enemy Black Rook [7, 7] along a row | FALSE           | no           |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Knight
 
