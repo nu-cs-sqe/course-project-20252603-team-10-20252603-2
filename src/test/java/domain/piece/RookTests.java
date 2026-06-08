@@ -316,6 +316,30 @@ public class RookTests {
         assertTrue(result);
     }
 
+
+    @Test
+    public void isValidMove_rookExposesKingToAbsolutePin_returnsFalse() {
+        Board board = new Board(false);
+
+        Piece rook = new Rook(Color.WHITE);
+        Piece friendlyKing = new King(Color.WHITE);
+        Piece enemyRook = new Rook(Color.BLACK);
+
+        Location kingLocation = new Location(7, 0);
+        Location rookLocation = new Location(6, 0);
+        Location enemyLocation = new Location(0, 0);
+
+        board.setPiece(kingLocation, friendlyKing);
+        board.setPiece(rookLocation, rook);
+        board.setPiece(enemyLocation, enemyRook);
+
+        Location illegalSidewaysMove = new Location(6, 1);
+        boolean result = rook.isValidMove(rookLocation, illegalSidewaysMove, board);
+
+
+        assertFalse(result);
+    }
+
     @Test
     public void hasValidMoves_rook_notBlocked_returnsTrue() {
         Piece rook = new Rook(Color.WHITE);
