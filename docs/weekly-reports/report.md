@@ -52,7 +52,10 @@
 7. [done] Samreen: Implementation for Piece isValidMove() (type=Bishop) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/27
 
 # Week 9 (05/25/2026-05/31/2026)
-1. [done] Samreen: Reviewed Queen Class Implementation by Cate (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/37)
-2. [done] Samreen: Reviewed pawn hasValidMoves implementation by Vivian  (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/46)
-3. [50% done] Samreen: BVA for isValidMove and isInCheck for King class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/53)
+1. [done] Vivian: Initial implementation for GameManager (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
+2. [15% done] Vivian: Implement hasValidMoves() for all Pieces (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/46)
+3. [15% done] Vivian: Start GUI implementation (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/48)
+4. [done] Samreen: Reviewed Queen Class Implementation by Cate (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/37)
+5. [done] Samreen: Reviewed pawn hasValidMoves implementation by Vivian  (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/46)
+6. [50% done] Samreen: BVA for isValidMove and isInCheck for King class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/53)
 
