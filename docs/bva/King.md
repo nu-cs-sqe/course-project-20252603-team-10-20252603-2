@@ -151,8 +151,8 @@
 
 | Test Number | Color | Start position | Board State                                                     | Expected Output | Implemented? |
 |-------------|-------|----------------|-----------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [4,4]          | Clear board                                                     | TRUE            | no           |
-| 2           | WHITE | [0,0]          | Clear board                                                     | TRUE            | no           |
+| 1           | WHITE | [4,4]          | Clear board                                                     | TRUE            | yes          |
+| 2           | WHITE | [0,0]          | Clear board                                                     | TRUE            | yes          |
 | 3           | WHITE | [4,4]          | all 8 adjacent squares occupied by friendly pieces              | FALSE           | no           |
 | 4           | WHITE | [0,0]          | king in corner & 3 adjacent squares occupied by friendly pieces | FALSE           | no           |
 | 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                        | FALSE           | no           |
