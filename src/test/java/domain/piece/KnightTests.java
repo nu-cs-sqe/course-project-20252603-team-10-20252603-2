@@ -345,7 +345,7 @@ public class KnightTests {
     }
 
     @Test
-    public void makeCopy_Knight_black_returnsNewRookWithSameColorAndType() {
+    public void makeCopy_Knight_black_returnsNewKnightWithSameColorAndType() {
         Knight original = new Knight(Color.BLACK);
 
         Piece copy = original.makeCopy();
@@ -355,6 +355,19 @@ public class KnightTests {
         assertInstanceOf(Knight.class, copy);
         assertEquals(PieceType.KNIGHT, copy.getType());
         assertEquals(Color.BLACK, copy.getColor());
+    }
+
+    @Test
+    public void makeCopy_Knight_white_returnsNewKnightWithSameColorAndType() {
+        Knight original = new Knight(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Knight.class, copy);
+        assertEquals(PieceType.KNIGHT, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
     }
 
 }
