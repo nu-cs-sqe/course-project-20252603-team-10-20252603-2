@@ -432,7 +432,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMove_King_EmptyDestination_RestoresBoardState() {
+    public void isValidMove_King_EmptyDestination_ReturnsTrue_RestoresBoardState() {
         King king = new King(Color.WHITE);
 
         Location start = new Location(4, 4);
