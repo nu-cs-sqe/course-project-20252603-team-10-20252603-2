@@ -352,4 +352,21 @@ public class RookTests {
 
         assertFalse(result);
     }
+
+    @Test
+    public void hasValidMoves_rook_blockedByOneFriendlyPieces_returnsTrue() {
+        Piece rook = new Rook(Color.WHITE);
+        Piece friendlyRook1 = new Rook(Color.WHITE);
+
+        Location location = new Location(5, 4);
+        Location location1 = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(location, rook);
+        board.setPiece(location1, friendlyRook1);
+
+        boolean result = rook.hasValidMoves(location, board);
+
+        assertTrue(result);
+    }
 }
