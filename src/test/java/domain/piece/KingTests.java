@@ -432,6 +432,22 @@ public class KingTests {
     }
 
     @Test
+    public void isValidMove_King_EmptyDestination_RestoresBoardState() {
+        King king = new King(Color.WHITE);
+
+        Location start = new Location(4, 4);
+        Location end = new Location(4, 5);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
+
+        assertSame(king, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
     public void makeCopy_King_black_returnsNewKingWithSameColorAndType() {
         King original = new King(Color.BLACK);
 
