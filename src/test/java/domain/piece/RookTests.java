@@ -327,4 +327,17 @@ public class RookTests {
         assertEquals(PieceType.ROOK, copy.getType());
         assertEquals(Color.BLACK, copy.getColor());
     }
+
+    @Test
+    public void makeCopy_Rook_white_returnsNewRookWithSameColorAndType() {
+        Rook original = new Rook(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Rook.class, copy);
+        assertEquals(PieceType.ROOK, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
+    }
 }
