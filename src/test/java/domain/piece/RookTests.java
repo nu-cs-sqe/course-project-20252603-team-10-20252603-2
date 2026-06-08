@@ -379,8 +379,8 @@ public class RookTests {
 
     @Test
     public void hasValidMoves_rook_blockedByOneFriendlyPieces_returnsTrue() {
-        Piece rook = new Rook(Color.WHITE);
-        Piece friendlyRook1 = new Rook(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+        Piece friendlyRook1 = new Rook(Color.BLACK);
 
         Location location = new Location(5, 4);
         Location location1 = new Location(4, 4);
@@ -396,9 +396,9 @@ public class RookTests {
 
     @Test
     public void hasValidMoves_rook_atCornerBlockedByFriendlyPieces_returnsFalse() {
-        Piece rook = new Rook(Color.WHITE);
-        Piece friendlyRook1 = new Rook(Color.WHITE);
-        Piece friendlyPiece = new Pawn(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+        Piece friendlyRook1 = new Rook(Color.BLACK);
+        Piece friendlyPiece = new Pawn(Color.BLACK);
 
         Location location = new Location(7, 7);
         Location location1 = new Location(6, 7);
@@ -412,5 +412,25 @@ public class RookTests {
         boolean result = rook.hasValidMoves(location, board);
 
         assertFalse(result);
+    }
+
+    @Test
+    public void hasValidMoves_rook_atCornerBlockedByEnemyPieces_returnsTrue() {
+        Piece rook = new Rook(Color.BLACK);
+        Piece enemyRook1 = new Rook(Color.WHITE);
+        Piece enemyRook2 = new Rook(Color.WHITE);
+
+        Location location = new Location(7, 7);
+        Location enemyRookLocation1 = new Location(6, 7);
+        Location enemyRookLocation2 = new Location(7, 6);
+
+        Board board = new Board(false);
+        board.setPiece(location, rook);
+        board.setPiece(enemyRookLocation1, enemyRook1);
+        board.setPiece(enemyRookLocation2, enemyRook2);
+
+        boolean result = rook.hasValidMoves(location, board);
+
+        assertTrue(result);
     }
 }

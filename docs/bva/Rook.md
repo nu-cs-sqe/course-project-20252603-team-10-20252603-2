@@ -88,12 +88,13 @@
 
 ### Method under test: `hasValidMoves()` for Rook
 
-| Test Number | Color | Start position | Board State                                            | Expected Output | Implemented? |
-|-------------|-------|----------------|--------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [6,0]          | Clear board                                            | TRUE            | yes          |               
-| 2           | WHITE | [6,0]          | Friendly pieces at [5,0], [7,0], and [6,1] | FALSE           | yes          |                
+| Test Number | Color | Start position | Board State                                                                    | Expected Output | Implemented? |
+|-------------|-------|----------------|--------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                                    | TRUE            | yes          |               
+| 2           | WHITE | [6,0]          | Friendly pieces at [5,0], [7,0], and [6,1]                                     | FALSE           | yes          |                
 | 3           | BLACK | [5,4]          | Friendly piece at [4,4]. Left, right, and down paths are completely wide open. | TRUE            | yes          |
-| 4           | BLACK | [7,7]          | Sitting at the absolute corner. Blocked by friendly pieces at [6,7] and [7,6]                                               | FALSE           | yes          |
+| 4           | BLACK | [7,7]          | Sitting at the absolute corner. Blocked by friendly pieces at [6,7] and [7,6]  | FALSE           | yes          |
+| 5           | BLACK | [7,7]          | Blocked by enemy pieces at [6,7] and [7,6]                                     | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Rook
 
