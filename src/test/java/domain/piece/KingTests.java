@@ -448,6 +448,24 @@ public class KingTests {
     }
 
     @Test
+    public void isValidMove_King_EnemyDestination_ReturnsTrue_RestoresBoardState() {
+        King king = new King(Color.WHITE);
+        Piece enemyPawn = new Pawn(Color.BLACK);
+
+        Location start = new Location(4, 4);
+        Location end = new Location(5, 5);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+        board.setPiece(end, enemyPawn);
+
+        assertTrue(king.isValidMove(start, end, board));
+
+        assertSame(king, board.getPiece(start));
+        assertSame(enemyPawn, board.getPiece(end));
+    }
+
+    @Test
     public void makeCopy_King_black_returnsNewKingWithSameColorAndType() {
         King original = new King(Color.BLACK);
 
