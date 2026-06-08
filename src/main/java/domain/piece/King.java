@@ -102,6 +102,7 @@ public class King extends Piece {
                 }
                 int destinationRow = currentRow + rowOffset;
                 int destinationCol = currentCol + colOffset;
+
                 if (destinationRow >= 0 && destinationRow < NUM_ROWS
                         && destinationCol >= 0 && destinationCol < NUM_COLS) {
                     Location desiredDestination = new Location(destinationRow, destinationCol);
