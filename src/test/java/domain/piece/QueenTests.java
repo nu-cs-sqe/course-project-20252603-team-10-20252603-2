@@ -392,4 +392,17 @@ public class QueenTests {
         assertEquals(Color.BLACK, copy.getColor());
     }
 
+    @Test
+    public void makeCopy_Queen_white_returnsNewQueenWithSameColorAndType() {
+        Queen original = new Queen(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Queen.class, copy);
+        assertEquals(PieceType.QUEEN, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
+    }
+
 }
