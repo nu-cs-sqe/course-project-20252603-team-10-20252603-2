@@ -357,20 +357,20 @@ public class RookTests {
     @Test
     public void hasValidMoves_rook_blockedByFriendlyPieces_returnsFalse() {
         Piece rook = new Rook(Color.WHITE);
-        Piece friendlyRook1 = new Rook(Color.WHITE);
-        Piece friendlyPiece2 = new Pawn(Color.WHITE);
-        Piece friendlyPiece3 = new Pawn(Color.WHITE);
+        Piece friendlyRook = new Rook(Color.WHITE);
+        Piece friendlyPawn2 = new Pawn(Color.WHITE);
+        Piece friendlyPawn3 = new Pawn(Color.WHITE);
 
         Location location = new Location(6, 0);
-        Location location1 = new Location(5, 0);
-        Location location2 = new Location(7, 0);
-        Location location3 = new Location(6, 1);
+        Location friendlyRookLocation = new Location(5, 0);
+        Location friendlyPawnLocation1 = new Location(7, 0);
+        Location friendlyPawnLocation2 = new Location(6, 1);
 
         Board board = new Board(false);
         board.setPiece(location, rook);
-        board.setPiece(location1, friendlyRook1);
-        board.setPiece(location2, friendlyPiece2);
-        board.setPiece(location3, friendlyPiece3);
+        board.setPiece(friendlyRookLocation, friendlyRook);
+        board.setPiece(friendlyPawnLocation1, friendlyPawn2);
+        board.setPiece(friendlyPawnLocation2, friendlyPawn3);
 
         boolean result = rook.hasValidMoves(location, board);
 
@@ -380,14 +380,14 @@ public class RookTests {
     @Test
     public void hasValidMoves_rook_blockedByOneFriendlyPieces_returnsTrue() {
         Piece rook = new Rook(Color.BLACK);
-        Piece friendlyRook1 = new Rook(Color.BLACK);
+        Piece friendlyRook = new Rook(Color.BLACK);
 
         Location location = new Location(5, 4);
-        Location location1 = new Location(4, 4);
+        Location friendlyRookLocation = new Location(4, 4);
 
         Board board = new Board(false);
         board.setPiece(location, rook);
-        board.setPiece(location1, friendlyRook1);
+        board.setPiece(friendlyRookLocation, friendlyRook);
 
         boolean result = rook.hasValidMoves(location, board);
 
@@ -398,16 +398,16 @@ public class RookTests {
     public void hasValidMoves_rook_atCornerBlockedByFriendlyPieces_returnsFalse() {
         Piece rook = new Rook(Color.BLACK);
         Piece friendlyRook1 = new Rook(Color.BLACK);
-        Piece friendlyPiece = new Pawn(Color.BLACK);
+        Piece friendlyPawn = new Pawn(Color.BLACK);
 
         Location location = new Location(7, 7);
-        Location location1 = new Location(6, 7);
-        Location location2 = new Location(7, 6);
+        Location friendlyRookLocation1 = new Location(6, 7);
+        Location friendlyPawnLocation = new Location(7, 6);
 
         Board board = new Board(false);
         board.setPiece(location, rook);
-        board.setPiece(location1, friendlyRook1);
-        board.setPiece(location2, friendlyPiece);
+        board.setPiece(friendlyRookLocation1, friendlyRook1);
+        board.setPiece(friendlyPawnLocation, friendlyPawn);
 
         boolean result = rook.hasValidMoves(location, board);
 
