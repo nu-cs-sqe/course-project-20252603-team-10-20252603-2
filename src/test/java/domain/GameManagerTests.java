@@ -227,4 +227,11 @@ public class GameManagerTests {
         assertFalse(game.isGameOver());
         EasyMock.verify(mockedPlayer, mockedBoard);
     }
+
+    @Test
+    public void isGameOver_NotStarted_ReturnsFalse() {
+        GameManager game = new GameManager();
+
+        assertFalse(game.isGameOver());
+    }
 }
