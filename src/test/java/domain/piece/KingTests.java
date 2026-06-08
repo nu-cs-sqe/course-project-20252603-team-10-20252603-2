@@ -554,4 +554,23 @@ public class KingTests {
 
         assertTrue(king.hasValidMoves(kingPos, board));
     }
+
+    @Test
+    public void hasValidMovesKingUnprotectedEnemyReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int enemyRow = 3;
+        final int enemyCol = 4;
+
+        King king = new King(Color.WHITE);
+        Piece enemy = new Pawn(Color.BLACK);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(enemyPos, enemy);
+
+        assertTrue(king.hasValidMoves(kingPos, board));
+    }
 }
