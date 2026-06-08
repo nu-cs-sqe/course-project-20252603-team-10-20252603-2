@@ -30,7 +30,7 @@ public class Player {
         return points;
     }
 
-    public int getPieceValue(String piece) {
+    private int getPieceValue(String piece) {
         return PIECE_VALUES.get(piece);
     }
 
