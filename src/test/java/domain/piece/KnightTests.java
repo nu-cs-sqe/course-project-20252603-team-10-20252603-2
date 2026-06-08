@@ -398,5 +398,25 @@ public class KnightTests {
         assertTrue(result);
     }
 
+    @Test
+    public void hasValidMoves_knight_atEdgeBlockedByTwoFriendlyPieces_returnsFalse() {
+        Piece knight = new Knight(Color.BLACK);
+        Piece friendlyKnight1 = new Knight(Color.BLACK);
+        Piece friendlyKnight2 = new Knight(Color.BLACK);
+
+        Location location = new Location(7, 0);
+        Location friendlyKnightLocation1 = new Location(5, 1);
+        Location friendlyKnightLocation2 = new Location(6, 2);
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+        board.setPiece(friendlyKnightLocation1, friendlyKnight1);
+        board.setPiece(friendlyKnightLocation2, friendlyKnight2);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
 
 }
