@@ -4,7 +4,12 @@ import domain.Board;
 import domain.Location;
 import constants.Color;
 
-public class King extends Piece{
+public class King extends Piece {
+
+    private static final int NUM_ROWS = 8;
+
+    private static final int NUM_COLS = 8;
+
     public King(Color color) {
         super(PieceType.KING, color);
     }
@@ -86,8 +91,26 @@ public class King extends Piece{
     }
 
     @Override
-    public boolean hasValidMoves(Location location, Board board) {
-        return true;
-    }
+    public boolean hasValidMoves(Location currentPosition, Board board) {
+        int currentRow = currentPosition.getX();
+        int currentCol = currentPosition.getY();
 
+        for (int rowOffset = -1; rowOffset <= 1; rowOffset++) {
+            for (int colOffset = -1; colOffset <= 1; colOffset++) {
+                if (rowOffset == 0 && colOffset == 0) {
+                    continue;
+                }
+                int destinationRow = currentRow + rowOffset;
+                int destinationCol = currentCol + colOffset;
+                if (destinationRow >= 0 && destinationRow < NUM_ROWS
+                        && destinationCol >= 0 && destinationCol < NUM_COLS) {
+                    Location desiredDestination = new Location(destinationRow, destinationCol);
+                    if (isValidMove(currentPosition, desiredDestination, board)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

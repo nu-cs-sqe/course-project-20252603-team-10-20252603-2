@@ -456,5 +456,33 @@ public class KingTests {
 
         assertTrue(king.hasValidMoves(kingPos, board));
     }
-}
 
+    @Test
+    public void hasValidMovesKingAllAdjacentFriendlyReturnsFalse() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int aboveRow = 3;
+        final int sameRow = 4;
+        final int belowRow = 5;
+        final int leftCol = 3;
+        final int sameCol = 4;
+        final int rightCol = 5;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+
+        board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, sameCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(sameRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(sameRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, sameCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, rightCol), new Pawn(Color.WHITE));
+
+        assertFalse(king.hasValidMoves(kingPos, board));
+    }
+}
