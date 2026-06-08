@@ -418,5 +418,25 @@ public class KnightTests {
         assertFalse(result);
     }
 
+    @Test
+    public void hasValidMoves_knight_byKingAndEnemyPiece_returnsFalse() {
+        Piece knight = new Knight(Color.WHITE);
+        Piece enemyRook = new Rook(Color.BLACK);
+        Piece friendlyKing = new King(Color.WHITE);
+
+        Location location = new Location(7, 1);
+        Location enemyRookLocation = new Location(7, 7);
+        Location friendlyKingLocation = new Location(7, 0);
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+        board.setPiece(enemyRookLocation, enemyRook);
+        board.setPiece(friendlyKingLocation, friendlyKing);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
 
 }

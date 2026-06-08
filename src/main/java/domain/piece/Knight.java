@@ -36,6 +36,48 @@ public class Knight extends Piece {
         boolean isL8 = (end.getX() == start.getX() - 1) && (end.getY() == start.getY() + 2);
 
         if (!(isL1 || isL2 || isL3 || isL4 || isL5 || isL6 || isL7 || isL8)) return false;
+
+        Piece originalTarget = board.getPiece(end);
+
+        board.setPiece(end, this);
+        board.removePiece(start);
+
+        Location kingLocation = null;
+        King alliedKing = null;
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Location loc = new Location(i, j);
+                if (board.isPieceHere(loc)) {
+                    Piece p = board.getPiece(loc);
+                    if (p.getColor() == this.getColor() && p.getType() == PieceType.KING) {
+                        kingLocation = loc;
+                        alliedKing = (King) p;
+                        break;
+                    }
+                }
+            }
+            if (kingLocation != null)  {
+                break;
+            }
+        }
+
+        boolean exposesKing = false;
+        if (alliedKing != null) {
+            exposesKing = alliedKing.isInCheck(kingLocation, board);
+        }
+
+        board.setPiece(start, this);
+        if (originalTarget != null) {
+            board.setPiece(end, originalTarget);
+        } else {
+            board.removePiece(end);
+        }
+
+        if (exposesKing) {
+            return false;
+        }
+
         return true;
 
     }
