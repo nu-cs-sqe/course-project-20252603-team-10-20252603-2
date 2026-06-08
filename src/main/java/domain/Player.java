@@ -30,12 +30,17 @@ public class Player {
         return points;
     }
 
-    public int getPieceValue(String piece) {
+    private int getPieceValue(String piece) {
         return PIECE_VALUES.get(piece);
     }
 
     // using String as input instead of Piece for now
     public void incrementPoints(String piece) {
         points += getPieceValue(piece);
+    }
+
+    // placeholder return value because Board + King piece has not been implemented yet
+    public boolean isInCheck() {
+        return false;
     }
 }
