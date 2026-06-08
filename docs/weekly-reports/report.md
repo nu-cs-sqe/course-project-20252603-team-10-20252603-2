@@ -37,6 +37,9 @@
 2. [done] Cate: Code and test implementation for isValidMove (type=Knight) (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/29)
 3. [done] Cate: Pushed implementation of spotbugs and checkstyle (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/33)
 4. [not started] Cate: Code and test implementation for isValidMove (type=Queen)
+5. [done] Samreen: BVA for Piece isValidMove() (type=Bishop) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/27
+6. [50% done] Samreen: Implementation for Piece isValidMove() (type=Bishop) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/27
+7. [done] Samreen: Reviewed Player Class Implementation by Vivian (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
 
 # Week 8 (05/18/2026-05/24/2026)
 **Planning and Progress Tracking**:
@@ -46,7 +49,10 @@
 4. [done] Cate: Jacoco and pitest implementation for mutation and code coverage (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/41)
 5. [done] Vivian: Addressed PR comments and merged Player Class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/17)
 6. [50% done] Vivian: BVA for GameManager class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/32)
+7. [done] Samreen: Implementation for Piece isValidMove() (type=Bishop) https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/27
 
 # Week 9 (05/25/2026-05/31/2026)
-
+1. [done] Samreen: Reviewed Queen Class Implementation by Cate (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/37)
+2. [done] Samreen: Reviewed pawn hasValidMoves implementation by Vivian  (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/46)
+3. [50% done] Samreen: BVA for isValidMove and isInCheck for King class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/53)
 
