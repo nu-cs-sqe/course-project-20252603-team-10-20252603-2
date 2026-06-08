@@ -485,4 +485,21 @@ public class KingTests {
 
         assertFalse(king.hasValidMoves(kingPos, board));
     }
+
+    @Test
+    public void hasValidMovesKingCornerAdjacentFriendlyReturnsFalse() {
+        final int kingRow = 0;
+        final int kingCol = 0;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(new Location(0, 1), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 0), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
+
+        assertFalse(king.hasValidMoves(kingPos, board));
+    }
 }
