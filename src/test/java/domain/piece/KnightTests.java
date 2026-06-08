@@ -5,8 +5,10 @@ import domain.Location;
 import constants.Color;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class KnightTests {
 
@@ -340,6 +342,19 @@ public class KnightTests {
         boolean result = knight.isValidMove(start, chosen, board);
 
         assertTrue(result);
+    }
+
+    @Test
+    public void makeCopy_Knight_black_returnsNewRookWithSameColorAndType() {
+        Knight original = new Knight(Color.BLACK);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Knight.class, copy);
+        assertEquals(PieceType.KNIGHT, copy.getType());
+        assertEquals(Color.BLACK, copy.getColor());
     }
 
 }
