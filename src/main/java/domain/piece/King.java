@@ -15,20 +15,29 @@ public class King extends Piece {
     }
 
     public boolean isInCheck(Location kingLocation, Board board) {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < NUM_ROWS; i++) {
+            for (int j = 0; j < NUM_COLS; j++) {
                 Location location = new Location(i, j);
-                if (!board.isPieceHere(location)) continue;
-                Piece piece = board.getPiece(location);
-                if (piece.isSameColor(this)) continue;
-                if (piece.getType() == PieceType.KING) {
-                    if (canKingAttack(location, kingLocation)) return true;
-                } else {
-                    if (piece.isValidMove(location, kingLocation, board)) return true;
+                if (isKingThreatened(location, kingLocation, board)) {
+                    return true;
                 }
             }
         }
         return false;
+    }
+
+    private boolean isKingThreatened(Location location, Location kingLocation, Board board) {
+        if (!board.isPieceHere(location)) {
+            return false;
+        }
+        Piece piece = board.getPiece(location);
+        if (piece.isSameColor(this)) {
+            return false;
+        }
+        if (piece.getType() == PieceType.KING) {
+            return canKingAttack(location, kingLocation);
+        }
+        return piece.isValidMove(location, kingLocation, board);
     }
 
     private boolean canKingAttack(Location from, Location kingPos) {
