@@ -5,8 +5,10 @@ import domain.Board;
 import domain.Location;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class KingTests {
 
@@ -428,4 +430,18 @@ public class KingTests {
 
         assertFalse(king.isValidMove(start, end, board));
     }
+
+    @Test
+    public void makeCopy_King_black_returnsNewKingWithSameColorAndType() {
+        King original = new King(Color.BLACK);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(King.class, copy);
+        assertEquals(PieceType.KING, copy.getType());
+        assertEquals(Color.BLACK, copy.getColor());
+    }
+
 }
