@@ -92,3 +92,35 @@
         * same square (INVALID)
 * output:
     * a yes/no answer: boolean
+
+### Method under test: `hasValidMoves()` for Knight
+
+| Test Number | Color | Start position | Board State                                                                        | Expected Output | Implemented? |
+|-------------|-------|----------------|------------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                                        | TRUE            | no           |               
+| 2           | WHITE | [6,0]          | Friendly piece at [4, 1], Enemy at [5,2], diagonal spaces are empty                | FALSE           | no           |                
+| 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [3, 5].                                | TRUE            | no          |
+| 4           | BLACK | [7,0]          | Stuck at the absolute edge, friendly pieces at [5, 1] and [6, 2]                   | FALSE           | no          |
+| 5           | WHITE | [7,1]          | Pinned against its own White King [7, 0] by an enemy Black Rook [7, 7] along a row | FALSE           | no          |
+
+### STEPS FOR BVA: `hasValidMoves()` for Knight
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * knight color
+    * piece start position (row, column)
+    * state of the board (Board)
+    * path is clear?
+    * status of the King (isInCheck())
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * knight color: cases
+    * piece start position (row, column): array indices
+    * path is clear?: boolean
+    * state of the board: cases
+    * status of the King: boolean
+* output:
+    * a yes/no answer: boolean
