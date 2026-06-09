@@ -24,5 +24,5 @@
 
 | Test Number | Object State                                  | Expected Output       | Implemented? |
 |-------------|-----------------------------------------------|-----------------------|--------------|
-| 1           | `LanguageOption("English", Locale.ENGLISH)`   | `Locale.ENGLISH`      | no           |
+| 1           | `LanguageOption("English", Locale.ENGLISH)`   | `Locale.ENGLISH`      | yes          |
 | 2           | `LanguageOption("Español", new Locale("es"))` | Spanish locale object | no           |
