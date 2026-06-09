@@ -441,14 +441,14 @@ public class KnightTests {
     @Test
     public void hasValidMoves_knight_blockedByEnemyPiece_returnsTrue() {
         Piece knight = new Knight(Color.WHITE);
-        Piece enemyKnight = new Rook(Color.BLACK);
+        Piece enemyRook = new Rook(Color.BLACK);
 
         Location location = new Location(7, 1);
-        Location enemyKnightLocation = new Location(5, 2);
+        Location enemyRookLocation = new Location(5, 2);
 
         Board board = new Board(false);
         board.setPiece(location, knight);
-        board.setPiece(enemyKnightLocation, enemyKnight);
+        board.setPiece(enemyRookLocation, enemyRook);
 
         boolean result = knight.hasValidMoves(location, board);
 

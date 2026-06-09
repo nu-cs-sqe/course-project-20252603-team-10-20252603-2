@@ -45,6 +45,7 @@ public class Knight extends Piece {
         Location kingLocation = null;
         King alliedKing = null;
 
+
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Location loc = new Location(i, j);
@@ -84,6 +85,9 @@ public class Knight extends Piece {
 
     @Override
     public boolean hasValidMoves(Location currentPosition, Board board) {
+        final int MAX_COORD = 7;
+        final int MIN_COORD = 0;
+
         int currX = currentPosition.getX();
         int currY = currentPosition.getY();
 
@@ -98,7 +102,7 @@ public class Knight extends Piece {
             int targetX = coord[0];
             int targetY = coord[1];
 
-            if (targetX >= 0 && targetX <= 7 && targetY >= 0 && targetY <= 7) {
+            if (targetX >= MIN_COORD && targetX <= MAX_COORD && targetY >= MIN_COORD && targetY <= MAX_COORD) {
                 Location target = new Location(targetX, targetY);
 
                 if (this.isValidMove(currentPosition, target, board)) {
