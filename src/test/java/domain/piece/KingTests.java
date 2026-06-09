@@ -764,6 +764,20 @@ public class KingTests {
 
         assertTrue(king.hasValidMoves(kingPos, board));
     }
+
+    @Test
+    public void hasValidMovesKingClearBoardMaxValueReturnsTrue() {
+        final int kingRow = 7;
+        final int kingCol = 7;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+
+        assertTrue(king.hasValidMoves(kingPos, board));
+    }
 }
 
 

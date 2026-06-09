@@ -158,7 +158,8 @@
 | 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                        | FALSE           | yes          |
 | 6           | WHITE | [4,4]          | one adjacent square empty+safe, all others blocked              | TRUE            | yes          |
 | 7           | WHITE | [4,4]          | one adjacent square has unprotected enemy piece                 | TRUE            | yes          |
-| 8           | BLACK | [0,0]          | Clear board                                                     | TRUE            | no           |
+| 8           | BLACK | [0,0]          | Clear board                                                     | TRUE            | yes          |
+| 9           | WHITE | [7,7]          | Clear board                                                     | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for King
 
