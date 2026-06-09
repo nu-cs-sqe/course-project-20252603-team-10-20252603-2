@@ -49,4 +49,13 @@ public class LanguageOptionTests {
         assertEquals(Locale.ENGLISH, option.getLocale());
     }
 
+    @Test
+    public void getLocale_spanishLanguageOption_returnsSpanishLocale() {
+        Locale spanishLocale = new Locale("es");
+        LanguageOption option =
+                new LanguageOption("Español", spanishLocale);
+
+        assertEquals(spanishLocale, option.getLocale());
+    }
+
 }
