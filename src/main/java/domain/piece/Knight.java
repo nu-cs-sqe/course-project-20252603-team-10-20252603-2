@@ -5,6 +5,10 @@ import domain.Location;
 import constants.Color;
 
 public class Knight extends Piece {
+    final int BOARD_SIZE = 8;
+    final int MIN_COORD = 0;
+    final int MAX_COORD = 7;
+
     public Knight(Color color) {
         super(PieceType.KNIGHT, color);
     }
@@ -16,7 +20,6 @@ public class Knight extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
-
         if (start.equals(end)) {
             return false;
         }
@@ -46,8 +49,8 @@ public class Knight extends Piece {
         King alliedKing = null;
 
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = MIN_COORD; i < BOARD_SIZE; i++) {
+            for (int j = MIN_COORD; j < BOARD_SIZE; j++) {
                 Location loc = new Location(i, j);
                 if (board.isPieceHere(loc)) {
                     Piece p = board.getPiece(loc);
@@ -85,9 +88,6 @@ public class Knight extends Piece {
 
     @Override
     public boolean hasValidMoves(Location currentPosition, Board board) {
-        final int MAX_COORD = 7;
-        final int MIN_COORD = 0;
-
         int currX = currentPosition.getX();
         int currY = currentPosition.getY();
 
