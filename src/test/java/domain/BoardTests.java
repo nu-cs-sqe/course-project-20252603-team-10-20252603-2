@@ -309,4 +309,15 @@ public class BoardTests {
         assertNull(board.getPiece(location));
     }
 
+    @Test
+    void copyConstructor_nullBoard_returnsEmptyBoard() {
+        Board copy = new Board(null);
+
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                assertFalse(copy.isPieceHere(new Location(x, y)));
+            }
+        }
+    }
+
 }

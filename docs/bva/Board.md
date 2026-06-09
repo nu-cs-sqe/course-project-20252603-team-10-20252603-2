@@ -188,4 +188,4 @@ mutants and performance makes more sense than BVA
 
 | Test # | Input Board | Expected Output       | Implemented? |
 |--------|-------------|-----------------------|--------------|
-| 1      | null        | returns empty board   | no           |
+| 1      | null        | returns empty board   | yes          |
