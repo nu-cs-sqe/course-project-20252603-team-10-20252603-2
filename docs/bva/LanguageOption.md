@@ -15,7 +15,7 @@
 | Test Number | Object State                                  | Expected Output | Implemented? |
 |-------------|-----------------------------------------------|-----------------|--------------|
 | 1           | `LanguageOption("English", Locale.ENGLISH)`   | `"English"`     | yes          |
-| 2           | `LanguageOption("Español", new Locale("es"))` | `"Español"`     | no           |
+| 2           | `LanguageOption("Español", new Locale("es"))` | `"Español"`     | yes          |
 
 
 ## Method under test: `getLocale()`, basic functional testing
