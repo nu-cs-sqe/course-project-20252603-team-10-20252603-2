@@ -12,4 +12,8 @@ public class LanguageOption {
         this.locale = locale;
     }
 
+    @Override
+    public String toString() {
+        return displayName;
+    }
 }
