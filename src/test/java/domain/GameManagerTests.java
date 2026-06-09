@@ -269,4 +269,27 @@ public class GameManagerTests {
         assertNull(game.getBoard());
     }
 
+    @Test
+    public void setBoard_validBoard_storesCopyOfBoard() {
+        GameManager game = new GameManager();
+
+        Board original = new Board(false);
+        original.setPiece(new Location(0, 0), new Pawn(Color.WHITE));
+
+        game.setBoard(original);
+
+        Board storedBoard = game.getBoard();
+
+        assertNotNull(storedBoard);
+        assertNotSame(original, storedBoard);
+
+        Piece originalPiece = original.getPiece(new Location(0, 0));
+        Piece storedPiece = storedBoard.getPiece(new Location(0, 0));
+
+        assertNotNull(storedPiece);
+        assertNotSame(originalPiece, storedPiece);
+        assertEquals(originalPiece.getType(), storedPiece.getType());
+        assertEquals(originalPiece.getColor(), storedPiece.getColor());
+    }
+
 }
