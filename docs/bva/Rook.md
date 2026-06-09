@@ -100,7 +100,7 @@
 
 1) input equivalence classes and output equivalence classes
 * input:
-    * pawn color
+    * rook color
     * piece start position (row, column)
     * state of the board (Board)
     * path is clear?

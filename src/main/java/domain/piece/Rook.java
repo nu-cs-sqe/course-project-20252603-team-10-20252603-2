@@ -80,6 +80,10 @@ public class Rook extends Piece {
 
     @Override
     public boolean hasValidMoves(Location currentPosition, Board board) {
+        final int MIN_COORD = 0;
+        final int MAX_COORD = 7;
+        final int BOARD_SIZE = 8;
+
         int currX = currentPosition.getX();
         int currY = currentPosition.getY();
 
@@ -94,11 +98,11 @@ public class Rook extends Piece {
             int dX = dir[0];
             int dY = dir[1];
 
-            for (int step = 1; step < 8; step++) {
+            for (int step = 1; step < NUM_ROWS; step++) {
                 int targetX = currX + (dX * step);
                 int targetY = currY + (dY * step);
 
-                if (targetX < 0 || targetX > 7 || targetY < 0 || targetY > 7) {
+                if (targetX < MIN_COORD || targetX > MAX_COORD || targetY < MIN_COORD || targetY > MAX_COORD) {
                     break;
                 }
 
