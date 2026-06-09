@@ -186,6 +186,7 @@
 ** NOTE: as this function is performing copying behavior rather than boundary logic, basic functional testing for code coverage/
 mutants and performance makes more sense than BVA
 
-| Test # | Input Board | Expected Output       | Implemented? |
-|--------|-------------|-----------------------|--------------|
-| 1      | null        | returns empty board   | yes          |
+| Test # | Input Board           | Expected Output                         | Implemented? |
+|--------|-----------------------|-----------------------------------------|--------------|
+| 1      | null                  | returns empty board                     | yes          |
+| 2      | board with one piece  | copied board contains equivalent piece  | yes          |

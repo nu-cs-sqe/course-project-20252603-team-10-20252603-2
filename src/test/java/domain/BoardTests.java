@@ -320,4 +320,18 @@ public class BoardTests {
         }
     }
 
+    @Test
+    void copyConstructor_boardWithPiece_copiesPiece() {
+        Board original = new Board(false);
+        original.setPiece(new Location(0,0), new Pawn(Color.WHITE));
+
+        Board copy = new Board(original);
+
+        assertNotNull(copy.getPiece(new Location(0,0)));
+        assertNotSame(
+                original.getPiece(new Location(0,0)),
+                copy.getPiece(new Location(0,0))
+        );
+    }
+
 }
