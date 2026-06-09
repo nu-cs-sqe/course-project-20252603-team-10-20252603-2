@@ -2,87 +2,91 @@ package domain;
 
 import constants.Color;
 import domain.piece.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameManagerTests {
+    private GameManager game;
+    private Board board;
 
-    @Test
-    public void start_WithZeroPlayers_ThrowsException() {
-        GameManager game = new GameManager();
+    @BeforeEach
+    public void setUp() {
+        game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.WHITE));
+        game.addPlayer(new Player("Player2", Color.BLACK));
+        game.start();
 
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            game.start();
-        });
-
-        assertTrue(exception.getMessage().contains("Not enough players in the game."));
-        assertFalse(game.isGameRunning());
+        board = new Board(false);
     }
 
     @Test
-    public void start_WithOnePlayer_ThrowsException() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
+    public void start_withZeroPlayers_throwsException() {
+        GameManager newGame = new GameManager();
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            game.start();
+            newGame.start();
         });
 
         assertTrue(exception.getMessage().contains("Not enough players in the game."));
-        assertFalse(game.isGameRunning());
+        assertFalse(newGame.isGameRunning());
     }
 
     @Test
-    public void start_WithThreePlayers_ThrowsException() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.addPlayer(new Player("Player2", Color.WHITE));
-        game.addPlayer(new Player("Player3", Color.BLACK));
+    public void start_withOnePlayer_throwsException() {
+        GameManager newGame = new GameManager();
+        newGame.addPlayer(new Player("Player1", Color.BLACK));
+
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            game.start();
+            newGame.start();
+        });
+
+        assertTrue(exception.getMessage().contains("Not enough players in the game."));
+        assertFalse(newGame.isGameRunning());
+    }
+
+    @Test
+    public void start_withThreePlayers_throwsException() {
+        GameManager newGame = new GameManager();
+        newGame.addPlayer(new Player("Player1", Color.BLACK));
+        newGame.addPlayer(new Player("Player2", Color.WHITE));
+        newGame.addPlayer(new Player("Player3", Color.BLACK));
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            newGame.start();
         });
 
         assertTrue(exception.getMessage().contains("Maximum number of players allowed is 2."));
-        assertFalse(game.isGameRunning());
+        assertFalse(newGame.isGameRunning());
     }
 
     @Test
-    public void start_WithTwoPlayers_IsSuccessful() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.addPlayer(new Player("Player2", Color.WHITE));
-
+    public void start_withTwoPlayers_isSuccessful() {
         assertDoesNotThrow(() -> game.start());
         assertTrue(game.isGameRunning());
     }
 
     @Test
-    public void start_WithTwoPlayersOfTheSameColor_ThrowsException() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.addPlayer(new Player("Player2", Color.BLACK));
+    public void start_withPlayersOfTheSameColor_throwsException() {
+        GameManager newGame = new GameManager();
+        newGame.addPlayer(new Player("Player1", Color.BLACK));
+        newGame.addPlayer(new Player("Player2", Color.BLACK));
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            game.start();
+            newGame.start();
         });
 
         assertTrue(exception.getMessage().contains("Players cannot have the same color."));
-        assertFalse(game.isGameRunning());
+        assertFalse(newGame.isGameRunning());
     }
 
     @Test
-    public void changeTurns_StartsWithWhite_IsTrue() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.addPlayer(new Player("Player2", Color.WHITE));
-
-        game.start();
-
+    public void changeTurns_startsWithWhite_isTrue() {
         Color actual = game.getCurrentPlayer().getPlayerColor();
         Color expected = Color.WHITE;
 
@@ -90,12 +94,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void changeTurns_WhiteToBlack_IsSuccessful() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.addPlayer(new Player("Player2", Color.WHITE));
-
-        game.start();
+    public void changeTurns_whiteToBlack_isSuccessful() {
         game.changeTurns();
 
         Color actual = game.getCurrentPlayer().getPlayerColor();
@@ -105,12 +104,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void changeTurns_BlackToWhite_IsSuccessful() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.addPlayer(new Player("Player2", Color.WHITE));
-
-        game.start();
+    public void changeTurns_blackToWhite_isSuccessful() {
         game.changeTurns();
         game.changeTurns();
 
@@ -121,12 +115,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void changeTurns_Draw_ThrowsException() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.addPlayer(new Player("Player2", Color.WHITE));
-        game.start();
-
+    public void changeTurns_draw_throwsException() {
         for (int i = 0; i < 50; i++) {
             game.incrementDrawCounter();
         }
@@ -139,93 +128,173 @@ public class GameManagerTests {
     }
 
     @Test
-    public void isGameOver_KingNotInCheck_ReturnsFalse() {
-        GameManager game = new GameManager();
+    public void isGameOver_checkmateCondition_returnsTrue() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
+        board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
+        game.setBoard(board);
 
-        Player blackPlayer = new Player("Player1", Color.BLACK);
-        Player whitePlayer = new Player("Player2", Color.WHITE);
-        game.addPlayer(blackPlayer);
-        game.addPlayer(whitePlayer);
-        game.start();
-
-        Board mockedBoard = EasyMock.createMock(Board.class);
-
-        List<Piece> dummyValidPieces = List.of(new Pawn(Color.WHITE));
-        EasyMock.expect(mockedBoard.getValidPiecesByColor(Color.WHITE))
-                .andReturn(dummyValidPieces).anyTimes();
-
-        EasyMock.replay(mockedBoard);
-
-        game.setBoard(mockedBoard);
-
-        boolean gameOver = game.isGameOver();
-
-        assertFalse(gameOver);
-        EasyMock.verify(mockedBoard);
+        assertTrue(game.isGameOver());
     }
 
     @Test
-    public void isGameOver_DrawConditionMet_ReturnsTrue() {
-        GameManager game = new GameManager();
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.addPlayer(new Player("Player2", Color.WHITE));
-        game.start();
+    public void isGameOver_stalemateCondition_returnsTrue() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(1, 2), new Queen(Color.BLACK));
+        board.setPiece(new Location(2, 1), new King(Color.BLACK));
+        game.setBoard(board);
 
+        assertTrue(game.isGameOver());
+    }
+
+    @Test
+    public void isGameOver_normalGamePlayContinue_returnsFalse() {
+        board.setPiece(new Location(4, 4), new King(Color.WHITE));
+        board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
+        game.setBoard(board);
+
+        assertFalse(game.isGameOver());
+    }
+
+    @Test
+    public void isGameOver_drawConditionMet_returnsTrue() {
         for (int i = 0; i < 50; i++) {
             game.incrementDrawCounter();
         }
-
-        boolean gameOver = game.isGameOver();
-        assertTrue(gameOver);
-    }
-
-    @Test
-    public void isGameOver_Checkmate_ReturnsTrue() {
-        GameManager game = new GameManager();
-
-        Player mockedPlayer = EasyMock.createMock(Player.class);
-        Board mockedBoard = EasyMock.createMock(Board.class);
-
-        EasyMock.expect(mockedPlayer.getPlayerColor()).andReturn(Color.WHITE).anyTimes();
-        EasyMock.expect(mockedPlayer.isInCheck()).andReturn(true).anyTimes();
-
-        EasyMock.expect(mockedBoard.getValidPiecesByColor(Color.WHITE))
-                .andReturn(new ArrayList<>()).anyTimes();
-
-        EasyMock.replay(mockedPlayer, mockedBoard);
-
-        game.addPlayer(mockedPlayer);
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.assignPlayers(mockedPlayer, new Player("Player1", Color.BLACK));
-        game.setBoard(mockedBoard);
-
         assertTrue(game.isGameOver());
-        EasyMock.verify(mockedPlayer, mockedBoard);
     }
 
     @Test
-    public void isGameOver_PlayerHasMoves_ReturnsFalse() {
-        GameManager game = new GameManager();
-        Player mockedPlayer = EasyMock.createMock(Player.class);
-        Board mockedBoard = EasyMock.createMock(Board.class);
+    public void isStalemate_notInCheckZeroMoves_returnsTrue() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(1, 2), new Queen(Color.BLACK));
+        board.setPiece(new Location(2, 1), new King(Color.BLACK));
+        game.setBoard(board);
 
-        EasyMock.expect(mockedPlayer.getPlayerColor()).andReturn(Color.WHITE).anyTimes();
-        EasyMock.expect(mockedPlayer.isInCheck()).andReturn(false).anyTimes();
-
-        List<Piece> validPieces = List.of(new Pawn(Color.WHITE));
-        EasyMock.expect(mockedBoard.getValidPiecesByColor(Color.WHITE))
-                .andReturn(validPieces).anyTimes();
-
-        EasyMock.replay(mockedPlayer, mockedBoard);
-
-        game.addPlayer(mockedPlayer);
-        game.addPlayer(new Player("Player1", Color.BLACK));
-        game.assignPlayers(mockedPlayer, new Player("Player1", Color.BLACK));
-        game.setBoard(mockedBoard);
-
-        assertFalse(game.isGameOver());
-        EasyMock.verify(mockedPlayer, mockedBoard);
+        assertTrue(game.isStalemate());
     }
+
+    @Test
+    public void isStalemate_notInCheckOneMove_returnsFalse() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+
+        board.setPiece(new Location(1, 0), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
+        game.setBoard(board);
+
+        assertFalse(game.isStalemate());
+    }
+    @Test
+    public void isStalemate_inCheckZeroMoves_returnsFalse() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
+        board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
+        game.setBoard(board);
+
+        assertFalse(game.isStalemate());
+    }
+    @Test
+    public void isStalemate_notInCheckMultipleMoves_returnsFalse() {
+        Board standardBoard = new Board(true);
+
+        standardBoard.removePiece(new Location(5, 4));
+        standardBoard.removePiece(new Location(4, 4));
+
+        game.setBoard(standardBoard);
+
+        assertFalse(game.isStalemate());
+    }
+
+    @Test
+    public void isCheckmate_inCheckZeroMoves_returnsTrue() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
+        board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
+        game.setBoard(board);
+
+        assertTrue(game.isCheckmate());
+    }
+
+    @Test
+    public void isCheckmate_inCheckOneMove_returnsFalse() {
+        Board standardBoard = new Board(true);
+
+        game.setBoard(standardBoard);
+
+        assertFalse(game.isCheckmate());
+    }
+
+    @Test
+    public void isCheckmate_notInCheckAtLeastOneMove_returnsFalse() {
+        board.setPiece(new Location(0, 0), new King(Color.WHITE));
+        board.setPiece(new Location(1, 1), new Pawn(Color.WHITE));
+        game.setBoard(board);
+
+        assertFalse(game.isCheckmate());
+    }
+
+    @Test
+    public void getMessageDefaultEnglishIfLocaleNotSet() {
+        GameManager game = new GameManager();
+
+        assertEquals("Start Game", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageEnglishLocaleReturnsEnglish() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
+
+        assertEquals("Start Game", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageSpanishLocaleReturnsSpanish() {
+        GameManager game = new GameManager();
+        game.setLocale(new Locale("es"));
+
+        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageCanSwitchLocaleEnglishToSpanish() {
+        GameManager game = new GameManager();
+
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("Start Game", game.getMessage("start.game"));
+
+        game.setLocale(new Locale("es"));
+        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+    }
+
+    @Test
+    public void getMessageMissingKeyReturnsFallbackMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("nonexistent.key", game.getMessage("nonexistent.key"));
+    }
+
+    @Test
+    public void getMessageCheckmateEnglishReturnsCorrectMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.ENGLISH);
+        assertEquals("Checkmate!", game.getMessage("checkmate"));
+    }
+
+    @Test
+    public void getMessageCheckmateSpanishReturnsCorrectMessage() {
+        GameManager game = new GameManager();
+        game.setLocale(new Locale("es"));
+        assertEquals("¡mate!", game.getMessage("checkmate"));
+    }
+
+    @Test
+    public void getMessageNewLocaleWorks() {
+        GameManager game = new GameManager();
+        game.setLocale(Locale.FRENCH);
+        assertEquals("Lancer la partie", game.getMessage("start.game"));
+    }
+    // TODO: last two tests of isCheckmate is waiting on King's hasValidMoves() implementation
 
     @Test
     public void movePiece_nullLoc1_returnNO_PIECE_SELECTED() {
@@ -586,5 +655,4 @@ public class GameManagerTests {
         assertTrue(exception.getMessage().contains("Invalid promotion piece."));
 
     }
-
 }

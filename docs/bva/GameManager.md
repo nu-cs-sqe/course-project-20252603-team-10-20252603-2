@@ -48,6 +48,50 @@
   * “B” → “W”
   * “W” → “B”
 
+**Method under test: isCheckmate()**
+|             | System under test                                          | Expected output | Implemented? |
+|:------------|:-----------------------------------------------------------| :---- |:-------------|
+| Test Case 1 | King is in check and has no other valid moves.             | Returns true, game notification that the game is over. | yes          |
+| Test Case 2 | King is in check and has 1 valid move.                   | Returns false, the game continues. | yes          |
+| Test Case 3 | King is not in check and has >=1 valid move.               | Returns false, the game continues. | yes          |
+| Test Case 4 | King is in check and has >1 valid move.                | Returns false, the game continues. | no          |
+| Test Case 5 | King is not in check and has 0 valid moves.               | Returns false, the game is a stalemate. | no          |
+
+### STEPS FOR BVA: `isCheckmate()`
+1. Data Types
+* Input: cases
+  * isInCheck() for the King -> boolean
+  * playerHasValidMoves() -> boolean
+* Output: boolean
+2. Test Cases
+* All combinations
+  * isInCheck() && hasValidMoves() == 0 --> TRUE
+  * isInCheck() && hasValidMoves() == 1 --> FALSE
+  * !isInCheck() && hasValidMoves() > 1--> FALSE
+  * isInCheck() && hasValidMoves() > 1 --> FALSE
+  * !isInCheck() && hasValidMoves() == 0 --> FALSE
+
+**Method under test: isStalemate()**
+
+|             | System under test                                 | Expected output                          | Implemented? |
+|:------------|:--------------------------------------------------|:-----------------------------------------|:-------------|
+| Test Case 1 | King is not in check and player has 0 valid moves | Returns true, game is a draw.            | yes          |
+| Test Case 2 | King is not in check and player has 1 valid move  | Returns false, the game continues.       | yes          |
+| Test Case 3 | King is in check and has no other valid moves.    | Returns false, game ends on a checkmate. | yes          |
+| Test Case 4 | King is not in check and has >1 valid moves.      | Returns false, the game continues.       | yes            |
+
+### STEPS FOR BVA: `isStalemate()`
+1. Data Types
+* Input: cases
+  * isInCheck() for the King -> boolean
+  * playerHasValidMoves() -> boolean
+* Output: boolean
+2. Test Cases
+* All combinations
+  * isInCheck() && hasValidMoves() == 0 --> FALSE
+  * !isInCheck() && hasValidMoves() == 1--> FALSE
+  * !isInCheck() && hasValidMoves() > 1 --> FALSE
+  * !isInCheck() && hasValidMoves() == 0 --> TRUE
 **Method under test: isGameOver()**
 
 |             | System under test                                          | Expected output | Implemented? |
@@ -71,6 +115,54 @@
   * King isInCheck() == true && there are >= 1 valid moves → ❌
   * King isInCheck() == false && there are 0 valid moves → Stalemate
   * King isInCheck() == false && there are >= 1 valid moves → ❌
+
+## Method under test: `getMessage()` for GameManager
+
+| Test Number | Locale                         | Key               | Key exists ? | Expected Output          | Implemented? |
+|-------------|--------------------------------|-------------------|--------------|--------------------------|--------------|
+| 1           | none set                       | `start.game`      | yes          | `"Start Game"` (default) | yes          |
+| 2           | english                        | `start.game`      | yes          | `"Start Game"`           | yes          |
+| 3           | spanish                        | `start.game`      | yes          | `"Iniciar Juego"`        | yes          |
+| 4           | english then switch to spanish | `start.game`      | yes          | `"Iniciar Juego"`        | yes          |
+| 5           | english                        | `nonexistent.key` | no           | `"nonexistent.key"`      | yes          |
+| 6           | english                        | `checkmate`       | yes          | `"Checkmate!"`           | yes          |
+| 7           | spanish                        | `checkmate`       | yes          | `"¡mate!"`               | yes          |
+| 8           | french (new locale)            | `start.game`      | yes          | `"Lancer la partie"`     | yes          |
+
+### STEPS FOR BVA: `getMessage()`
+
+1) input equivalence classes and output equivalence classes
+* input:
+  * locale 
+  * key (the string)
+  * whether the key exists 
+* output:
+  * the translated string, or the key itself 
+
+2) BVA catalog classes
+* input:
+  * locale: cases
+  * key: cases
+  * key exists in resources: boolean
+* output:
+  * a string: value
+
+3) BVA catalog classes -- values
+* input:
+  * locale: cases
+    * none set (should default to English)
+    * ENGLISH
+    * SPANISH
+    * ENGLISH then switch to SPANISH (supports changing locales)
+    * new locale being added (FRENCH)
+  * key: cases
+    * valid key that exists in the resources
+    * invalid key that does not exist in the resources
+  * key exists in resources: boolean
+    * True 
+    * False 
+* output:
+  * a string: value
 
 
 **Method under test: movePiece()**

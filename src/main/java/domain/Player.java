@@ -26,8 +26,10 @@ public class Player {
         this.playerColor = playerColor;
     }
 
-    public String getPlayerName() { return playerName; }
-    
+    public String getPlayerName() {
+        return playerName;
+    }
+
     public Color getPlayerColor() {
         return playerColor;
     }

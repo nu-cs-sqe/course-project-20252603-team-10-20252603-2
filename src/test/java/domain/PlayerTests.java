@@ -19,7 +19,14 @@ public class PlayerTests {
     }
 
     @Test
-    public void getPoints_ZeroPoints_ReturnsZero() {
+    public void getColor_playerBlack_returnsBlack() {
+        Player player = new Player("Player1", Color.BLACK);
+        Color actual = player.getPlayerColor();
+        assertEquals(Color.BLACK, actual);
+    }
+
+    @Test
+    public void getPoints_zeroPoints_returnsZero() {
         Player player = new Player("Player1", Color.WHITE);
         Number actual = player.getPoints();
         Number expected = 0;

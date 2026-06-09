@@ -1,12 +1,24 @@
 package domain;
 
 import constants.Color;
-import domain.piece.*;
+import domain.piece.Queen;
+import domain.piece.Rook;
+import domain.piece.Bishop;
+import domain.piece.Knight;
+import domain.piece.King;
+import domain.piece.Piece;
+import domain.piece.PieceType;
 
+import java.util.MissingResourceException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 
 public class GameManager {
+    private ResourceBundle messages;
+
     private List<Player> players = new ArrayList<>();
     private boolean isGameRunning = false;
     private Player whitePlayer;
@@ -17,6 +29,13 @@ public class GameManager {
 
     private static final int WHITE_PROMOTION_ROW = 0;
     private static final int BLACK_PROMOTION_ROW = 7;
+
+    public GameManager() {
+        this.board = null;
+        this.whitePlayer = null;
+        this.blackPlayer = null;
+        this.currentPlayer = null;
+    }
 
     public void incrementDrawCounter() {
         this.consecutiveDrawMoves++;
@@ -67,7 +86,7 @@ public class GameManager {
     public boolean isGameRunning() {
         return isGameRunning;
     }
-    
+
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
@@ -95,19 +114,63 @@ public class GameManager {
         if (currentPlayer == null || board == null) {
             return false;
         }
+        return isGameADraw() || isCheckmate() || isStalemate();
+    }
 
-        if (isGameADraw()) {
-            return true;
+    public boolean isCheckmate() {
+        if (currentPlayer == null || board == null) {
+            return false;
+        };
+
+        Location kingLocation = findKingLocation(currentPlayer.getPlayerColor());
+        if (kingLocation == null) return false;
+
+        King alliedKing = (King) board.getPiece(kingLocation);
+        boolean hasValidMoves = !board.getValidPiecesByColor(currentPlayer.getPlayerColor()).isEmpty();
+
+        return alliedKing.isInCheck(kingLocation, board) && !hasValidMoves;
+    }
+
+    public boolean isStalemate() {
+        if (currentPlayer == null || board == null) return false;
+
+        Location kingLocation = findKingLocation(currentPlayer.getPlayerColor());
+        if (kingLocation == null) return false;
+
+        King alliedKing = (King) board.getPiece(kingLocation);
+        boolean hasValidMoves = !board.getValidPiecesByColor(currentPlayer.getPlayerColor()).isEmpty();
+
+        return !alliedKing.isInCheck(kingLocation, board) && !hasValidMoves;
+    }
+
+    private Location findKingLocation(Color playerColor) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Location loc = new Location(i, j);
+                if (board.isPieceHere(loc)) {
+                    Piece p = board.getPiece(loc);
+                    if (p.getColor() == playerColor && p.getType() == PieceType.KING) {
+                        return loc;
+                    }
+                }
+            }
         }
+        return null;
+    }
 
-        Color playerColor = currentPlayer.getPlayerColor();
-        boolean hasValidMoves = !board.getValidPiecesByColor(playerColor).isEmpty();
+    public void setLocale(Locale locale) {
+        messages = ResourceBundle.getBundle("messages", locale);
+    }
 
-        if (currentPlayer.isInCheck() && !hasValidMoves) {
-            return true;
+    public String getMessage(String key) {
+        if (messages == null) {
+            setLocale(Locale.ENGLISH);
         }
-
-        return false;
+        try {
+            return messages.getString(key);
+        } catch (MissingResourceException e) {
+            return key;
+        }
     }
 
     public enum MoveResult {

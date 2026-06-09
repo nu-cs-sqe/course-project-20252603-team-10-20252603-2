@@ -16,32 +16,40 @@ public class Bishop extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
-        if (start.equals(end)) return false;
+        if (!isDiagonal(start, end)) {
+            return false;
+        }
+        if (!isDestValid(end, board)) {
+            return false;
+        }
+        if (!isPathClear(start, end, board)) {
+            return false;
+        }
 
+        return true;
+    }
+
+    private boolean isDiagonal(Location start, Location end) {
+        if (start.equals(end)) {
+            return false;
+        }
         int rowChange = Math.abs(end.getX() - start.getX());
         int colChange = Math.abs(end.getY() - start.getY());
 
-        if (rowChange != colChange) return false;
+        return rowChange == colChange;
+    }
 
+    private boolean isDestValid(Location end, Board board) {
         if (board.isPieceHere(end)) {
             Piece target = board.getPiece(end);
-            if (this.isSameColor(target)) return false;
+            return !this.isSameColor(target);
         }
+        return true;
+    }
 
-        int rowDirection = 0;
-        int colDirection = 0;
-
-        if (end.getX() > start.getX()) {
-            rowDirection = 1;
-        } else {
-            rowDirection = -1;
-        }
-
-        if (end.getY() > start.getY()) {
-            colDirection = 1;
-        } else {
-            colDirection = -1;
-        }
+    private boolean isPathClear(Location start, Location end, Board board) {
+        int rowDirection = (end.getX() > start.getX()) ? 1 : -1;
+        int colDirection = (end.getY() > start.getY()) ? 1 : -1;
 
         int currentRow = start.getX() + rowDirection;
         int currentCol = start.getY() + colDirection;
@@ -53,12 +61,11 @@ public class Bishop extends Piece {
             currentRow += rowDirection;
             currentCol += colDirection;
         }
-
         return true;
     }
 
     @Override
-    public boolean hasValidMoves() {
+    public boolean hasValidMoves(Location location, Board board) {
         //  TODO: complete method
         return false;
     }
