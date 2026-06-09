@@ -260,4 +260,13 @@ public class GameManagerTests {
         assertTrue(copiedBoard.isPieceHere(location));
     }
 
+    @Test
+    public void setBoard_nullBoard_setsBoardToNull() {
+        GameManager game = new GameManager();
+
+        game.setBoard(null);
+
+        assertNull(game.getBoard());
+    }
+
 }

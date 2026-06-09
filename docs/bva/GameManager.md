@@ -87,5 +87,5 @@
 
 | Test Case | System under test | Expected output / side effect                                                               | Implemented? |
 |-----------|-------------------|---------------------------------------------------------------------------------------------|--------------|
-| 1         | board == null     | GameManager's internal board is set to null; getBoard() returns null                        | no           |
+| 1         | board == null     | GameManager's internal board is set to null; getBoard() returns null                        | yes          |
 | 2         | board != null     | GameManager stores a copy of the given board; getBoard() returns an equivalent copied board | no           |
