@@ -16,4 +16,12 @@ public class LanguageOptionTests {
         assertNotNull(option);
     }
 
+    @Test
+    public void languageOption_spanishLocale_objectCreatedSuccessfully() {
+        LanguageOption option =
+                new LanguageOption("Español", new Locale("es"));
+
+        assertNotNull(option);
+    }
+
 }

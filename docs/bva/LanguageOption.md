@@ -5,7 +5,7 @@
 | Test Number | Input                           | Expected Output               | Implemented? |
 |-------------|---------------------------------|-------------------------------|--------------|
 | 1           | `"English"`, `Locale.ENGLISH`   | Object created successfully   | yes          |
-| 2           | `"Español"`, `new Locale("es")` | Object created successfully   | no           |
+| 2           | `"Español"`, `new Locale("es")` | Object created successfully   | yes          |
 
 
 ## Method under test: `toString()`, basic functional testing
