@@ -179,3 +179,13 @@
 |--------|---------------------------------|---------------------------------------------------------|--------------|
 | 1      | empty board                     | snapshot with only nulls                                | yes          | 
 | 2      | board with one piece at x=0,y=0 | snapshot with piece at same location                    | yes          |
+
+
+### Method under test: Board(Board other) functional testing
+
+** NOTE: as this function is performing copying behavior rather than boundary logic, basic functional testing for code coverage/
+mutants and performance makes more sense than BVA
+
+| Test # | Input Board | Expected Output       | Implemented? |
+|--------|-------------|-----------------------|--------------|
+| 1      | null        | returns empty board   | no           |
