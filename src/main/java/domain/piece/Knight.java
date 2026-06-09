@@ -5,9 +5,9 @@ import domain.Location;
 import constants.Color;
 
 public class Knight extends Piece {
-    final int BOARD_SIZE = 8;
-    final int MIN_COORD = 0;
-    final int MAX_COORD = 7;
+    private static final int BOARD_SIZE = 8;
+    private static final int MIN_COORD = 0;
+    private static final int MAX_COORD = 7;
 
     public Knight(Color color) {
         super(PieceType.KNIGHT, color);
