@@ -345,4 +345,26 @@ public class BishopTests {
 
         assertFalse(bishop.hasValidMoves(bishopPos, board));
     }
+
+    @Test
+    public void hasValidMovesBishopOneDiagonalFreeReturnsTrue() {
+        final int bishopRow = 4;
+        final int bishopCol = 4;
+        final int aboveRow = bishopRow - 1;
+        final int belowRow = bishopRow + 1;
+        final int leftCol = bishopCol - 1;
+        final int rightCol = bishopCol + 1;
+
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(bishopRow, bishopCol);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, rightCol), new Pawn(Color.WHITE));
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
 }
