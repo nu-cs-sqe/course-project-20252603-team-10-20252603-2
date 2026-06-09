@@ -66,7 +66,6 @@ public class Bishop extends Piece {
 
     @Override
     public boolean hasValidMoves(Location location, Board board) {
-        //  TODO: complete method
-        return false;
+        return true;
     }
 }

@@ -90,7 +90,7 @@
 
 | Test Number | Color | Start position | State                                                             | Expected Output | Implemented? |
 |-------------|-------|----------------|-------------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [4,4]          | Clear board                                                       | TRUE            | no           |
+| 1           | WHITE | [4,4]          | Clear board                                                       | TRUE            | yes          |
 | 2           | WHITE | [0,0]          | Clear board                                                       | TRUE            | no           |
 | 3           | WHITE | [4,4]          | all 4 diagonal squares blocked by friendly pieces                 | FALSE           | no           |
 | 4           | WHITE | [0,0]          | bishop in corder, diagonal square [1,1] blocked by friendly piece | FALSE           | no           |

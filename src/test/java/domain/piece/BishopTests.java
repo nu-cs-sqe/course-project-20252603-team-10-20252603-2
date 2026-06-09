@@ -251,4 +251,17 @@ public class BishopTests {
         assertTrue(result);
     }
 
+    @Test
+    public void hasValidMovesBishopClearBoardCenterReturnsTrue() {
+        final int bishopRow = 4;
+        final int bishopCol = 4;
+
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(bishopRow, bishopCol);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
 }
