@@ -367,4 +367,24 @@ public class BishopTests {
 
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
+
+    @Test
+    public void hasValidMovesBishopUnprotectedDiagonalEnemyReturnsTrue() {
+        final int bishopRow = 4;
+        final int bishopCol = 4;
+        final int enemyRow = 3;
+        final int enemyCol = 3;
+
+        Bishop bishop = new Bishop(Color.WHITE);
+        Piece enemy = new Pawn(Color.BLACK);
+        Location bishopPos = new Location(bishopRow, bishopCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+        board.setPiece(enemyPos, enemy);
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
 }
