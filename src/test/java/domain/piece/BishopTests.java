@@ -301,4 +301,21 @@ public class BishopTests {
 
         assertFalse(bishop.hasValidMoves(bishopPos, board));
     }
+
+    @Test
+    public void hasValidMovesBishopCornerFriendlyDiagonalReturnsFalse() {
+        final int bishopRow = 0;
+        final int bishopCol = 0;
+        final int diagonalRow = bishopRow + 1;
+        final int diagonalCol = bishopCol + 1;
+
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(bishopRow, bishopCol);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+        board.setPiece(new Location(diagonalRow, diagonalCol), new Pawn(Color.WHITE));
+
+        assertFalse(bishop.hasValidMoves(bishopPos, board));
+    }
 }
