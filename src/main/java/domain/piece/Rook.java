@@ -5,6 +5,10 @@ import domain.Location;
 import constants.Color;
 
 public class Rook extends Piece {
+    private static final int MIN_COORD = 0;
+    private static final int MAX_COORD = 7;
+    private static final int BOARD_SIZE = 8;
+
     public Rook(Color color) {
         super(PieceType.ROOK, color);
     }
@@ -50,8 +54,8 @@ public class Rook extends Piece {
             board.removePiece(start);
 
             Location kingLocation = null;
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
+            for (int i = 0; i < BOARD_SIZE; i++) {
+                for (int j = 0; j < BOARD_SIZE; j++) {
                     Location loc = new Location(i, j);
                     if (board.isPieceHere(loc)) {
                         Piece p = board.getPiece(loc);
@@ -80,10 +84,6 @@ public class Rook extends Piece {
 
     @Override
     public boolean hasValidMoves(Location currentPosition, Board board) {
-        final int MIN_COORD = 0;
-        final int MAX_COORD = 7;
-        final int BOARD_SIZE = 8;
-
         int currX = currentPosition.getX();
         int currY = currentPosition.getY();
 
@@ -98,7 +98,7 @@ public class Rook extends Piece {
             int dX = dir[0];
             int dY = dir[1];
 
-            for (int step = 1; step < NUM_ROWS; step++) {
+            for (int step = 1; step < BOARD_SIZE; step++) {
                 int targetX = currX + (dX * step);
                 int targetY = currY + (dY * step);
 
