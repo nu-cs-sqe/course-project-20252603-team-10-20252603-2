@@ -92,7 +92,7 @@
 |-------------|-------|----------------|-------------------------------------------------------------------|-----------------|--------------|
 | 1           | WHITE | [4,4]          | Clear board                                                       | TRUE            | yes          |
 | 2           | WHITE | [0,0]          | Clear board                                                       | TRUE            | yes          |
-| 3           | WHITE | [4,4]          | all 4 diagonal squares blocked by friendly pieces                 | FALSE           | no           |
+| 3           | WHITE | [4,4]          | all 4 diagonal squares blocked by friendly pieces                 | FALSE           | yes          |
 | 4           | WHITE | [0,0]          | bishop in corder, diagonal square [1,1] blocked by friendly piece | FALSE           | no           |
 | 5           | WHITE | [4,4]          | bishop cannot move without exposing king                          | FALSE           | no           |
 | 6           | WHITE | [4,4]          | one diagonal path open, all others blocked                        | TRUE            | no           |

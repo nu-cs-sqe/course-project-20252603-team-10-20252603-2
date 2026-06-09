@@ -4,7 +4,12 @@ import domain.Board;
 import domain.Location;
 import constants.Color;
 
+
 public class Bishop extends Piece {
+    private static final int NUM_ROWS = 8;
+
+    private static final int NUM_COLS = 8;
+
     public Bishop(Color color) {
         super(PieceType.BISHOP, color);
     }
@@ -65,7 +70,26 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean hasValidMoves(Location location, Board board) {
-        return true;
+    public boolean hasValidMoves(Location currentPosition, Board board) {
+        int currentRow = currentPosition.getX();
+        int currentCol = currentPosition.getY();
+
+        for (int rowDirection = -1; rowDirection <= 1; rowDirection += 2) {
+            for (int colDirection = -1; colDirection <= 1; colDirection += 2) {
+                int targetRow = currentRow + rowDirection;
+                int targetCol = currentCol + colDirection;
+
+                while (targetRow >= 0 && targetRow <  NUM_ROWS
+                        && targetCol >= 0 && targetCol < NUM_COLS) {
+                    Location target = new Location(targetRow, targetCol);
+                    if (isValidMove(currentPosition, target, board)) {
+                        return true;
+                    }
+                    targetRow += rowDirection;
+                    targetCol += colDirection;
+                }
+            }
+        }
+        return false;
     }
 }
