@@ -1,6 +1,8 @@
 package domain;
 
 import domain.piece.Bishop;
+import domain.piece.King;
+import domain.piece.Rook;
 import domain.piece.Pawn;
 import domain.piece.Piece;
 import constants.Color;
@@ -315,6 +317,31 @@ public class BishopTests {
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
         board.setPiece(new Location(diagonalRow, diagonalCol), new Pawn(Color.WHITE));
+
+        assertFalse(bishop.hasValidMoves(bishopPos, board));
+    }
+
+    @Test
+    public void hasValidMovesBishopMovesKingIntoCheckReturnsFalse() {
+        final int bishopRow = 4;
+        final int bishopCol = 4;
+        final int kingRow = 4;
+        final int kingCol = 0;
+        final int rookRow = 4;
+        final int rookCol = 7;
+
+        Bishop bishop = new Bishop(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+
+        Location bishopPos = new Location(bishopRow, bishopCol);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+        board.setPiece(kingPos, king);
+        board.setPiece(rookPos, rook);
 
         assertFalse(bishop.hasValidMoves(bishopPos, board));
     }
