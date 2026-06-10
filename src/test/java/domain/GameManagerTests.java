@@ -818,4 +818,24 @@ public class GameManagerTests {
         assertTrue(containsEnglish);
     }
 
+    @Test
+    public void getSupportedLanguages_configIncludesSpanish_returnsSpanishLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsSpanish = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.forLanguageTag("es")));
+
+        assertTrue(containsSpanish);
+    }
+
+    @Test
+    public void getSupportedLanguages_configIncludesFrench_returnsFrenchLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsFrench = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.FRENCH));
+
+        assertTrue(containsFrench);
+    }
+
 }
