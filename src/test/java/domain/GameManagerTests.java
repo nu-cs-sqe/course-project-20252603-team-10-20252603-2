@@ -675,7 +675,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_supportedValueMatchesConfiguredLocaleCount() {
+    public void loadSupportedLanguages_supportedValueWithMultipleLocaleCodes_returnsMatchingNumberOfLanguageOptions() {
         GameManager game = new GameManager();
 
         List<String> configuredCodes = getConfiguredLocaleCodes();
@@ -685,7 +685,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_supportedValueContainsAtLeastTwoLocales() {
+    public void loadSupportedLanguages_supportedValueWithAtLeastTwoLocaleCodes_returnsAtLeastTwoLanguageOptions() {
         GameManager game = new GameManager();
 
         List<LanguageOption> languages = game.getSupportedLanguages();
@@ -694,7 +694,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_configuredLocalesHaveMatchingMessageBundles() {
+    public void loadSupportedLanguages_configuredLocalesWithMatchingMessageBundles_completesWithoutMissingBundleException() {
         List<String> configuredCodes = getConfiguredLocaleCodes();
 
         for (String code : configuredCodes) {
@@ -707,7 +707,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_messageBundlesHaveLanguageNames() {
+    public void loadSupportedLanguages_configuredBundlesWithLanguageName_returnsNonEmptyDisplayNames() {
         List<String> configuredCodes = getConfiguredLocaleCodes();
 
         for (String code : configuredCodes) {
@@ -722,7 +722,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_containsEnglishLanguageOption() {
+    public void loadSupportedLanguages_supportedValueListsEnglish_returnsEnglishLanguageOption() {
         GameManager game = new GameManager();
 
         boolean containsEnglish = game.getSupportedLanguages().stream()
@@ -732,7 +732,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_containsSpanishLanguageOption() {
+    public void loadSupportedLanguages_supportedValueListsSpanish_returnsSpanishLanguageOption() {
         GameManager game = new GameManager();
 
         boolean containsSpanish = game.getSupportedLanguages().stream()
@@ -742,7 +742,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_containsFrenchLanguageOption() {
+    public void loadSupportedLanguages_supportedValueListsFrench_returnsFrenchLanguageOption() {
         GameManager game = new GameManager();
 
         boolean containsFrench = game.getSupportedLanguages().stream()
@@ -752,7 +752,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_preservesConfiguredOrder() {
+    public void loadSupportedLanguages_supportedValueWithOrderedLocaleCodes_preservesConfiguredOrder() {
         GameManager game = new GameManager();
 
         List<String> configuredCodes = getConfiguredLocaleCodes();
@@ -766,7 +766,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_validFixedResources_usesLanguageTagLocales() {
+    public void loadSupportedLanguages_supportedValueWithTrimmedLanguageTags_returnsMatchingLocales() {
         GameManager game = new GameManager();
 
         List<String> configuredCodes = getConfiguredLocaleCodes();
@@ -779,5 +779,6 @@ public class GameManagerTests {
             assertEquals(expectedLocale, actualLocale);
         }
     }
+
 
 }
