@@ -30,7 +30,6 @@ public class GameManagerTests {
 
         return Arrays.stream(config.getString("supported").split(","))
                 .map(String::trim)
-                .filter(code -> !code.isEmpty())
                 .collect(Collectors.toList());
     }
 
@@ -836,6 +835,20 @@ public class GameManagerTests {
                 .anyMatch(language -> language.getLocale().equals(Locale.FRENCH));
 
         assertTrue(containsFrench);
+    }
+
+    @Test
+    public void getSupportedLanguages_configWithOrderedLocaleCodes_preservesConfiguredOrder() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        for (int i = 0; i < configuredCodes.size(); i++) {
+            Locale expectedLocale = Locale.forLanguageTag(configuredCodes.get(i));
+
+            assertEquals(expectedLocale, languages.get(i).getLocale());
+        }
     }
 
 }
