@@ -721,4 +721,14 @@ public class GameManagerTests {
         }
     }
 
+    @Test
+    public void loadSupportedLanguages_validFixedResources_containsEnglishLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsEnglish = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.ENGLISH));
+
+        assertTrue(containsEnglish);
+    }
+
 }
