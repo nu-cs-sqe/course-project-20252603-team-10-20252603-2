@@ -808,4 +808,14 @@ public class GameManagerTests {
         assertTrue(languages.size() >= 2);
     }
 
+    @Test
+    public void getSupportedLanguages_configIncludesEnglish_returnsEnglishLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsEnglish = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.ENGLISH));
+
+        assertTrue(containsEnglish);
+    }
+
 }
