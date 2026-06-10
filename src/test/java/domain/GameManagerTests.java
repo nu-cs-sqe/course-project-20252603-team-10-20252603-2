@@ -139,6 +139,7 @@ public class GameManagerTests {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
         board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
         board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
+        board.setPiece(new Location(1, 1), new Rook(Color.BLACK));
         game.setBoard(board);
 
         assertTrue(game.isGameOver());
@@ -217,6 +218,7 @@ public class GameManagerTests {
         board.setPiece(new Location(0, 0), new King(Color.WHITE));
         board.setPiece(new Location(0, 1), new Queen(Color.BLACK));
         board.setPiece(new Location(1, 0), new Rook(Color.BLACK));
+        board.setPiece(new Location(1, 1), new Rook(Color.BLACK));
         game.setBoard(board);
 
         assertTrue(game.isCheckmate());
