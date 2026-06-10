@@ -706,4 +706,19 @@ public class GameManagerTests {
         }
     }
 
+    @Test
+    public void loadSupportedLanguages_validFixedResources_messageBundlesHaveLanguageNames() {
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+
+        for (String code : configuredCodes) {
+            Locale locale = Locale.forLanguageTag(code);
+            ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
+
+            String languageName = bundle.getString("language.name");
+
+            assertNotNull(languageName);
+            assertFalse(languageName.trim().isEmpty());
+        }
+    }
+
 }
