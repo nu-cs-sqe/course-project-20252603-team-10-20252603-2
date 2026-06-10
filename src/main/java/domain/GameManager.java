@@ -61,7 +61,7 @@ public class GameManager {
     }
 
     public List<LanguageOption> getSupportedLanguages() {
-        return supportedLanguages;
+        return new ArrayList<>(supportedLanguages);
     }
 
     public void incrementDrawCounter() {

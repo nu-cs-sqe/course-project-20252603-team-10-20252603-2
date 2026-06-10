@@ -861,4 +861,20 @@ public class GameManagerTests {
         assertEquals(configuredCodes.size(), languages.size());
     }
 
+    @Test
+    public void getSupportedLanguages_calledTwice_returnsDifferentListObjectsWithEquivalentContents() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> firstCall = game.getSupportedLanguages();
+        List<LanguageOption> secondCall = game.getSupportedLanguages();
+
+        assertNotSame(firstCall, secondCall);
+        assertEquals(firstCall.size(), secondCall.size());
+
+        for (int i = 0; i < firstCall.size(); i++) {
+            assertEquals(firstCall.get(i).getLocale(), secondCall.get(i).getLocale());
+            assertEquals(firstCall.get(i).toString(), secondCall.get(i).toString());
+        }
+    }
+
 }
