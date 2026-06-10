@@ -34,7 +34,10 @@ public class WelcomeView extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Welcome message
-        JLabel welcomeLabel = new JLabel("Welcome to our Chess Game!", SwingConstants.CENTER);
+        JLabel welcomeLabel = new JLabel(
+                gameManager.getMessage("welcome.message"),
+                SwingConstants.CENTER
+        );
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 28));
         welcomeLabel.setForeground(new Color(255, 255, 255));
         gbc.gridx = 0;
@@ -46,7 +49,9 @@ public class WelcomeView extends JFrame {
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JLabel player1NameLabel = new JLabel("Player 1 Name:");
+        JLabel player1NameLabel = new JLabel(
+                gameManager.getMessage("welcome.player1Name")
+        );
         player1NameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         player1NameLabel.setForeground(new Color(255, 255, 255));
         welcomePanel.add(player1NameLabel, gbc);
@@ -59,7 +64,9 @@ public class WelcomeView extends JFrame {
         // Player 2 Name Input
         gbc.gridx = 0;
         gbc.gridy = 2;
-        JLabel player2NameLabel = new JLabel("Player 2 Name:");
+        JLabel player2NameLabel = new JLabel(
+                gameManager.getMessage("welcome.player2Name")
+        );
         player2NameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         player2NameLabel.setForeground(new Color(255, 255, 255));
         welcomePanel.add(player2NameLabel, gbc);
@@ -70,7 +77,9 @@ public class WelcomeView extends JFrame {
         welcomePanel.add(player2NameField, gbc);
 
         // Start Game Button
-        JButton startGameButton = new JButton("Start Game");
+        JButton startGameButton = new JButton(
+                gameManager.getMessage("welcome.startGame")
+        );
         startGameButton.setFont(new Font("Arial", Font.BOLD, 20));
         startGameButton.setOpaque(true);
         startGameButton.setBackground(Color.WHITE);
