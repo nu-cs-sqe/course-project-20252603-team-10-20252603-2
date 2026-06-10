@@ -100,4 +100,60 @@
 * output:
     * a yes/no answer: boolean
 
+## Method under test: `hasValidMoves()` for Queen
+
+| Test Number | Color | Start position | Board State                                                      | Expected Output | Implemented? |
+|-------------|-------|----------------|------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [4,4]          | Clear board                                                      | TRUE            | no           |
+| 2           | WHITE | [0,0]          | Clear board                                                      | TRUE            | no           |
+| 3           | WHITE | [7,7]          | Clear board                                                      | TRUE            | no           |
+| 4           | WHITE | [4,4]          | all 8 adjacent squares are blocked by friendly pieces            | FALSE           | no           |
+| 5           | WHITE | [0,0]          | queen in corner, adjacent squares are blocked by friendly pieces | FALSE           | no           |
+| 6           | WHITE | [4,4]          | queen moving would put the king in check                         | FALSE           | no           |
+| 7           | WHITE | [4,4]          | one diagonal path open, all other directions blocked             | TRUE            | no           |
+| 8           | WHITE | [4,4]          | One straight path open, all other directions blocked             | TRUE            | no           |
+| 9           | WHITE | [4,4]          | unprotected enemy piece on destination                           | TRUE            | no           |
+| 10          | BLACK | [7,7]          | Clear board                                                      | TRUE            | no           |
+
+### STEPS FOR BVA: `hasValidMoves()` for Queen
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * queen color
+    * queen start position (row, column)
+    * state of the board (Board)
+    * are any squares reachable without exposing the king?
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * queen color: cases
+    * queen start position (row, column): array indices
+    * state of the board: cases
+    * reachable square exists: boolean
+* output:
+    * a yes/no answer: boolean
+
+3) BVA catalog classes -- values
+* input:
+    * queen color: cases
+        * WHITE, BLACK
+    * queen start position (row, column): array indices
+        * all indices are 0 at same time: [0][0]  
+        * all largest valid value: [7][7]  
+        * center of board: [4][4]
+    * state of the board: cases
+        * clear board 
+        * all immediate squares in every direction blocked by friendly pieces 
+        * moving exposes king to check
+        * one diagonal path open, all others blocked
+        * one straight path open, all others blocked
+        * unprotected enemy piece reachable
+    * reachable square exists: boolean
+        * True
+        * False
+* output:
+    * a yes/no answer: boolean
+
     
