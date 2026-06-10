@@ -28,6 +28,7 @@ public final class MainView extends JFrame {
     }
 
     private void configureMainView() {
+        setTitle(gameManager.getMessage("main.title"));
         setTitle("Team 10 Chess Game GUI Example :)!");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 1200);
@@ -35,7 +36,7 @@ public final class MainView extends JFrame {
     }
 
     private void addGameStatsView() {
-        gameStatsView = new GameStatsView(player1Name, player2Name);
+        gameStatsView = new GameStatsView(gameManager, player1Name, player2Name);
         add(gameStatsView, BorderLayout.PAGE_START);
     }
     private void addBoardView() {

@@ -74,8 +74,8 @@ public class BoardController {
 
                 PieceType choice = (PieceType) JOptionPane.showInputDialog(
                         boardView,
-                        "Select a piece for promotion.",
-                        "Pawn promotion",
+                        gameManager.getMessage("board.pawnPromotionMessage"),
+                        gameManager.getMessage("board.pawnPromotionTitle"),
                         JOptionPane.QUESTION_MESSAGE,
                         null,
                         options,
@@ -96,26 +96,26 @@ public class BoardController {
             case INVALID_MOVE:
                 JOptionPane.showMessageDialog(
                         boardView,
-                        "That move is not legal.",
-                        "Invalid Move",
+                        gameManager.getMessage("error.invalidMoveMessage"),
+                        gameManager.getMessage("error.invalidMoveTitle"),
                         JOptionPane.WARNING_MESSAGE
-                        );
+                );
                 break;
             case WRONG_PLAYER_PIECE:
                 JOptionPane.showMessageDialog(
                         boardView,
-                        "You cannot move a piece that's not on your team.",
-                        "Wrong player piece",
+                        gameManager.getMessage("error.wrongTeamMessage"),
+                        gameManager.getMessage("error.wrongTeamTitle"),
                         JOptionPane.WARNING_MESSAGE
-                        );
+                );
                 break;
             case NO_PIECE_SELECTED:
                 JOptionPane.showMessageDialog(
                         boardView,
-                        "You haven't selected a piece. Try again.",
-                        "No piece selected",
+                        gameManager.getMessage("error.noSelectionMessage"),
+                        gameManager.getMessage("error.noSelectionTitle"),
                         JOptionPane.WARNING_MESSAGE
-                        );
+                );
                 break;
 
         }
