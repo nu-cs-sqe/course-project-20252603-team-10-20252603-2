@@ -790,4 +790,13 @@ public class GameManagerTests {
         assertFalse(languages.isEmpty());
     }
 
+    @Test
+    public void getSupportedLanguages_validFixedResources_returnsMoreThanOneLanguageOption() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertTrue(languages.size() > 1);
+    }
+
 }
