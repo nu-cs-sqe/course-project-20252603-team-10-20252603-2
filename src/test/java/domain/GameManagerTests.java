@@ -891,4 +891,23 @@ public class GameManagerTests {
         assertEquals(originalSize, languagesAgain.size());
     }
 
+    @Test
+    public void getSupportedLanguages_fakeLanguageAddedToReturnedList_preservesInternalList() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+        int originalSize = languages.size();
+
+        languages.add(new LanguageOption("Fake Language", Locale.forLanguageTag("xx")));
+
+        List<LanguageOption> languagesAgain = game.getSupportedLanguages();
+
+        assertEquals(originalSize, languagesAgain.size());
+
+        boolean containsFakeLanguage = languagesAgain.stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.forLanguageTag("xx")));
+
+        assertFalse(containsFakeLanguage);
+    }
+
 }
