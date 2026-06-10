@@ -1,14 +1,19 @@
 package ui;
 
+import domain.GameManager;
+
 import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            WelcomeView welcomeView = new WelcomeView();
-            welcomeView.initialize();
-            welcomeView.setVisible(true);
+            GameManager gameManager = new GameManager();
+
+            LanguageView languageView = new LanguageView(gameManager);
+            languageView.initialize();
+            languageView.setVisible(true);
+
         });
     }
 }

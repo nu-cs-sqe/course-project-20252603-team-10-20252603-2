@@ -10,11 +10,14 @@ public class WelcomeView extends JFrame {
 
     private JTextField player1NameField;
     private JTextField player2NameField;
+    private final GameManager gameManager;
 
-    public WelcomeView() { }
+    public WelcomeView(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
 
     public void initialize() {
-        setTitle("Welcome Screen!");
+        setTitle(gameManager.getMessage("welcome.title"));
         setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -83,17 +86,16 @@ public class WelcomeView extends JFrame {
 
             // FIXME: perform input validation on player names
 
-            GameManager gameManager = new GameManager();
-            gameManager.addPlayer(new Player(player1Name, constants.Color.WHITE));
-            gameManager.addPlayer(new Player(player2Name, constants.Color.BLACK));
-            gameManager.start();
+            this.gameManager.addPlayer(new Player(player1Name, constants.Color.WHITE));
+            this.gameManager.addPlayer(new Player(player2Name, constants.Color.BLACK));
+            this.gameManager.start();
 
             // Hide the welcome screen
             setVisible(false);
             dispose(); // Dispose of this frame to free up resources
 
             // Create and show the main game screen
-            MainView mainScreen = new MainView(gameManager, player1Name, player2Name);
+            MainView mainScreen = new MainView(this.gameManager, player1Name, player2Name);
             mainScreen.setVisible(true);
 
             System.out.println(e);
