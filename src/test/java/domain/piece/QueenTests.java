@@ -449,4 +449,45 @@ public class QueenTests {
 
         assertFalse(queen.hasValidMoves(queenPos, board));
     }
+
+    @Test
+    public void hasValidMovesQueenMovesKingIntoCheckReturnsFalse() {
+        final int queenRow = 4;
+        final int queenCol = 4;
+        final int kingRow = 4;
+        final int kingCol = 3;
+        final int rook1Row = 4;
+        final int rook1Col = 5;
+        final int rook2Row = 4;
+        final int rook2Col = 0;
+        final int aboveRow = queenRow - 1;
+        final int belowRow = queenRow + 1;
+        final int leftCol = queenCol - 1;
+        final int rightCol = queenCol + 1;
+
+        Queen queen = new Queen(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook1 = new Rook(Color.BLACK);
+        Piece rook2 = new Rook(Color.BLACK);
+
+        Location queenPos = new Location(queenRow, queenCol);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location rook1Pos = new Location(rook1Row, rook1Col);
+        Location rook2Pos = new Location(rook2Row, rook2Col);
+
+        Board board = new Board(false);
+        board.setPiece(queenPos, queen);
+        board.setPiece(kingPos, king);
+        board.setPiece(rook1Pos, rook1);
+        board.setPiece(rook2Pos, rook2);
+
+        board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, queenCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, queenCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, rightCol), new Pawn(Color.WHITE));
+
+        assertFalse(queen.hasValidMoves(queenPos, board));
+    }
 }
