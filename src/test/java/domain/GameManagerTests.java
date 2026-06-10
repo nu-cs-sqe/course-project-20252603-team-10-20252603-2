@@ -244,7 +244,7 @@ public class GameManagerTests {
     public void getMessageDefaultEnglishIfLocaleNotSet() {
         GameManager game = new GameManager();
 
-        assertEquals("Start Game", game.getMessage("start.game"));
+        assertEquals("Start Game", game.getMessage("welcome.startGame"));
     }
 
     @Test
@@ -252,7 +252,7 @@ public class GameManagerTests {
         GameManager game = new GameManager();
         game.setLocale(Locale.ENGLISH);
 
-        assertEquals("Start Game", game.getMessage("start.game"));
+        assertEquals("Start Game", game.getMessage("welcome.startGame"));
     }
 
     @Test
@@ -260,7 +260,7 @@ public class GameManagerTests {
         GameManager game = new GameManager();
         game.setLocale(new Locale("es"));
 
-        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+        assertEquals("Iniciar Juego", game.getMessage("welcome.startGame"));
     }
 
     @Test
@@ -268,10 +268,10 @@ public class GameManagerTests {
         GameManager game = new GameManager();
 
         game.setLocale(Locale.ENGLISH);
-        assertEquals("Start Game", game.getMessage("start.game"));
+        assertEquals("Start Game", game.getMessage("welcome.startGame"));
 
         game.setLocale(new Locale("es"));
-        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+        assertEquals("Iniciar Juego", game.getMessage("welcome.startGame"));
     }
 
     @Test
@@ -299,7 +299,7 @@ public class GameManagerTests {
     public void getMessageNewLocaleWorks() {
         GameManager game = new GameManager();
         game.setLocale(Locale.FRENCH);
-        assertEquals("Lancer la partie", game.getMessage("start.game"));
+        assertEquals("Lancer la partie", game.getMessage("welcome.startGame"));
     }
     // TODO: last two tests of isCheckmate is waiting on King's hasValidMoves() implementation
 
