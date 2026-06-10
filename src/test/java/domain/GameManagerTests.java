@@ -684,4 +684,13 @@ public class GameManagerTests {
         assertEquals(configuredCodes.size(), languages.size());
     }
 
+    @Test
+    public void loadSupportedLanguages_validFixedResources_supportedValueContainsAtLeastTwoLocales() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertTrue(languages.size() >= 2);
+    }
+
 }
