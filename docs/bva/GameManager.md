@@ -305,3 +305,180 @@
     * pawn -> knight
     * non pawn rejected
     * empty location rejected
+
+
+## Method under test: `loadSupportedLanguages()` for GameManager
+
+**Testing scope:** 
+This method is must be treated as functional/integration test because it loads the fixed resource files that are added in
+with the program (i.e. languages.properties, messages_en.properties, etc). The files are NOT normal user inputs. 
+Missing files, missing keys, empty configs, and exactly-one-language configs are documented below as configuration boundaries, 
+but they're marked as CAN'T SET for the real tests.
+
+Note that the fixed config has three preset languages at the time of writing this test, but any automated test should 
+compare against the locale codes listed in languages.properties instead of hardcoding 3.
+
+Additionally because `loadSupportedLanguages()` is private, these tests observe its behavior indirectly by constructing 
+a `GameManager` and calling `getSupportedLanguages()`.
+
+| Test Number | Fixed resource/config state                                                                        | Expected Output                                                                                                    | Implemented?  |
+|-------------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|---------------|
+| 1           | languages.properties exists and defines a non-empty supported= property                            | GameManager initializes without throwing MissingResourceException                                                  | no            |
+| 2           | supported= value contains more than one locale code, e.g. en,es,fr                                 | returns the same number of LanguageOptions as locale codes listed in languages.properties                          | no            |
+| 3           | current supported= value contains at least two locale codes                                        | returned list contains at least two language choices                                                               | no            |
+| 4           | each locale code listed in the fixed supported= property has a matching messages_locale.properties | loading supported languages completes without a missing bundle exception                                           | no            |
+| 5           | every fixed messages_locale.properties contains language.name                                      | each LanguageOption has non-empty display name                                                                     | no            |
+| 6           | Fixed supported= value lists English                                                               | returned list contains a LanguageOption for english                                                                | no            |
+| 7           | Fixed supported= value lists Spanish                                                               | returned list contains a LanguageOption for spanish                                                                | no            |
+| 8           | Fixed supported= value lists French                                                                | returned list contains a LanguageOption for french                                                                 | no            |
+| 9           | Fixed supported= value has an order, e.g. en,es,fr                                                 | returned LanguageOption s that preserve the same order as the config file                                          | no            |
+| 10          | Fixed locale codes are converted with Locale.forLanguageTag(code.trim())                           | returned LanguageOption locales matching Locale.forLanguageTag(...) for each configured code                       | no            |
+| 11          | supported key is missing                                                                           | CAN'T SET with the real fixed files; documented configuration error case that would throw MissingResourceException | not automated |
+| 12          | supported is empty, e.g. supported=                                                                | CAN'T SET with the real fixed files; documented invalid configuration case                                         | not automated |
+| 13          | supported contains exactly one locale code                                                         | CAN'T SET with the real fixed files unless test resources are swapped in; documented collection-size boundary      | not automated |
+| 14          | supported contains duplicate locale codes, e.g. en,en                                              | CAN'T SET with the real fixed files; documented duplicate-contents boundary                                        | not automated |
+| 15          | A listed locale has no matching message bundle                                                     | CAN'T SET with the real fixed files; documented configuration error case that would throw MissingResourceException | not automated |
+| 16          | A listed locale's bundle is missing language.name                                                  | CAN'T SET with the real fixed files; documented configuration error case that would throw MissingResourceException | not automated |
+
+### STEPS FOR BVA / Functional Testing: `loadSupportedLanguages()`
+
+1) input equivalence classes and output equivalence classes
+
+* input/configuration:
+  * fixed languages.properties file shipped with the app
+  * fixed supported= property string inside languages.properties
+  * fixed locale code strings listed in supported
+  * fixed messages_<locale>.properties bundles shipped with the app
+  * fixed language.name keys inside each message bundle
+
+* output:
+  * a List<LanguageOption> created during GameManager construction
+  * or a configuration exception if the fixed resource files are invalid
+
+2) BVA / catalog classes
+
+* input/configuration:
+  * supported locale list: collection size
+  * locale code: string
+  * locale code list contents: collection contents
+  * resource bundle availability: configuration precondition
+  * language.name key availability: configuration precondition
+
+* output:
+  * collection of LanguageOption objects
+    * no exception for valid fixed resources
+    * documented configuration exception cases for invalid fixed resources
+
+3) BVA / catalog classes -- values
+
+* input/configuration:
+  * supported locale list: collection size
+    * empty list / missing supported value: CAN'T SET with real fixed files (documented as invalid config)
+    * exactly one locale code: CAN'T SET with real fixed files unless test resources are swapped in
+    * more than one locale code: tested with current fixed resources
+  * locale code: string
+    * valid locale code, e.g. en: tested with fixed resources
+    * valid locale code with whitespace, e.g. " es": documented if not present in the real file
+    * locale code with no matching resource bundle: CAN'T SET with real fixed files; documented as invalid config
+  * locale code list contents:
+    * no duplicate locale codes: tested with current fixed resources if current config has no duplicates
+    * duplicate locale codes: CAN'T SET with real fixed files; documented boundary
+  * resource bundle availability:
+    * True: tested by loading every currently configured locale
+    * False: CAN'T SET with real fixed files; documented invalid config
+  * language.name key exists in bundle:
+    * True: tested by checking display names for every currently configured locale
+    * False: CAN'T SET with real fixed files; documented invalid config
+
+* output:
+  * collection:
+    * list contains more than one LanguageOption for the current fixed config
+    * list contains at least two options for the locale-selection feature
+    * each LanguageOption has the expected display name and locale
+    * list order matches languages.properties
+  * exception:
+    * no exception for valid fixed resources
+    * MissingResourceException documented for missing config, missing bundle, or missing language.name, but not automated
+
+
+
+## Method under test: `getSupportedLanguages()` for GameManager
+
+**IMPORTANT, Testing scope:** 
+This method is non-UI, but it actively supports the language-selection GUI. Its tested using the real fixed resource 
+files loaded by GameManager. The main behavior being tested is that it returns the configured languages and 
+protects the internal supportedLanguages list by returning a defensive copy.
+
+Note that the fixed config has three preset languages at the time of writing this test, but any automated test should
+compare against the locale codes listed in languages.properties instead of hardcoding 3.
+
+| Test Number | Initial fixed-resource state                                            | Action                                                                                         | Expected Output                                                                           | Implemented?  |
+|-------------|-------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|---------------|
+| 1           | Current fixed config has a non-empty supported language list            | Call getSupportedLanguages()                                                                   | Returns a non-empty list of LanguageOptions                                               | no            |
+| 2           | Current fixed config has more than one supported language               | Call getSupportedLanguages()                                                                   | Returns more than 1 LanguageOption                                                        | no            |
+| 3           | Current fixed config supports at least two languages                    | Call getSupportedLanguages()                                                                   | Returned list size is at least 2, supporting the A-level locale requirement               | no            |
+| 4           | Current fixed config includes English                                   | Call getSupportedLanguages()                                                                   | Returned list contains English language option                                            | no            |
+| 5           | Current fixed config includes Spanish                                   | Call getSupportedLanguages()                                                                   | Returned list contains Spanish language option                                            | no            |
+| 6           | Current fixed config includes French                                    | Call getSupportedLanguages()`                                                                  | Returned list contains French language option                                             | no            |
+| 7           | Current fixed config lists languages in a specific order                | Call getSupportedLanguages()`                                                                  | Returned list preserves the configured order                                              | no            |
+| 8           | Current fixed config has three preset languages at the time of writing  | Call getSupportedLanguages()                                                                   | Returned list size equals the number of configured locale codes, not a hardcoded number   | no            |
+| 9           | Current fixed config is valid                                           | Call getSupportedLanguages() twice                                                             | Returns two different list objects with equivalent contents                               | no            |
+| 10          | Current fixed config is valid                                           | Call getSupportedLanguages(), clear the returned list, then call getSupportedLanguages() again | Internal supportedLanguages list is unchanged because the method returns a defensive copy | no            |
+| 11          | Current fixed config is valid                                           | Call getSupportedLanguages(), add a fake LanguageOption, then call the getter again            | Internal supportedLanguages list does not include the fake language option                | no            |
+| 12          | Internal supported language list has exactly one language               | CAN'T SET with the real fixed files unless test resources are swapped in                       | Documented collection-size boundary, not automated with real fixed files                  | not automated |
+| 13          | Internal supported language list is empty                               | CAN'T SET with the real fixed files because app should ship with at least two languages        | Documented collection-size boundary, not automated with real fixed files                  | not automated |
+
+### STEPS FOR BVA / Functional Testing: `getSupportedLanguages()`
+
+1) input equivalence classes and output equivalence classes
+
+* input/configuration:
+  * current supportedLanguages field inside GameManager
+  * number of supported languages loaded from the fixed resource files (should be three from config)
+  * contents of the supported language list loaded from fixed resource files
+  * caller's modification of the returned list
+
+* output:
+  * a copy of the supported languages list
+
+2) BVA / catalog classes
+
+* input/configuration:
+  * supported languages list: collection size
+  * supported languages list contents: collection contents
+  * returned list modification: collection/reference behavior
+
+* output:
+  * collection of LanguageOption pointers/objects
+    * collection size/count
+  * side effect:
+    * defensive copy behavior
+
+3) BVA / catalog classes -- values
+
+* input/configuration:
+  * supported languages list: collection 
+    * size
+      * empty list: CAN'T SET with real fixed files because the app should support at least two languages
+      * exactly one language: CAN'T SET with real fixed files unless test resources are swapped in
+      * more than one language: tested with current fixed resources
+    * contents:
+      * contains English: testable 
+      * contains Spanish: testable 
+      * contains French: testable
+      * contains all configured languages: testable by comparing list size and expected locales from the fixed config
+  *  returned list modification:
+    * caller does not modify returned list: tested by normal getter call
+    * caller clears returned list: tested for defensive copy
+    * caller adds a fake LanguageOption to returned list: tested for defensive copy
+
+* output:
+  * collection:
+    * returned list not empty
+    * returned list has >1 one language for the current fixed config
+    * returned list contains expected LanguageOptions
+    * returned list size matches configured supported languages
+    * returned list preserves configured order
+  * defensive copy:
+    * modifying the returned list does not modify GameManager's internal list
+    * repeated calls return equivalent contents but not the same list object
