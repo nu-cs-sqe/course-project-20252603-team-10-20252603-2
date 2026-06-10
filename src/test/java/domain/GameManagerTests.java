@@ -780,5 +780,14 @@ public class GameManagerTests {
         }
     }
 
+    @Test
+    public void getSupportedLanguages_validFixedResources_returnsNonEmptyList() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertNotNull(languages);
+        assertFalse(languages.isEmpty());
+    }
 
 }
