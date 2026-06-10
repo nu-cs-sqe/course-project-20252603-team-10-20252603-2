@@ -693,4 +693,17 @@ public class GameManagerTests {
         assertTrue(languages.size() >= 2);
     }
 
+    @Test
+    public void loadSupportedLanguages_validFixedResources_configuredLocalesHaveMatchingMessageBundles() {
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+
+        for (String code : configuredCodes) {
+            Locale locale = Locale.forLanguageTag(code);
+
+            assertDoesNotThrow(() -> {
+                ResourceBundle.getBundle("messages", locale);
+            });
+        }
+    }
+
 }
