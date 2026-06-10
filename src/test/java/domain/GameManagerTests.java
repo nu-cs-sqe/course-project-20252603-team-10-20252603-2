@@ -851,4 +851,14 @@ public class GameManagerTests {
         }
     }
 
+    @Test
+    public void getSupportedLanguages_configuredLocaleCodes_returnsMatchingListSize() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertEquals(configuredCodes.size(), languages.size());
+    }
+
 }
