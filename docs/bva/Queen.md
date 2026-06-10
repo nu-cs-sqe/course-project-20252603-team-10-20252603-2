@@ -104,7 +104,7 @@
 
 | Test Number | Color | Start position | Board State                                                      | Expected Output | Implemented? |
 |-------------|-------|----------------|------------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [4,4]          | Clear board                                                      | TRUE            | no           |
+| 1           | WHITE | [4,4]          | Clear board                                                      | TRUE            | yes          |
 | 2           | WHITE | [0,0]          | Clear board                                                      | TRUE            | no           |
 | 3           | WHITE | [7,7]          | Clear board                                                      | TRUE            | no           |
 | 4           | WHITE | [4,4]          | all 8 adjacent squares are blocked by friendly pieces            | FALSE           | no           |
