@@ -877,4 +877,18 @@ public class GameManagerTests {
         }
     }
 
+    @Test
+    public void getSupportedLanguages_returnedListCleared_preservesInternalList() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+        int originalSize = languages.size();
+
+        languages.clear();
+
+        List<LanguageOption> languagesAgain = game.getSupportedLanguages();
+
+        assertEquals(originalSize, languagesAgain.size());
+    }
+
 }
