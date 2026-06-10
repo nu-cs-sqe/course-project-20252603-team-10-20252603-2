@@ -751,4 +751,18 @@ public class GameManagerTests {
         assertTrue(containsFrench);
     }
 
+    @Test
+    public void loadSupportedLanguages_validFixedResources_preservesConfiguredOrder() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        for (int i = 0; i < configuredCodes.size(); i++) {
+            Locale expectedLocale = Locale.forLanguageTag(configuredCodes.get(i));
+
+            assertEquals(expectedLocale, languages.get(i).getLocale());
+        }
+    }
+
 }
