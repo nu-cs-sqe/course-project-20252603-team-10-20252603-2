@@ -2,14 +2,19 @@ package ui;
 
 import domain.GameManager;
 import domain.LanguageOption;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class LanguageView extends JFrame {
 
-    private final GameManager gameManager;
+    private transient final GameManager gameManager;
 
+    @SuppressFBWarnings(
+            value = "EI_EXPOSE_REP2",
+            justification = "LanguageView intentionally stores the shared GameManager so the selected locale can be applied."
+    )
     public LanguageView(GameManager gameManager) {
         this.gameManager = gameManager;
     }

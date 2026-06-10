@@ -1,6 +1,7 @@
 package ui;
 
 import domain.GameManager;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,12 +9,16 @@ import java.awt.*;
 public final class MainView extends JFrame {
     private transient BoardView boardView;
     private transient BoardController boardController;
-    private final GameManager gameManager;
+    private transient final GameManager gameManager;
 
     private transient GameStatsView gameStatsView;
     private String player1Name;
     private String player2Name;
 
+    @SuppressFBWarnings(
+            value = "EI_EXPOSE_REP2",
+            justification = "MainView intentionally stores the shared GameManager used to coordinate board and game state."
+    )
     public MainView(GameManager gameManager, String player1Name, String player2Name) {
         this.gameManager = gameManager;
         this.player1Name = player1Name;

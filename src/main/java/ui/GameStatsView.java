@@ -2,6 +2,7 @@ package ui;
 
 import domain.GameManager;
 import domain.Player;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,12 +10,16 @@ import java.text.MessageFormat;
 
 public class GameStatsView extends JPanel {
 
-    private final GameManager gameManager;
+    private transient final GameManager gameManager;
 
     private JLabel player1Label;
     private JLabel player2Label;
     private JLabel currentPlayerLabel;
 
+    @SuppressFBWarnings(
+            value = "EI_EXPOSE_REP2",
+            justification = "GameStatsView intentionally stores the shared GameManager used to display current game state."
+    )
     public GameStatsView(GameManager gameManager, String player1Name, String player2Name) {
         this.gameManager = gameManager;
 

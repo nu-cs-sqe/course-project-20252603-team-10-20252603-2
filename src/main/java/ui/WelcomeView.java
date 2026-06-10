@@ -2,6 +2,7 @@ package ui;
 
 import domain.GameManager;
 import domain.Player;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +11,12 @@ public class WelcomeView extends JFrame {
 
     private JTextField player1NameField;
     private JTextField player2NameField;
-    private final GameManager gameManager;
+    private transient final GameManager gameManager;
 
+    @SuppressFBWarnings(
+            value = "EI_EXPOSE_REP2",
+            justification = "This UI class intentionally stores the shared GameManager used to coordinate game state."
+    )
     public WelcomeView(GameManager gameManager) {
         this.gameManager = gameManager;
     }
