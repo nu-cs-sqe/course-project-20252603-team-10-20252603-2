@@ -107,7 +107,7 @@
 | 1           | WHITE | [4,4]          | Clear board                                                      | TRUE            | yes          |
 | 2           | WHITE | [0,0]          | Clear board                                                      | TRUE            | yes          |
 | 3           | WHITE | [7,7]          | Clear board                                                      | TRUE            | yes          |
-| 4           | WHITE | [4,4]          | all 8 adjacent squares are blocked by friendly pieces            | FALSE           | no           |
+| 4           | WHITE | [4,4]          | all 8 adjacent squares are blocked by friendly pieces            | FALSE           | yes          |
 | 5           | WHITE | [0,0]          | queen in corner, adjacent squares are blocked by friendly pieces | FALSE           | no           |
 | 6           | WHITE | [4,4]          | queen moving would put the king in check                         | FALSE           | no           |
 | 7           | WHITE | [4,4]          | one diagonal path open, all other directions blocked             | TRUE            | no           |

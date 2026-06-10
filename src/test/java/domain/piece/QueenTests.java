@@ -404,4 +404,30 @@ public class QueenTests {
 
         assertTrue(queen.hasValidMoves(queenPos, board));
     }
+
+    @Test
+    public void hasValidMovesQueenAllFriendlySurroundingReturnsFalse() {
+        final int queenRow = 4;
+        final int queenCol = 4;
+        final int aboveRow = queenRow - 1;
+        final int belowRow = queenRow + 1;
+        final int leftCol = queenCol - 1;
+        final int rightCol = queenCol + 1;
+
+        Queen queen = new Queen(Color.WHITE);
+        Location queenPos = new Location(queenRow, queenCol);
+
+        Board board = new Board(false);
+        board.setPiece(queenPos, queen);
+        board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, queenCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(queenRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(queenRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, queenCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, rightCol), new Pawn(Color.WHITE));
+
+        assertFalse(queen.hasValidMoves(queenPos, board));
+    }
 }
