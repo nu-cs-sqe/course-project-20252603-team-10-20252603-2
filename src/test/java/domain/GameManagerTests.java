@@ -655,4 +655,15 @@ public class GameManagerTests {
         assertTrue(exception.getMessage().contains("Invalid promotion piece."));
 
     }
+
+    @Test
+    public void loadSupportedLanguages_validFixedResources_gameManagerInitializes() {
+        assertDoesNotThrow(() -> {
+            GameManager game = new GameManager();
+
+            assertNotNull(game.getSupportedLanguages());
+            assertFalse(game.getSupportedLanguages().isEmpty());
+        });
+    }
+
 }

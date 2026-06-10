@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class GameManager {
     private ResourceBundle messages;
+    private List<LanguageOption> supportedLanguages;
 
     private List<Player> players = new ArrayList<>();
     private boolean isGameRunning = false;
@@ -35,6 +36,32 @@ public class GameManager {
         this.whitePlayer = null;
         this.blackPlayer = null;
         this.currentPlayer = null;
+        this.supportedLanguages = loadSupportedLanguages();
+    }
+
+    private List<LanguageOption> loadSupportedLanguages() {
+        ResourceBundle config = ResourceBundle.getBundle("languages");
+        String[] localeCodes = config.getString("supported").split(",");
+
+        List<LanguageOption> languages = new ArrayList<>();
+
+        for (String code : localeCodes) {
+            Locale locale = Locale.forLanguageTag(code.trim());
+            ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
+
+            languages.add(
+                    new LanguageOption(
+                            bundle.getString("language.name"),
+                            locale
+                    )
+            );
+        }
+
+        return languages;
+    }
+
+    public List<LanguageOption> getSupportedLanguages() {
+        return supportedLanguages;
     }
 
     public void incrementDrawCounter() {
