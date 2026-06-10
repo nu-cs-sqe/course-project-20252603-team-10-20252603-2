@@ -731,4 +731,14 @@ public class GameManagerTests {
         assertTrue(containsEnglish);
     }
 
+    @Test
+    public void loadSupportedLanguages_validFixedResources_containsSpanishLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsSpanish = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.forLanguageTag("es")));
+
+        assertTrue(containsSpanish);
+    }
+
 }
