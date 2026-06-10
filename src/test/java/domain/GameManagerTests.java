@@ -6,9 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,6 +23,15 @@ public class GameManagerTests {
         game.start();
 
         board = new Board(false);
+    }
+
+    private List<String> getConfiguredLocaleCodes() {
+        ResourceBundle config = ResourceBundle.getBundle("languages");
+
+        return Arrays.stream(config.getString("supported").split(","))
+                .map(String::trim)
+                .filter(code -> !code.isEmpty())
+                .collect(Collectors.toList());
     }
 
     @Test
@@ -664,6 +672,16 @@ public class GameManagerTests {
             assertNotNull(game.getSupportedLanguages());
             assertFalse(game.getSupportedLanguages().isEmpty());
         });
+    }
+
+    @Test
+    public void loadSupportedLanguages_validFixedResources_supportedValueMatchesConfiguredLocaleCount() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertEquals(configuredCodes.size(), languages.size());
     }
 
 }
