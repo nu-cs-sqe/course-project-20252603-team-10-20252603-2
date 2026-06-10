@@ -1,6 +1,7 @@
 package ui;
 
-import constants.Color;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import domain.Board;
 import domain.GameManager;
 import domain.Location;
@@ -13,9 +14,13 @@ import javax.swing.*;
 public class BoardController {
     private BoardView boardView;
     private GameStatsView gameStatsView;
-    private GameManager gameManager;
+    private final GameManager gameManager;
     private Location selectedLocation;
 
+    @SuppressFBWarnings(
+            value = "EI_EXPOSE_REP2",
+            justification = "BoardController intentionally stores the shared GameManager used to coordinate game state."
+    )
     public BoardController(GameManager gameManager) {
         this.gameManager = gameManager;
     }
@@ -61,8 +66,7 @@ public class BoardController {
 
         switch (result) {
             case SUCCESS:
-                gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerName());
-                gameStatsView.updatePoints(gameManager.getWhitePlayer(), gameManager.getBlackPlayer());
+                updateGameStatsView();
                 break;
             case PROMOTION_REQUIRED:
                 PieceType[] options = {
@@ -89,8 +93,7 @@ public class BoardController {
                 }
 
                 gameManager.changeTurns();
-                gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerName());
-                gameStatsView.updatePoints(gameManager.getWhitePlayer(), gameManager.getBlackPlayer());
+                updateGameStatsView();
 
                 break;
             case INVALID_MOVE:
@@ -129,5 +132,12 @@ public class BoardController {
     public Piece[][] getBoardSnapshot() {
         Board board = gameManager.getBoard();
         return board.getSnapshot();
+    }
+
+    private void updateGameStatsView() {
+        if (gameStatsView != null) {
+            gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerName());
+            gameStatsView.updatePoints(gameManager.getWhitePlayer(), gameManager.getBlackPlayer());
+        }
     }
 }
