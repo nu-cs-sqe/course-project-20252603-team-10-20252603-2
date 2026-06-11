@@ -6,6 +6,7 @@ import domain.GameManager;
 import domain.Location;
 import domain.Player;
 import domain.piece.King;
+import domain.piece.Queen;
 import domain.piece.Rook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class GameEndIntegrationTest {
     }
 
     @Test
-    public void gameEnd_BlackKingInCheck_whiteWinsAndGameIsOver() {
+    public void gameEnd_blackKingInCheck_whiteWinsAndGameIsOver() {
         final int blackKingRow = 0;
         final int blackKingCol = 0;
 
@@ -53,5 +54,30 @@ public class GameEndIntegrationTest {
         assertTrue(game.isGameOver());
         assertTrue(game.isCheckmate());
         assertEquals(Color.BLACK, game.getCurrentPlayer().getPlayerColor());
+    }
+
+    @Test
+    public void gameEnd_blackKingNotInCheckWithNoValidMoves_gameIsADraw() {
+        final int blackKingRow = 0;
+        final int blackKingCol = 0;
+
+        final int whiteQueenRow = 2;
+        final int whiteQueenCol = 1;
+
+        final int whiteKingRow = 2;
+        final int whiteKingCol = 2;
+
+        Board board = new Board(false);
+
+        board.setPiece(new Location(blackKingRow, blackKingCol), new King(Color.BLACK));
+        board.setPiece(new Location(whiteQueenRow, whiteQueenCol), new Queen(Color.WHITE));
+        board.setPiece(new Location(whiteKingRow, whiteKingCol), new King(Color.WHITE));
+
+        game.setBoard(board);
+        game.changeTurns();
+
+        assertTrue(board.getValidPiecesByColor(Color.BLACK).isEmpty());
+        assertTrue(game.isGameOver());
+        assertTrue(game.isStalemate());
     }
 }
