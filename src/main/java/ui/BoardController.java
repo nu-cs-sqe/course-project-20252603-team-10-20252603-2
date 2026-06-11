@@ -84,15 +84,6 @@ public class BoardController {
                         PieceType.BISHOP,
                 };
 
-//                PieceType choice = (PieceType) JOptionPane.showInputDialog(
-//                        boardView,
-//                        gameManager.getMessage("board.pawnPromotionMessage"),
-//                        gameManager.getMessage("board.pawnPromotionTitle"),
-//                        JOptionPane.QUESTION_MESSAGE,
-//                        null,
-//                        options,
-//                        PieceType.QUEEN
-//                );
                 JComboBox<PieceType> promotionBox = new JComboBox<>(options);
                 promotionBox.setSelectedItem(PieceType.QUEEN);
 
@@ -116,16 +107,6 @@ public class BoardController {
                         boardView,
                         gameManager.getMessage("board.pawnPromotionTitle")
                 );
-
-//                promotionDialog.setVisible(true);
-//
-//                PieceType choice = (PieceType) promotionBox.getSelectedItem();
-//
-//                if (choice != null) {
-//                    gameManager.promotePawn(endLocation, choice);
-//                } else {
-//                    gameManager.promotePawn(endLocation, PieceType.QUEEN);
-//                }
 
                 promotionDialog.setVisible(true);
 
@@ -156,12 +137,7 @@ public class BoardController {
                         closeButton,
                         closeButton[0]
                 );
-//                JOptionPane.showMessageDialog(
-//                        boardView,
-//                        gameManager.getMessage("error.invalidMoveMessage"),
-//                        gameManager.getMessage("error.invalidMoveTitle"),
-//                        JOptionPane.WARNING_MESSAGE
-//                );
+
                 break;
             case WRONG_PLAYER_PIECE:
                 JOptionPane.showOptionDialog(
@@ -174,12 +150,7 @@ public class BoardController {
                         closeButton,
                         closeButton[0]
                 );
-//                JOptionPane.showMessageDialog(
-//                        boardView,
-//                        gameManager.getMessage("error.wrongTeamMessage"),
-//                        gameManager.getMessage("error.wrongTeamTitle"),
-//                        JOptionPane.WARNING_MESSAGE
-//                );
+
                 break;
             case NO_PIECE_SELECTED:
                 JOptionPane.showOptionDialog(
@@ -192,12 +163,7 @@ public class BoardController {
                         closeButton,
                         closeButton[0]
                 );
-//                JOptionPane.showMessageDialog(
-//                        boardView,
-//                        gameManager.getMessage("error.noSelectionMessage"),
-//                        gameManager.getMessage("error.noSelectionTitle"),
-//                        JOptionPane.WARNING_MESSAGE
-//                );
+
                 break;
 
         }
