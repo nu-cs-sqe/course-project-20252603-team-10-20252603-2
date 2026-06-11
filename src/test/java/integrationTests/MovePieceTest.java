@@ -77,6 +77,9 @@ public class MovePieceTest {
 
     @Test
     public void testInvalidMove_WrongTurn_ReturnsWrongPlayerPieceAndMaintainsState() {
+        final int MIN_COORD = 0;
+        final int BOARD_SIZE = 8;
+
         Location blackPawnStart = new Location(1, 0);
         Location illegalDestination = new Location(3, 0);
 
@@ -90,8 +93,8 @@ public class MovePieceTest {
         assertEquals(Color.WHITE, gameManager.getCurrentPlayer().getPlayerColor());
 
         Piece[][] boardStateAfter = gameManager.getBoard().getSnapshot();
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = MIN_COORD; i < BOARD_SIZE; i++) {
+            for (int j = MIN_COORD; j < BOARD_SIZE; j++) {
                 Piece before = boardStateBefore[i][j];
                 Piece after = boardStateAfter[i][j];
                 if (before == null) {
