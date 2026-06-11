@@ -1,7 +1,9 @@
-package domain;
+package domain.piece;
 
-import domain.piece.*;
+import domain.Board;
+import domain.Location;
 import constants.Color;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -11,306 +13,318 @@ public class PawnTests {
 
     @Test
     public void isValidMove_Pawn_sameSquare_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(0, 0);
-
+        Location start = new Location(startRow, startCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, start, board));
     }
 
     @Test
     public void isValidMove_Pawn_sameSquare77edge_returnFalse() {
+        final int startRow = 7;
+        final int startCol = 7;
+
         Piece pawn = new Pawn(Color.BLACK);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(7, 7);
-
+        Location start = new Location(startRow, startCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, start, board));
     }
 
     @Test
     public void isValidMove_Pawn_tooFar_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_oneForward_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 6;
+        final int endCol = 7;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(6, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_twoForward_returnTrue() {
+        final int startRow = 1;
+        final int startCol = 0;
+        final int endRow = 3;
+        final int endCol = 0;
+
         Piece pawn = new Pawn(Color.BLACK);
-
-        Location start = new Location(1, 0);
-        Location chosen = new Location(3, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_twoForwardBlockedEnd_returnFalse() {
+        final int startRow = 1;
+        final int startCol = 0;
+        final int endRow = 3;
+        final int endCol = 0;
+
         Piece pawn = new Pawn(Color.BLACK);
-
-        Location start = new Location(1, 0);
-        Location chosen = new Location(3, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(chosen, new Pawn(Color.WHITE));
 
-        Piece pawnBlocker = new Pawn(Color.WHITE);
-        board.setPiece(chosen, pawnBlocker);
-
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_oneDiagonalRight_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 6;
+        final int endRow = 6;
+        final int endCol = 7;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(7, 6);
-        Location chosen = new Location(6, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(chosen, new Pawn(Color.BLACK));
 
-        Piece pawnBlocker = new Pawn(Color.BLACK);
-        board.setPiece(chosen, pawnBlocker);
-
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_oneDiagonalLeft_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 6;
+        final int endRow = 6;
+        final int endCol = 5;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(7, 6);
-        Location chosen = new Location(6, 5);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(chosen, new Pawn(Color.BLACK));
 
-        Piece pawnBlocker = new Pawn(Color.BLACK);
-        board.setPiece(chosen, pawnBlocker);
-
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_oneDiagonalLeftSquareEmpty_returnFalse() {
+        final int startRow = 7;
+        final int startCol = 6;
+        final int endRow = 6;
+        final int endCol = 5;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(7, 6);
-        Location chosen = new Location(6, 5);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_oneDiagonalLeftSquareFriendly_returnFalse() {
+        final int startRow = 7;
+        final int startCol = 6;
+        final int endRow = 6;
+        final int endCol = 5;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(7, 6);
-        Location chosen = new Location(6, 5);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(chosen, new Pawn(Color.WHITE));
 
-        Piece pawnBlocker = new Pawn(Color.WHITE);
-        board.setPiece(chosen, pawnBlocker);
-
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_backwards_returnFalse() {
+        final int startRow = 6;
+        final int startCol = 6;
+        final int endRow = 7;
+        final int endCol = 6;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(6, 6);
-        Location chosen = new Location(7, 6);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_sideways_returnFalse() {
+        final int startRow = 6;
+        final int startCol = 6;
+        final int endRow = 6;
+        final int endCol = 5;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location start = new Location(6, 6);
-        Location chosen = new Location(6, 5);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_twoForwardBlockedPath_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int midRow = 1;
+        final int midCol = 0;
+        final int endRow = 2;
+        final int endCol = 0;
+
         Piece pawn = new Pawn(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location mid = new Location(1, 0);
-        Location chosen = new Location(2, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location mid = new Location(midRow, midCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(mid, new Pawn(Color.WHITE));
 
-        Piece pawnBlocker = new Pawn(Color.WHITE);
-        board.setPiece(mid, pawnBlocker);
-
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Pawn_blackTwoForwardNotStartRow_returnFalse() {
+        final int startRow = 2;
+        final int startCol = 0;
+        final int endRow = 4;
+        final int endCol = 0;
+
         Piece pawn = new Pawn(Color.BLACK);
-
-        Location start = new Location(2, 0);
-        Location chosen = new Location(4, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = pawn.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(pawn.isValidMove(start, chosen, board));
     }
 
     @Test
     public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 0;
+
         Piece pawn = new Pawn(Color.WHITE);
-
-        Location location = new Location(6, 0);
-
+        Location location = new Location(pawnRow, pawnCol);
         Board board = new Board(false);
         board.setPiece(location, pawn);
 
-        boolean result = pawn.hasValidMoves(location, board);
-
-        assertTrue(result);
+        assertTrue(pawn.hasValidMoves(location, board));
     }
 
     @Test
     public void hasValidMoves_PawnBlockedVertically_returnsFalse() {
+        final int pawnRow = 6;
+        final int pawnCol = 0;
+        final int enemyRow = 4;
+        final int enemyCol = 0;
+        final int friendlyRow = 5;
+        final int friendlyCol = 0;
+
         Piece pawn = new Pawn(Color.WHITE);
-        Piece enemyPawn = new Pawn(Color.BLACK);
-        Piece friendlyPawn = new Pawn(Color.WHITE);
-
-        Location location = new Location(6, 0);
-        Location enemyLocation = new Location(4, 0);
-        Location friendlyLocation = new Location(5,0);
-
+        Location location = new Location(pawnRow, pawnCol);
+        Location enemyLocation = new Location(enemyRow, enemyCol);
+        Location friendlyLocation = new Location(friendlyRow, friendlyCol);
         Board board = new Board(false);
         board.setPiece(location, pawn);
-        board.setPiece(enemyLocation, enemyPawn);
-        board.setPiece(friendlyLocation, friendlyPawn);
+        board.setPiece(enemyLocation, new Pawn(Color.BLACK));
+        board.setPiece(friendlyLocation, new Pawn(Color.WHITE));
 
-        boolean result = pawn.hasValidMoves(location, board);
-
-        assertFalse(result);
+        assertFalse(pawn.hasValidMoves(location, board));
     }
-
 
     @Test
     public void hasValidMoves_PawnBlockedDiagonally_returnsTrue() {
+        final int pawnRow = 5;
+        final int pawnCol = 4;
+        final int enemyRow = 4;
+        final int enemyCol = 5;
+        final int friendlyRow = 4;
+        final int friendlyCol = 4;
+
         Piece pawn = new Pawn(Color.BLACK);
-        Piece enemyPawn = new Pawn(Color.WHITE);
-        Piece friendlyPawn = new Pawn(Color.BLACK);
-
-        Location location = new Location(5, 4);
-        Location enemyLocation = new Location(4, 5);
-        Location friendlyLocation = new Location(4,4);
-
+        Location location = new Location(pawnRow, pawnCol);
+        Location enemyLocation = new Location(enemyRow, enemyCol);
+        Location friendlyLocation = new Location(friendlyRow, friendlyCol);
         Board board = new Board(false);
         board.setPiece(location, pawn);
-        board.setPiece(enemyLocation, enemyPawn);
-        board.setPiece(friendlyLocation, friendlyPawn);
+        board.setPiece(enemyLocation, new Pawn(Color.WHITE));
+        board.setPiece(friendlyLocation, new Pawn(Color.BLACK));
 
-        boolean result = pawn.hasValidMoves(location, board);
-
-        assertTrue(result);
+        assertTrue(pawn.hasValidMoves(location, board));
     }
 
     @Test
     public void hasValidMoves_PawnAtEdge_returnsFalse() {
+        final int pawnRow = 7;
+        final int pawnCol = 3;
+
         Piece pawn = new Pawn(Color.BLACK);
-
-        Location location = new Location(7, 3);
-        System.out.println("X: " + location.getX());
-
+        Location location = new Location(pawnRow, pawnCol);
         Board board = new Board(false);
         board.setPiece(location, pawn);
 
-        boolean result = pawn.hasValidMoves(location, board);
-
-        assertFalse(result);
+        assertFalse(pawn.hasValidMoves(location, board));
     }
 
     @Test
     public void hasValidMoves_pawnTrapped_returnsFalse() {
-        Board board = new Board(false);
+        final int pawnRow = 7;
+        final int pawnCol = 1;
+        final int kingRow = 7;
+        final int kingCol = 0;
+        final int rookRow = 7;
+        final int rookCol = 7;
 
         Piece pawn = new Pawn(Color.WHITE);
-        King realKing = new King(Color.WHITE);
         Piece rook = new Rook(Color.BLACK);
 
-        Location pawnLocation = new Location(7, 1);
-        Location kingLocation = new Location(7, 0);
-        Location rookLocation = new Location(7, 7);
+        King mockKing = EasyMock.createMock(King.class);
+        EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockKing.isSameColor(EasyMock.anyObject())).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(
+                        EasyMock.anyObject(Location.class),
+                        EasyMock.isA(Board.class)))
+                .andReturn(true).anyTimes();
+        EasyMock.replay(mockKing);
 
+        Location pawnLocation = new Location(pawnRow, pawnCol);
+        Location kingLocation = new Location(kingRow, kingCol);
+        Location rookLocation = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
         board.setPiece(pawnLocation, pawn);
-        board.setPiece(kingLocation, realKing);
+        board.setPiece(kingLocation, mockKing);
         board.setPiece(rookLocation, rook);
 
-        boolean result = pawn.hasValidMoves(pawnLocation, board);
+        assertFalse(pawn.hasValidMoves(pawnLocation, board));
 
-        assertFalse(result);
+        EasyMock.verify(mockKing);
     }
 }
-
-
