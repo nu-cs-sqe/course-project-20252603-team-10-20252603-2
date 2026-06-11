@@ -1009,4 +1009,14 @@ public class GameManagerTests {
 
         assertFalse(result);
     }
+    @Test
+    public void isCheckmate_currentPlayerNullBoardValid_returnsFalse() {
+        GameManager newGame = new GameManager();
+        Board realBoard = new Board(false);
+        newGame.setBoard(realBoard);
+
+        assertNull(newGame.getCurrentPlayer());
+        assertNotNull(newGame.getBoard());
+        assertFalse(newGame.isCheckmate());
+    }
 }
