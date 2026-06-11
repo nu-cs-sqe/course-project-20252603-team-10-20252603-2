@@ -1067,5 +1067,15 @@ public class GameManagerTests {
         assertFalse(newGame.isStalemate());
     }
 
+    @Test
+    public void isStalemate_currentPlayerValidBoardNull_returnsFalse() {
+        GameManager newGame = new GameManager();
+        newGame.addPlayer(new Player("Alice", Color.WHITE));
+        newGame.addPlayer(new Player("Bob", Color.BLACK));
+        newGame.assignPlayers(new Player("Alice", Color.WHITE), new Player("Bob", Color.BLACK));
 
+        assertNull(newGame.getBoard());
+        assertNotNull(newGame.getCurrentPlayer());
+        assertFalse(newGame.isStalemate());
+    }
 }
