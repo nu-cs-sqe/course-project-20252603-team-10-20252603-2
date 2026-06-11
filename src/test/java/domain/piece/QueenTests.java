@@ -364,7 +364,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenClearBoardReturnsTrue() {
+    public void hasValidMoves_Queen_ClearBoard_ReturnsTrue() {
         final int queenRow = 4;
         final int queenCol = 4;
 
@@ -378,7 +378,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenClearBoardMinReturnsTrue() {
+    public void hasValidMoves_Queen_ClearBoardMin_ReturnsTrue() {
         final int queenRow = 0;
         final int queenCol = 0;
 
@@ -392,7 +392,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenClearBoardMaxReturnsTrue() {
+    public void hasValidMoves_Queen_ClearBoardMax_ReturnsTrue() {
         final int queenRow = 7;
         final int queenCol = 7;
 
@@ -406,7 +406,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenAllFriendlySurroundingReturnsFalse() {
+    public void hasValidMoves_Queen_AllFriendlySurrounding_ReturnsFalse() {
         final int queenRow = 4;
         final int queenCol = 4;
         final int aboveRow = queenRow - 1;
@@ -432,7 +432,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenCornerAllFriendlySurroundingReturnsFalse() {
+    public void hasValidMoves_Queen_CornerAllFriendlySurrounding_ReturnsFalse() {
         final int queenRow = 0;
         final int queenCol = 0;
         final int belowRow = queenRow + 1;
@@ -451,7 +451,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenMovesKingIntoCheckReturnsFalse() {
+    public void hasValidMoves_Queen_MovesKingIntoCheck_ReturnsFalse() {
         final int queenRow = 4;
         final int queenCol = 4;
         final int kingRow = 4;
@@ -492,7 +492,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenOneDiagonalOpenReturnsTrue() {
+    public void hasValidMoves_Queen_OneDiagonalOpen_ReturnsTrue() {
         final int queenRow = 4;
         final int queenCol = 4;
         final int aboveRow = queenRow - 1;
@@ -518,7 +518,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenStraightPathOpenReturnsTrue() {
+    public void hasValidMoves_Queen_StraightPathOpen_ReturnsTrue() {
         final int queenRow = 4;
         final int queenCol = 4;
         final int aboveRow = queenRow - 1;
@@ -544,7 +544,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesQueenUnprotectedEnemyReturnsTrue() {
+    public void hasValidMoves_Queen_UnprotectedEnemy_ReturnsTrue() {
         final int queenRow = 4;
         final int queenCol = 4;
         final int enemyRow = 3;
@@ -563,7 +563,7 @@ public class QueenTests {
     }
 
     @Test
-    public void hasValidMovesBlackQueenClearBoardReturnsTrue() {
+    public void hasValidMoves_BlackQueen_ClearBoard_ReturnsTrue() {
         final int queenRow = 7;
         final int queenCol = 7;
 
