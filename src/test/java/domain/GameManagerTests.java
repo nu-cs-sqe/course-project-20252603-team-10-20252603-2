@@ -505,6 +505,7 @@ public class GameManagerTests {
 
         assertEquals(currentPlayer, game.getCurrentPlayer());
         assertEquals(0, currentPlayer.getPoints());
+        assertEquals(0, game.getConsecutiveDrawMoves());
 
     }
 
