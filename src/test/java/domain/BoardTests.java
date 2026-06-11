@@ -5,6 +5,7 @@ import domain.piece.*;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -436,4 +437,30 @@ public class BoardTests {
         EasyMock.verify(mockRook);
     }
 
+    @Test
+    public void getValidPiecesByColor_maxMovableAlliedPieces_returnsSizeSixteen() {
+        Board board = new Board(false);
+        List<Piece> mockPieces = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 8; j++) {
+                Location loc = new Location(i, j);
+                Pawn mockPawn = EasyMock.createMock(Pawn.class);
+
+                EasyMock.expect(mockPawn.getColor()).andReturn(Color.BLACK).anyTimes();
+                EasyMock.expect(mockPawn.hasValidMoves(EasyMock.eq(loc), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+                EasyMock.replay(mockPawn);
+                board.setPiece(loc, mockPawn);
+                mockPieces.add(mockPawn);
+            }
+        }
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.BLACK);
+
+        assertEquals(16, validPieces.size());
+        for (Piece mockPiece : mockPieces) {
+            EasyMock.verify(mockPiece);
+        }
+    }
 }
