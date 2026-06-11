@@ -928,4 +928,23 @@ public class GameManagerTests {
         assertEquals("Alice", retrieved.getPlayerName());
         assertSame(white, retrieved);
     }
+
+    @Test
+    public void getBlackPlayer_returnsAssignedBlackPlayer() {
+        GameManager newGame = new GameManager();
+        Player white = new Player("Alice", Color.WHITE);
+        Player black = new Player("Bob", Color.BLACK);
+
+        newGame.addPlayer(white);
+        newGame.addPlayer(black);
+        newGame.start();
+
+        Player retrieved = newGame.getBlackPlayer();
+
+        assertNotNull(retrieved);
+        assertEquals(Color.BLACK, retrieved.getPlayerColor());
+        assertEquals("Bob", retrieved.getPlayerName());
+        assertSame(black, retrieved);
+    }
+
 }
