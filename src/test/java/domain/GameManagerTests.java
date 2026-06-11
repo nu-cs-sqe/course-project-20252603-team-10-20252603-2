@@ -1025,8 +1025,26 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-
         EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+
+        EasyMock.replay(mockKing);
+
+        board.setPiece(new Location(0, 0), mockKing);
+        game.setBoard(board);
+
+        assertFalse(game.isCheckmate());
+        EasyMock.verify(mockKing);
+    }
+    @Test
+    public void isCheckmate_inCheckAndHasValidMoves_returnsFalse() {
+        King mockKing = EasyMock.createMock(King.class);
+        EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
+
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true);
 
         EasyMock.replay(mockKing);
 
