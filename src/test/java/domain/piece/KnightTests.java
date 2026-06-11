@@ -342,4 +342,116 @@ public class KnightTests {
         assertTrue(result);
     }
 
+    @Test
+    public void hasValidMoves_knight_notBlocked_returnsTrue() {
+        Piece knight = new Knight(Color.WHITE);
+
+        Location location = new Location(6, 0);
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void hasValidMoves_knight_blockedByFriendlyPieces_returnsFalse() {
+        Piece knight = new Knight(Color.WHITE);
+        Piece friendlyKnight1 = new Knight(Color.WHITE);
+        Piece friendlyKnight2 = new Knight(Color.WHITE);
+        Piece friendlyKnight3 = new Knight(Color.WHITE);
+
+        Location location = new Location(6, 0);
+        Location friendlyKnightLocation1 = new Location(4, 1);
+        Location friendlyKnightLocation2 = new Location(5, 2);
+        Location friendlyKnightLocation3 = new Location(7, 2);
+
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+        board.setPiece(friendlyKnightLocation1, friendlyKnight1);
+        board.setPiece(friendlyKnightLocation2, friendlyKnight2);
+        board.setPiece(friendlyKnightLocation3, friendlyKnight3);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasValidMoves_knight_blockedByOneFriendlyPiece_returnsTrue() {
+        Piece knight = new Knight(Color.BLACK);
+        Piece friendlyKnight1 = new Knight(Color.BLACK);
+
+        Location location = new Location(5, 4);
+        Location friendlyKnightLocation1 = new Location(3, 5);
+
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+        board.setPiece(friendlyKnightLocation1, friendlyKnight1);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void hasValidMoves_knight_atEdgeBlockedByTwoFriendlyPieces_returnsFalse() {
+        Piece knight = new Knight(Color.BLACK);
+        Piece friendlyKnight1 = new Knight(Color.BLACK);
+        Piece friendlyKnight2 = new Knight(Color.BLACK);
+
+        Location location = new Location(7, 0);
+        Location friendlyKnightLocation1 = new Location(5, 1);
+        Location friendlyKnightLocation2 = new Location(6, 2);
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+        board.setPiece(friendlyKnightLocation1, friendlyKnight1);
+        board.setPiece(friendlyKnightLocation2, friendlyKnight2);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasValidMoves_knight_byKingAndEnemyPiece_returnsFalse() {
+        Piece knight = new Knight(Color.WHITE);
+        Piece enemyRook = new Rook(Color.BLACK);
+        Piece friendlyKing = new King(Color.WHITE);
+
+        Location location = new Location(7, 1);
+        Location enemyRookLocation = new Location(7, 7);
+        Location friendlyKingLocation = new Location(7, 0);
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+        board.setPiece(enemyRookLocation, enemyRook);
+        board.setPiece(friendlyKingLocation, friendlyKing);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasValidMoves_knight_blockedByEnemyPiece_returnsTrue() {
+        Piece knight = new Knight(Color.WHITE);
+        Piece enemyRook = new Rook(Color.BLACK);
+
+        Location location = new Location(7, 1);
+        Location enemyRookLocation = new Location(5, 2);
+
+        Board board = new Board(false);
+        board.setPiece(location, knight);
+        board.setPiece(enemyRookLocation, enemyRook);
+
+        boolean result = knight.hasValidMoves(location, board);
+
+        assertTrue(result);
+    }
 }
