@@ -323,15 +323,16 @@ public class BoardTests {
     @Test
     void copyConstructor_boardWithPiece_copiesPiece() {
         Board original = new Board(false);
-        original.setPiece(new Location(0,0), new Pawn(Color.WHITE));
+        original.setPiece(new Location(0, 0), new Pawn(Color.WHITE));
 
         Board copy = new Board(original);
 
-        assertNotNull(copy.getPiece(new Location(0,0)));
+        assertNotNull(copy.getPiece(new Location(0, 0)));
         assertNotSame(
-                original.getPiece(new Location(0,0)),
-                copy.getPiece(new Location(0,0))
+                original.getPiece(new Location(0, 0)),
+                copy.getPiece(new Location(0, 0))
         );
+    }
 
     void findKingLocation_emptyBoard_returnsNull() {
         Board board = new Board(false);
