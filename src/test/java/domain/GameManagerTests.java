@@ -995,4 +995,18 @@ public class GameManagerTests {
         assertFalse(newGame.isCheckmate());
     }
 
+    @Test
+    public void isCheckmate_kingMissingFromBoard_returnsFalse() {
+        GameManager newGame = new GameManager();
+        newGame.addPlayer(new Player("Alice", Color.WHITE));
+        newGame.addPlayer(new Player("Bob", Color.BLACK));
+        newGame.start();
+
+        Board emptyBoard = new Board(false);
+        newGame.setBoard(emptyBoard);
+
+        boolean result = newGame.isCheckmate();
+
+        assertFalse(result);
+    }
 }
