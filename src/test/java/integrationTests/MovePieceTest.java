@@ -51,4 +51,27 @@ public class MovePieceTest {
 
         assertEquals(Color.BLACK, gameManager.getCurrentPlayer().getPlayerColor());
     }
+
+    @Test
+    public void testValidKnightMove_UpdatesBoardAndSwitchesTurn() {
+        Location start = new Location(7, 1);
+        Location end = new Location(5, 2);
+
+        assertEquals(Color.WHITE, gameManager.getCurrentPlayer().getPlayerColor());
+        assertTrue(board.isPieceHere(start));
+        assertEquals(PieceType.KNIGHT, board.getPiece(start).getType());
+
+        GameManager.MoveResult moveSuccessful = gameManager.movePiece(start, end);
+        board = gameManager.getBoard();
+
+        assertEquals(moveSuccessful, GameManager.MoveResult.SUCCESS);
+        assertFalse(board.isPieceHere(start));
+        assertTrue(board.isPieceHere(end));
+
+        Piece movedPiece = board.getPiece(end);
+        assertEquals(PieceType.KNIGHT, movedPiece.getType());
+        assertEquals(Color.WHITE, movedPiece.getColor());
+
+        assertEquals(Color.BLACK, gameManager.getCurrentPlayer().getPlayerColor());
+    }
 }
