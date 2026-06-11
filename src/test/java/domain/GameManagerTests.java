@@ -988,4 +988,11 @@ public class GameManagerTests {
         assertFalse(newGame.isGameOver());
     }
 
+    @Test
+    public void isCheckmate_nullCurrentPlayer_returnsFalse() {
+        GameManager newGame = new GameManager();
+
+        assertFalse(newGame.isCheckmate());
+    }
+
 }
