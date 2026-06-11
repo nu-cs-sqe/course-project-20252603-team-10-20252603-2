@@ -3,11 +3,11 @@ package domain;
 import constants.Color;
 import domain.piece.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,11 +18,19 @@ public class GameManagerTests {
     @BeforeEach
     public void setUp() {
         game = new GameManager();
-        game.addPlayer(new Player(Color.WHITE));
-        game.addPlayer(new Player(Color.BLACK));
+        game.addPlayer(new Player("Player1", Color.WHITE));
+        game.addPlayer(new Player("Player2", Color.BLACK));
         game.start();
 
         board = new Board(false);
+    }
+
+    private List<String> getConfiguredLocaleCodes() {
+        ResourceBundle config = ResourceBundle.getBundle("languages");
+
+        return Arrays.stream(config.getString("supported").split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     @Test
@@ -40,7 +48,7 @@ public class GameManagerTests {
     @Test
     public void start_withOnePlayer_throwsException() {
         GameManager newGame = new GameManager();
-        newGame.addPlayer(new Player(Color.BLACK));
+        newGame.addPlayer(new Player("Player1", Color.BLACK));
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             newGame.start();
@@ -53,9 +61,9 @@ public class GameManagerTests {
     @Test
     public void start_withThreePlayers_throwsException() {
         GameManager newGame = new GameManager();
-        newGame.addPlayer(new Player(Color.BLACK));
-        newGame.addPlayer(new Player(Color.WHITE));
-        newGame.addPlayer(new Player(Color.BLACK));
+        newGame.addPlayer(new Player("Player1", Color.BLACK));
+        newGame.addPlayer(new Player("Player2", Color.WHITE));
+        newGame.addPlayer(new Player("Player3", Color.BLACK));
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             newGame.start();
         });
@@ -65,7 +73,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void start_withPlayers_isSuccessful() {
+    public void start_withTwoPlayers_isSuccessful() {
         assertDoesNotThrow(() -> game.start());
         assertTrue(game.isGameRunning());
     }
@@ -73,8 +81,8 @@ public class GameManagerTests {
     @Test
     public void start_withPlayersOfTheSameColor_throwsException() {
         GameManager newGame = new GameManager();
-        newGame.addPlayer(new Player(Color.BLACK));
-        newGame.addPlayer(new Player(Color.BLACK));
+        newGame.addPlayer(new Player("Player1", Color.BLACK));
+        newGame.addPlayer(new Player("Player2", Color.BLACK));
 
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
             newGame.start();
@@ -238,7 +246,7 @@ public class GameManagerTests {
     public void getMessageDefaultEnglishIfLocaleNotSet() {
         GameManager game = new GameManager();
 
-        assertEquals("Start Game", game.getMessage("start.game"));
+        assertEquals("Start Game", game.getMessage("welcome.startGame"));
     }
 
     @Test
@@ -246,7 +254,7 @@ public class GameManagerTests {
         GameManager game = new GameManager();
         game.setLocale(Locale.ENGLISH);
 
-        assertEquals("Start Game", game.getMessage("start.game"));
+        assertEquals("Start Game", game.getMessage("welcome.startGame"));
     }
 
     @Test
@@ -254,7 +262,7 @@ public class GameManagerTests {
         GameManager game = new GameManager();
         game.setLocale(new Locale("es"));
 
-        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+        assertEquals("Iniciar Juego", game.getMessage("welcome.startGame"));
     }
 
     @Test
@@ -262,10 +270,10 @@ public class GameManagerTests {
         GameManager game = new GameManager();
 
         game.setLocale(Locale.ENGLISH);
-        assertEquals("Start Game", game.getMessage("start.game"));
+        assertEquals("Start Game", game.getMessage("welcome.startGame"));
 
         game.setLocale(new Locale("es"));
-        assertEquals("Iniciar Juego", game.getMessage("start.game"));
+        assertEquals("Iniciar Juego", game.getMessage("welcome.startGame"));
     }
 
     @Test
@@ -293,8 +301,614 @@ public class GameManagerTests {
     public void getMessageNewLocaleWorks() {
         GameManager game = new GameManager();
         game.setLocale(Locale.FRENCH);
-        assertEquals("Lancer la partie", game.getMessage("start.game"));
+        assertEquals("Lancer la partie", game.getMessage("welcome.startGame"));
     }
     // TODO: last two tests of isCheckmate is waiting on King's hasValidMoves() implementation
-}
 
+    @Test
+    public void movePiece_nullLoc1_returnNO_PIECE_SELECTED() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(4,0), new Location(5,0));
+
+        assertEquals(GameManager.MoveResult.NO_PIECE_SELECTED, movePiece);
+        assertNull(game.getBoard().getPiece(new Location(4,0)));
+        assertNull(game.getBoard().getPiece(new Location(5,0)));
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+
+    }
+
+    @Test
+    public void movePiece_moveBlackKnightx0y1tox2y0_returnSUCCESS() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        game.changeTurns();
+
+        Player currentPlayer = game.getCurrentPlayer();
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(0,1), new Location(2,0));
+
+        assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(0,1)));
+
+        Piece moved = game.getBoard().getPiece(new Location(2,0));
+        assertEquals(PieceType.KNIGHT, moved.getType());
+        assertEquals(Color.BLACK, moved.getColor());
+
+        assertNotEquals(currentPlayer, game.getCurrentPlayer());
+
+    }
+
+    @Test
+    public void movePiece_moveWhiteKnightx7y6tox5y5_returnSUCCESS() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(7,6), new Location(5,5));
+
+        assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(7,6)));
+
+        Piece moved = game.getBoard().getPiece(new Location(5,5));
+        assertEquals(PieceType.KNIGHT, moved.getType());
+        assertEquals(Color.WHITE, moved.getColor());
+
+        assertNotEquals(currentPlayer, game.getCurrentPlayer());
+
+    }
+
+    @Test
+    public void movePiece_moveBlackRookx0y0tox1y0_returnINVALID_MOVE() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        game.changeTurns();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(0,0), new Location(1,0));
+
+        assertEquals(GameManager.MoveResult.INVALID_MOVE, movePiece);
+
+        Piece notMovedRook = game.getBoard().getPiece(new Location(0,0));
+        assertEquals(PieceType.ROOK, notMovedRook.getType());
+        assertEquals(Color.BLACK, notMovedRook.getColor());
+
+        Piece notMovedPawn = game.getBoard().getPiece(new Location(1,0));
+        assertEquals(PieceType.PAWN, notMovedPawn.getType());
+        assertEquals(Color.BLACK, notMovedPawn.getColor());
+
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+
+    }
+
+    @Test
+    public void movePiece_moveBlackRookx2y0tox6y0_returnSUCCESS() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        game.changeTurns();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        Rook piece = new Rook(Color.BLACK);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(2,0), piece);
+        game.setBoard(updatedBoard);
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(2,0), new Location(6,0));
+
+        assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(2,0)));
+
+        Piece moved = game.getBoard().getPiece(new Location(6,0));
+        assertEquals(PieceType.ROOK, moved.getType());
+        assertEquals(Color.BLACK, moved.getColor());
+
+        assertNotEquals(currentPlayer, game.getCurrentPlayer());
+        assertEquals(1, currentPlayer.getPoints());
+
+    }
+
+    @Test
+    public void movePiece_moveWhiteQueenx5y7tox1y1_returnINVALID_MOVE() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        Queen piece = new Queen(Color.WHITE);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(5,7), piece);
+        game.setBoard(updatedBoard);
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(5,7), new Location(1,1));
+
+        assertEquals(GameManager.MoveResult.INVALID_MOVE, movePiece);
+
+        Piece notMovedPawn = game.getBoard().getPiece(new Location(1,1));
+        assertEquals(PieceType.PAWN, notMovedPawn.getType());
+        assertEquals(Color.BLACK, notMovedPawn.getColor());
+
+        Piece notMovedQueen = game.getBoard().getPiece(new Location(5,7));
+        assertEquals(PieceType.QUEEN, notMovedQueen.getType());
+        assertEquals(Color.WHITE, notMovedQueen.getColor());
+
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+        assertEquals(0, currentPlayer.getPoints());
+
+    }
+
+    @Test
+    public void movePiece_moveWhiteKnightx7y6tox5y5_returnWRONG_PLAYER_PIECE() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        game.changeTurns();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(7,6), new Location(5,5));
+
+        assertEquals(GameManager.MoveResult.WRONG_PLAYER_PIECE, movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(5,5)));
+
+        Piece notMovedKnight = game.getBoard().getPiece(new Location(7,6));
+        assertEquals(PieceType.KNIGHT, notMovedKnight.getType());
+        assertEquals(Color.WHITE, notMovedKnight.getColor());
+
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+
+    }
+
+    @Test
+    public void movePiece_moveBlackPawnx6y0tox7y0_returnPROMOTION_REQUIRED() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+        game.changeTurns();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        Pawn piece = new Pawn(Color.BLACK);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(6,0), piece);
+        updatedBoard.removePiece(new Location(7,0));
+        game.setBoard(updatedBoard);
+
+        GameManager.MoveResult movePiece = game.movePiece(new Location(6,0), new Location(7,0));
+
+        assertEquals(GameManager.MoveResult.PROMOTION_REQUIRED, movePiece);
+
+        assertNull(game.getBoard().getPiece(new Location(6,0)));
+
+        Piece moved = game.getBoard().getPiece(new Location(7,0));
+        assertEquals(PieceType.PAWN, moved.getType());
+        assertEquals(Color.BLACK, moved.getColor());
+
+        assertEquals(currentPlayer, game.getCurrentPlayer());
+        assertEquals(0, currentPlayer.getPoints());
+
+    }
+
+    @Test
+    public void promotePawn_whitePawnToQueen_pawnPromoted() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Pawn piece = new Pawn(Color.WHITE);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(0,0), piece);
+        game.setBoard(updatedBoard);
+
+        game.promotePawn(new Location(0,0), PieceType.QUEEN);
+
+        Piece promoted = game.getBoard().getPiece(new Location(0,0));
+        assertEquals(PieceType.QUEEN, promoted.getType());
+        assertEquals(Color.WHITE, promoted.getColor());
+
+    }
+
+    @Test
+    public void promotePawn_blackPawnToQueen_pawnPromoted() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Pawn piece = new Pawn(Color.BLACK);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(7,7), piece);
+        game.setBoard(updatedBoard);
+
+        game.promotePawn(new Location(7,7), PieceType.QUEEN);
+
+        Piece promoted = game.getBoard().getPiece(new Location(7,7));
+        assertEquals(PieceType.QUEEN, promoted.getType());
+        assertEquals(Color.BLACK, promoted.getColor());
+
+    }
+
+    @Test
+    public void promotePawn_whitePawnToKnight_pawnPromoted() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Pawn piece = new Pawn(Color.WHITE);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(0,0), piece);
+        game.setBoard(updatedBoard);
+
+        game.promotePawn(new Location(0,0), PieceType.KNIGHT);
+
+        Piece promoted = game.getBoard().getPiece(new Location(0,0));
+        assertEquals(PieceType.KNIGHT, promoted.getType());
+        assertEquals(Color.WHITE, promoted.getColor());
+
+    }
+
+    @Test
+    public void promotePawn_whitePawnToBishop_pawnPromoted() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Pawn piece = new Pawn(Color.WHITE);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(0,0), piece);
+        game.setBoard(updatedBoard);
+
+        game.promotePawn(new Location(0,0), PieceType.BISHOP);
+
+        Piece promoted = game.getBoard().getPiece(new Location(0,0));
+        assertEquals(PieceType.BISHOP, promoted.getType());
+        assertEquals(Color.WHITE, promoted.getColor());
+
+    }
+
+    @Test
+    public void promotePawn_whitePawnToRook_pawnPromoted() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Pawn piece = new Pawn(Color.WHITE);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(0,0), piece);
+        game.setBoard(updatedBoard);
+
+        game.promotePawn(new Location(0,0), PieceType.ROOK);
+
+        Piece promoted = game.getBoard().getPiece(new Location(0,0));
+        assertEquals(PieceType.ROOK, promoted.getType());
+        assertEquals(Color.WHITE, promoted.getColor());
+
+    }
+
+    @Test
+    public void promotePawn_nullToRook_throwIllegalArgException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Board updatedBoard = game.getBoard();
+        updatedBoard.removePiece(new Location(0,0));
+        game.setBoard(updatedBoard);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            game.promotePawn(new Location(0,0), PieceType.ROOK);
+        });
+
+        assertTrue(exception.getMessage().contains("Piece is not eligible for promotion."));
+
+    }
+
+    @Test
+    public void promotePawn_blackKnightToQueen_throwIllegalArgException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Knight piece = new Knight(Color.BLACK);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(7,7), piece);
+        game.setBoard(updatedBoard);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            game.promotePawn(new Location(7,7), PieceType.QUEEN);
+        });
+
+        assertTrue(exception.getMessage().contains("Piece is not eligible for promotion."));
+
+    }
+
+    @Test
+    public void promotePawn_whitePawnToKing_throwIllegalArgException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Pawn piece = new Pawn(Color.WHITE);
+        Board updatedBoard = game.getBoard();
+        updatedBoard.setPiece(new Location(0,0), piece);
+        game.setBoard(updatedBoard);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            game.promotePawn(new Location(0,0), PieceType.KING);
+        });
+
+        assertTrue(exception.getMessage().contains("Invalid promotion piece."));
+
+    }
+
+    @Test
+    public void loadSupportedLanguages_validFixedResources_gameManagerInitializes() {
+        assertDoesNotThrow(() -> {
+            GameManager game = new GameManager();
+
+            assertNotNull(game.getSupportedLanguages());
+            assertFalse(game.getSupportedLanguages().isEmpty());
+        });
+    }
+
+    @Test
+    public void loadSupportedLanguages_supportedValueWithMultipleLocaleCodes_returnsMatchingNumberOfLanguageOptions() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertEquals(configuredCodes.size(), languages.size());
+    }
+
+    @Test
+    public void loadSupportedLanguages_supportedValueWithAtLeastTwoLocaleCodes_returnsAtLeastTwoLanguageOptions() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertTrue(languages.size() >= 2);
+    }
+
+    @Test
+    public void loadSupportedLanguages_configuredLocalesWithMatchingMessageBundles_completesWithoutMissingBundleException() {
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+
+        for (String code : configuredCodes) {
+            Locale locale = Locale.forLanguageTag(code);
+
+            assertDoesNotThrow(() -> {
+                ResourceBundle.getBundle("messages", locale);
+            });
+        }
+    }
+
+    @Test
+    public void loadSupportedLanguages_configuredBundlesWithLanguageName_returnsNonEmptyDisplayNames() {
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+
+        for (String code : configuredCodes) {
+            Locale locale = Locale.forLanguageTag(code);
+            ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
+
+            String languageName = bundle.getString("language.name");
+
+            assertNotNull(languageName);
+            assertFalse(languageName.trim().isEmpty());
+        }
+    }
+
+    @Test
+    public void loadSupportedLanguages_supportedValueListsEnglish_returnsEnglishLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsEnglish = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.ENGLISH));
+
+        assertTrue(containsEnglish);
+    }
+
+    @Test
+    public void loadSupportedLanguages_supportedValueListsSpanish_returnsSpanishLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsSpanish = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.forLanguageTag("es")));
+
+        assertTrue(containsSpanish);
+    }
+
+    @Test
+    public void loadSupportedLanguages_supportedValueListsFrench_returnsFrenchLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsFrench = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.FRENCH));
+
+        assertTrue(containsFrench);
+    }
+
+    @Test
+    public void loadSupportedLanguages_supportedValueWithOrderedLocaleCodes_preservesConfiguredOrder() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        for (int i = 0; i < configuredCodes.size(); i++) {
+            Locale expectedLocale = Locale.forLanguageTag(configuredCodes.get(i));
+
+            assertEquals(expectedLocale, languages.get(i).getLocale());
+        }
+    }
+
+    @Test
+    public void loadSupportedLanguages_supportedValueWithTrimmedLanguageTags_returnsMatchingLocales() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        for (int i = 0; i < configuredCodes.size(); i++) {
+            Locale expectedLocale = Locale.forLanguageTag(configuredCodes.get(i));
+            Locale actualLocale = languages.get(i).getLocale();
+
+            assertEquals(expectedLocale, actualLocale);
+        }
+    }
+
+    @Test
+    public void getSupportedLanguages_validFixedResources_returnsNonEmptyList() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertNotNull(languages);
+        assertFalse(languages.isEmpty());
+    }
+
+    @Test
+    public void getSupportedLanguages_validFixedResources_returnsMoreThanOneLanguageOption() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertTrue(languages.size() > 1);
+    }
+
+    @Test
+    public void getSupportedLanguages_validFixedResources_returnsAtLeastTwoLanguageOptions() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertTrue(languages.size() >= 2);
+    }
+
+    @Test
+    public void getSupportedLanguages_configIncludesEnglish_returnsEnglishLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsEnglish = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.ENGLISH));
+
+        assertTrue(containsEnglish);
+    }
+
+    @Test
+    public void getSupportedLanguages_configIncludesSpanish_returnsSpanishLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsSpanish = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.forLanguageTag("es")));
+
+        assertTrue(containsSpanish);
+    }
+
+    @Test
+    public void getSupportedLanguages_configIncludesFrench_returnsFrenchLanguageOption() {
+        GameManager game = new GameManager();
+
+        boolean containsFrench = game.getSupportedLanguages().stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.FRENCH));
+
+        assertTrue(containsFrench);
+    }
+
+    @Test
+    public void getSupportedLanguages_configWithOrderedLocaleCodes_preservesConfiguredOrder() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        for (int i = 0; i < configuredCodes.size(); i++) {
+            Locale expectedLocale = Locale.forLanguageTag(configuredCodes.get(i));
+
+            assertEquals(expectedLocale, languages.get(i).getLocale());
+        }
+    }
+
+    @Test
+    public void getSupportedLanguages_configuredLocaleCodes_returnsMatchingListSize() {
+        GameManager game = new GameManager();
+
+        List<String> configuredCodes = getConfiguredLocaleCodes();
+        List<LanguageOption> languages = game.getSupportedLanguages();
+
+        assertEquals(configuredCodes.size(), languages.size());
+    }
+
+    @Test
+    public void getSupportedLanguages_calledTwice_returnsDifferentListObjectsWithEquivalentContents() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> firstCall = game.getSupportedLanguages();
+        List<LanguageOption> secondCall = game.getSupportedLanguages();
+
+        assertNotSame(firstCall, secondCall);
+        assertEquals(firstCall.size(), secondCall.size());
+
+        for (int i = 0; i < firstCall.size(); i++) {
+            assertEquals(firstCall.get(i).getLocale(), secondCall.get(i).getLocale());
+            assertEquals(firstCall.get(i).toString(), secondCall.get(i).toString());
+        }
+    }
+
+    @Test
+    public void getSupportedLanguages_returnedListCleared_preservesInternalList() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+        int originalSize = languages.size();
+
+        languages.clear();
+
+        List<LanguageOption> languagesAgain = game.getSupportedLanguages();
+
+        assertEquals(originalSize, languagesAgain.size());
+    }
+
+    @Test
+    public void getSupportedLanguages_fakeLanguageAddedToReturnedList_preservesInternalList() {
+        GameManager game = new GameManager();
+
+        List<LanguageOption> languages = game.getSupportedLanguages();
+        int originalSize = languages.size();
+
+        languages.add(new LanguageOption("Fake Language", Locale.forLanguageTag("xx")));
+
+        List<LanguageOption> languagesAgain = game.getSupportedLanguages();
+
+        assertEquals(originalSize, languagesAgain.size());
+
+        boolean containsFakeLanguage = languagesAgain.stream()
+                .anyMatch(language -> language.getLocale().equals(Locale.forLanguageTag("xx")));
+
+        assertFalse(containsFakeLanguage);
+    }
+
+}
