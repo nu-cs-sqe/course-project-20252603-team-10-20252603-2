@@ -66,6 +66,10 @@ public class GameManager {
         return new ArrayList<>(supportedLanguages);
     }
 
+    public int getConsecutiveDrawMoves() {
+        return this.consecutiveDrawMoves;
+    }
+
     public void incrementDrawCounter() {
         this.consecutiveDrawMoves++;
     }
@@ -255,13 +259,22 @@ public class GameManager {
         }
 
         if (pieceToMove.isValidMove(start, end, board)) {
-            if (board.isPieceHere(end)) {
+            boolean isCapturingPiece = board.isPieceHere(end);
+            boolean isPawnMove = pieceToMove.getType() == PieceType.PAWN;
+
+            if (isCapturingPiece) {
                 Piece capturedPiece = board.getPiece(end);
                 this.currentPlayer.incrementPoints(capturedPiece.getType());
             }
 
             board.setPiece(end, pieceToMove);
             board.removePiece(start);
+
+            if (isCapturingPiece || isPawnMove) {
+                this.consecutiveDrawMoves = 0;
+            } else {
+                incrementDrawCounter();
+            }
 
             if (isPromotionMove(pieceToMove, end)) {
                 return MoveResult.PROMOTION_REQUIRED;
