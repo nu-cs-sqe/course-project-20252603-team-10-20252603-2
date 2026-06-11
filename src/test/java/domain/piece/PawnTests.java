@@ -247,6 +247,8 @@ public class PawnTests {
         board.setPiece(chosen, blocker);
 
         boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
     }
 
     @Test
