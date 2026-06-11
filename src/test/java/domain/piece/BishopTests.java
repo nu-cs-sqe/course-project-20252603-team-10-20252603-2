@@ -255,7 +255,7 @@ public class BishopTests {
     }
 
     @Test
-    public void hasValidMovesBishopClearBoardCenterReturnsTrue() {
+    public void hasValidMoves_Bishop_ClearBoardCenter_ReturnsTrue() {
         final int bishopRow = 4;
         final int bishopCol = 4;
 
@@ -269,7 +269,7 @@ public class BishopTests {
     }
 
     @Test
-    public void hasValidMovesBishopClearBoardMinimumReturnsTrue() {
+    public void hasValidMoves_Bishop_ClearBoardMinimum_ReturnsTrue() {
         final int bishopRow = 0;
         final int bishopCol = 0;
 
@@ -283,7 +283,7 @@ public class BishopTests {
     }
 
     @Test
-    public void hasValidMovesBishopAllFriendlySurroundingReturnsFalse() {
+    public void hasValidMoves_Bishop_AllFriendlySurrounding_ReturnsFalse() {
         final int bishopRow = 4;
         final int bishopCol = 4;
         final int aboveRow = bishopRow - 1;
@@ -305,7 +305,7 @@ public class BishopTests {
     }
 
     @Test
-    public void hasValidMovesBishopCornerFriendlyDiagonalReturnsFalse() {
+    public void hasValidMoves_Bishop_CornerFriendlyDiagonal_ReturnsFalse() {
         final int bishopRow = 0;
         final int bishopCol = 0;
         final int diagonalRow = bishopRow + 1;
@@ -322,7 +322,7 @@ public class BishopTests {
     }
 
     @Test
-    public void hasValidMovesBishopMovesKingIntoCheckReturnsFalse() {
+    public void hasValidMoves_Bishop_MovesKingIntoCheck_ReturnsFalse() {
         final int bishopRow = 4;
         final int bishopCol = 4;
         final int kingRow = 4;
@@ -347,7 +347,7 @@ public class BishopTests {
     }
 
     @Test
-    public void hasValidMovesBishopOneDiagonalFreeReturnsTrue() {
+    public void hasValidMoves_Bishop_OneDiagonalFree_ReturnsTrue() {
         final int bishopRow = 4;
         final int bishopCol = 4;
         final int aboveRow = bishopRow - 1;
@@ -369,7 +369,7 @@ public class BishopTests {
     }
 
     @Test
-    public void hasValidMovesBishopUnprotectedDiagonalEnemyReturnsTrue() {
+    public void hasValidMoves_Bishop_UnprotectedDiagonalEnemy_ReturnsTrue() {
         final int bishopRow = 4;
         final int bishopCol = 4;
         final int enemyRow = 3;
@@ -387,7 +387,7 @@ public class BishopTests {
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
     @Test
-    public void hasValidMovesBlackBishopClearBoardCornerReturnsTrue() {
+    public void hasValidMoves_BlackBishop_ClearBoardCorner_ReturnsTrue() {
         final int bishopRow = 7;
         final int bishopCol = 7;
 

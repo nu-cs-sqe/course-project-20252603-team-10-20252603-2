@@ -97,7 +97,7 @@
 | 5           | WHITE | [4,4]          | bishop cannot move without exposing king                          | FALSE           | yes          |
 | 6           | WHITE | [4,4]          | one diagonal path open, all others blocked                        | TRUE            | yes          |
 | 7           | WHITE | [4,4]          | unprotected enemy piece on diagonal                               | TRUE            | yes          |
-| 8           | BLACK | [7,7]          | Clear board                                                       | TRUE            | no           |
+| 8           | BLACK | [7,7]          | Clear board                                                       | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Bishop
 
