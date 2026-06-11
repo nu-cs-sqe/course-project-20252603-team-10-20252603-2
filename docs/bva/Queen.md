@@ -113,7 +113,7 @@
 | 7           | WHITE | [4,4]          | one diagonal path open, all other directions blocked             | TRUE            | yes          |
 | 8           | WHITE | [4,4]          | One straight path open, all other directions blocked             | TRUE            | yes          |
 | 9           | WHITE | [4,4]          | unprotected enemy piece on destination                           | TRUE            | yes          |
-| 10          | BLACK | [7,7]          | Clear board                                                      | TRUE            | no           |
+| 10          | BLACK | [7,7]          | Clear board                                                      | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Queen
 

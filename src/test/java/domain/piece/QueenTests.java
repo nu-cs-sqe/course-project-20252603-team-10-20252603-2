@@ -561,4 +561,18 @@ public class QueenTests {
 
         assertTrue(queen.hasValidMoves(queenPos, board));
     }
+
+    @Test
+    public void hasValidMovesBlackQueenClearBoardReturnsTrue() {
+        final int queenRow = 7;
+        final int queenCol = 7;
+
+        Queen queen = new Queen(Color.BLACK);
+        Location queenPos = new Location(queenRow, queenCol);
+
+        Board board = new Board(false);
+        board.setPiece(queenPos, queen);
+
+        assertTrue(queen.hasValidMoves(queenPos, board));
+    }
 }
