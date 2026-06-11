@@ -249,6 +249,7 @@ public class PawnTests {
         boolean result = pawn.isValidMove(start, chosen, board);
     }
 
+    @Test
     public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
         Piece pawn = new Pawn(Color.WHITE);
 

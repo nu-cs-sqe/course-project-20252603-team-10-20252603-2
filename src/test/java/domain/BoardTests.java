@@ -334,6 +334,7 @@ public class BoardTests {
         );
     }
 
+    @Test
     void findKingLocation_emptyBoard_returnsNull() {
         Board board = new Board(false);
 
