@@ -1078,4 +1078,17 @@ public class GameManagerTests {
         assertNotNull(newGame.getCurrentPlayer());
         assertFalse(newGame.isStalemate());
     }
+
+    @Test
+    public void isStalemate_kingMissingFromBoard_returnsFalse() {
+        GameManager newGame = new GameManager();
+        newGame.addPlayer(new Player("Alice", Color.WHITE));
+        newGame.addPlayer(new Player("Bob", Color.BLACK));
+        newGame.start();
+
+        Board emptyBoard = new Board(false);
+        newGame.setBoard(emptyBoard);
+
+        assertFalse(newGame.isStalemate());
+    }
 }
