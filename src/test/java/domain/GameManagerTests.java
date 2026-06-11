@@ -911,4 +911,21 @@ public class GameManagerTests {
         assertFalse(containsFakeLanguage);
     }
 
+    @Test
+    public void getWhitePlayer_returnsAssignedWhitePlayer() {
+        GameManager newGame = new GameManager();
+        Player white = new Player("Alice", Color.WHITE);
+        Player black = new Player("Bob", Color.BLACK);
+
+        newGame.addPlayer(white);
+        newGame.addPlayer(black);
+        newGame.start();
+
+        Player retrieved = newGame.getWhitePlayer();
+
+        assertNotNull(retrieved);
+        assertEquals(Color.WHITE, retrieved.getPlayerColor());
+        assertEquals("Alice", retrieved.getPlayerName());
+        assertSame(white, retrieved);
+    }
 }
