@@ -954,4 +954,18 @@ public class GameManagerTests {
 
         assertNull(retrievedBoard);
     }
+
+    @Test
+    public void setBoard_nullParameter_setsInternalBoardToNull() {
+        GameManager newGame = new GameManager();
+        newGame.addPlayer(new Player("Alice", Color.WHITE));
+        newGame.addPlayer(new Player("Bob", Color.BLACK));
+        newGame.start();
+
+        assertNotNull(newGame.getBoard());
+
+        newGame.setBoard(null);
+
+        assertNull(newGame.getBoard());
+    }
 }
