@@ -303,7 +303,7 @@ public class RookTests {
     }
 
     @Test
-    public void isValidMove_Rook_oneUpFromCorner_returnTrue() {
+    public void isValidMove_rook_oneUpFromCorner_returnTrue() {
         Piece rook = new Rook(Color.BLACK);
 
         Location start = new Location(7, 7);
@@ -312,6 +312,124 @@ public class RookTests {
         Board board = new Board(false);
 
         boolean result = rook.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void isValidMove_rookExposesKingToAbsolutePin_returnsFalse() {
+        Board board = new Board(false);
+
+        Piece rook = new Rook(Color.WHITE);
+        Piece friendlyKing = new King(Color.WHITE);
+        Piece enemyRook = new Rook(Color.BLACK);
+
+        Location kingLocation = new Location(7, 0);
+        Location rookLocation = new Location(6, 0);
+        Location enemyLocation = new Location(0, 0);
+
+        board.setPiece(kingLocation, friendlyKing);
+        board.setPiece(rookLocation, rook);
+        board.setPiece(enemyLocation, enemyRook);
+
+        Location illegalSidewaysMove = new Location(6, 1);
+        boolean result = rook.isValidMove(rookLocation, illegalSidewaysMove, board);
+
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasValidMoves_rook_notBlocked_returnsTrue() {
+        Piece rook = new Rook(Color.WHITE);
+
+        Location location = new Location(6, 0);
+
+        Board board = new Board(false);
+        board.setPiece(location, rook);
+
+        boolean result = rook.hasValidMoves(location, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void hasValidMoves_rook_blockedByFriendlyPieces_returnsFalse() {
+        Piece rook = new Rook(Color.WHITE);
+        Piece friendlyRook = new Rook(Color.WHITE);
+        Piece friendlyPawn2 = new Pawn(Color.WHITE);
+        Piece friendlyPawn3 = new Pawn(Color.WHITE);
+
+        Location location = new Location(6, 0);
+        Location friendlyRookLocation = new Location(5, 0);
+        Location friendlyPawnLocation1 = new Location(7, 0);
+        Location friendlyPawnLocation2 = new Location(6, 1);
+
+        Board board = new Board(false);
+        board.setPiece(location, rook);
+        board.setPiece(friendlyRookLocation, friendlyRook);
+        board.setPiece(friendlyPawnLocation1, friendlyPawn2);
+        board.setPiece(friendlyPawnLocation2, friendlyPawn3);
+
+        boolean result = rook.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasValidMoves_rook_blockedByOneFriendlyPieces_returnsTrue() {
+        Piece rook = new Rook(Color.BLACK);
+        Piece friendlyRook = new Rook(Color.BLACK);
+
+        Location location = new Location(5, 4);
+        Location friendlyRookLocation = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(location, rook);
+        board.setPiece(friendlyRookLocation, friendlyRook);
+
+        boolean result = rook.hasValidMoves(location, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void hasValidMoves_rook_atCornerBlockedByFriendlyPieces_returnsFalse() {
+        Piece rook = new Rook(Color.BLACK);
+        Piece friendlyRook1 = new Rook(Color.BLACK);
+        Piece friendlyPawn = new Pawn(Color.BLACK);
+
+        Location location = new Location(7, 7);
+        Location friendlyRookLocation1 = new Location(6, 7);
+        Location friendlyPawnLocation = new Location(7, 6);
+
+        Board board = new Board(false);
+        board.setPiece(location, rook);
+        board.setPiece(friendlyRookLocation1, friendlyRook1);
+        board.setPiece(friendlyPawnLocation, friendlyPawn);
+
+        boolean result = rook.hasValidMoves(location, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasValidMoves_rook_atCornerBlockedByEnemyPieces_returnsTrue() {
+        Piece rook = new Rook(Color.BLACK);
+        Piece enemyRook1 = new Rook(Color.WHITE);
+        Piece enemyRook2 = new Rook(Color.WHITE);
+
+        Location location = new Location(7, 7);
+        Location enemyRookLocation1 = new Location(6, 7);
+        Location enemyRookLocation2 = new Location(7, 6);
+
+        Board board = new Board(false);
+        board.setPiece(location, rook);
+        board.setPiece(enemyRookLocation1, enemyRook1);
+        board.setPiece(enemyRookLocation2, enemyRook2);
+
+        boolean result = rook.hasValidMoves(location, board);
 
         assertTrue(result);
     }
