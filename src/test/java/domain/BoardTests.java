@@ -463,4 +463,40 @@ public class BoardTests {
             EasyMock.verify(mockPiece);
         }
     }
+
+    @Test
+    public void getValidPiecesByColor_mixedBoard_returnsCount() {
+        Board board = new Board(false);
+        Pawn alliedMovable1 = EasyMock.createMock(Pawn.class);
+        EasyMock.expect(alliedMovable1.getColor()).andReturn(Color.BLACK).anyTimes();
+        EasyMock.expect(alliedMovable1.hasValidMoves(EasyMock.eq(new Location(2, 2)), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+        Pawn alliedMovable2 = EasyMock.createMock(Pawn.class);
+        EasyMock.expect(alliedMovable2.getColor()).andReturn(Color.BLACK).anyTimes();
+        EasyMock.expect(alliedMovable2.hasValidMoves(EasyMock.eq(new Location(3, 4)), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+        Rook alliedTrapped = EasyMock.createMock(Rook.class);
+        EasyMock.expect(alliedTrapped.getColor()).andReturn(Color.BLACK).anyTimes();
+        EasyMock.expect(alliedTrapped.hasValidMoves(EasyMock.eq(new Location(4, 5)), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+
+        Knight enemyMovable = EasyMock.createMock(Knight.class);
+        EasyMock.expect(enemyMovable.getColor()).andReturn(Color.WHITE).anyTimes();
+
+        EasyMock.replay(alliedMovable1, alliedMovable2, alliedTrapped, enemyMovable);
+
+        board.setPiece(new Location(2, 2), alliedMovable1);
+        board.setPiece(new Location(3, 4), alliedMovable2);
+        board.setPiece(new Location(4, 5), alliedTrapped);
+        board.setPiece(new Location(5, 5), enemyMovable);
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.BLACK);
+
+        assertEquals(2, validPieces.size());
+        assertTrue(validPieces.contains(alliedMovable1));
+        assertTrue(validPieces.contains(alliedMovable2));
+        assertFalse(validPieces.contains(alliedTrapped));
+        assertFalse(validPieces.contains(enemyMovable));
+
+        EasyMock.verify(alliedMovable1, alliedMovable2, alliedTrapped, enemyMovable);
+    }
 }

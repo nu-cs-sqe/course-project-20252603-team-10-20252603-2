@@ -226,12 +226,12 @@
 
 | Test # | Board state                                                                                       | Input color | Expected Output           | Implemented? |
 |--------|---------------------------------------------------------------------------------------------------|-------------|---------------------------|--------------|
-| 1      | empty board                                                                                       | WHITE       | Empty list                | no           | 
-| 2      | Only a single trapped Rook at [0,0] with zero legal moves left                                    | WHITE       | Empty list                | no          |
-| 3      | A single Pawn located at [0,0] with valid moves                                                   | WHITE       | List containing 1 Piece   | no          |
-| 4      | A single Rook located at [7,7] with valid moves                                                   | WHITE       | List containing 1 Piece   | no          |
-| 5      | All 16 pieces are set on the board, and every single one has at least one valid legal move option | BLACK       | List containing 16 Pieces | no          |
-| 6      | 4 Allied pieces can move, 3 Allied pieces are completely trapped, and 5 are enemy colors          | BLACK       | List containing 4 Pieces | no          |
+| 1      | empty board                                                                                       | WHITE       | Empty list                | yes          | 
+| 2      | Only a single trapped Rook at [0,0] with zero legal moves left                                    | WHITE       | Empty list                | yes          |
+| 3      | A single Pawn located at [0,0] with valid moves                                                   | WHITE       | List containing 1 Piece   | yes          |
+| 4      | A single Rook located at [7,7] with valid moves                                                   | WHITE       | List containing 1 Piece   | yes          |
+| 5      | All 16 pieces are set on the board, and every single one has at least one valid legal move option | BLACK       | List containing 16 Pieces | yes          |
+| 6      | 4 Allied pieces can move, 3 Allied pieces are completely trapped, and 5 are enemy colors          | BLACK       | List containing 4 Pieces | yes          |
 
 
 1) input equivalence classes and output equivalence classes
