@@ -10,6 +10,7 @@ import domain.piece.Piece;
 import domain.piece.PieceType;
 
 import javax.swing.*;
+import java.awt.*;
 import java.text.MessageFormat;
 
 public class BoardController {
@@ -222,6 +223,9 @@ public class BoardController {
                 options[0]
         );
 
-        System.exit(0);
+        Window window = SwingUtilities.getWindowAncestor(boardView);
+        if (window != null) {
+            window.dispose();
+        }
     }
 }
