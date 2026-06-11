@@ -968,4 +968,11 @@ public class GameManagerTests {
 
         assertNull(newGame.getBoard());
     }
+
+    @Test
+    public void isGameOver_nullCurrentPlayer_returnsFalse() {
+        GameManager newGame = new GameManager();
+
+        assertFalse(newGame.isGameOver());
+    }
 }
