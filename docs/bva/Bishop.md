@@ -85,3 +85,56 @@
         * blocked path with valid direction
 * output:
     * a yes/no answer: boolean
+
+## Method under test: `hasValidMoves()` for Bishop
+
+| Test Number | Color | Start position | State                                                             | Expected Output | Implemented? |
+|-------------|-------|----------------|-------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [4,4]          | Clear board                                                       | TRUE            | yes          |
+| 2           | WHITE | [0,0]          | Clear board                                                       | TRUE            | yes          |
+| 3           | WHITE | [4,4]          | all 4 diagonal squares blocked by friendly pieces                 | FALSE           | yes          |
+| 4           | WHITE | [0,0]          | bishop in corder, diagonal square [1,1] blocked by friendly piece | FALSE           | yes          |
+| 5           | WHITE | [4,4]          | bishop cannot move without exposing king                          | FALSE           | yes          |
+| 6           | WHITE | [4,4]          | one diagonal path open, all others blocked                        | TRUE            | yes          |
+| 7           | WHITE | [4,4]          | unprotected enemy piece on diagonal                               | TRUE            | yes          |
+| 8           | BLACK | [7,7]          | Clear board                                                       | TRUE            | yes          |
+
+### STEPS FOR BVA: `hasValidMoves()` for Bishop
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * bishop color
+    * bishop start position (row, column)
+    * state of the board (Board)
+    * are any diagonal squares reachable without putting the king in check?
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * bishop color: cases
+    * bishop start position (row, column): array indices
+    * state of the board: cases
+    * reachable diagonal square exists: boolean
+* output:
+    * a yes/no answer: boolean
+
+3) BVA catalog classes -- values
+* input:
+    * bishop color: cases
+        * WHITE, BLACK
+    * bishop start position (row, column): array indices
+        * all indices are 0 at same time: [0][0] 
+        * all largest valid value: [7][7] 
+        * center of board: [4][4]
+    * state of the board: cases
+        * clear board 
+        * all immediate diagonal squares blocked by friendly pieces 
+        * all diagonal paths attacked, moving exposes king 
+        * one diagonal path open, all others blocked by friendlies 
+        * enemy piece on diagonal, not protected 
+    * reachable diagonal square exists: boolean
+        * True 
+        * False 
+* output:
+    * a yes/no answer: boolean
