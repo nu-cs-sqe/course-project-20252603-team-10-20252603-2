@@ -332,6 +332,62 @@ public class BoardTests {
                 original.getPiece(new Location(0,0)),
                 copy.getPiece(new Location(0,0))
         );
+
+    void findKingLocation_emptyBoard_returnsNull() {
+        Board board = new Board(false);
+
+        Location kingLocation = board.findKingLocation(Color.BLACK);
+
+        assertNull(kingLocation);
+    }
+
+    @Test
+    void findKingLocation_twoKingsFindWhite_returnsx7y7() {
+        Board board = new Board(false);
+        board.setPiece(new Location(0,0), new King(Color.BLACK));
+        board.setPiece(new Location(7,7), new King(Color.WHITE));
+
+        Location kingLocation = board.findKingLocation(Color.WHITE);
+
+        assertEquals(new Location(7,7), kingLocation);
+    }
+
+    @Test
+    void findKingLocation_twoKingsFindBlack_returnsx0y0() {
+        Board board = new Board(false);
+        board.setPiece(new Location(0,0), new King(Color.BLACK));
+        board.setPiece(new Location(7,7), new King(Color.WHITE));
+
+        Location kingLocation = board.findKingLocation(Color.BLACK);
+
+        assertEquals(new Location(0,0), kingLocation);
+    }
+
+    @Test
+    void findKingLocation_movedBlackKing_returnsx1y1() {
+        Board board = new Board(false);
+        board.setPiece(new Location(0,0), new King(Color.BLACK));
+
+        board.setPiece(new Location(1,1), board.getPiece(new Location(0,0)));
+        board.removePiece(new Location(0,0));
+
+        Location kingLocation = board.findKingLocation(Color.BLACK);
+
+        assertEquals(new Location(1,1), kingLocation);
+    }
+
+    @Test
+    void findKingLocation_movedWhiteKing_returnsx6y7() {
+        Board board = new Board(false);
+        board.setPiece(new Location(7,7), new King(Color.BLACK));
+
+        board.setPiece(new Location(6,7), board.getPiece(new Location(7,7)));
+        board.removePiece(new Location(7,7));
+
+        Location kingLocation = board.findKingLocation(Color.BLACK);
+
+        assertEquals(new Location(6,7), kingLocation);
+
     }
 
 }

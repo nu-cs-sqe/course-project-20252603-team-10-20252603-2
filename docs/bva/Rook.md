@@ -93,3 +93,36 @@
 |-------------|------------|----------------------------------------------------------|--------------|
 | 1           | "BLACK"    | new non null rook, same color same type and diff object  | yes          |
 | 2           | "WHITE"    | new non null rook, same color same type and diff object  | yes          |
+
+
+### Method under test: `hasValidMoves()` for Rook
+
+| Test Number | Color | Start position | Board State                                                                    | Expected Output | Implemented? |
+|-------------|-------|----------------|--------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                                    | TRUE            | yes          |               
+| 2           | WHITE | [6,0]          | Friendly pieces at [5,0], [7,0], and [6,1]                                     | FALSE           | yes          |                
+| 3           | BLACK | [5,4]          | Friendly piece at [4,4]. Left, right, and down paths are completely wide open. | TRUE            | yes          |
+| 4           | BLACK | [7,7]          | Sitting at the absolute corner. Blocked by friendly pieces at [6,7] and [7,6]  | FALSE           | yes          |
+| 5           | BLACK | [7,7]          | Blocked by enemy pieces at [6,7] and [7,6]                                     | TRUE            | yes          |
+
+### STEPS FOR BVA: `hasValidMoves()` for Rook
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * rook color
+    * piece start position (row, column)
+    * state of the board (Board)
+    * path is clear?
+    * status of the King (isInCheck())
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * rook color: cases
+    * piece start position (row, column): array indices
+    * path is clear?: boolean
+    * state of the board: cases
+    * status of the King: boolean
+* output:
+    * a yes/no answer: boolean

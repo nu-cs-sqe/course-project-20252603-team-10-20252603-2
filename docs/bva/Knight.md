@@ -100,3 +100,37 @@
 |-------------|------------|-----------------------------------------------------------|--------------|
 | 1           | "BLACK"    | new non null knight, same color same type and diff object | yes          |
 | 2           | "WHITE"    | new non null knight, same color same type and diff object | yes          |
+
+
+### Method under test: `hasValidMoves()` for Knight
+
+| Test Number | Color | Start position | Board State                                                                    | Expected Output | Implemented? |
+|-------------|-------|----------------|--------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                                    | TRUE            | yes          |               
+| 2           | WHITE | [6,0]          | Friendly piece at [4, 1], [5,2],[7,2], diagonal spaces are empty               | FALSE           | yes          |                
+| 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [3, 5].                            | TRUE            | yes          |
+| 4           | BLACK | [7,0]          | Stuck at the absolute edge, friendly pieces at [5, 1] and [6, 2]               | FALSE           | yes          |
+| 5           | WHITE | [7,1]          | Pinned against its own White King [7, 0] by an enemy Black Rook [7, 7] along a row | FALSE           | yes          |
+| 6           | WHITE | [7,1]          | Blocked by enemy piece [5, 2]                                                  | TRUE            | yes          |
+
+### STEPS FOR BVA: `hasValidMoves()` for Knight
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * knight color
+    * piece start position (row, column)
+    * state of the board (Board)
+    * path is clear?
+    * status of the King (isInCheck())
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * knight color: cases
+    * piece start position (row, column): array indices
+    * path is clear?: boolean
+    * state of the board: cases
+    * status of the King: boolean
+* output:
+    * a yes/no answer: boolean

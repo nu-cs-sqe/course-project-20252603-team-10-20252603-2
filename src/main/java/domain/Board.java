@@ -108,11 +108,26 @@ public class Board {
         for (int i = 0; i < TOTAL_ROWS; i++) {
             for (int j = 0; j < TOTAL_COLS; j++) {
                 Piece piece = pieces[i][j];
-                if (piece != null && piece.getColor() == color && piece.hasValidMoves()) {
+                Location location = new Location(i, j);
+                if (piece != null && piece.getColor() == color && piece.hasValidMoves(location, this)) {
                     validPiecesByColor.add(piece);
                 }
             }
         }
         return validPiecesByColor;
+    }
+
+    public Location findKingLocation(Color color) {
+        for (int x = 0; x< TOTAL_ROWS; x++) {
+            for (int y = 0; y < TOTAL_COLS; y++) {
+                Piece piece = pieces[x][y];
+                if (piece != null && piece.getType() == PieceType.KING && piece.getColor() == color) {
+                    return new Location(x, y);
+                }
+            }
+        }
+
+        return null;
+
     }
 }

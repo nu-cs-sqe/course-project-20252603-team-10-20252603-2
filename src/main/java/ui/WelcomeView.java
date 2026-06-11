@@ -1,5 +1,9 @@
 package ui;
 
+import domain.GameManager;
+import domain.Player;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,11 +11,18 @@ public class WelcomeView extends JFrame {
 
     private JTextField player1NameField;
     private JTextField player2NameField;
+    private transient final GameManager gameManager;
 
-    public WelcomeView() { }
+    @SuppressFBWarnings(
+            value = "EI_EXPOSE_REP2",
+            justification = "This UI class intentionally stores the shared GameManager used to coordinate game state."
+    )
+    public WelcomeView(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
 
     public void initialize() {
-        setTitle("Welcome Screen!");
+        setTitle(gameManager.getMessage("welcome.title"));
         setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -28,7 +39,10 @@ public class WelcomeView extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Welcome message
-        JLabel welcomeLabel = new JLabel("Welcome to our Chess Game!", SwingConstants.CENTER);
+        JLabel welcomeLabel = new JLabel(
+                gameManager.getMessage("welcome.message"),
+                SwingConstants.CENTER
+        );
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 28));
         welcomeLabel.setForeground(new Color(255, 255, 255));
         gbc.gridx = 0;
@@ -40,7 +54,9 @@ public class WelcomeView extends JFrame {
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JLabel player1NameLabel = new JLabel("Player 1 Name:");
+        JLabel player1NameLabel = new JLabel(
+                gameManager.getMessage("welcome.player1Name")
+        );
         player1NameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         player1NameLabel.setForeground(new Color(255, 255, 255));
         welcomePanel.add(player1NameLabel, gbc);
@@ -53,7 +69,9 @@ public class WelcomeView extends JFrame {
         // Player 2 Name Input
         gbc.gridx = 0;
         gbc.gridy = 2;
-        JLabel player2NameLabel = new JLabel("Player 2 Name:");
+        JLabel player2NameLabel = new JLabel(
+                gameManager.getMessage("welcome.player2Name")
+        );
         player2NameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         player2NameLabel.setForeground(new Color(255, 255, 255));
         welcomePanel.add(player2NameLabel, gbc);
@@ -64,7 +82,9 @@ public class WelcomeView extends JFrame {
         welcomePanel.add(player2NameField, gbc);
 
         // Start Game Button
-        JButton startGameButton = new JButton("Start Game");
+        JButton startGameButton = new JButton(
+                gameManager.getMessage("welcome.startGame")
+        );
         startGameButton.setFont(new Font("Arial", Font.BOLD, 20));
         startGameButton.setOpaque(true);
         startGameButton.setBackground(Color.WHITE);
@@ -80,12 +100,16 @@ public class WelcomeView extends JFrame {
 
             // FIXME: perform input validation on player names
 
+            this.gameManager.addPlayer(new Player(player1Name, constants.Color.WHITE));
+            this.gameManager.addPlayer(new Player(player2Name, constants.Color.BLACK));
+            this.gameManager.start();
+
             // Hide the welcome screen
             setVisible(false);
             dispose(); // Dispose of this frame to free up resources
 
             // Create and show the main game screen
-            MainView mainScreen = new MainView(player1Name, player2Name);
+            MainView mainScreen = new MainView(this.gameManager, player1Name, player2Name);
             mainScreen.setVisible(true);
 
             System.out.println(e);

@@ -4,26 +4,40 @@ import domain.Board;
 import domain.Location;
 import constants.Color;
 
-public class King extends Piece{
+public class King extends Piece {
+
+    private static final int NUM_ROWS = 8;
+
+    private static final int NUM_COLS = 8;
+
     public King(Color color) {
         super(PieceType.KING, color);
     }
 
     public boolean isInCheck(Location kingLocation, Board board) {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < NUM_ROWS; i++) {
+            for (int j = 0; j < NUM_COLS; j++) {
                 Location location = new Location(i, j);
-                if (!board.isPieceHere(location)) continue;
-                Piece piece = board.getPiece(location);
-                if (piece.isSameColor(this)) continue;
-                if (piece.getType() == PieceType.KING) {
-                    if (canKingAttack(location, kingLocation)) return true;
-                } else {
-                    if (piece.isValidMove(location, kingLocation, board)) return true;
+                if (isKingThreatened(location, kingLocation, board)) {
+                    return true;
                 }
             }
         }
         return false;
+    }
+
+    private boolean isKingThreatened(Location location, Location kingLocation, Board board) {
+        if (!board.isPieceHere(location)) {
+            return false;
+        }
+        Piece piece = board.getPiece(location);
+        if (piece.isSameColor(this)) {
+            return false;
+        }
+        if (piece.getType() == PieceType.KING) {
+            return canKingAttack(location, kingLocation);
+        }
+        return piece.isValidMove(location, kingLocation, board);
     }
 
     private boolean canKingAttack(Location from, Location kingPos) {
@@ -86,9 +100,27 @@ public class King extends Piece{
     }
 
     @Override
-    public boolean hasValidMoves() {
-        //  TODO: complete method
+    public boolean hasValidMoves(Location currentPosition, Board board) {
+        int currentRow = currentPosition.getX();
+        int currentCol = currentPosition.getY();
+
+        for (int rowOffset = -1; rowOffset <= 1; rowOffset++) {
+            for (int colOffset = -1; colOffset <= 1; colOffset++) {
+                if (rowOffset == 0 && colOffset == 0) {
+                    continue;
+                }
+                int destinationRow = currentRow + rowOffset;
+                int destinationCol = currentCol + colOffset;
+
+                if (destinationRow >= 0 && destinationRow < NUM_ROWS
+                        && destinationCol >= 0 && destinationCol < NUM_COLS) {
+                    Location desiredDestination = new Location(destinationRow, destinationCol);
+                    if (isValidMove(currentPosition, desiredDestination, board)) {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
-
 }
