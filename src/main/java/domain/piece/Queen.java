@@ -166,7 +166,6 @@ public class Queen extends Piece {
                         && targetCol >= 0 && targetCol < NUM_COLS) {
                     Location target = new Location(targetRow, targetCol);
                     if (isValidMove(currentPosition, target, board)) {
-                        System.out.println("Valid move found: " + targetRow + ", " + targetCol);
                         return true;
                     }
                     targetRow += rowDirection;
