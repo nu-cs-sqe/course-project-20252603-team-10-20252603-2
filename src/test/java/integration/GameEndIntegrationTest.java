@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class GameEndIntegrationTest {
 
@@ -79,5 +80,22 @@ public class GameEndIntegrationTest {
         assertTrue(board.getValidPiecesByColor(Color.BLACK).isEmpty());
         assertTrue(game.isGameOver());
         assertTrue(game.isStalemate());
+    }
+
+    @Test
+    public void gameEnd_movesAt49_whenCounterIncrements_gameIsOver() {
+        final int moveCount = 49;
+
+        for (int i = 0; i < moveCount; i++) {
+            game.incrementDrawCounter();
+        }
+
+        assertFalse(game.isGameOver());
+        assertFalse(game.isGameADraw());
+
+        game.incrementDrawCounter();
+
+        assertTrue(game.isGameADraw());
+        assertTrue(game.isGameOver());
     }
 }
