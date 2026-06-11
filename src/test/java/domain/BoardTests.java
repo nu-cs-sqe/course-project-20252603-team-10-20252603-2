@@ -2,6 +2,7 @@ package domain;
 
 import constants.Color;
 import domain.piece.*;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -374,4 +375,25 @@ public class BoardTests {
         assertNotNull(validPieces);
         assertEquals(0, validPieces.size());
     }
+
+    @Test
+    public void getValidPiecesByColor_trappedPieceAtLowerBoundary_returnsEmptyList() {
+        Board board = new Board(false);
+
+        Location lowerBoundary = new Location(0, 0);
+        Rook mockRook = EasyMock.createMock(Rook.class);
+
+        EasyMock.expect(mockRook.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockRook.hasValidMoves(EasyMock.eq(lowerBoundary), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+
+        EasyMock.replay(mockRook);
+
+        board.setPiece(lowerBoundary, mockRook);
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.WHITE);
+
+        assertEquals(0, validPieces.size());
+        EasyMock.verify(mockRook);
+    }
+
 }
