@@ -74,4 +74,34 @@ public class MovePieceTest {
 
         assertEquals(Color.BLACK, gameManager.getCurrentPlayer().getPlayerColor());
     }
+
+    @Test
+    public void testInvalidMove_WrongTurn_ReturnsWrongPlayerPieceAndMaintainsState() {
+        Location blackPawnStart = new Location(1, 0);
+        Location illegalDestination = new Location(3, 0);
+
+        assertEquals(Color.WHITE, gameManager.getCurrentPlayer().getPlayerColor());
+        Piece[][] boardStateBefore = gameManager.getBoard().getSnapshot();
+
+        GameManager.MoveResult result = gameManager.movePiece(blackPawnStart, illegalDestination);
+
+        assertEquals(GameManager.MoveResult.WRONG_PLAYER_PIECE, result);
+
+        assertEquals(Color.WHITE, gameManager.getCurrentPlayer().getPlayerColor());
+
+        Piece[][] boardStateAfter = gameManager.getBoard().getSnapshot();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Piece before = boardStateBefore[i][j];
+                Piece after = boardStateAfter[i][j];
+                if (before == null) {
+                    assertNull(after);
+                } else {
+                    assertNotNull(after);
+                    assertEquals(before.getType(), after.getType());
+                    assertEquals(before.getColor(), after.getColor());
+                }
+            }
+        }
+    }
 }
