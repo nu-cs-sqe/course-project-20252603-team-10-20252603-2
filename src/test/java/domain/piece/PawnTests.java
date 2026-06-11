@@ -2,7 +2,6 @@ package domain;
 
 import domain.piece.*;
 import constants.Color;
-import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
