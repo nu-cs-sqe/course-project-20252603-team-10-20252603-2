@@ -1027,6 +1027,8 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
         EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
 
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true);
+
         EasyMock.replay(mockKing);
 
         board.setPiece(new Location(0, 0), mockKing);
@@ -1054,4 +1056,16 @@ public class GameManagerTests {
         assertFalse(game.isCheckmate());
         EasyMock.verify(mockKing);
     }
+
+    @Test
+    public void isStalemate_currentPlayerNullBoardValid_returnsFalse() {
+        GameManager newGame = new GameManager();
+        Board realBoard = new Board(false);
+        newGame.setBoard(realBoard);
+
+        assertNull(newGame.getCurrentPlayer());
+        assertFalse(newGame.isStalemate());
+    }
+
+
 }
