@@ -946,5 +946,12 @@ public class GameManagerTests {
         assertEquals("Bob", retrieved.getPlayerName());
         assertSame(black, retrieved);
     }
+    @Test
+    public void getBoard_nullBoard_returnsNull() {
+        GameManager unstartedGame = new GameManager();
 
+        Board retrievedBoard = unstartedGame.getBoard();
+
+        assertNull(retrievedBoard);
+    }
 }
