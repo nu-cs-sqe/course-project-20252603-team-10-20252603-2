@@ -542,4 +542,23 @@ public class QueenTests {
 
         assertTrue(queen.hasValidMoves(queenPos, board));
     }
+
+    @Test
+    public void hasValidMovesQueenUnprotectedEnemyReturnsTrue() {
+        final int queenRow = 4;
+        final int queenCol = 4;
+        final int enemyRow = 3;
+        final int enemyCol = 3;
+
+        Queen queen = new Queen(Color.WHITE);
+        Piece enemy = new Pawn(Color.BLACK);
+        Location queenPos = new Location(queenRow, queenCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(queenPos, queen);
+        board.setPiece(enemyPos, enemy);
+
+        assertTrue(queen.hasValidMoves(queenPos, board));
+    }
 }
