@@ -331,7 +331,6 @@ public class GameManagerTests {
         game.changeTurns();
 
         Player currentPlayer = game.getCurrentPlayer();
-        Piece piece = game.getBoard().getPiece(new Location(0,1));
 
         GameManager.MoveResult movePiece = game.movePiece(new Location(0,1), new Location(2,0));
 
