@@ -1,11 +1,9 @@
-package domain;
+package domain.piece;
 
-import domain.piece.Bishop;
-import domain.piece.King;
-import domain.piece.Rook;
-import domain.piece.Pawn;
-import domain.piece.Piece;
 import constants.Color;
+import domain.Board;
+import domain.Location;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -331,19 +329,33 @@ public class BishopTests {
         final int rookCol = 7;
 
         Bishop bishop = new Bishop(Color.WHITE);
-        King king = new King(Color.WHITE);
+        King mockKing = EasyMock.createMock(King.class);
         Piece rook = new Rook(Color.BLACK);
 
         Location bishopPos = new Location(bishopRow, bishopCol);
         Location kingPos = new Location(kingRow, kingCol);
         Location rookPos = new Location(rookRow, rookCol);
 
+        EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockKing.isSameColor(EasyMock.anyObject())).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
+
+        EasyMock.expect(mockKing.isInCheck(
+                        EasyMock.anyObject(Location.class),
+                        EasyMock.isA(Board.class)))
+                .andReturn(true).anyTimes();
+
+        EasyMock.replay(mockKing);
+
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
-        board.setPiece(kingPos, king);
+        board.setPiece(kingPos, mockKing);
         board.setPiece(rookPos, rook);
 
         assertFalse(bishop.hasValidMoves(bishopPos, board));
+
+        EasyMock.verify(mockKing);
     }
 
     @Test
