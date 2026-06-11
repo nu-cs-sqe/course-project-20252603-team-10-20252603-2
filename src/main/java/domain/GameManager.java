@@ -25,6 +25,7 @@ public class GameManager {
     private Player whitePlayer;
     private Player blackPlayer;
     private Player currentPlayer;
+    private Player winner;
     private int consecutiveDrawMoves = 0;
     private Board board;
 
@@ -36,6 +37,7 @@ public class GameManager {
         this.whitePlayer = null;
         this.blackPlayer = null;
         this.currentPlayer = null;
+        this.winner = null;
         this.supportedLanguages = loadSupportedLanguages();
     }
 
@@ -137,11 +139,26 @@ public class GameManager {
         }
     }
 
+    public Player getWinner() {
+        return winner;
+    }
+
     public boolean isGameOver() {
         if (currentPlayer == null || board == null) {
             return false;
         }
-        return isGameADraw() || isCheckmate() || isStalemate();
+
+        if (isCheckmate()) {
+            this.winner = currentPlayer.getPlayerColor() == Color.BLACK ? getWhitePlayer() : getBlackPlayer();
+            return true;
+        }
+
+        if (isGameADraw() || isStalemate()) {
+            this.winner = null;
+            return true;
+        }
+
+        return false;
     }
 
     public boolean isCheckmate() {
@@ -209,7 +226,6 @@ public class GameManager {
     }
 
     private boolean isPromotionMove(Piece piece, Location location) {
-
         if (piece == null) {
             return false;
         }
