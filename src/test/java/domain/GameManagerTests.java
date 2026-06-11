@@ -364,6 +364,7 @@ public class GameManagerTests {
         Piece moved = game.getBoard().getPiece(new Location(5,5));
         assertEquals(PieceType.KNIGHT, moved.getType());
         assertEquals(Color.WHITE, moved.getColor());
+        assertEquals(1, game.getConsecutiveDrawMoves());
 
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
 
