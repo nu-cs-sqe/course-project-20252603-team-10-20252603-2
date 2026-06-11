@@ -13,243 +13,245 @@ public class BishopTests {
 
     @Test
     public void isValidMove_Bishop_sameSquare_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(0, 0);
-
+        Location start = new Location(startRow, startCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(bishop.isValidMove(start, start, board));
     }
 
     @Test
     public void isValidMove_Bishop_VerticalMove_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 3;
+        final int endCol = 0;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(3, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_oneDiag1_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 1;
+        final int endCol = 1;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(1, 1);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_oneDiag2_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 7;
+        final int endRow = 1;
+        final int endCol = 6;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 7);
-        Location chosen = new Location(1, 6);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_oneDiag3_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 0;
+        final int endRow = 6;
+        final int endCol = 1;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(7, 0);
-        Location chosen = new Location(6, 1);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_oneDiag4_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 6;
+        final int endCol = 6;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(6, 6);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_sevenDiag1_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_sevenDiag2_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 7;
+        final int endRow = 7;
+        final int endCol = 0;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 7);
-        Location chosen = new Location(7, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_sevenDiag3_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 0;
+        final int endRow = 0;
+        final int endCol = 7;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(7, 0);
-        Location chosen = new Location(0, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_sevenDiag4_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 0;
+        final int endCol = 0;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(0, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_HorizontalMove_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 0;
+        final int endCol = 3;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(0, 3);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_DiagonalCapture_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(chosen, new Bishop(Color.BLACK));
 
-        Piece capturePiece = new Bishop(Color.BLACK);
-        board.setPiece(new Location(7, 7), capturePiece);
-
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_DiagonalFriendlyDestination_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 3;
+        final int endCol = 3;
+
         Piece bishop = new Bishop(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(3, 3);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(chosen, new Bishop(Color.WHITE));
 
-        Piece friendlyPiece = new Bishop(Color.WHITE);
-        board.setPiece(new Location(3, 3), friendlyPiece);
-
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_BlackBishop_DiagonalCapture_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+
         Piece bishop = new Bishop(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(chosen, new Bishop(Color.WHITE));
 
-        Piece capturePiece = new Bishop(Color.WHITE);
-        board.setPiece(new Location(7, 7), capturePiece);
-
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Bishop_blockedDiagonal_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+        final int blockerRow = 1;
+        final int blockerCol = 1;
+
         Piece bishop = new Bishop(Color.BLACK);
-
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
+        board.setPiece(new Location(blockerRow, blockerCol), new Bishop(Color.WHITE));
 
-
-        Piece blockingPiece = new Bishop(Color.WHITE);
-        board.setPiece(new Location(1, 1), blockingPiece);
-
-
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-
-        assertFalse(result);
+        assertFalse(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_BlackBishop_sevenDiag1_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+
         Piece bishop = new Bishop(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = bishop.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(bishop.isValidMove(start, chosen, board));
     }
 
     @Test
@@ -259,7 +261,6 @@ public class BishopTests {
 
         Bishop bishop = new Bishop(Color.WHITE);
         Location bishopPos = new Location(bishopRow, bishopCol);
-
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
 
@@ -273,7 +274,6 @@ public class BishopTests {
 
         Bishop bishop = new Bishop(Color.WHITE);
         Location bishopPos = new Location(bishopRow, bishopCol);
-
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
 
@@ -291,7 +291,6 @@ public class BishopTests {
 
         Bishop bishop = new Bishop(Color.WHITE);
         Location bishopPos = new Location(bishopRow, bishopCol);
-
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
         board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
@@ -311,7 +310,6 @@ public class BishopTests {
 
         Bishop bishop = new Bishop(Color.WHITE);
         Location bishopPos = new Location(bishopRow, bishopCol);
-
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
         board.setPiece(new Location(diagonalRow, diagonalCol), new Pawn(Color.WHITE));
@@ -340,12 +338,10 @@ public class BishopTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.isSameColor(EasyMock.anyObject())).andReturn(true).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-
         EasyMock.expect(mockKing.isInCheck(
                         EasyMock.anyObject(Location.class),
                         EasyMock.isA(Board.class)))
                 .andReturn(true).anyTimes();
-
         EasyMock.replay(mockKing);
 
         Board board = new Board(false);
@@ -369,10 +365,8 @@ public class BishopTests {
 
         Bishop bishop = new Bishop(Color.WHITE);
         Location bishopPos = new Location(bishopRow, bishopCol);
-
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
-
         board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
         board.setPiece(new Location(belowRow, leftCol), new Pawn(Color.WHITE));
         board.setPiece(new Location(belowRow, rightCol), new Pawn(Color.WHITE));
@@ -388,16 +382,15 @@ public class BishopTests {
         final int enemyCol = 3;
 
         Bishop bishop = new Bishop(Color.WHITE);
-        Piece enemy = new Pawn(Color.BLACK);
         Location bishopPos = new Location(bishopRow, bishopCol);
         Location enemyPos = new Location(enemyRow, enemyCol);
-
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
-        board.setPiece(enemyPos, enemy);
+        board.setPiece(enemyPos, new Pawn(Color.BLACK));
 
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
+
     @Test
     public void hasValidMoves_BlackBishop_ClearBoardCorner_ReturnsTrue() {
         final int bishopRow = 7;
@@ -405,7 +398,6 @@ public class BishopTests {
 
         Bishop bishop = new Bishop(Color.BLACK);
         Location bishopPos = new Location(bishopRow, bishopCol);
-
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
 
