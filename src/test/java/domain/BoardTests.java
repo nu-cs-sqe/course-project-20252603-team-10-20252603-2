@@ -416,4 +416,24 @@ public class BoardTests {
         EasyMock.verify(mockPawn);
     }
 
+    @Test
+    public void getValidPiecesByColor_movablePieceAtUpperBoundary_returnsSizeOne() {
+        Board board = new Board(false);
+        Location upperBoundary = new Location(7, 7);
+        Rook mockRook = EasyMock.createMock(Rook.class);
+
+        EasyMock.expect(mockRook.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockRook.hasValidMoves(EasyMock.eq(upperBoundary), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+        EasyMock.replay(mockRook);
+
+        board.setPiece(upperBoundary, mockRook);
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.WHITE);
+
+        assertEquals(1, validPieces.size());
+        assertSame(mockRook, validPieces.get(0));
+        EasyMock.verify(mockRook);
+    }
+
 }
