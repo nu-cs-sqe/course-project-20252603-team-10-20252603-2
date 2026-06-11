@@ -62,3 +62,6 @@
 # Week 10 (06/1/2026-06/12/2026)
 1. [done] Vivian: hasValidMoves() for Knight (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/74)
 2. [done] Vivian: hasValidMoves() for Rook (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/72)
+3. [done] Vivian: Make move integration test (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/80)
+4. [done] Vivian: Board getValidPiecesByColor() BVA (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/86)
+5. [done] Vivian: refactor tests to use mocking (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/83)
