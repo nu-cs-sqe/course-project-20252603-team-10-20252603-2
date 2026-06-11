@@ -366,4 +366,12 @@ public class BoardTests {
         assertEquals(new Location(6,7), kingLocation);
     }
 
+    @Test
+    public void getValidPiecesByColor_emptyBoard_returnsEmptyList() {
+        Board board = new Board(false);
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.WHITE);
+
+        assertNotNull(validPieces);
+        assertEquals(0, validPieces.size());
+    }
 }
