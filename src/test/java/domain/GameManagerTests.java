@@ -975,4 +975,17 @@ public class GameManagerTests {
 
         assertFalse(newGame.isGameOver());
     }
+    @Test
+    public void isGameOver_nullBoard_returnsFalse() {
+        GameManager newGame = new GameManager();
+        newGame.addPlayer(new Player("Alice", Color.WHITE));
+        newGame.addPlayer(new Player("Bob", Color.BLACK));
+
+        newGame.assignPlayers(new Player("Alice", Color.WHITE), new Player("Bob", Color.BLACK));
+
+        assertNull(newGame.getBoard());
+        assertNotNull(newGame.getCurrentPlayer());
+        assertFalse(newGame.isGameOver());
+    }
+
 }
