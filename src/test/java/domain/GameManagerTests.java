@@ -1200,4 +1200,10 @@ public class GameManagerTests {
         assertFalse(containsFakeLanguage);
     }
 
+    @Test
+    public void getWhitePlayer_afterStart_returnsWhitePlayer() {
+        assertNotNull(game.getWhitePlayer());
+        assertEquals(Color.WHITE, game.getWhitePlayer().getPlayerColor());
+    }
+
 }

@@ -507,3 +507,10 @@ compare against the locale codes listed in languages.properties instead of hardc
   * defensive copy:
     * modifying the returned list does not modify GameManager's internal list
     * repeated calls return equivalent contents but not the same list object
+
+
+**Method under test: getWhitePlayer(), basic functional testing**
+
+| Test Case | System under test                                        | Expected output            | Implemented? |
+|-----------|----------------------------------------------------------|----------------------------|--------------|
+| 1         | Game started with one WHITE player and one BLACK player  | Returns the WHITE player   | yes          |
