@@ -4,23 +4,27 @@
 
 ### Method under test: `isValidMove()` for Pawn
 
-| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern | Expected output          | Implemented? |
-|-------------|---------|----------------|-----------------|--------------------------|----------------|------------------|--------------------------|--------------|
-| 1           | "WHITE" | x=0, y=0       | x=0, y=0        | EMPTY                    | True           | same square      | False                    | yes          |
-| 2           | "BLACK" | x=7, y=7       | x=7, y=7        | EMPTY                    | True           | same square      | False                    | yes          |
-| 3           | "WHITE" | x=0, y=0       | x=7, y=7        | EMPTY                    | True           | too far          | False                    | yes          |
-| 4           | "WHITE" | x=7, y=7       | x=6, y=7        | EMPTY                    | True           | one forward      | True                     | yes          |
-| 5           | "BLACK" | x=1, y=0       | x=3, y=0        | EMPTY                    | True           | two forward      | True                     | yes          |
-| 6           | "BLACK" | x=1, y=0       | x=3, y=0        | enemy                    | False          | two forward      | False                    | yes          |
-| 7           | "WHITE" | x=7 y=6        | x=6, y=7        | enemy                    | False          | one diag right   | True                     | yes          |
-| 8           | "WHITE" | x=7 y=6        | x=6, y=5        | enemy                    | False          | one diag left    | True                     | yes          |
-| 9           | "WHITE" | x=7 y=6        | x=6, y=5        | EMPTY                    | True           | one diag left    | False                    | yes          |
-| 10          | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false          | one diag left    | False                    | yes          |
-| 11          | "WHITE" | x=6 y=6        | x=7 y=6         | EMPTY                    | True           | backward         | False                    | yes          |
-| 12          | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True           | sideways         | False                    | yes          |
-| 13          | "BLACK" | x=0, y=0       | x=2, y=0        | EMPTY                    | False          | two forward      | False                    | yes          |
-| 14          | "BLACK" | x=2, y=0       | x=4, y=0        | EMPTY                    | True           | two forward      | False (non first turn)   | yes          |
-| 15          | "WHITE" | x=5, y=7       | x=3, y=7        | EMPTY                    | True           | two forward      | False (non first turn)   | no           |
+| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear?             | Movement pattern | Expected output        | Implemented? |
+|-------------|---------|----------------|-----------------|--------------------------|----------------------------|------------------|------------------------|--------------|
+| 1           | "WHITE" | x=0, y=0       | x=0, y=0        | EMPTY                    | True                       | same square      | False                  | yes          |
+| 2           | "BLACK" | x=7, y=7       | x=7, y=7        | EMPTY                    | True                       | same square      | False                  | yes          |
+| 3           | "WHITE" | x=0, y=0       | x=7, y=7        | EMPTY                    | True                       | too far          | False                  | yes          |
+| 4           | "WHITE" | x=7, y=7       | x=6, y=7        | EMPTY                    | True                       | one forward      | True                   | yes          |
+| 5           | "BLACK" | x=1, y=0       | x=3, y=0        | EMPTY                    | True                       | two forward      | True                   | yes          |
+| 6           | "BLACK" | x=1, y=0       | x=3, y=0        | enemy                    | False                      | two forward      | False                  | yes          |
+| 7           | "WHITE" | x=7 y=6        | x=6, y=7        | enemy                    | False                      | one diag right   | True                   | yes          |
+| 8           | "WHITE" | x=7 y=6        | x=6, y=5        | enemy                    | False                      | one diag left    | True                   | yes          |
+| 9           | "WHITE" | x=7 y=6        | x=6, y=5        | EMPTY                    | True                       | one diag left    | False                  | yes          |
+| 10          | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false                      | one diag left    | False                  | yes          |
+| 11          | "WHITE" | x=6 y=6        | x=7 y=6         | EMPTY                    | True                       | backward         | False                  | yes          |
+| 12          | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True                       | sideways         | False                  | yes          |
+| 13          | "BLACK" | x=0, y=0       | x=2, y=0        | EMPTY                    | False (blocked at x=1,y=0) | two forward      | False                  | yes          |
+| 14          | "BLACK" | x=2, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | False (non first turn) | yes          |
+| 15          | "WHITE" | x=5, y=0       | x=3, y=0        | EMPTY                    | True                       | two forward      | False (non first turn) | yes          |
+| 16          | "WHITE" | x=6, y=0       | x=5, y=0        | ENEMY                    | false                      | one forward      | False                  | yes          |
+| 17          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | false (blocked at x=5,y=0) | two forward      | False                  | yes          |
+| 18          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | True                   | yes          |
+
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
 
@@ -79,5 +83,37 @@
         * sideways (INVALID)
         * same square (INVALID)
         * too far (INVALID)
+* output:
+    * a yes/no answer: boolean
+
+### Method under test: `hasValidMoves()` for Pawn
+
+| Test Number | Color | Start position | Board State                                                        | Expected Output | Implemented? |
+|-------------|-------|----------------|--------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                        | TRUE            | yes          |               
+| 2           | WHITE | [6,0]          | Friendly piece at [5,0], Enemy at [4,0], diagonal spaces are empty | FALSE           | yes          |                
+| 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [4,4]. Enemy piece sits diagonally at [4,5]. | TRUE            | yes          |
+| 4           | BLACK | [7,3]          | Stuck at the absolute edge                                                                   | FALSE           | yes          |
+| 5           | WHITE | [7,1]          | Pinned against its own White King by an enemy Black Rook along a row  | FALSE           | yes          |
+
+### STEPS FOR BVA: `hasValidMoves()` for Pawn
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * pawn color
+    * piece start position (row, column)
+    * state of the board (Board)
+    * path is clear?
+    * status of the King (isInCheck())
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * pawn color: cases
+    * piece start position (row, column): array indices
+    * path is clear?: boolean
+    * state of the board: cases
+    * status of the King: boolean
 * output:
     * a yes/no answer: boolean

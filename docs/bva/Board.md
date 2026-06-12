@@ -179,3 +179,55 @@
 |--------|---------------------------------|---------------------------------------------------------|--------------|
 | 1      | empty board                     | snapshot with only nulls                                | yes          | 
 | 2      | board with one piece at x=0,y=0 | snapshot with piece at same location                    | yes          |
+
+
+### Method under test: Board(Board other) functional testing
+
+** NOTE: as this function is performing copying behavior rather than boundary logic, basic functional testing for code coverage/
+mutants and performance makes more sense than BVA
+
+| Test # | Input Board           | Expected Output                         | Implemented? |
+|--------|-----------------------|-----------------------------------------|--------------|
+| 1      | null                  | returns empty board                     | yes          |
+| 2      | board with one piece  | copied board contains equivalent piece  | yes          |
+
+
+### Method under test: findKingLocation()
+
+| Test # | Board state                                                | King color | Expected Output | Implemented? |
+|--------|------------------------------------------------------------|------------|-----------------|--------------|
+| 1      | empty board                                                | BLACK      | null            | yes          | 
+| 2      | board with BLACK king at x=0,y=0 and WHITE king at x=7 y=7 | WHITE      | Location(7,7)   | yes          |
+| 3      | board with BLACK king at x=0,y=0 and WHITE king at x=7 y=7 | BLACK      | Location(0,0)   | yes          |
+| 4      | board with BLACK king at x=0,y=0 then moved to x=1 y=1     | BLACK      | Location(1,1)   | yes          |
+| 5      | board with WHITE king at x=7,y=7 then moved to x=6 y=7     | WHITE      | Location(6,7)   | yes          |
+
+
+1) input equivalence classes and output equivalence classes
+    * input equiv class:
+        * king's color
+        * king's location
+    * output equiv class:
+        * location where the king is or null if the king is nowhere
+2) BVA catalog classes
+    * input:
+        * kings color: cases
+          * BLACK
+          * WHITE
+        * king's location: array indices
+    * output: pointer
+3) BVA catalog classes -- values
+    * input:
+        * color: cases:
+            * BLACK
+            * WHITE
+        * location (2d array indices)
+            * [0][0] 
+            * [7][7] 
+            * [-1][5] CANT SET
+            * [5][-1] CANT SET
+            * [8][5] CANT SET
+            * [5][8] CANT SET
+    * output: pointer
+        * location obj
+        * null
