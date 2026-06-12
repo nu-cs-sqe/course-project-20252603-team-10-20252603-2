@@ -31,8 +31,8 @@
 
 | Test Number | Color | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern | Board State                                            | Expected output                   | Implemented? |
 |-------------|-------|----------------|-----------------|--------------------------|----------------|------------------|--------------------------------------------------------|-----------------------------------|--------------|
-| 23          | WHITE | x=3, y=0       | x=1, y=1        | EMPTY                    | True           | L movement #5    | Allied King at [0,0], enemy Rook at [7,0], same column | False )                           | no           |
-| 24          | WHITE | x=4, y=4       | x=2, y=3        | ENEMY                    | True           | L movement #5    | n/a                                                    | True, board restored after move   | no           |
+| 23          | WHITE | x=3, y=0       | x=1, y=1        | EMPTY                    | True           | L movement #5    | Allied King at [0,0], enemy Rook at [7,0], same column | False )                           | yes          |
+| 24          | WHITE | x=4, y=4       | x=2, y=3        | ENEMY                    | True           | L movement #5    | n/a                                                    | True, board restored after move   | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Knight
 
