@@ -677,5 +677,25 @@ public class KnightTests {
         assertTrue(knight.hasValidMoves(pos, board));
     }
 
+    @Test
+    public void hasValidMoves_knight_onlyL5OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col + 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col + 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
 }
 
