@@ -24,7 +24,9 @@
 | 16          | "WHITE" | x=6, y=0       | x=5, y=0        | ENEMY                    | false                      | one forward      | False                  | yes          |
 | 17          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | false (blocked at x=5,y=0) | two forward      | False                  | yes          |
 | 18          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | True                   | yes          |
-
+| 19          | "WHITE" | x=5, y=0       | x=3, y=0        | EMPTY                    | true                       | two forward      | False                  | no           |
+| 20          | "WHITE" | x=6, y=4       | x=5, y=4        | EMPTY                    | True                       | one square       | False                  | no           |
+| 21          | "WHITE" | x=6, y=0       | x=5, y=0        | EMPTY                    | True                       | one square       | True                   | no           |
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
 
@@ -88,13 +90,16 @@
 
 ### Method under test: `hasValidMoves()` for Pawn
 
-| Test Number | Color | Start position | Board State                                                        | Expected Output | Implemented? |
-|-------------|-------|----------------|--------------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [6,0]          | Clear board                                                        | TRUE            | yes          |               
-| 2           | WHITE | [6,0]          | Friendly piece at [5,0], Enemy at [4,0], diagonal spaces are empty | FALSE           | yes          |                
+| Test Number | Color | Start position | Board State                                                                              | Expected Output | Implemented? |
+|-------------|-------|----------------|------------------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                                              | TRUE            | yes          |               
+| 2           | WHITE | [6,0]          | Friendly piece at [5,0], Enemy at [4,0], diagonal spaces are empty                       | FALSE           | yes          |                
 | 3           | BLACK | [5,4]          | Friendly piece blocking one step forward at [4,4]. Enemy piece sits diagonally at [4,5]. | TRUE            | yes          |
-| 4           | BLACK | [7,3]          | Stuck at the absolute edge                                                                   | FALSE           | yes          |
-| 5           | WHITE | [7,1]          | Pinned against its own White King by an enemy Black Rook along a row  | FALSE           | yes          |
+| 4           | BLACK | [7,3]          | Stuck at the absolute edge                                                               | FALSE           | yes          |
+| 5           | WHITE | [7,1]          | Pinned against its own White King by an enemy Black Rook along a row                     | FALSE           | yes          |
+| 6           | WHITE | [6,4]          | only diagonal-left capture available                                                     | TRUE            | no           |
+| 7           | WHITE | [6,4]          | only diagonal-right capture available                                                    | TRUE            | no           |
+| 6           | WHITE | [0,4]          | pawn at row 0 (off-board for further forward movement)                                   | FALSE           | no           |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Pawn
 
