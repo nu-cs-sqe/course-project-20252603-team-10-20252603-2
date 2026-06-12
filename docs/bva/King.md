@@ -162,19 +162,20 @@
 
 ## Method under test: `hasValidMoves()` for King
 
-| Test Number | Color | Start position | Board State                                                                                      | Expected Output | Implemented? |
-|-------------|-------|----------------|--------------------------------------------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [4,4]          | Clear board                                                                                      | TRUE            | yes          |
-| 2           | WHITE | [0,0]          | Clear board                                                                                      | TRUE            | yes          |
-| 3           | WHITE | [4,4]          | all 8 adjacent squares occupied by friendly pieces                                               | FALSE           | yes          |
-| 4           | WHITE | [0,0]          | king in corner & 3 adjacent squares occupied by friendly pieces                                  | FALSE           | yes          |
-| 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                                                         | FALSE           | yes          |
-| 6           | WHITE | [4,4]          | one adjacent square empty+safe, all others blocked                                               | TRUE            | yes          |
-| 7           | WHITE | [4,4]          | one adjacent square has unprotected enemy piece                                                  | TRUE            | yes          |
-| 8           | BLACK | [0,0]          | Clear board                                                                                      | TRUE            | yes          |
-| 9           | WHITE | [7,7]          | Clear board                                                                                      | TRUE            | yes          |
-| 10          | WHITE | [4,4]          | only down-right adjacent square is open; all other adjacent squares blocked by friendly pieces   | TRUE            | yes          |
-| 11          | WHITE | [1,1]          | only upper-left adjacent square is open; all other adjacent squares blocked by friendly pieces   | TRUE            | yes          |
+| Test Number | Color | Start position | Board State                                                                                    | Expected Output | Implemented? |
+|-------------|-------|----------------|------------------------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [4,4]          | Clear board                                                                                    | TRUE            | yes          |
+| 2           | WHITE | [0,0]          | Clear board                                                                                    | TRUE            | yes          |
+| 3           | WHITE | [4,4]          | all 8 adjacent squares occupied by friendly pieces                                             | FALSE           | yes          |
+| 4           | WHITE | [0,0]          | king in corner & 3 adjacent squares occupied by friendly pieces                                | FALSE           | yes          |
+| 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                                                       | FALSE           | yes          |
+| 6           | WHITE | [4,4]          | one adjacent square empty+safe, all others blocked                                             | TRUE            | yes          |
+| 7           | WHITE | [4,4]          | one adjacent square has unprotected enemy piece                                                | TRUE            | yes          |
+| 8           | BLACK | [0,0]          | Clear board                                                                                    | TRUE            | yes          |
+| 9           | WHITE | [7,7]          | Clear board                                                                                    | TRUE            | yes          |
+| 10          | WHITE | [4,4]          | only down-right adjacent square is open; all other adjacent squares blocked by friendly pieces | TRUE            | yes          |
+| 11          | WHITE | [1,1]          | only upper-left adjacent square is open; all other adjacent squares blocked by friendly pieces | TRUE            | yes          |
+| 12          | WHITE | [7,7]          | max corner; all legal adjacent squares occupied by friendly pieces                             | FALSE           | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for King
 
