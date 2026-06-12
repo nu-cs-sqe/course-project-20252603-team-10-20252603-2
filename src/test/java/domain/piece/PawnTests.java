@@ -303,6 +303,26 @@ public class PawnTests {
     }
 
     @Test
+    public void isValidMove_Pawn_boardRestoredAfterDiagonalCapture_returnsTrue() {
+        final int startRow = 6;
+        final int startCol = 4;
+        final int endRow = 5;
+        final int endCol = 5;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Piece enemy = new Pawn(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location end = new Location(endRow, endCol);
+        Board board = new Board(false);
+        board.setPiece(start, pawn);
+        board.setPiece(end, enemy);
+
+        assertTrue(pawn.isValidMove(start, end, board));
+        assertSame(pawn, board.getPiece(start));
+        assertSame(enemy, board.getPiece(end));
+    }
+
+    @Test
     public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
         final int pawnRow = 6;
         final int pawnCol = 0;
