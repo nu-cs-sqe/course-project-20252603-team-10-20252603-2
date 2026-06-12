@@ -308,6 +308,13 @@ public class GameManagerTests {
     }
 
     @Test
+    public void isStalemate_startedGameWithNullBoard_returnsFalse() {
+        game.setBoard(null);
+
+        assertFalse(game.isStalemate());
+    }
+
+    @Test
     public void isCheckmate_inCheckZeroMoves_returnsTrue() {
         King mockKing = EasyMock.createMock(King.class);
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
