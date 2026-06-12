@@ -911,6 +911,32 @@ public class KingTests {
         assertTrue(king.hasValidMoves(kingPos, board));
     }
 
+    @Test
+    public void hasValidMovesKingOnlyUpperLeftSafeReturnsTrue() {
+        final int kingRow = 1;
+        final int kingCol = 1;
+        final int upperRow = kingRow - 1;
+        final int lowerRow = kingRow + 1;
+        final int leftCol = kingCol - 1;
+        final int rightCol = kingCol + 1;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+
+        board.setPiece(new Location(upperRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(upperRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, rightCol), new Pawn(Color.WHITE));
+
+        assertTrue(king.hasValidMoves(kingPos, board));
+    }
+
 }
 
 

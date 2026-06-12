@@ -174,6 +174,7 @@
 | 8           | BLACK | [0,0]          | Clear board                                                                                      | TRUE            | yes          |
 | 9           | WHITE | [7,7]          | Clear board                                                                                      | TRUE            | yes          |
 | 10          | WHITE | [4,4]          | only down-right adjacent square is open; all other adjacent squares blocked by friendly pieces   | TRUE            | yes          |
+| 11          | WHITE | [1,1]          | only upper-left adjacent square is open; all other adjacent squares blocked by friendly pieces   | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for King
 
