@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameManagerTests {
     private GameManager game;
     private Board board;
+    private static final int MOVES_UNTIL_DRAW = 50;
 
     @BeforeEach
     public void setUp() {
@@ -123,7 +124,7 @@ public class GameManagerTests {
 
     @Test
     public void changeTurns_draw_throwsException() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < MOVES_UNTIL_DRAW; i++) {
             game.incrementDrawCounter();
         }
 
@@ -140,9 +141,11 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
         EasyMock.replay(mockKing);
 
         board.setPiece(new Location(0, 0), mockKing);
@@ -158,9 +161,11 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
 
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
         EasyMock.replay(mockKing);
 
         board.setPiece(new Location(0, 0), mockKing);
@@ -178,13 +183,16 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         EasyMock.expect(mockPawn.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockPawn.getType()).andReturn(PieceType.PAWN).anyTimes();
         EasyMock.expect(mockPawn.makeCopy()).andReturn(mockPawn).anyTimes();
-        EasyMock.expect(mockPawn.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockPawn.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         EasyMock.replay(mockKing, mockPawn);
 
@@ -198,7 +206,7 @@ public class GameManagerTests {
 
     @Test
     public void isGameOver_drawConditionMet_returnsTrue() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < MOVES_UNTIL_DRAW; i++) {
             game.incrementDrawCounter();
         }
         assertTrue(game.isGameOver());
@@ -217,9 +225,11 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false);
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false);
 
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
 
         EasyMock.replay(mockKing);
 
@@ -238,13 +248,16 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
 
         EasyMock.expect(mockPawn.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockPawn.getType()).andReturn(PieceType.PAWN).anyTimes();
         EasyMock.expect(mockPawn.makeCopy()).andReturn(mockPawn).anyTimes();
-        EasyMock.expect(mockPawn.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockPawn.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         EasyMock.replay(mockKing, mockPawn);
 
@@ -262,9 +275,11 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true);
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true);
 
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
         EasyMock.replay(mockKing);
 
         board.setPiece(new Location(0, 0), mockKing);
@@ -280,8 +295,10 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         EasyMock.replay(mockKing);
 
@@ -320,9 +337,11 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true);
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true);
 
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
 
         EasyMock.replay(mockKing);
 
@@ -339,8 +358,10 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         EasyMock.replay(mockKing);
 
@@ -357,9 +378,11 @@ public class GameManagerTests {
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
         EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
         EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
-        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false);
+        EasyMock.expect(mockKing.isInCheck(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false);
 
-        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
 
         EasyMock.replay(mockKing);
 
@@ -455,7 +478,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void movePiece_nullLoc1_returnNO_PIECE_SELECTED() {
+    public void movePiece_nullLoc1_returnNoPieceSelected() {
         GameManager game = new GameManager();
         game.addPlayer(new Player("Player1", Color.BLACK));
         game.addPlayer(new Player("Player2", Color.WHITE));
@@ -464,7 +487,8 @@ public class GameManagerTests {
 
         game.setBoard(board);
 
-        GameManager.MoveResult movePiece = game.movePiece(new Location(4,0), new Location(5,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(4,0),
+                new Location(5,0));
 
         assertEquals(GameManager.MoveResult.NO_PIECE_SELECTED, movePiece);
         assertNull(game.getBoard().getPiece(new Location(4,0)));
@@ -496,7 +520,8 @@ public class GameManagerTests {
         board.setPiece(new Location(0, 1), mockKnight);
         game.setBoard(board);
 
-        GameManager.MoveResult movePiece = game.movePiece(new Location(0,1), new Location(2,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(0,1),
+                new Location(2,0));
 
         assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
         assertNull(game.getBoard().getPiece(new Location(0,1)));
@@ -533,7 +558,8 @@ public class GameManagerTests {
         board.setPiece(new Location(7, 6), mockKnight);
         game.setBoard(board);
 
-        GameManager.MoveResult movePiece = game.movePiece(new Location(7,6), new Location(5,5));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(7,6),
+                new Location(5,5));
 
         assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
         assertNull(game.getBoard().getPiece(new Location(7,6)));
@@ -577,7 +603,8 @@ public class GameManagerTests {
         board.setPiece(new Location(1, 0), mockPawn);
         game.setBoard(board);
 
-        GameManager.MoveResult movePiece = game.movePiece(new Location(0,0), new Location(1,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(0,0),
+                new Location(1,0));
 
         assertEquals(GameManager.MoveResult.INVALID_MOVE, movePiece);
 
@@ -620,7 +647,8 @@ public class GameManagerTests {
         board.setPiece(new Location(6, 0), mockCapturedPawn);
         game.setBoard(board);
 
-        GameManager.MoveResult movePiece = game.movePiece(new Location(2,0), new Location(6,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(2,0),
+                new Location(6,0));
 
         assertEquals(GameManager.MoveResult.SUCCESS, movePiece);
         assertNull(game.getBoard().getPiece(new Location(2,0)));
@@ -663,7 +691,8 @@ public class GameManagerTests {
         board.setPiece(new Location(1, 1), mockPawn);
         game.setBoard(board);
 
-        GameManager.MoveResult movePiece = game.movePiece(new Location(5,7), new Location(1,1));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(5,7),
+                new Location(1,1));
 
         assertEquals(GameManager.MoveResult.INVALID_MOVE, movePiece);
 
@@ -699,7 +728,8 @@ public class GameManagerTests {
         board.setPiece(new Location(7, 6), mockKnight);
         game.setBoard(board);
 
-        GameManager.MoveResult movePiece = game.movePiece(new Location(7,6), new Location(5,5));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(7,6),
+                new Location(5,5));
 
         assertEquals(GameManager.MoveResult.WRONG_PLAYER_PIECE, movePiece);
         assertNull(game.getBoard().getPiece(new Location(5,5)));
@@ -736,7 +766,8 @@ public class GameManagerTests {
         board.setPiece(new Location(6, 0), mockPawn);
         game.setBoard(board);
 
-        GameManager.MoveResult movePiece = game.movePiece(new Location(6,0), new Location(7,0));
+        GameManager.MoveResult movePiece = game.movePiece(new Location(6,0),
+                new Location(7,0));
 
         assertEquals(GameManager.MoveResult.PROMOTION_REQUIRED, movePiece);
         assertNull(game.getBoard().getPiece(new Location(6,0)));
