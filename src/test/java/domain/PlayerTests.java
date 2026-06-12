@@ -56,8 +56,11 @@ public class PlayerTests {
     public void getPoints_AllPiecesCaptured_Returns39() {
         Player player = new Player("Player1", Color.WHITE);
 
-        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.BISHOP,
-                PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
+        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN,
+                PieceType.PAWN, PieceType.PAWN, PieceType.PAWN,
+                PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.BISHOP,
+                PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN,
+                PieceType.ROOK, PieceType.ROOK));
 
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));
@@ -71,8 +74,11 @@ public class PlayerTests {
     public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns47() {
         Player player = new Player("Player1", Color.WHITE);
 
-        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.QUEEN,
-                PieceType.BISHOP, PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
+        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN,
+                PieceType.PAWN, PieceType.PAWN,
+                PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.QUEEN,
+                PieceType.BISHOP, PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT,
+                PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
 
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));

@@ -4,7 +4,6 @@ import constants.Color;
 import domain.Board;
 import domain.Location;
 import org.easymock.EasyMock;
-import domain.piece.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -275,7 +274,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_CaptureDestination_returnsTrue_RestoresOriginalTargetAfterSimulation() {
+    public void isValidMove_Bishop_CaptureDestination_returnsTrue() {
         Bishop bishop = new Bishop(Color.WHITE);
         King king = new King(Color.WHITE);
         Pawn enemyPawn = new Pawn(Color.BLACK);

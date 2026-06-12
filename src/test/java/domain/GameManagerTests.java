@@ -871,12 +871,12 @@ public class GameManagerTests {
 
         EasyMock.replay(mockPawn);
 
-        board.setPiece(new Location(0, 0), mockPawn);
+        board.setPiece(new Location(0,  0), mockPawn);
         game.setBoard(board);
 
-        game.promotePawn(new Location(0,0), PieceType.BISHOP);
+        game.promotePawn(new Location(0, 0), PieceType.BISHOP);
 
-        Piece promoted = game.getBoard().getPiece(new Location(0,0));
+        Piece promoted = game.getBoard().getPiece(new Location(0, 0));
         assertEquals(PieceType.BISHOP, promoted.getType());
         assertEquals(Color.WHITE, promoted.getColor());
         EasyMock.verify(mockPawn);
@@ -896,12 +896,12 @@ public class GameManagerTests {
 
         EasyMock.replay(mockPawn);
 
-        board.setPiece(new Location(0, 0), mockPawn);
+        board.setPiece(new Location(0,  0), mockPawn);
         game.setBoard(board);
 
-        game.promotePawn(new Location(0,0), PieceType.ROOK);
+        game.promotePawn(new Location(0, 0), PieceType.ROOK);
 
-        Piece promoted = game.getBoard().getPiece(new Location(0,0));
+        Piece promoted = game.getBoard().getPiece(new Location(0, 0));
         assertEquals(PieceType.ROOK, promoted.getType());
         assertEquals(Color.WHITE, promoted.getColor());
         EasyMock.verify(mockPawn);
@@ -1019,7 +1019,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_supportedValueWithMultipleLocaleCodes_returnsMatchingNumberOfLanguageOptions() {
+    public void loadSupportedLanguages_multipleCodes_returnsMatchingNumberOfLanguageOptions() {
         GameManager game = new GameManager();
 
         List<String> configuredCodes = getConfiguredLocaleCodes();
@@ -1029,7 +1029,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_supportedValueWithAtLeastTwoLocaleCodes_returnsAtLeastTwoLanguageOptions() {
+    public void loadSupportedLanguages_atLeastTwoCodes_returnsAtLeastTwoLanguageOptions() {
         GameManager game = new GameManager();
 
         List<LanguageOption> languages = game.getSupportedLanguages();
@@ -1038,7 +1038,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_configuredLocalesWithMatchingMessageBundles_completesWithoutMissingBundleException() {
+    public void loadSupportedLanguages_matchingMessageBundles_withoutMissingBundleException() {
         List<String> configuredCodes = getConfiguredLocaleCodes();
 
         for (String code : configuredCodes) {
@@ -1051,7 +1051,7 @@ public class GameManagerTests {
     }
 
     @Test
-    public void loadSupportedLanguages_configuredBundlesWithLanguageName_returnsNonEmptyDisplayNames() {
+    public void loadSupportedLanguages_configuredBundlesWithLanguageName_returnsNonEmptyNames() {
         List<String> configuredCodes = getConfiguredLocaleCodes();
 
         for (String code : configuredCodes) {

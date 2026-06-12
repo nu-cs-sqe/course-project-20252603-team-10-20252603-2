@@ -52,9 +52,9 @@ public class BoardTests {
     void initBoard_noInit_returnsEmptyBoard() {
         Board board = new Board(false);
 
-        for (int x = 0; x < BOARD_SIZE ; x++) {
+        for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
-                assertFalse(board.isPieceHere(new Location(x,y)));
+                assertFalse(board.isPieceHere(new Location(x, y)));
             }
         }
 
@@ -89,9 +89,9 @@ public class BoardTests {
     void initBoard_init_returnsInitBoardCheckEmptyMiddle() {
         Board board = new Board(true);
 
-        for (int x = 2; x < 5 ; x++) {
+        for (int x = 2; x < 5; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
-                assertFalse(board.isPieceHere(new Location(x,y)));
+                assertFalse(board.isPieceHere(new Location(x, y)));
             }
         }
 
@@ -115,7 +115,7 @@ public class BoardTests {
     void getSnapshot_onePiece_returnsSnapshotSamePiece() {
         Board board = new Board(false);
         Pawn original = new Pawn(Color.BLACK);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
         board.setPiece(location, original);
 
         Piece[][] snapshot = board.getSnapshot();
@@ -131,7 +131,7 @@ public class BoardTests {
     @Test
     void isPieceHere_emptyBoardx0y0_returnsFalse() {
         Board board = new Board(false);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
 
         assertFalse(board.isPieceHere(location));
     }
@@ -139,7 +139,7 @@ public class BoardTests {
     @Test
     void isPieceHere_onePiecex0y0_returnsTrue() {
         Board board = new Board(false);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
 
         board.setPiece(location, new Pawn(Color.WHITE));
 
@@ -149,7 +149,7 @@ public class BoardTests {
     @Test
     void isPieceHere_onePiecex7y7_returnsTrue() {
         Board board = new Board(false);
-        Location location = new Location(7,7);
+        Location location = new Location(7, 7);
 
         board.setPiece(location, new Pawn(Color.BLACK));
 
@@ -159,7 +159,7 @@ public class BoardTests {
     @Test
     void isPieceHere_initBoardBlackPawn_returnsTrue() {
         Board board = new Board(true);
-        Location location = new Location(1,0);
+        Location location = new Location(1, 0);
 
         assertTrue(board.isPieceHere(location));
     }
@@ -167,7 +167,7 @@ public class BoardTests {
     @Test
     void isPieceHere_initBoardEmptyMiddle_returnsFalse() {
         Board board = new Board(true);
-        Location location = new Location(3,3);
+        Location location = new Location(3, 3);
 
         assertFalse(board.isPieceHere(location));
     }
@@ -175,7 +175,7 @@ public class BoardTests {
     @Test
     void getPiece_emptyBoardx0y0_returnsNull() {
         Board board = new Board(false);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
 
         assertNull(board.getPiece(location));
     }
@@ -183,7 +183,7 @@ public class BoardTests {
     @Test
     void getPiece_whitePawnx0y0_returnsWhitePawn() {
         Board board = new Board(false);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
         Pawn piece = new Pawn(Color.WHITE);
 
         board.setPiece(location, piece);
@@ -194,7 +194,7 @@ public class BoardTests {
     @Test
     void getPiece_blackQueenx7y7_returnsBlackQueen() {
         Board board = new Board(false);
-        Location location = new Location(7,7);
+        Location location = new Location(7, 7);
         Queen piece = new Queen(Color.BLACK);
 
         board.setPiece(location, piece);
@@ -205,7 +205,7 @@ public class BoardTests {
     @Test
     void getPiece_initBoardx0y0_returnsBlackRook() {
         Board board = new Board(true);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
         Rook piece = new Rook(Color.BLACK);
 
         board.setPiece(location, piece);
@@ -216,7 +216,7 @@ public class BoardTests {
     @Test
     void setPiece_emptyBoardx0y0_setsWhitePawn() {
         Board board = new Board(false);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
         Pawn piece = new Pawn(Color.WHITE);
 
         board.setPiece(location, piece);
@@ -228,7 +228,7 @@ public class BoardTests {
     @Test
     void setPiece_emptyBoardx7y7_setsBlackKnight() {
         Board board = new Board(false);
-        Location location = new Location(7,7);
+        Location location = new Location(7, 7);
         Knight piece = new Knight(Color.BLACK);
 
         board.setPiece(location, piece);
@@ -240,7 +240,7 @@ public class BoardTests {
     @Test
     void setPiece_occupiedSquarex0y0_setsBlackQueen() {
         Board board = new Board(false);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
         Queen piece = new Queen(Color.BLACK);
         Pawn occupier = new Pawn(Color.WHITE);
 
@@ -258,7 +258,7 @@ public class BoardTests {
     @Test
     void setPiece_attemptSetNullx7y7_throwsException() {
         Board board = new Board(false);
-        Location location = new Location(7,7);
+        Location location = new Location(7, 7);
 
         assertThrows(
                 IllegalArgumentException.class,
@@ -269,7 +269,7 @@ public class BoardTests {
     @Test
     void removePiece_occupiedSquarex0y0_setsNull() {
         Board board = new Board(false);
-        Location location = new Location(0,0);
+        Location location = new Location(0, 0);
         Pawn occupier = new Pawn(Color.WHITE);
 
         board.setPiece(location, occupier);
@@ -286,7 +286,7 @@ public class BoardTests {
     @Test
     void removePiece_occupiedSquarex7y7_setsNull() {
         Board board = new Board(false);
-        Location location = new Location(7,7);
+        Location location = new Location(7, 7);
         Queen occupier = new Queen(Color.BLACK);
 
         board.setPiece(location, occupier);
@@ -303,7 +303,7 @@ public class BoardTests {
     @Test
     void removePiece_emptySquarex0y7_staysNull() {
         Board board = new Board(false);
-        Location location = new Location(0,7);
+        Location location = new Location(0, 7);
 
         board.removePiece(location);
 
@@ -331,7 +331,7 @@ public class BoardTests {
 
         assertNotNull(copy.getPiece(new Location(0, 0)));
         assertNotSame(
-                original.getPiece(new Location(0, 0)),
+                original.getPiece(new Location(0,  0)),
                 copy.getPiece(new Location(0, 0))
         );
     }
@@ -348,49 +348,49 @@ public class BoardTests {
     @Test
     void findKingLocation_twoKingsFindWhite_returnsx7y7() {
         Board board = new Board(false);
-        board.setPiece(new Location(0,0), new King(Color.BLACK));
-        board.setPiece(new Location(7,7), new King(Color.WHITE));
+        board.setPiece(new Location(0, 0), new King(Color.BLACK));
+        board.setPiece(new Location(7, 7), new King(Color.WHITE));
 
         Location kingLocation = board.findKingLocation(Color.WHITE);
 
-        assertEquals(new Location(7,7), kingLocation);
+        assertEquals(new Location(7, 7), kingLocation);
     }
 
     @Test
     void findKingLocation_twoKingsFindBlack_returnsx0y0() {
         Board board = new Board(false);
-        board.setPiece(new Location(0,0), new King(Color.BLACK));
-        board.setPiece(new Location(7,7), new King(Color.WHITE));
+        board.setPiece(new Location(0, 0), new King(Color.BLACK));
+        board.setPiece(new Location(7, 7), new King(Color.WHITE));
 
         Location kingLocation = board.findKingLocation(Color.BLACK);
 
-        assertEquals(new Location(0,0), kingLocation);
+        assertEquals(new Location(0, 0), kingLocation);
     }
 
     @Test
     void findKingLocation_movedBlackKing_returnsx1y1() {
         Board board = new Board(false);
-        board.setPiece(new Location(0,0), new King(Color.BLACK));
+        board.setPiece(new Location(0, 0), new King(Color.BLACK));
 
-        board.setPiece(new Location(1,1), board.getPiece(new Location(0,0)));
-        board.removePiece(new Location(0,0));
+        board.setPiece(new Location(1, 1), board.getPiece(new Location(0, 0)));
+        board.removePiece(new Location(0, 0));
 
         Location kingLocation = board.findKingLocation(Color.BLACK);
 
-        assertEquals(new Location(1,1), kingLocation);
+        assertEquals(new Location(1, 1), kingLocation);
     }
 
     @Test
     void findKingLocation_movedWhiteKing_returnsx6y7() {
         Board board = new Board(false);
-        board.setPiece(new Location(7,7), new King(Color.BLACK));
+        board.setPiece(new Location(7, 7), new King(Color.BLACK));
 
-        board.setPiece(new Location(6,7), board.getPiece(new Location(7,7)));
-        board.removePiece(new Location(7,7));
+        board.setPiece(new Location(6, 7), board.getPiece(new Location(7, 7)));
+        board.removePiece(new Location(7, 7));
 
         Location kingLocation = board.findKingLocation(Color.BLACK);
 
-        assertEquals(new Location(6,7), kingLocation);
+        assertEquals(new Location(6, 7), kingLocation);
 
     }
 
@@ -411,7 +411,8 @@ public class BoardTests {
         Rook mockRook = EasyMock.createMock(Rook.class);
 
         EasyMock.expect(mockRook.getColor()).andReturn(Color.WHITE).anyTimes();
-        EasyMock.expect(mockRook.hasValidMoves(EasyMock.eq(lowerBoundary), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(mockRook.hasValidMoves(EasyMock.eq(lowerBoundary),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
 
         EasyMock.replay(mockRook);
 
@@ -430,7 +431,8 @@ public class BoardTests {
         Pawn mockPawn = EasyMock.createMock(Pawn.class);
 
         EasyMock.expect(mockPawn.getColor()).andReturn(Color.WHITE).anyTimes();
-        EasyMock.expect(mockPawn.hasValidMoves(EasyMock.eq(lowerBoundary), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockPawn.hasValidMoves(EasyMock.eq(lowerBoundary),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         EasyMock.replay(mockPawn);
 
@@ -450,7 +452,8 @@ public class BoardTests {
         Rook mockRook = EasyMock.createMock(Rook.class);
 
         EasyMock.expect(mockRook.getColor()).andReturn(Color.WHITE).anyTimes();
-        EasyMock.expect(mockRook.hasValidMoves(EasyMock.eq(upperBoundary), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(mockRook.hasValidMoves(EasyMock.eq(upperBoundary),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         EasyMock.replay(mockRook);
 
@@ -474,7 +477,8 @@ public class BoardTests {
                 Pawn mockPawn = EasyMock.createMock(Pawn.class);
 
                 EasyMock.expect(mockPawn.getColor()).andReturn(Color.BLACK).anyTimes();
-                EasyMock.expect(mockPawn.hasValidMoves(EasyMock.eq(loc), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+                EasyMock.expect(mockPawn.hasValidMoves(EasyMock.eq(loc),
+                        EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
                 EasyMock.replay(mockPawn);
                 board.setPiece(loc, mockPawn);
@@ -495,15 +499,18 @@ public class BoardTests {
         Board board = new Board(false);
         Pawn alliedMovable1 = EasyMock.createMock(Pawn.class);
         EasyMock.expect(alliedMovable1.getColor()).andReturn(Color.BLACK).anyTimes();
-        EasyMock.expect(alliedMovable1.hasValidMoves(EasyMock.eq(new Location(2, 2)), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(alliedMovable1.hasValidMoves(EasyMock.eq(new Location(2, 2)),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         Pawn alliedMovable2 = EasyMock.createMock(Pawn.class);
         EasyMock.expect(alliedMovable2.getColor()).andReturn(Color.BLACK).anyTimes();
-        EasyMock.expect(alliedMovable2.hasValidMoves(EasyMock.eq(new Location(3, 4)), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+        EasyMock.expect(alliedMovable2.hasValidMoves(EasyMock.eq(new Location(3, 4)),
+                EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
 
         Rook alliedTrapped = EasyMock.createMock(Rook.class);
         EasyMock.expect(alliedTrapped.getColor()).andReturn(Color.BLACK).anyTimes();
-        EasyMock.expect(alliedTrapped.hasValidMoves(EasyMock.eq(new Location(4, 5)), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+        EasyMock.expect(alliedTrapped.hasValidMoves(EasyMock.eq(new Location(4, 5)),
+                EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
 
         Knight enemyMovable = EasyMock.createMock(Knight.class);
         EasyMock.expect(enemyMovable.getColor()).andReturn(Color.WHITE).anyTimes();

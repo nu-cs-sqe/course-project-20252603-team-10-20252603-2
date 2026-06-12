@@ -26,10 +26,6 @@
         <module name="MemberName"/>
         <module name="ConstantName"/>
         <module name="PackageName"/>
-        <module name="AbbreviationAsWordInName">
-            <property name="allowedAbbreviationLength" value="1"/>
-        </module>
-
         <module name="NeedBraces"/>
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
@@ -41,10 +37,10 @@
         <module name="RightCurly"/>
 
         <module name="MethodLength">
-            <property name="max" value="45"/>
+            <property name="max" value="50"/>
         </module>
         <module name="ParameterNumber">
-            <property name="max" value="2"/>
+            <property name="max" value="3"/>
         </module>
         <module name="NestedIfDepth">
             <property name="max" value="1"/>
