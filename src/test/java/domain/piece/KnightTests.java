@@ -836,5 +836,23 @@ public class KnightTests {
 
         assertTrue(knight.isValidMove(knightPos, end, board));
     }
+
+    @Test
+    public void isValidMove_Knight_boardRestoredAfterMoveToEmptySquare_returnsTrue() {
+        final int knightRow = 4;
+        final int knightCol = 4;
+        final int endRow = 2;
+        final int endCol = 3;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location start = new Location(knightRow, knightCol);
+        Location end = new Location(endRow, endCol);
+        Board board = new Board(false);
+        board.setPiece(start, knight);
+
+        assertTrue(knight.isValidMove(start, end, board));
+        assertSame(knight, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
 }
 
