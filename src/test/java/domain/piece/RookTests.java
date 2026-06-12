@@ -433,4 +433,24 @@ public class RookTests {
 
         assertTrue(result);
     }
+
+    @Test
+    public void isValidMove_pinnedRookCapturesExposingKing_killsSimulationAndCleanupMutants() {
+        Board board = new Board(false);
+        Rook whiteRook = new Rook(Color.WHITE);
+        King whiteKing = new King(Color.WHITE);
+        Rook enemyBlackRook = new Rook(Color.BLACK);
+
+        Location start = new Location(6, 0);
+        Location end = new Location(6, 1);
+
+        board.setPiece(new Location(7, 0), whiteKing);
+        board.setPiece(start, whiteRook);
+        board.setPiece(new Location(0, 0), enemyBlackRook);
+
+        assertFalse(whiteRook.isValidMove(start, end, board));
+
+        assertTrue(board.isPieceHere(start));
+        assertFalse(board.isPieceHere(end));
+    }
 }
