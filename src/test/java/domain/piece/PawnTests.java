@@ -222,6 +222,36 @@ public class PawnTests {
     }
 
     @Test
+    public void isValidMove_Pawn_whiteTwoForwardNotStartRow_returnFalse() {
+        Piece pawn = new Pawn(Color.WHITE);
+
+        Location start = new Location(5, 0);
+        Location chosen = new Location(3, 0);
+
+        Board board = new Board(false);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void isValidMove_Pawn_whiteOneForwardBlocked_returnFalse() {
+        Piece pawn = new Pawn(Color.WHITE);
+        Piece blocker = new Pawn(Color.BLACK);
+
+        Location start = new Location(6, 0);
+        Location chosen = new Location(5, 0);
+
+        Board board = new Board(false);
+        board.setPiece(chosen, blocker);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
+    @Test
     public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
         Piece pawn = new Pawn(Color.WHITE);
 
@@ -255,6 +285,36 @@ public class PawnTests {
         assertFalse(result);
     }
 
+    @Test
+    public void isValidMove_Pawn_whiteTwoForwardMidBlocked_returnFalse() {
+        Piece pawn = new Pawn(Color.WHITE);
+        Piece blocker = new Pawn(Color.BLACK);
+
+        Location start = new Location(6, 0);
+        Location chosen = new Location(4, 0);
+        Location blockLocation = new Location(5, 0);
+
+        Board board = new Board(false);
+        board.setPiece(blockLocation, blocker);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void isValidMove_Pawn_whiteTwoForward_returnTrue() {
+        Piece pawn = new Pawn(Color.WHITE);
+
+        Location start = new Location(6, 0);
+        Location chosen = new Location(4, 0);
+
+        Board board = new Board(false);
+
+        boolean result = pawn.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
 
     @Test
     public void hasValidMoves_PawnBlockedDiagonally_returnsTrue() {
