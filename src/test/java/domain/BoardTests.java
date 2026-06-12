@@ -2,8 +2,10 @@ package domain;
 
 import constants.Color;
 import domain.piece.*;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -392,4 +394,135 @@ public class BoardTests {
 
     }
 
+    @Test
+    public void getValidPiecesByColor_emptyBoard_returnsEmptyList() {
+        Board board = new Board(false);
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.WHITE);
+
+        assertNotNull(validPieces);
+        assertEquals(0, validPieces.size());
+    }
+
+    @Test
+    public void getValidPiecesByColor_trappedPieceAtLowerBoundary_returnsEmptyList() {
+        Board board = new Board(false);
+
+        Location lowerBoundary = new Location(0, 0);
+        Rook mockRook = EasyMock.createMock(Rook.class);
+
+        EasyMock.expect(mockRook.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockRook.hasValidMoves(EasyMock.eq(lowerBoundary), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+
+        EasyMock.replay(mockRook);
+
+        board.setPiece(lowerBoundary, mockRook);
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.WHITE);
+
+        assertEquals(0, validPieces.size());
+        EasyMock.verify(mockRook);
+    }
+
+    @Test
+    public void getValidPiecesByColor_movablePieceAtLowerBoundary_returnsSizeOne() {
+        Board board = new Board(false);
+        Location lowerBoundary = new Location(0, 0);
+        Pawn mockPawn = EasyMock.createMock(Pawn.class);
+
+        EasyMock.expect(mockPawn.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockPawn.hasValidMoves(EasyMock.eq(lowerBoundary), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+        EasyMock.replay(mockPawn);
+
+        board.setPiece(lowerBoundary, mockPawn);
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.WHITE);
+
+        assertEquals(1, validPieces.size());
+        assertSame(mockPawn, validPieces.get(0));
+        EasyMock.verify(mockPawn);
+    }
+
+    @Test
+    public void getValidPiecesByColor_movablePieceAtUpperBoundary_returnsSizeOne() {
+        Board board = new Board(false);
+        Location upperBoundary = new Location(7, 7);
+        Rook mockRook = EasyMock.createMock(Rook.class);
+
+        EasyMock.expect(mockRook.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockRook.hasValidMoves(EasyMock.eq(upperBoundary), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+        EasyMock.replay(mockRook);
+
+        board.setPiece(upperBoundary, mockRook);
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.WHITE);
+
+        assertEquals(1, validPieces.size());
+        assertSame(mockRook, validPieces.get(0));
+        EasyMock.verify(mockRook);
+    }
+
+    @Test
+    public void getValidPiecesByColor_maxMovableAlliedPieces_returnsSizeSixteen() {
+        Board board = new Board(false);
+        List<Piece> mockPieces = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 8; j++) {
+                Location loc = new Location(i, j);
+                Pawn mockPawn = EasyMock.createMock(Pawn.class);
+
+                EasyMock.expect(mockPawn.getColor()).andReturn(Color.BLACK).anyTimes();
+                EasyMock.expect(mockPawn.hasValidMoves(EasyMock.eq(loc), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+                EasyMock.replay(mockPawn);
+                board.setPiece(loc, mockPawn);
+                mockPieces.add(mockPawn);
+            }
+        }
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.BLACK);
+
+        assertEquals(16, validPieces.size());
+        for (Piece mockPiece : mockPieces) {
+            EasyMock.verify(mockPiece);
+        }
+    }
+
+    @Test
+    public void getValidPiecesByColor_mixedBoard_returnsCount() {
+        Board board = new Board(false);
+        Pawn alliedMovable1 = EasyMock.createMock(Pawn.class);
+        EasyMock.expect(alliedMovable1.getColor()).andReturn(Color.BLACK).anyTimes();
+        EasyMock.expect(alliedMovable1.hasValidMoves(EasyMock.eq(new Location(2, 2)), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+        Pawn alliedMovable2 = EasyMock.createMock(Pawn.class);
+        EasyMock.expect(alliedMovable2.getColor()).andReturn(Color.BLACK).anyTimes();
+        EasyMock.expect(alliedMovable2.hasValidMoves(EasyMock.eq(new Location(3, 4)), EasyMock.anyObject(Board.class))).andReturn(true).anyTimes();
+
+        Rook alliedTrapped = EasyMock.createMock(Rook.class);
+        EasyMock.expect(alliedTrapped.getColor()).andReturn(Color.BLACK).anyTimes();
+        EasyMock.expect(alliedTrapped.hasValidMoves(EasyMock.eq(new Location(4, 5)), EasyMock.anyObject(Board.class))).andReturn(false).anyTimes();
+
+        Knight enemyMovable = EasyMock.createMock(Knight.class);
+        EasyMock.expect(enemyMovable.getColor()).andReturn(Color.WHITE).anyTimes();
+
+        EasyMock.replay(alliedMovable1, alliedMovable2, alliedTrapped, enemyMovable);
+
+        board.setPiece(new Location(2, 2), alliedMovable1);
+        board.setPiece(new Location(3, 4), alliedMovable2);
+        board.setPiece(new Location(4, 5), alliedTrapped);
+        board.setPiece(new Location(5, 5), enemyMovable);
+
+        List<Piece> validPieces = board.getValidPiecesByColor(Color.BLACK);
+
+        assertEquals(2, validPieces.size());
+        assertTrue(validPieces.contains(alliedMovable1));
+        assertTrue(validPieces.contains(alliedMovable2));
+        assertFalse(validPieces.contains(alliedTrapped));
+        assertFalse(validPieces.contains(enemyMovable));
+
+        EasyMock.verify(alliedMovable1, alliedMovable2, alliedTrapped, enemyMovable);
+    }
 }
