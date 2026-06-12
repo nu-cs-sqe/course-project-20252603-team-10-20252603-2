@@ -324,7 +324,83 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMove_King_SameSquare_ReturnsFalse() {
+    public void isInCheckEnemyKingDiagonalAdjacentReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int enemyRow = 3;
+        final int enemyCol = 3;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(enemyPos, enemyKing);
+
+        assertTrue(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isInCheckEnemyKingTooFarByColumnReturnsFalse() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int enemyRow = 3;
+        final int enemyCol = 2;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(enemyPos, enemyKing);
+
+        assertFalse(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isInCheckEnemyKingSameSquareReturnsFalse() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, enemyKing);
+
+        assertFalse(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isInCheckEnemyKingSameRowAdjacentReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int enemyRow = 4;
+        final int enemyCol = 3;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(enemyPos, enemyKing);
+
+        assertTrue(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isValidMoveKingSameSquareReturnsFalse() {
         final int kingRow = 0;
         final int kingCol = 0;
 
@@ -643,6 +719,31 @@ public class KingTests {
     }
 
     @Test
+    public void isValidMove_KingOldSquareDoesNotBlockCheck_ReturnsFalse() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int endRow = 4;
+        final int endCol = 5;
+        final int rookRow = 4;
+        final int rookCol = 0;
+
+        King king = new King(Color.WHITE);
+        Rook rook = new Rook(Color.BLACK);
+
+        Location start = new Location(kingRow, kingCol);
+        Location end = new Location(endRow, endCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+        board.setPiece(rookPos, rook);
+
+        assertFalse(king.isValidMove(start, end, board));
+        assertSame(king, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
     public void makeCopy_King_black_returnsNewKingWithSameColorAndType() {
         King original = new King(Color.BLACK);
 
@@ -668,6 +769,7 @@ public class KingTests {
         assertEquals(Color.WHITE, copy.getColor());
     }
 
+    @Test
     public void hasValidMovesKingClearBoardReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
@@ -838,6 +940,77 @@ public class KingTests {
         board.setPiece(kingPos, king);
 
         assertTrue(king.hasValidMoves(kingPos, board));
+    }
+
+    @Test
+    public void hasValidMovesKingOnlyDownRightSafeReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int aboveRow = kingRow - 1;
+        final int belowRow = kingRow + 1;
+        final int leftCol = kingCol - 1;
+        final int rightCol = kingCol + 1;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+
+        board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, kingCol), new Pawn(Color.WHITE));
+
+        assertTrue(king.hasValidMoves(kingPos, board));
+    }
+
+    @Test
+    public void hasValidMovesKingOnlyUpperLeftSafeReturnsTrue() {
+        final int kingRow = 1;
+        final int kingCol = 1;
+        final int upperRow = kingRow - 1;
+        final int lowerRow = kingRow + 1;
+        final int leftCol = kingCol - 1;
+        final int rightCol = kingCol + 1;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+
+        board.setPiece(new Location(upperRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(upperRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, rightCol), new Pawn(Color.WHITE));
+
+        assertTrue(king.hasValidMoves(kingPos, board));
+    }
+
+    @Test
+    public void hasValidMovesKingMaxCornerAdjacentFriendlyReturnsFalse() {
+        final int kingRow = 7;
+        final int kingCol = 7;
+        final int adjacentRow = kingRow - 1;
+        final int adjacentCol = kingCol - 1;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(new Location(adjacentRow, adjacentCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(adjacentRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, adjacentCol), new Pawn(Color.WHITE));
+
+        assertFalse(king.hasValidMoves(kingPos, board));
     }
 
 }
