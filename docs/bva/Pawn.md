@@ -4,29 +4,30 @@
 
 ### Method under test: `isValidMove()` for Pawn
 
-| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear?             | Movement pattern | Expected output                     | Implemented? |
-|-------------|---------|----------------|-----------------|--------------------------|----------------------------|------------------|-------------------------------------|--------------|
-| 1           | "WHITE" | x=0, y=0       | x=0, y=0        | EMPTY                    | True                       | same square      | False                               | yes          |
-| 2           | "BLACK" | x=7, y=7       | x=7, y=7        | EMPTY                    | True                       | same square      | False                               | yes          |
-| 3           | "WHITE" | x=0, y=0       | x=7, y=7        | EMPTY                    | True                       | too far          | False                               | yes          |
-| 4           | "WHITE" | x=7, y=7       | x=6, y=7        | EMPTY                    | True                       | one forward      | True                                | yes          |
-| 5           | "BLACK" | x=1, y=0       | x=3, y=0        | EMPTY                    | True                       | two forward      | True                                | yes          |
-| 6           | "BLACK" | x=1, y=0       | x=3, y=0        | enemy                    | False                      | two forward      | False                               | yes          |
-| 7           | "WHITE" | x=7 y=6        | x=6, y=7        | enemy                    | False                      | one diag right   | True                                | yes          |
-| 8           | "WHITE" | x=7 y=6        | x=6, y=5        | enemy                    | False                      | one diag left    | True                                | yes          |
-| 9           | "WHITE" | x=7 y=6        | x=6, y=5        | EMPTY                    | True                       | one diag left    | False                               | yes          |
-| 10          | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false                      | one diag left    | False                               | yes          |
-| 11          | "WHITE" | x=6 y=6        | x=7 y=6         | EMPTY                    | True                       | backward         | False                               | yes          |
-| 12          | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True                       | sideways         | False                               | yes          |
-| 13          | "BLACK" | x=0, y=0       | x=2, y=0        | EMPTY                    | False (blocked at x=1,y=0) | two forward      | False                               | yes          |
-| 14          | "BLACK" | x=2, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | False (non first turn)              | yes          |
-| 15          | "WHITE" | x=5, y=0       | x=3, y=0        | EMPTY                    | True                       | two forward      | False (non first turn)              | yes          |
-| 16          | "WHITE" | x=6, y=0       | x=5, y=0        | ENEMY                    | false                      | one forward      | False                               | yes          |
-| 17          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | false (blocked at x=5,y=0) | two forward      | False                               | yes          |
-| 18          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | True                                | yes          |
-| 19          | "WHITE" | x=6, y=4       | x=5, y=5        | EMPTY                    | true                       | one square       | True, board restored                | yes          |
-| 20          | "WHITE" | x=6, y=4       | x=5, y=4        | EMPTY                    | True                       | one square       | False (move exposes king to check)  | yes          |
-| 21          | "WHITE" | x=6, y=0       | x=5, y=0        | EMPTY                    | True                       | one square       | True, board restored                | yes          |
+| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear?             | Movement pattern | Expected output                    | Implemented? |
+|-------------|---------|----------------|-----------------|--------------------------|----------------------------|------------------|------------------------------------|--------------|
+| 1           | "WHITE" | x=0, y=0       | x=0, y=0        | EMPTY                    | True                       | same square      | False                              | yes          |
+| 2           | "BLACK" | x=7, y=7       | x=7, y=7        | EMPTY                    | True                       | same square      | False                              | yes          |
+| 3           | "WHITE" | x=0, y=0       | x=7, y=7        | EMPTY                    | True                       | too far          | False                              | yes          |
+| 4           | "WHITE" | x=7, y=7       | x=6, y=7        | EMPTY                    | True                       | one forward      | True                               | yes          |
+| 5           | "BLACK" | x=1, y=0       | x=3, y=0        | EMPTY                    | True                       | two forward      | True                               | yes          |
+| 6           | "BLACK" | x=1, y=0       | x=3, y=0        | enemy                    | False                      | two forward      | False                              | yes          |
+| 7           | "WHITE" | x=7 y=6        | x=6, y=7        | enemy                    | False                      | one diag right   | True                               | yes          |
+| 8           | "WHITE" | x=7 y=6        | x=6, y=5        | enemy                    | False                      | one diag left    | True                               | yes          |
+| 9           | "WHITE" | x=7 y=6        | x=6, y=5        | EMPTY                    | True                       | one diag left    | False                              | yes          |
+| 10          | "WHITE" | x=7 y=6        | x=6, y=5        | friendly                 | false                      | one diag left    | False                              | yes          |
+| 11          | "WHITE" | x=6 y=6        | x=7 y=6         | EMPTY                    | True                       | backward         | False                              | yes          |
+| 12          | "WHITE" | x=6 y=6        | x=6 y=5         | EMPTY                    | True                       | sideways         | False                              | yes          |
+| 13          | "BLACK" | x=0, y=0       | x=2, y=0        | EMPTY                    | False (blocked at x=1,y=0) | two forward      | False                              | yes          |
+| 14          | "BLACK" | x=2, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | False (non first turn)             | yes          |
+| 15          | "WHITE" | x=5, y=0       | x=3, y=0        | EMPTY                    | True                       | two forward      | False (non first turn)             | yes          |
+| 16          | "WHITE" | x=6, y=0       | x=5, y=0        | ENEMY                    | false                      | one forward      | False                              | yes          |
+| 17          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | false (blocked at x=5,y=0) | two forward      | False                              | yes          |
+| 18          | "WHITE" | x=6, y=0       | x=4, y=0        | EMPTY                    | True                       | two forward      | True                               | yes          |
+| 19          | "WHITE" | x=6, y=4       | x=5, y=5        | EMPTY                    | true                       | one square       | True, board restored               | yes          |
+| 20          | "WHITE" | x=6, y=4       | x=5, y=4        | EMPTY                    | True                       | one square       | False (move exposes king to check) | yes          |
+| 21          | "WHITE" | x=6, y=0       | x=5, y=0        | EMPTY                    | True                       | one square       | True, board restored               | yes          |
+| 21          | "WHITE" | x=6, y=4       | x=5, y=4        | EMPTY                    | True                       | one square       | True, moving to end                | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
 

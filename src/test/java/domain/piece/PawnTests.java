@@ -98,6 +98,34 @@ public class PawnTests {
     }
 
     @Test
+    public void isValidMove_Pawn_movingToEndBlocksCheck_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 4;
+        final int endRow = 5;
+        final int endCol = 4;
+        final int kingRow = 7;
+        final int kingCol = 4;
+        final int rookRow = 0;
+        final int rookCol = 4;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+
+        Location pawnStart = new Location(pawnRow, pawnCol);
+        Location pawnEnd = new Location(endRow, endCol);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(pawnStart, pawn);
+        board.setPiece(kingPos, king);
+        board.setPiece(rookPos, rook);
+
+        assertTrue(pawn.isValidMove(pawnStart, pawnEnd, board));
+    }
+
+    @Test
     public void isValidMove_Pawn_oneDiagonalRight_returnTrue() {
         final int startRow = 7;
         final int startCol = 6;
