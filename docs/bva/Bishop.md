@@ -86,6 +86,15 @@
 * output:
     * a yes/no answer: boolean
 
+
+### Method under test: `makeCopy()` for Bishop, basic functionality testing
+
+| Test Number | Color      | Expected output                                           | Implemented? |
+|-------------|------------|-----------------------------------------------------------|--------------|
+| 1           | "BLACK"    | new non null bishop, same color same type and diff object | yes          |
+| 2           | "WHITE"    | new non null bishop, same color same type and diff object | yes          |
+
+
 ## Method under test: `hasValidMoves()` for Bishop
 
 | Test Number | Color | Start position | State                                                             | Expected Output | Implemented? |

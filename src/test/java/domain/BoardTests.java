@@ -312,6 +312,31 @@ public class BoardTests {
     }
 
     @Test
+    void copyConstructor_nullBoard_returnsEmptyBoard() {
+        Board copy = new Board(null);
+
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                assertFalse(copy.isPieceHere(new Location(x, y)));
+            }
+        }
+    }
+
+    @Test
+    void copyConstructor_boardWithPiece_copiesPiece() {
+        Board original = new Board(false);
+        original.setPiece(new Location(0, 0), new Pawn(Color.WHITE));
+
+        Board copy = new Board(original);
+
+        assertNotNull(copy.getPiece(new Location(0, 0)));
+        assertNotSame(
+                original.getPiece(new Location(0, 0)),
+                copy.getPiece(new Location(0, 0))
+        );
+    }
+
+    @Test
     void findKingLocation_emptyBoard_returnsNull() {
         Board board = new Board(false);
 
@@ -366,6 +391,7 @@ public class BoardTests {
         Location kingLocation = board.findKingLocation(Color.BLACK);
 
         assertEquals(new Location(6,7), kingLocation);
+
     }
 
     @Test
