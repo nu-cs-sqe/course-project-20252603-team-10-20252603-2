@@ -88,7 +88,9 @@ public class Queen extends Piece {
             for (int i = 1; i < diffY; i++) {
                 Location locationCheck = new Location(start.getX(), start.getY() + (i * dirY));
 
-                if (board.isPieceHere(locationCheck)) return false;
+                if (board.isPieceHere(locationCheck)) {
+                    return false;
+                }
 
             }
 
@@ -99,7 +101,9 @@ public class Queen extends Piece {
             for (int i = 1; i < diffX; i++) {
                 Location locationCheck = new Location(start.getX() + (i * dirX), start.getY());
 
-                if (board.isPieceHere(locationCheck)) return false;
+                if (board.isPieceHere(locationCheck)) {
+                    return false;
+                }
 
             }
 
