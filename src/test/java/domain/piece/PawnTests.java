@@ -545,4 +545,17 @@ public class PawnTests {
 
         EasyMock.verify(mockKing);
     }
+
+    @Test
+    public void hasValidMoves_Pawn_whiteAtRowZero_forwardOffBoard_returnsFalse() {
+        final int pawnRow = 0;
+        final int pawnCol = 4;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+
+        assertFalse(pawn.hasValidMoves(pawnPos, board));
+    }
 }

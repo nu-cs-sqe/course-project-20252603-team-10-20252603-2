@@ -27,7 +27,7 @@
 | 19          | "WHITE" | x=6, y=4       | x=5, y=5        | EMPTY                    | true                       | one square       | True, board restored               | yes          |
 | 20          | "WHITE" | x=6, y=4       | x=5, y=4        | EMPTY                    | True                       | one square       | False (move exposes king to check) | yes          |
 | 21          | "WHITE" | x=6, y=0       | x=5, y=0        | EMPTY                    | True                       | one square       | True, board restored               | yes          |
-| 21          | "WHITE" | x=6, y=4       | x=5, y=4        | EMPTY                    | True                       | one square       | True, moving to end                | yes          |
+| 22          | "WHITE" | x=6, y=4       | x=5, y=4        | EMPTY                    | True                       | one square       | True, moving to end                | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Pawn
 
@@ -101,7 +101,8 @@
 | 6           | WHITE | [6,4]          | only diagonal-left capture available                                                     | TRUE            | yes          |
 | 7           | WHITE | [6,4]          | only diagonal-right capture available                                                    | TRUE            | yes          |
 | 6           | WHITE | [6,0]          | clear                                                                                    | True            | yes          |
-| 6           | WHITE | [6,7]          | clear                                                                                    | True            | yes          |
+| 7           | WHITE | [6,7]          | clear                                                                                    | True            | yes          |
+| 8           | WHITE | [0,4]          | forward off board                                                                        | False           | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Pawn
 
