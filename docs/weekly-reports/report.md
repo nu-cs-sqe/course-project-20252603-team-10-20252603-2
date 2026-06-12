@@ -65,3 +65,5 @@
 3. [done] Vivian: Make move integration test (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/80)
 4. [done] Vivian: Board getValidPiecesByColor() BVA (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/86)
 5. [done] Vivian: refactor tests to use mocking (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/83)
+6. [done] Vivian: fix checkstyle warnings for Tests (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/94)
+7. [done] Vivian: Mutation testing for Queen and Rook (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/88)
