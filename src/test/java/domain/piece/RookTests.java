@@ -4,8 +4,7 @@ import domain.Board;
 import domain.Location;
 import constants.Color;import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.easymock.EasyMock;
 
@@ -319,6 +318,32 @@ public class RookTests {
         Board board = new Board(false);
 
         assertTrue(rook.isValidMove(start, chosen, board));
+    }
+    
+    @Test
+    public void makeCopy_Rook_black_returnsNewRookWithSameColorAndType() {
+        Rook original = new Rook(Color.BLACK);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Rook.class, copy);
+        assertEquals(PieceType.ROOK, copy.getType());
+        assertEquals(Color.BLACK, copy.getColor());
+    }
+
+    @Test
+    public void makeCopy_Rook_white_returnsNewRookWithSameColorAndType() {
+        Rook original = new Rook(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Rook.class, copy);
+        assertEquals(PieceType.ROOK, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
     }
 
     @Test

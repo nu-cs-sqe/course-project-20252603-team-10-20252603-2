@@ -5,8 +5,10 @@ import domain.Board;
 import domain.Location;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class KingTests {
 
@@ -607,7 +609,66 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMoves_King_ClearBoard_ReturnsTrue() {
+    public void isValidMove_King_EmptyDestination_ReturnsTrue_RestoresBoardState() {
+        King king = new King(Color.WHITE);
+
+        Location start = new Location(4, 4);
+        Location end = new Location(4, 5);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
+
+        assertSame(king, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
+    public void isValidMove_King_EnemyDestination_ReturnsTrue_RestoresBoardState() {
+        King king = new King(Color.WHITE);
+        Piece enemyPawn = new Pawn(Color.BLACK);
+
+        Location start = new Location(4, 4);
+        Location end = new Location(5, 5);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+        board.setPiece(end, enemyPawn);
+
+        assertTrue(king.isValidMove(start, end, board));
+
+        assertSame(king, board.getPiece(start));
+        assertSame(enemyPawn, board.getPiece(end));
+    }
+
+    @Test
+    public void makeCopy_King_black_returnsNewKingWithSameColorAndType() {
+        King original = new King(Color.BLACK);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(King.class, copy);
+        assertEquals(PieceType.KING, copy.getType());
+        assertEquals(Color.BLACK, copy.getColor());
+    }
+
+    @Test
+    public void makeCopy_King_white_returnsNewKingWithSameColorAndType() {
+        King original = new King(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(King.class, copy);
+        assertEquals(PieceType.KING, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
+    }
+
+    public void hasValidMovesKingClearBoardReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
 
@@ -778,6 +839,7 @@ public class KingTests {
 
         assertTrue(king.hasValidMoves(kingPos, board));
     }
+
 }
 
 
