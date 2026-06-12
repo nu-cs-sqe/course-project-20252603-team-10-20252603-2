@@ -49,7 +49,8 @@ public class PlayerTests {
         player.incrementPoints(PieceType.QUEEN);
 
         int actual = player.getPoints();
-        assertEquals(9, actual);
+        final int expected = 9;
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -65,9 +66,10 @@ public class PlayerTests {
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));
         }
+        final int expected = 39;
 
         int actual = player.getPoints();
-        assertEquals(39, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -85,7 +87,8 @@ public class PlayerTests {
         }
 
         int actual = player.getPoints();
-        assertEquals(47, actual);
+        final int expected = 47;
+        assertEquals(expected, actual);
     }
 
     @Test

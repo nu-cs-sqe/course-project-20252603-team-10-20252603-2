@@ -98,8 +98,11 @@ public class GameEndIntegrationTest {
     public static class MovePieceTest {
 
         private GameManager gameManager;
+
         private Board board;
+
         private Player playerOne;
+
         private Player playerTwo;
 
         @BeforeEach
@@ -173,7 +176,8 @@ public class GameEndIntegrationTest {
             assertEquals(Color.WHITE, gameManager.getCurrentPlayer().getPlayerColor());
             Piece[][] boardStateBefore = gameManager.getBoard().getSnapshot();
 
-            GameManager.MoveResult result = gameManager.movePiece(blackPawnStart, illegalDestination);
+            GameManager.MoveResult result = gameManager.movePiece(blackPawnStart,
+                    illegalDestination);
 
             assertEquals(GameManager.MoveResult.WRONG_PLAYER_PIECE, result);
 

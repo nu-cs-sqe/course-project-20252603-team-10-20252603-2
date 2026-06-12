@@ -488,7 +488,8 @@ public class BoardTests {
 
         List<Piece> validPieces = board.getValidPiecesByColor(Color.BLACK);
 
-        assertEquals(16, validPieces.size());
+        final int expected = 16;
+        assertEquals(expected, validPieces.size());
         for (Piece mockPiece : mockPieces) {
             EasyMock.verify(mockPiece);
         }
