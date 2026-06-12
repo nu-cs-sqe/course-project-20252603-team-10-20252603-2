@@ -49,13 +49,14 @@
   * “W” → “B”
 
 **Method under test: isCheckmate()**
-|             | System under test                                          | Expected output | Implemented? |
-|:------------|:-----------------------------------------------------------| :---- |:-------------|
-| Test Case 1 | King is in check and has no other valid moves.             | Returns true, game notification that the game is over. | yes          |
-| Test Case 2 | King is in check and has 1 valid move.                   | Returns false, the game continues. | yes          |
-| Test Case 3 | King is not in check and has >=1 valid move.               | Returns false, the game continues. | yes          |
-| Test Case 4 | King is in check and has >1 valid move.                | Returns false, the game continues. | no          |
-| Test Case 5 | King is not in check and has 0 valid moves.               | Returns false, the game is a stalemate. | no          |
+
+| Test Case | System under test                                    | Expected output                                          | Implemented? |
+|-----------|------------------------------------------------------|----------------------------------------------------------|--------------|
+| 1         | King is in check and has no other valid moves.       | Returns true, game notification that the game is over.   | yes          |
+| 2         | King is in check and has 1 valid move.               | Returns false, the game continues.                       | yes          |
+| 3         | King is not in check and has >=1 valid move.         | Returns false, the game continues.                       | yes          |
+| 4         | King is in check and has >1 valid move.              | Returns false, the game continues.                       | no           |
+| 5         | King is not in check and has 0 valid moves.          | Returns false, the game is a stalemate.                  | no           |
 
 ### STEPS FOR BVA: `isCheckmate()`
 1. Data Types
