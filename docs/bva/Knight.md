@@ -134,6 +134,7 @@
 | 13          | WHITE | [4,4]          | Only [5,2] (L7) open, all others blocked                             | TRUE            | yes          |
 | 14          | WHITE | [4,4]          | Only [5,6] (L8) open, all others blocked                             | TRUE            | yes          |
 | 15          | WHITE | [0,0]          | Knight at corner, only [1,2] and [2,1] are available and are blocked | FALSE           | yes          |
+| 16          | WHITE | [7,7]          | Knight at corner, only two candidates available                      | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Knight
 

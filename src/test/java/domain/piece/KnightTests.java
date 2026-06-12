@@ -854,5 +854,20 @@ public class KnightTests {
         assertSame(knight, board.getPiece(start));
         assertFalse(board.isPieceHere(end));
     }
+
+    @Test
+    public void hasValidMoves_knight_atMaxCornerOnlyTwoCandidatesValid_returnsTrue() {
+        final int row = 7;
+        final int col = 7;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(5, 6), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
 }
 
