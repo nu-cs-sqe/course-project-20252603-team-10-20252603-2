@@ -2,24 +2,28 @@
 
 ## Method under test: `isInCheck()` for King
 
-| Test Number | King Color | King Location | Attacker Type | Attacker Color | Attacker Location | Pieces Blocking Path | Expected Output         | Implemented? |
-|-------------|------------|---------------|---------------|----------------|-------------------|----------------------|-------------------------|--------------|
-| 1           | WHITE      | x=4, y=4      | none          | none           | none              | none                 | False                   | yes          |
-| 2           | WHITE      | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | none                 | True                    | yes          |
-| 3           | WHITE      | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | friendly at x=4, y=6 | False                   | yes          |
-| 4           | WHITE      | x=4, y=4      | Rook          | WHITE          | x=4, y=7          | none                 | False                   | yes          |
-| 5           | WHITE      | x=4, y=4      | Rook          | BLACK          | x=0, y=4          | none                 | True                    | yes          |
-| 6           | WHITE      | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | none                 | True                    | yes          |
-| 7           | WHITE      | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | friendly at x=3, y=3 | False                   | yes          |
-| 8           | WHITE      | x=4, y=4      | Knight        | BLACK          | x=2, y=3          | n/a                  | True                    | yes          |
-| 9           | WHITE      | x=4, y=4      | Pawn          | BLACK          | x=3, y=3          | none                 | True                    | yes          |
-| 10          | WHITE      | x=4, y=4      | Pawn          | WHITE          | x=3, y=3          | none                 | False (friendly)        | yes          |
-| 11          | WHITE      | x=4, y=4      | Pawn          | BLACK          | x=5, y=3          | none                 | False (wrong direction) | yes          |
-| 12          | WHITE      | x=4, y=4      | Queen         | BLACK          | x=4, y=0          | none                 | True                    | yes          |
-| 13          | WHITE      | x=4, y=4      | Queen         | BLACK          | x=1, y=7          | none                 | True                    | yes          |
-| 14          | WHITE      | x=4, y=4      | Kign          | BLACK          | x=3, y=4          | none                 | True                    | yes          |
-| 15          | WHITE      | x=4, y=4      | King          | BLACK          | x=2, y=4          | none                 | False (too far)         | yes          |
-| 16          | WHITE      | x=0, y=0      | Rook          | BLACK          | x=0, y=7          | none                 | True                    | yes          |
+| Test Number | King Color | King Location | Attacker Type | Attacker Color | Attacker Location | Pieces Blocking Path | Expected Output                   | Implemented? |
+|-------------|------------|---------------|---------------|----------------|-------------------|----------------------|-----------------------------------|--------------|
+| 1           | WHITE      | x=4, y=4      | none          | none           | none              | none                 | False                             | yes          |
+| 2           | WHITE      | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | none                 | True                              | yes          |
+| 3           | WHITE      | x=4, y=4      | Rook          | BLACK          | x=4, y=7          | friendly at x=4, y=6 | False                             | yes          |
+| 4           | WHITE      | x=4, y=4      | Rook          | WHITE          | x=4, y=7          | none                 | False                             | yes          |
+| 5           | WHITE      | x=4, y=4      | Rook          | BLACK          | x=0, y=4          | none                 | True                              | yes          |
+| 6           | WHITE      | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | none                 | True                              | yes          |
+| 7           | WHITE      | x=4, y=4      | Bishop        | BLACK          | x=2, y=2          | friendly at x=3, y=3 | False                             | yes          |
+| 8           | WHITE      | x=4, y=4      | Knight        | BLACK          | x=2, y=3          | n/a                  | True                              | yes          |
+| 9           | WHITE      | x=4, y=4      | Pawn          | BLACK          | x=3, y=3          | none                 | True                              | yes          |
+| 10          | WHITE      | x=4, y=4      | Pawn          | WHITE          | x=3, y=3          | none                 | False (friendly)                  | yes          |
+| 11          | WHITE      | x=4, y=4      | Pawn          | BLACK          | x=5, y=3          | none                 | False (wrong direction)           | yes          |
+| 12          | WHITE      | x=4, y=4      | Queen         | BLACK          | x=4, y=0          | none                 | True                              | yes          |
+| 13          | WHITE      | x=4, y=4      | Queen         | BLACK          | x=1, y=7          | none                 | True                              | yes          |
+| 14          | WHITE      | x=4, y=4      | King          | BLACK          | x=3, y=4          | none                 | True                              | yes          |
+| 15          | WHITE      | x=4, y=4      | King          | BLACK          | x=2, y=3          | none                 | False (too far)                   | yes          |
+| 16          | WHITE      | x=7, y=7      | Rook          | BLACK          | x=7, y=0          | none                 | True                              | yes          |
+| 17          | WHITE      | x=4, y=4      | King          | BLACK          | x=3, y=3          | none                 | True                              | yes          |
+| 18          | WHITE      | x=4, y=4      | King          | BLACK          | x=3, y=2          | none                 | False (too far by column)         | yes          |
+| 19          | WHITE      | x=4, y=4      | King          | BLACK          | x=4, y=4          | none                 | False (same square cannot attack) | yes          |
+| 20          | WHITE      | x=4, y=4      | King          | BLACK          | x=4, y=3          | none                 | True (same row adjacent king)     | yes          |
 
 ### STEPS FOR BVA: `isInCheck()` for King
 
@@ -81,24 +85,27 @@
 
 ## Method under test: `isValidMove()` for King
 
-| Test Number | Color | Start position | Chosen position | Chosen position contents | Expected output          | Implemented? |
-|-------------|-------|----------------|-----------------|--------------------------|--------------------------|--------------|
-| 1           | WHITE | x=0, y=0       | x=0, y=0        | EMPTY                    | False                    | yes          |
-| 2           | WHITE | x=0, y=0       | x=0, y=2        | EMPTY                    | False                    | yes          |
-| 3           | WHITE | x=7, y=7       | x=5, y=7        | EMPTY                    | False                    | yes          |
-| 4           | WHITE | x=7, y=4       | x=7, y=5        | EMPTY                    | True                     | yes          |
-| 5           | WHITE | x=0, y=4       | x=0, y=3        | EMPTY                    | True                     | yes          |
-| 6           | WHITE | x=4, y=0       | x=3, y=0        | EMPTY                    | True                     | yes          |
-| 7           | WHITE | x=4, y=7       | x=5, y=7        | EMPTY                    | True                     | yes          |
-| 8           | WHITE | x=0, y=0       | x=1, y=1        | EMPTY                    | True                     | yes          |
-| 9           | WHITE | x=0, y=7       | x=1, y=6        | EMPTY                    | True                     | yes          |
-| 10          | WHITE | x=7, y=0       | x=6, y=1        | EMPTY                    | True                     | yes          |
-| 11          | WHITE | x=7, y=7       | x=6, y=6        | EMPTY                    | True                     | yes          |
-| 12          | WHITE | x=7, y=7       | x=6, y=7        | friendly                 | False                    | yes          |
-| 13          | WHITE | x=0, y=0       | x=1, y=1        | enemy                    | True                     | yes          |
-| 14          | WHITE | x=4, y=4       | x=3, y=4        | EMPTY                    | False (moves into check) | yes          |
-| 15          | BLACK | x=0, y=0       | x=0, y=1        | EMPTY                    | True                     | yes          |
-| 16          | WHITE | x=4, y=4       | x=3, y=4        | enemy                    | False (moves into check) | yes          |
+| Test Number | Color | Start position | Chosen position | Chosen position contents | Expected output                                                     | Implemented? |
+|-------------|-------|----------------|-----------------|--------------------------|---------------------------------------------------------------------|--------------|
+| 1           | WHITE | x=0, y=0       | x=0, y=0        | EMPTY                    | False                                                               | yes          |
+| 2           | WHITE | x=0, y=0       | x=0, y=2        | EMPTY                    | False                                                               | yes          |
+| 3           | WHITE | x=7, y=7       | x=5, y=7        | EMPTY                    | False                                                               | yes          |
+| 4           | WHITE | x=7, y=4       | x=7, y=5        | EMPTY                    | True                                                                | yes          |
+| 5           | WHITE | x=0, y=4       | x=0, y=3        | EMPTY                    | True                                                                | yes          |
+| 6           | WHITE | x=4, y=0       | x=3, y=0        | EMPTY                    | True                                                                | yes          |
+| 7           | WHITE | x=4, y=7       | x=5, y=7        | EMPTY                    | True                                                                | yes          |
+| 8           | WHITE | x=0, y=0       | x=1, y=1        | EMPTY                    | True                                                                | yes          |
+| 9           | WHITE | x=0, y=7       | x=1, y=6        | EMPTY                    | True                                                                | yes          |
+| 10          | WHITE | x=7, y=0       | x=6, y=1        | EMPTY                    | True                                                                | yes          |
+| 11          | WHITE | x=7, y=7       | x=6, y=6        | EMPTY                    | True                                                                | yes          |
+| 12          | WHITE | x=7, y=7       | x=6, y=7        | friendly                 | False                                                               | yes          |
+| 13          | WHITE | x=0, y=0       | x=1, y=1        | enemy                    | True                                                                | yes          |
+| 14          | WHITE | x=4, y=4       | x=3, y=4        | EMPTY                    | False (moves into check)                                            | yes          |
+| 15          | BLACK | x=0, y=0       | x=0, y=1        | EMPTY                    | True                                                                | yes          |
+| 16          | WHITE | x=4, y=4       | x=3, y=4        | enemy                    | False (moves into check)                                            | yes          |
+| 17          | WHITE | x=4, y=4       | x=4, y=5        | EMPTY                    | True                                                                | yes          |
+| 18          | WHITE | x=4, y=4       | x=5, y=5        | enemy                    | True                                                                | yes          |
+| 19          | WHITE | x=4, y=4       | x=4, y=5        | EMPTY                    | False (old square must not block rook check after simulated move)   | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for King
 
@@ -147,19 +154,31 @@
 * output:
     * a yes/no answer: boolean
 
+
+### Method under test: `makeCopy()` for King, basic functionality testing
+
+| Test Number | Color      | Expected output                                         | Implemented? |
+|-------------|------------|---------------------------------------------------------|--------------|
+| 1           | "BLACK"    | new non null king, same color same type and diff object | yes          |
+| 2           | "WHITE"    | new non null king, same color same type and diff object | yes          |
+
+
 ## Method under test: `hasValidMoves()` for King
 
-| Test Number | Color | Start position | Board State                                                     | Expected Output | Implemented? |
-|-------------|-------|----------------|-----------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [4,4]          | Clear board                                                     | TRUE            | yes          |
-| 2           | WHITE | [0,0]          | Clear board                                                     | TRUE            | yes          |
-| 3           | WHITE | [4,4]          | all 8 adjacent squares occupied by friendly pieces              | FALSE           | yes          |
-| 4           | WHITE | [0,0]          | king in corner & 3 adjacent squares occupied by friendly pieces | FALSE           | yes          |
-| 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                        | FALSE           | yes          |
-| 6           | WHITE | [4,4]          | one adjacent square empty+safe, all others blocked              | TRUE            | yes          |
-| 7           | WHITE | [4,4]          | one adjacent square has unprotected enemy piece                 | TRUE            | yes          |
-| 8           | BLACK | [0,0]          | Clear board                                                     | TRUE            | yes          |
-| 9           | WHITE | [7,7]          | Clear board                                                     | TRUE            | yes          |
+| Test Number | Color | Start position | Board State                                                                                    | Expected Output | Implemented? |
+|-------------|-------|----------------|------------------------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [4,4]          | Clear board                                                                                    | TRUE            | yes          |
+| 2           | WHITE | [0,0]          | Clear board                                                                                    | TRUE            | yes          |
+| 3           | WHITE | [4,4]          | all 8 adjacent squares occupied by friendly pieces                                             | FALSE           | yes          |
+| 4           | WHITE | [0,0]          | king in corner & 3 adjacent squares occupied by friendly pieces                                | FALSE           | yes          |
+| 5           | WHITE | [4,4]          | all 8 adjacent squares attacked by enemy                                                       | FALSE           | yes          |
+| 6           | WHITE | [4,4]          | one adjacent square empty+safe, all others blocked                                             | TRUE            | yes          |
+| 7           | WHITE | [4,4]          | one adjacent square has unprotected enemy piece                                                | TRUE            | yes          |
+| 8           | BLACK | [0,0]          | Clear board                                                                                    | TRUE            | yes          |
+| 9           | WHITE | [7,7]          | Clear board                                                                                    | TRUE            | yes          |
+| 10          | WHITE | [4,4]          | only down-right adjacent square is open; all other adjacent squares blocked by friendly pieces | TRUE            | yes          |
+| 11          | WHITE | [1,1]          | only upper-left adjacent square is open; all other adjacent squares blocked by friendly pieces | TRUE            | yes          |
+| 12          | WHITE | [7,7]          | max corner; all legal adjacent squares occupied by friendly pieces                             | FALSE           | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for King
 
@@ -195,6 +214,10 @@
         * all adjacent squares would put the king into check
         * one adjacent square empty and safe 
         * one adjacent square has an unprotected enemy piece 
+        * only one directional adjacent square is safe
+          * only down-right open
+          * only upper-left open 
+        * max corner with all legal adjacent squares blocked
     * reachable adjacent square exists: boolean
         * True
         * False

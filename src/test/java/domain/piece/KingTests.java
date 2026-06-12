@@ -5,13 +5,15 @@ import domain.Board;
 import domain.Location;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class KingTests {
 
     @Test
-    public void isInCheckNoAttackingPiecesReturnsFalse() {
+    public void isInCheck_NoAttackingPieces_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
 
@@ -26,7 +28,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyRookSameRowClearPathReturnsTrue() {
+    public void isInCheck_EnemyRookSameRowClearPath_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rookRow = 4;
@@ -46,7 +48,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyRookBlockedByFriendlyReturnsFalse() {
+    public void isInCheck_EnemyRookBlockedByFriendly_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rookRow = 4;
@@ -70,7 +72,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyRookSameColClearReturnsTrue() {
+    public void isInCheck_EnemyRookSameColClear_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rookRow = 0;
@@ -89,7 +91,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckFriendlyRookSameRowReturnsFalse() {
+    public void isInCheck_FriendlyRookSameRow_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rookRow = 4;
@@ -108,7 +110,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyBishopDiagonalClearReturnsTrue() {
+    public void isInCheck_EnemyBishopDiagonalClear_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -127,7 +129,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyBishopBlockedReturnsFalse() {
+    public void isInCheck_EnemyBishopBlocked_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -151,7 +153,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyKnightLShapeReturnsTrue() {
+    public void isInCheck_EnemyKnightLShape_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -170,7 +172,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyPawnCorrectDirectionReturnsTrue() {
+    public void isInCheck_EnemyPawnCorrectDirection_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 3;
@@ -189,7 +191,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyPawnWrongDirectionReturnsFalse() {
+    public void isInCheck_EnemyPawnWrongDirection_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 5;
@@ -208,7 +210,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyQueenReturnsTrue() {
+    public void isInCheck_EnemyQueen_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 4;
@@ -227,7 +229,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyQueen2ReturnsTrue() {
+    public void isInCheck_EnemyQueen2_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 1;
@@ -246,7 +248,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckFriendlyPawnSameDiagonalReturnsFalse() {
+    public void isInCheck_FriendlyPawnSameDiagonal_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -265,7 +267,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckAdjacentEnemyKingReturnsTrue() {
+    public void isInCheck_AdjacentEnemyKing_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 3;
@@ -284,7 +286,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyKingTooFarReturnsFalse() {
+    public void isInCheck_EnemyKingTooFar_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -303,7 +305,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyRookSameRowReturnsTrue() {
+    public void isInCheck_EnemyRookSameRow_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 7;
         final int row = 7;
@@ -317,6 +319,82 @@ public class KingTests {
         Board board = new Board(false);
         board.setPiece(kingPos, king);
         board.setPiece(rookPos, rook);
+
+        assertTrue(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isInCheckEnemyKingDiagonalAdjacentReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int enemyRow = 3;
+        final int enemyCol = 3;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(enemyPos, enemyKing);
+
+        assertTrue(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isInCheckEnemyKingTooFarByColumnReturnsFalse() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int enemyRow = 3;
+        final int enemyCol = 2;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(enemyPos, enemyKing);
+
+        assertFalse(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isInCheckEnemyKingSameSquareReturnsFalse() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, enemyKing);
+
+        assertFalse(king.isInCheck(kingPos, board));
+    }
+
+    @Test
+    public void isInCheckEnemyKingSameRowAdjacentReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int enemyRow = 4;
+        final int enemyCol = 3;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(enemyPos, enemyKing);
 
         assertTrue(king.isInCheck(kingPos, board));
     }
@@ -336,7 +414,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingTwoSquaresHorizontalReturnsFalse() {
+    public void isValidMove_King_TwoSquaresHorizontal_ReturnsFalse() {
         final int kingRow = 0;
         final int kingCol = 0;
         final int row = 0;
@@ -353,7 +431,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingTwoSquaresVerticalReturnsFalse() {
+    public void isValidMove_King_TwoSquaresVertical_ReturnsFalse() {
         final int kingRow = 7;
         final int kingCol = 7;
         final int row = 5;
@@ -370,7 +448,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingOneIncreasingColReturnsTrue() {
+    public void isValidMove_King_OneIncreasingCol_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 4;
         final int row = 7;
@@ -387,7 +465,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingOneDecreasingColReturnsTrue() {
+    public void isValidMove_King_OneDecreasingCol_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 4;
         final int row = 0;
@@ -404,7 +482,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingOneDecreasingRowReturnsTrue() {
+    public void isValidMove_King_OneDecreasingRow_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 0;
         final int row = 3;
@@ -421,7 +499,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingOneIncreasingRowReturnsTrue() {
+    public void isValidMove_King_OneIncreasingRow_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 7;
         final int row = 5;
@@ -438,7 +516,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingDiagonal1ReturnsTrue() {
+    public void isValidMove_King_Diagonal1_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
         final int row = 1;
@@ -455,7 +533,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingDiagonal2ReturnsTrue() {
+    public void isValidMove_King_Diagonal2_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 7;
         final int row = 1;
@@ -472,7 +550,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingDiagonal3ReturnsTrue() {
+    public void isValidMove_King_Diagonal3_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 0;
         final int endRow = 6;
@@ -489,7 +567,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingDiagonal4ReturnsTrue() {
+    public void isValidMove_King_Diagonal4_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 7;
         final int endRow = 6;
@@ -506,7 +584,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingFriendlyDestinationReturnsFalse() {
+    public void isValidMove_King_FriendlyDestination_ReturnsFalse() {
         final int kingRow = 7;
         final int kingCol = 7;
         final int endRow = 6;
@@ -525,7 +603,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingCaptureEnemyReturnsTrue() {
+    public void isValidMove_King_CaptureEnemy_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
         final int endRow = 1;
@@ -544,7 +622,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveBlackKingValidMoveReturnsTrue() {
+    public void isValidMove_BlackKing_ValidMove_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
         final int endRow = 0;
@@ -561,7 +639,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingMovesIntoCheckReturnsFalse() {
+    public void isValidMove_King_MovesIntoCheck_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int endRow = 3;
@@ -583,7 +661,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingCaptureMovesIntoCheckReturnsFalse() {
+    public void isValidMove_King_CaptureMovesIntoCheck_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int endRow = 3;
@@ -607,6 +685,91 @@ public class KingTests {
     }
 
     @Test
+    public void isValidMove_King_EmptyDestination_ReturnsTrue_RestoresBoardState() {
+        King king = new King(Color.WHITE);
+
+        Location start = new Location(4, 4);
+        Location end = new Location(4, 5);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+
+        assertTrue(king.isValidMove(start, end, board));
+
+        assertSame(king, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
+    public void isValidMove_King_EnemyDestination_ReturnsTrue_RestoresBoardState() {
+        King king = new King(Color.WHITE);
+        Piece enemyPawn = new Pawn(Color.BLACK);
+
+        Location start = new Location(4, 4);
+        Location end = new Location(5, 5);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+        board.setPiece(end, enemyPawn);
+
+        assertTrue(king.isValidMove(start, end, board));
+
+        assertSame(king, board.getPiece(start));
+        assertSame(enemyPawn, board.getPiece(end));
+    }
+
+    @Test
+    public void isValidMove_KingOldSquareDoesNotBlockCheck_ReturnsFalse() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int endRow = 4;
+        final int endCol = 5;
+        final int rookRow = 4;
+        final int rookCol = 0;
+
+        King king = new King(Color.WHITE);
+        Rook rook = new Rook(Color.BLACK);
+
+        Location start = new Location(kingRow, kingCol);
+        Location end = new Location(endRow, endCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+        board.setPiece(rookPos, rook);
+
+        assertFalse(king.isValidMove(start, end, board));
+        assertSame(king, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
+    public void makeCopy_King_black_returnsNewKingWithSameColorAndType() {
+        King original = new King(Color.BLACK);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(King.class, copy);
+        assertEquals(PieceType.KING, copy.getType());
+        assertEquals(Color.BLACK, copy.getColor());
+    }
+
+    @Test
+    public void makeCopy_King_white_returnsNewKingWithSameColorAndType() {
+        King original = new King(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(King.class, copy);
+        assertEquals(PieceType.KING, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
+    }
+
+    @Test
     public void hasValidMovesKingClearBoardReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
@@ -621,7 +784,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingClearBoardCornerReturnsTrue() {
+    public void hasValidMoves_King_ClearBoardCorner_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
 
@@ -635,7 +798,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingAllAdjacentFriendlyReturnsFalse() {
+    public void hasValidMoves_King_AllAdjacentFriendly_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int aboveRow = 3;
@@ -664,7 +827,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingCornerAdjacentFriendlyReturnsFalse() {
+    public void hasValidMoves_King_CornerAdjacentFriendly_ReturnsFalse() {
         final int kingRow = 0;
         final int kingCol = 0;
 
@@ -681,7 +844,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingAllAdjacentAttackedReturnsFalse() {
+    public void hasValidMoves_King_AllAdjacentAttacked_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rook1Row = 3;
@@ -707,7 +870,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingOneSafeSquareReturnsTrue() {
+    public void hasValidMoves_King_OneSafeSquare_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int aboveRow = kingRow - 1;
@@ -733,7 +896,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingUnprotectedEnemyReturnsTrue() {
+    public void hasValidMoves_King_UnprotectedEnemy_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int enemyRow = 3;
@@ -752,7 +915,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesBlackKingClearReturnsTrue() {
+    public void hasValidMoves_BlackKing_Clear_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
 
@@ -766,7 +929,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingClearBoardMaxValueReturnsTrue() {
+    public void hasValidMoves_King_ClearBoardMaxValue_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 7;
 
@@ -778,6 +941,78 @@ public class KingTests {
 
         assertTrue(king.hasValidMoves(kingPos, board));
     }
+
+    @Test
+    public void hasValidMovesKingOnlyDownRightSafeReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int aboveRow = kingRow - 1;
+        final int belowRow = kingRow + 1;
+        final int leftCol = kingCol - 1;
+        final int rightCol = kingCol + 1;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+
+        board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(belowRow, kingCol), new Pawn(Color.WHITE));
+
+        assertTrue(king.hasValidMoves(kingPos, board));
+    }
+
+    @Test
+    public void hasValidMovesKingOnlyUpperLeftSafeReturnsTrue() {
+        final int kingRow = 1;
+        final int kingCol = 1;
+        final int upperRow = kingRow - 1;
+        final int lowerRow = kingRow + 1;
+        final int leftCol = kingCol - 1;
+        final int rightCol = kingCol + 1;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+
+        board.setPiece(new Location(upperRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(upperRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, rightCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, leftCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(lowerRow, rightCol), new Pawn(Color.WHITE));
+
+        assertTrue(king.hasValidMoves(kingPos, board));
+    }
+
+    @Test
+    public void hasValidMovesKingMaxCornerAdjacentFriendlyReturnsFalse() {
+        final int kingRow = 7;
+        final int kingCol = 7;
+        final int adjacentRow = kingRow - 1;
+        final int adjacentCol = kingCol - 1;
+
+        King king = new King(Color.WHITE);
+        Location kingPos = new Location(kingRow, kingCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(new Location(adjacentRow, adjacentCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(adjacentRow, kingCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(kingRow, adjacentCol), new Pawn(Color.WHITE));
+
+        assertFalse(king.hasValidMoves(kingPos, board));
+    }
+
 }
 
 

@@ -31,6 +31,7 @@
 | 25          | "WHITE" | x=3, y=3       | x=3, y=5        | EMPTY                    | True                             | y movement (- direction) | True            | yes          |
 | 26          | "WHITE" | x=5, y=0       | x=4, y=0        | EMPTY                    | False                            | x movement (- direction) | True            | yes          |
 | 27          | "WHITE" | x=6, y=0       | x=6, y=1        | EMPTY                    | False                            | y movement (+ direction) | True            | yes          |
+| 28          | "WHITE" | x=1, y=2       | x=3, y=4        | EMPTY                    | True                             | diagonal (+ dir)         | True            | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Queen
 
@@ -101,6 +102,15 @@
         * same square (INVALID)
 * output:
     * a yes/no answer: boolean
+
+    
+### Method under test: `makeCopy()` for Queen, basic functionality testing
+
+| Test Number | Color      | Expected output                                          | Implemented? |
+|-------------|------------|----------------------------------------------------------|--------------|
+| 1           | "BLACK"    | new non null queen, same color same type and diff object | yes          |
+| 2           | "WHITE"    | new non null queen, same color same type and diff object | yes          |
+
 
 ## Method under test: `hasValidMoves()` for Queen
 

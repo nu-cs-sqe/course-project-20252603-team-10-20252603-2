@@ -88,6 +88,15 @@
 * output:
     * a yes/no answer: boolean
 
+
+### Method under test: `makeCopy()` for Rook, basic functionality testing
+
+| Test Number | Color      | Expected output                                          | Implemented? |
+|-------------|------------|----------------------------------------------------------|--------------|
+| 1           | "BLACK"    | new non null rook, same color same type and diff object  | yes          |
+| 2           | "WHITE"    | new non null rook, same color same type and diff object  | yes          |
+
+
 ### Method under test: `hasValidMoves()` for Rook
 
 | Test Number | Color | Start position | Board State                                                                   | Expected Output | Implemented? |
