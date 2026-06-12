@@ -321,7 +321,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_CoversKingSearchBranches_ReturnsTrue() {
+    public void isValidMove_Bishop_SkipsNonAlliedKingPiecesAndFindsAlliedKing_ReturnsTrue() {
         Bishop bishop = new Bishop(Color.WHITE);
         Pawn enemyPawn = new Pawn(Color.BLACK);
         Pawn sameColorPawn = new Pawn(Color.WHITE);
