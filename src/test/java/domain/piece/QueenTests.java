@@ -671,8 +671,7 @@ public class QueenTests {
 
         assertFalse(whiteQueen.isValidMove(start, end, board));
 
-        assertTrue(board.isPieceHere(start));
-        assertFalse(board.isPieceHere(end));
+        assertSame(whiteQueen, board.getPiece(start));
     }
 
     @Test
@@ -692,5 +691,28 @@ public class QueenTests {
         board.setPiece(new Location(7, 6), new Pawn(Color.WHITE));
 
         assertTrue(queen.hasValidMoves(queenLoc, board));
+    }
+
+    @Test
+    public void isValidMove_pinnedQueenCapturesEnemyExposingKing_killsSimulationAndCleanupMutants() {
+        Board board = new Board(false);
+        Queen whiteQueen = new Queen(Color.WHITE);
+        King whiteKing = new King(Color.WHITE);
+        Rook enemyBlackRook = new Rook(Color.BLACK);
+        Pawn enemyTargetPawn = new Pawn(Color.BLACK);
+
+        Location start = new Location(6, 0);
+        Location end = new Location(6, 1);
+
+        board.setPiece(new Location(7, 0), whiteKing);
+        board.setPiece(start, whiteQueen);
+        board.setPiece(end, enemyTargetPawn);
+        board.setPiece(new Location(0, 0), enemyBlackRook);
+
+        assertFalse(whiteQueen.isValidMove(start, end, board));
+
+        assertSame(whiteQueen, board.getPiece(start));
+
+        assertSame(enemyTargetPawn, board.getPiece(end));
     }
 }
