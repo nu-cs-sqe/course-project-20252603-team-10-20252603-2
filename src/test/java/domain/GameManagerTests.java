@@ -205,6 +205,13 @@ public class GameManagerTests {
     }
 
     @Test
+    public void isGameOver_startedGameWithNullBoard_returnsFalse() {
+        game.setBoard(null);
+
+        assertFalse(game.isGameOver());
+    }
+
+    @Test
     public void isStalemate_notInCheckZeroMoves_returnsTrue() {
         King mockKing = EasyMock.createMock(King.class);
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();

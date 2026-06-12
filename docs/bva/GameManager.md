@@ -95,16 +95,18 @@
   * !isInCheck() && hasValidMoves() == 1--> FALSE
   * !isInCheck() && hasValidMoves() > 1 --> FALSE
   * !isInCheck() && hasValidMoves() == 0 --> TRUE
+
+
 **Method under test: isGameOver()**
 
-|             | System under test                                           | Expected output                                        | Implemented? |
-|:------------|:------------------------------------------------------------|:-------------------------------------------------------|:-------------|
-| Test Case 1 | King is in check and has no other valid moves.              | Returns true, game notification that the game is over. | yes          |
-| Test Case 2 | King is in check and has >=1 valid move.                    | Returns false, the game continues.                     | yes          |
-| Test Case 3 | Stalemate \- player is not in check but has 0 valid moves.  | Returns true, game is a draw.                          | yes          |
-| Test Case 4 | King is not in check and has >=1 valid move.                | Returns false, the game continues.                     | yes          |
-| Test Case 5 | Game not started yet, thus currentPlayer and board are null | Returns false                                          | yes          |
-
+|             | System under test                                              | Expected output                                        | Implemented? |
+|:------------|:---------------------------------------------------------------|:-------------------------------------------------------|:-------------|
+| Test Case 1 | King is in check and has no other valid moves.                 | Returns true, game notification that the game is over. | yes          |
+| Test Case 2 | King is in check and has >=1 valid move.                       | Returns false, the game continues.                     | yes          |
+| Test Case 3 | Stalemate \- player is not in check but has 0 valid moves.     | Returns true, game is a draw.                          | yes          |
+| Test Case 4 | King is not in check and has >=1 valid move.                   | Returns false, the game continues.                     | yes          |
+| Test Case 5 | Game not started yet, thus currentPlayer and board are null    | Returns false                                          | yes          |
+| Test Case 6 | Game has started, so currentPlayer is set, but board is null.  | Returns false.                                         | yes          |
 
 ### STEPS FOR BVA: `isGameOver()`
 
