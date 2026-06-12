@@ -379,6 +379,13 @@ public class GameManagerTests {
     }
 
     @Test
+    public void isCheckmate_startedGameWithNullBoard_returnsFalse() {
+        game.setBoard(null);
+
+        assertFalse(game.isCheckmate());
+    }
+
+    @Test
     public void getMessageDefaultEnglishIfLocaleNotSet() {
         GameManager game = new GameManager();
 

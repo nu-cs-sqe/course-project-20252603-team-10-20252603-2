@@ -50,13 +50,14 @@
 
 **Method under test: isCheckmate()**
 
-| Test Case | System under test                                                     | Expected output                                        | Implemented? |
-|-----------|-----------------------------------------------------------------------|--------------------------------------------------------|--------------|
-| 1         | King is in check and has no other valid moves.                        | Returns true, game notification that the game is over. | yes          |
-| 2         | King is in check and has 1 valid move.                                | Returns false, the game continues.                     | yes          |
-| 3         | King is not in check and has >=1 valid move.                          | Returns false, the game continues.                     | yes          |
-| 4         | Game has not started, so currentPlayer and board are null.            | Returns false.                                         | yes          |
-| 5         | Game has started, but the current player's king is not on the board.  | Returns false.                                         | yes          |
+| Test Case | System under test                                                    | Expected output                                        | Implemented? |
+|-----------|----------------------------------------------------------------------|--------------------------------------------------------|--------------|
+| 1         | King is in check and has no other valid moves.                       | Returns true, game notification that the game is over. | yes          |
+| 2         | King is in check and has 1 valid move.                               | Returns false, the game continues.                     | yes          |
+| 3         | King is not in check and has >=1 valid move.                         | Returns false, the game continues.                     | yes          |
+| 4         | Game has not started, so currentPlayer and board are null.           | Returns false.                                         | yes          |
+| 5         | Game has started, but the current player's king is not on the board. | Returns false.                                         | yes          |
+| 6         | Game has started, so currentPlayer is set, but board is null.        | Returns false.                                         | yes          |
 
 ### STEPS FOR BVA: `isCheckmate()`
 1. Data Types
