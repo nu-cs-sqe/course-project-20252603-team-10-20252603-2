@@ -575,4 +575,17 @@ public class QueenTests {
 
         assertTrue(queen.hasValidMoves(queenPos, board));
     }
+
+    @Test
+    public void isValidMove_invalidQueenMovementPattern_returnsFalse() {
+        Board board = new Board(false);
+        Queen queen = new Queen(Color.WHITE);
+
+        Location start = new Location(0, 0);
+        Location end = new Location(2, 1);
+
+        board.setPiece(start, queen);
+
+        assertFalse(queen.isValidMove(start, end, board));
+    }
 }
