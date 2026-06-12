@@ -258,7 +258,7 @@ public class BishopTests {
     }
 
     @Test
-    public void isValidMove_Bishop_EmptyDestination_RestoresBoardAfterSimulation() {
+    public void isValidMove_Bishop_EmptyDestination_returnTrue_RestoresBoardAfterSimulation() {
         Bishop bishop = new Bishop(Color.WHITE);
         King king = new King(Color.WHITE);
 
