@@ -588,4 +588,19 @@ public class QueenTests {
 
         assertFalse(queen.isValidMove(start, end, board));
     }
+
+    @Test
+    public void isValidMove_preservesOriginalBoardStateAfterEvaluation() {
+        Board testBoard = new Board(false);
+        Queen whiteQueen = new Queen(Color.WHITE);
+        Location start = new Location(3, 3);
+        Location end = new Location(3, 5);
+
+        testBoard.setPiece(start, whiteQueen);
+
+        whiteQueen.isValidMove(start, end, testBoard);
+
+        assertTrue(testBoard.isPieceHere(start));
+        assertFalse(testBoard.isPieceHere(end));
+    }
 }
