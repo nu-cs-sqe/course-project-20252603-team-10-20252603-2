@@ -10,9 +10,6 @@ import domain.piece.PieceType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class BishopTests {
 
@@ -258,6 +255,94 @@ public class BishopTests {
     }
 
     @Test
+    public void isValidMove_Bishop_EmptyDestination_returnTrue_RestoresBoardAfterSimulation() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        King king = new King(Color.WHITE);
+
+        Location start = new Location(2, 0);
+        Location end = new Location(3, 1);
+        Location kingPos = new Location(0, 0);
+
+        Board board = new Board(false);
+        board.setPiece(start, bishop);
+        board.setPiece(kingPos, king);
+
+        boolean result = bishop.isValidMove(start, end, board);
+
+        assertTrue(result);
+        assertSame(bishop, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
+    public void isValidMove_Bishop_CaptureDestination_returnsTrue_RestoresOriginalTargetAfterSimulation() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Pawn enemyPawn = new Pawn(Color.BLACK);
+
+        Location start = new Location(0, 0);
+        Location end = new Location(2, 2);
+        Location kingPos = new Location(7, 7);
+
+        Board board = new Board(false);
+        board.setPiece(start, bishop);
+        board.setPiece(end, enemyPawn);
+        board.setPiece(kingPos, king);
+
+        boolean result = bishop.isValidMove(start, end, board);
+
+        assertTrue(result);
+        assertSame(bishop, board.getPiece(start));
+        assertSame(enemyPawn, board.getPiece(end));
+    }
+
+    @Test
+    public void isValidMove_Bishop_BlocksCheck_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Bishop enemyBishop = new Bishop(Color.BLACK);
+
+        Location kingPos = new Location(0, 0);
+        Location bishopStart = new Location(2, 0);
+        Location bishopEnd = new Location(1, 1);
+        Location enemyBishopPos = new Location(3, 3);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(bishopStart, bishop);
+        board.setPiece(enemyBishopPos, enemyBishop);
+
+        boolean result = bishop.isValidMove(bishopStart, bishopEnd, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void isValidMove_Bishop_SkipsNonAlliedKingPiecesAndFindsAlliedKing_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Pawn enemyPawn = new Pawn(Color.BLACK);
+        Pawn sameColorPawn = new Pawn(Color.WHITE);
+        King king = new King(Color.WHITE);
+
+        Location enemyPawnPos = new Location(0, 0);
+        Location sameColorPawnPos = new Location(0, 1);
+        Location kingPos = new Location(0, 2);
+
+        Location bishopStart = new Location(2, 0);
+        Location bishopEnd = new Location(3, 1);
+
+        Board board = new Board(false);
+        board.setPiece(enemyPawnPos, enemyPawn);
+        board.setPiece(sameColorPawnPos, sameColorPawn);
+        board.setPiece(kingPos, king);
+        board.setPiece(bishopStart, bishop);
+
+        boolean result = bishop.isValidMove(bishopStart, bishopEnd, board);
+
+        assertTrue(result);
+    }
+
+    @Test
     public void makeCopy_Bishop_black_returnsNewBishopWithSameColorAndType() {
         Bishop original = new Bishop(Color.BLACK);
 
@@ -283,6 +368,7 @@ public class BishopTests {
         assertEquals(Color.WHITE, copy.getColor());
     }
 
+    @Test
     public void hasValidMoves_Bishop_ClearBoardCenter_ReturnsTrue() {
         final int bishopRow = 4;
         final int bishopCol = 4;
@@ -414,6 +500,7 @@ public class BishopTests {
 
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
+
     @Test
     public void hasValidMoves_BlackBishop_ClearBoardCorner_ReturnsTrue() {
         final int bishopRow = 7;
@@ -424,6 +511,99 @@ public class BishopTests {
 
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Bishop_OnlyUpLeftOpen_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        board.setPiece(new Location(3, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 5), new Pawn(Color.WHITE));
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Bishop_OnlyUpRightOpen_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        board.setPiece(new Location(3, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 5), new Pawn(Color.WHITE));
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Bishop_OnlyDownLeftOpen_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        board.setPiece(new Location(3, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(3, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 5), new Pawn(Color.WHITE));
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Bishop_OnlyDownRightOpen_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        board.setPiece(new Location(3, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(3, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 3), new Pawn(Color.WHITE));
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_BishopFarUpLeftEnemy_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Pawn enemyPawn = new Pawn(Color.BLACK);
+
+        Location bishopPos = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+        board.setPiece(new Location(2, 2), enemyPawn);
+
+        board.setPiece(new Location(3, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 5), new Pawn(Color.WHITE));
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_BishopOnlyEdgeDestinationAvailable_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(1, 1);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        board.setPiece(new Location(2, 0), new Pawn(Color.WHITE));
+        board.setPiece(new Location(2, 2), new Pawn(Color.WHITE));
+        board.setPiece(new Location(0, 2), new Pawn(Color.WHITE));
 
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
