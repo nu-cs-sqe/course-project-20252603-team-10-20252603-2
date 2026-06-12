@@ -27,6 +27,12 @@
 | 21          | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | false (block at x=4,y=3, enemy)    | L movement #3    | True            | yes          |
 | 22          | "WHITE" | x=3, y=3       | x=4, y=1        | EMPTY                    | false (block at x=4,y=2, friendly) | L movement #3    | True            | yes          |
 
+### Method under test: `isValidMove()` for Knight — additional BVA for mutation coverage
+
+| Test Number | Color | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern | Board State                                            | Expected output                   | Implemented? |
+|-------------|-------|----------------|-----------------|--------------------------|----------------|------------------|--------------------------------------------------------|-----------------------------------|--------------|
+| 23          | WHITE | x=3, y=0       | x=1, y=1        | EMPTY                    | True           | L movement #5    | Allied King at [0,0], enemy Rook at [7,0], same column | False )                           | no           |
+| 24          | WHITE | x=4, y=4       | x=2, y=3        | ENEMY                    | True           | L movement #5    | n/a                                                    | True, board restored after move   | no           |
 
 ### STEPS FOR BVA: `isValidMove()` for Knight
 
@@ -112,6 +118,20 @@
 | 4           | BLACK | [7,0]          | Stuck at the absolute edge, friendly pieces at [5, 1] and [6, 2]               | FALSE           | yes          |
 | 5           | WHITE | [7,1]          | Pinned against its own White King [7, 0] by an enemy Black Rook [7, 7] along a row | FALSE           | yes          |
 | 6           | WHITE | [7,1]          | Blocked by enemy piece [5, 2]                                                  | TRUE            | yes          |
+
+### Method under test: `hasValidMoves()` for Knight — additional BVA for mutation coverage
+
+| Test Number | Color | Start position | Board State                                                          | Expected Output | Implemented? |
+|-------------|-------|----------------|----------------------------------------------------------------------|-----------------|--------------|
+| 7           | WHITE | [4,4]          | Only [2,3] (L1) open, all others blocked                             | TRUE            | yes          |
+| 8           | WHITE | [4,4]          | Only [2,5] (L2) open, all others blocked                             | TRUE            | yes          |
+| 9           | WHITE | [4,4]          | Only [3,2] (L3) open, all others blocked                             | TRUE            | yes          |
+| 10          | WHITE | [4,4]          | Only [3,6] (L4) open, all others blocked                             | TRUE            | yes          |
+| 11          | WHITE | [4,4]          | Only [6,3] (L5) open, all others blocked                             | TRUE            | yes          |
+| 12          | WHITE | [4,4]          | Only [6,5] (L6) open, all others blocked                             | TRUE            | yes          |
+| 13          | WHITE | [4,4]          | Only [5,2] (L7) open, all others blocked                             | TRUE            | yes          |
+| 14          | WHITE | [4,4]          | Only [5,6] (L8) open, all others blocked                             | TRUE            | yes          |
+| 15          | WHITE | [0,0]          | Knight at corner, only [1,2] and [2,1] are available and are blocked | FALSE           | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Knight
 
