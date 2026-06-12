@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class PawnTests {
 
@@ -94,6 +95,34 @@ public class PawnTests {
         board.setPiece(chosen, new Pawn(Color.WHITE));
 
         assertFalse(pawn.isValidMove(start, chosen, board));
+    }
+
+    @Test
+    public void isValidMove_Pawn_movingToEndBlocksCheck_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 4;
+        final int endRow = 5;
+        final int endCol = 4;
+        final int kingRow = 7;
+        final int kingCol = 4;
+        final int rookRow = 0;
+        final int rookCol = 4;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+
+        Location pawnStart = new Location(pawnRow, pawnCol);
+        Location pawnEnd = new Location(endRow, endCol);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(pawnStart, pawn);
+        board.setPiece(kingPos, king);
+        board.setPiece(rookPos, rook);
+
+        assertTrue(pawn.isValidMove(pawnStart, pawnEnd, board));
     }
 
     @Test
@@ -254,6 +283,134 @@ public class PawnTests {
     }
 
     @Test
+    public void isValidMove_Pawn_movingExposesKingToCheck_returnsFalse() {
+        final int pawnRow = 6;
+        final int pawnCol = 4;
+        final int endRow = 5;
+        final int endCol = 5;
+        final int kingRow = 7;
+        final int kingCol = 4;
+        final int rookRow = 0;
+        final int rookCol = 4;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+        Piece enemyToCapture = new Pawn(Color.BLACK);
+
+        Location pawnStart = new Location(pawnRow, pawnCol);
+        Location pawnEnd = new Location(endRow, endCol);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(pawnStart, pawn);
+        board.setPiece(pawnEnd, enemyToCapture);
+        board.setPiece(kingPos, king);
+        board.setPiece(rookPos, rook);
+
+        assertFalse(pawn.isValidMove(pawnStart, pawnEnd, board));
+    }
+
+    @Test
+    public void isValidMove_Pawn_boardRestoredAfterOneForward_returnsTrue() {
+        final int startRow = 6;
+        final int startCol = 0;
+        final int endRow = 5;
+        final int endCol = 0;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location end = new Location(endRow, endCol);
+        Board board = new Board(false);
+        board.setPiece(start, pawn);
+
+        assertTrue(pawn.isValidMove(start, end, board));
+        assertSame(pawn, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
+    public void isValidMove_Pawn_boardRestoredAfterDiagonalCapture_returnsTrue() {
+        final int startRow = 6;
+        final int startCol = 4;
+        final int endRow = 5;
+        final int endCol = 5;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Piece enemy = new Pawn(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location end = new Location(endRow, endCol);
+        Board board = new Board(false);
+        board.setPiece(start, pawn);
+        board.setPiece(end, enemy);
+
+        assertTrue(pawn.isValidMove(start, end, board));
+        assertSame(pawn, board.getPiece(start));
+        assertSame(enemy, board.getPiece(end));
+    }
+
+    @Test
+    public void hasValidMoves_Pawn_onlyDiagonalRightCaptureOpen_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 4;
+        final int forwardRow = 5;
+        final int rightCol = 5;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+        board.setPiece(new Location(forwardRow, pawnCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(forwardRow, rightCol), new Pawn(Color.BLACK));
+
+        assertTrue(pawn.hasValidMoves(pawnPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Pawn_onlyDiagonalLeftCaptureOpen_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 4;
+        final int forwardRow = 5;
+        final int leftCol = 3;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+        board.setPiece(new Location(forwardRow, pawnCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(forwardRow, leftCol), new Pawn(Color.BLACK));
+
+        assertTrue(pawn.hasValidMoves(pawnPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Pawn_atColumnZero_diagonalLeftOffBoard_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 0;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+
+        assertTrue(pawn.hasValidMoves(pawnPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Pawn_atColumnSeven_diagonalRightOffBoard_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 7;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+
+        assertTrue(pawn.hasValidMoves(pawnPos, board));
+    }
+
+    @Test
     public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
         final int pawnRow = 6;
         final int pawnCol = 0;
@@ -387,5 +544,31 @@ public class PawnTests {
         assertFalse(pawn.hasValidMoves(pawnLocation, board));
 
         EasyMock.verify(mockKing);
+    }
+
+    @Test
+    public void hasValidMoves_Pawn_whiteAtRowZero_forwardOffBoard_returnsFalse() {
+        final int pawnRow = 0;
+        final int pawnCol = 4;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+
+        assertFalse(pawn.hasValidMoves(pawnPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Pawn_blackAtRowSeven_forwardOffBoard_returnsFalse() {
+        final int pawnRow = 7;
+        final int pawnCol = 4;
+
+        Piece pawn = new Pawn(Color.BLACK);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+
+        assertFalse(pawn.hasValidMoves(pawnPos, board));
     }
 }
