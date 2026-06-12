@@ -663,6 +663,31 @@ public class KingTests {
     }
 
     @Test
+    public void isValidMove_KingOldSquareDoesNotBlockCheck_ReturnsFalse() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int endRow = 4;
+        final int endCol = 5;
+        final int rookRow = 4;
+        final int rookCol = 0;
+
+        King king = new King(Color.WHITE);
+        Rook rook = new Rook(Color.BLACK);
+
+        Location start = new Location(kingRow, kingCol);
+        Location end = new Location(endRow, endCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(start, king);
+        board.setPiece(rookPos, rook);
+
+        assertFalse(king.isValidMove(start, end, board));
+        assertSame(king, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
     public void makeCopy_King_black_returnsNewKingWithSameColorAndType() {
         King original = new King(Color.BLACK);
 
