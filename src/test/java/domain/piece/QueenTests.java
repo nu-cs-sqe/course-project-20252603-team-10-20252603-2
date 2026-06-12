@@ -603,4 +603,23 @@ public class QueenTests {
         assertTrue(testBoard.isPieceHere(start));
         assertFalse(testBoard.isPieceHere(end));
     }
+
+    @Test
+    public void hasValidMoves_onlyNegativeYAxisPathOpen_killsDirectionMathMutant() {
+        Board board = new Board(false);
+        Queen queen = new Queen(Color.WHITE);
+        Location queenLoc = new Location(4, 4);
+        board.setPiece(queenLoc, queen);
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (i == 0 && j == 0) continue;
+                if (i == -1 && j == 1) continue;
+
+                board.setPiece(new Location(4 + i, 4 + j), new Pawn(Color.WHITE));
+            }
+        }
+
+        assertTrue(queen.hasValidMoves(queenLoc, board));
+    }
 }
