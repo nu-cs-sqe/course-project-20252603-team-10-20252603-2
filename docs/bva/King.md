@@ -17,9 +17,9 @@
 | 11          | WHITE      | x=4, y=4      | Pawn          | BLACK          | x=5, y=3          | none                 | False (wrong direction)           | yes          |
 | 12          | WHITE      | x=4, y=4      | Queen         | BLACK          | x=4, y=0          | none                 | True                              | yes          |
 | 13          | WHITE      | x=4, y=4      | Queen         | BLACK          | x=1, y=7          | none                 | True                              | yes          |
-| 14          | WHITE      | x=4, y=4      | Kign          | BLACK          | x=3, y=4          | none                 | True                              | yes          |
-| 15          | WHITE      | x=4, y=4      | King          | BLACK          | x=2, y=4          | none                 | False (too far)                   | yes          |
-| 16          | WHITE      | x=0, y=0      | Rook          | BLACK          | x=0, y=7          | none                 | True                              | yes          |
+| 14          | WHITE      | x=4, y=4      | King          | BLACK          | x=3, y=4          | none                 | True                              | yes          |
+| 15          | WHITE      | x=4, y=4      | King          | BLACK          | x=2, y=3          | none                 | False (too far)                   | yes          |
+| 16          | WHITE      | x=7, y=7      | Rook          | BLACK          | x=7, y=0          | none                 | True                              | yes          |
 | 17          | WHITE      | x=4, y=4      | King          | BLACK          | x=3, y=3          | none                 | True                              | yes          |
 | 18          | WHITE      | x=4, y=4      | King          | BLACK          | x=3, y=2          | none                 | False (too far by column)         | yes          |
 | 19          | WHITE      | x=4, y=4      | King          | BLACK          | x=4, y=4          | none                 | False (same square cannot attack) | yes          |
@@ -214,6 +214,10 @@
         * all adjacent squares would put the king into check
         * one adjacent square empty and safe 
         * one adjacent square has an unprotected enemy piece 
+        * only one directional adjacent square is safe
+          * only down-right open
+          * only upper-left open 
+        * max corner with all legal adjacent squares blocked
     * reachable adjacent square exists: boolean
         * True
         * False

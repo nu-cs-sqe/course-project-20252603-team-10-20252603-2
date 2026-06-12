@@ -769,6 +769,7 @@ public class KingTests {
         assertEquals(Color.WHITE, copy.getColor());
     }
 
+    @Test
     public void hasValidMovesKingClearBoardReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
