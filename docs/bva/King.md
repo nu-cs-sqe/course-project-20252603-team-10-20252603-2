@@ -20,6 +20,7 @@
 | 14          | WHITE      | x=4, y=4      | Kign          | BLACK          | x=3, y=4          | none                 | True                    | yes          |
 | 15          | WHITE      | x=4, y=4      | King          | BLACK          | x=2, y=4          | none                 | False (too far)         | yes          |
 | 16          | WHITE      | x=0, y=0      | Rook          | BLACK          | x=0, y=7          | none                 | True                    | yes          |
+| 17          | WHITE      | x=4, y=4      | King          | BLACK          | x=3, y=3          | none                 | True                    | yes          |
 
 ### STEPS FOR BVA: `isInCheck()` for King
 
