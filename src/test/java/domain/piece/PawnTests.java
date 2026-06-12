@@ -370,6 +370,19 @@ public class PawnTests {
     }
 
     @Test
+    public void hasValidMoves_Pawn_atColumnSeven_diagonalRightOffBoard_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 7;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+
+        assertTrue(pawn.hasValidMoves(pawnPos, board));
+    }
+
+    @Test
     public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
         final int pawnRow = 6;
         final int pawnCol = 0;
