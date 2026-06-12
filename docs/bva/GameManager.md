@@ -521,3 +521,11 @@ compare against the locale codes listed in languages.properties instead of hardc
 | Test Case | System under test                                         | Expected output            | Implemented? |
 |-----------|-----------------------------------------------------------|----------------------------|--------------|
 | 1         | Game started with one WHITE player and one BLACK player   | Returns the BLACK player   | yes          |
+
+
+**Method under test: getWinner(), basic functional testing**
+
+| Test Case | System under test                                                   | Expected output          | Implemented? |
+|-----------|---------------------------------------------------------------------|--------------------------|--------------|
+| 1         | Game has no completed checkmate, draw, or stalemate condition yet   | Returns null             | yes          |
+| 2         | WHITE player is checkmated                                          | Returns the BLACK player | no           |

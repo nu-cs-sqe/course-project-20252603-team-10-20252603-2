@@ -1212,4 +1212,9 @@ public class GameManagerTests {
         assertEquals(Color.BLACK, game.getBlackPlayer().getPlayerColor());
     }
 
+    @Test
+    public void getWinner_newGame_returnsNull() {
+        assertNull(game.getWinner());
+    }
+
 }
