@@ -67,46 +67,28 @@ public class Queen extends Piece {
         int dirY = Integer.compare(end.getY(), start.getY());
 
         boolean diagonalMovement = (diffX == diffY);
-
         boolean xMovement = (start.getY() == end.getY()) && (start.getX() != end.getX());
         boolean yMovement = (start.getY() != end.getY()) && (start.getX() == end.getX());
 
-        if (diagonalMovement) {
-            for (int i = 1; i < diffX; i++) {
-                Location locationCheck = new Location(start.getX() + (i * dirX), start.getY() + (i * dirY));
-
-                if (board.isPieceHere(locationCheck)) {
-                    return false;
-                }
-
-            }
-
-            return true;
+        if (!diagonalMovement && !xMovement && !yMovement) {
+            return false;
         }
 
-        if (yMovement) {
-            for (int i = 1; i < diffY; i++) {
-                Location locationCheck = new Location(start.getX(), start.getY() + (i * dirY));
+        int currentX = start.getX() + dirX;
+        int currentY = start.getY() + dirY;
 
-                if (board.isPieceHere(locationCheck)) return false;
+        while (currentX != end.getX() || currentY != end.getY()) {
+            Location locationCheck = new Location(currentX, currentY);
 
+            if (board.isPieceHere(locationCheck)) {
+                return false;
             }
 
-            return true;
+            currentX += dirX;
+            currentY += dirY;
         }
 
-        if (xMovement) {
-            for (int i = 1; i < diffX; i++) {
-                Location locationCheck = new Location(start.getX() + (i * dirX), start.getY());
-
-                if (board.isPieceHere(locationCheck)) return false;
-
-            }
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     private boolean doesMoveKingIntoCheck(Location start, Location end, Board board) {
