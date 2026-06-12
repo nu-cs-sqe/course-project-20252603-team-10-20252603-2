@@ -145,25 +145,46 @@ public class Bishop extends Piece {
 
     @Override
     public boolean hasValidMoves(Location currentPosition, Board board) {
-        int currentRow = currentPosition.getX();
-        int currentCol = currentPosition.getY();
-
         for (int rowDirection = -1; rowDirection <= 1; rowDirection += 2) {
-            for (int colDirection = -1; colDirection <= 1; colDirection += 2) {
-                int targetRow = currentRow + rowDirection;
-                int targetCol = currentCol + colDirection;
-
-                while (targetRow >= 0 && targetRow <  NUM_ROWS
-                        && targetCol >= 0 && targetCol < NUM_COLS) {
-                    Location target = new Location(targetRow, targetCol);
-                    if (isValidMove(currentPosition, target, board)) {
-                        return true;
-                    }
-                    targetRow += rowDirection;
-                    targetCol += colDirection;
-                }
+            if (hasValidMoveInRowDirection(currentPosition, board, rowDirection)) {
+                return true;
             }
         }
+
         return false;
+    }
+
+    private boolean hasValidMoveInRowDirection(Location currentPosition, Board board,
+                                               int rowDirection) {
+        for (int colDirection = -1; colDirection <= 1; colDirection += 2) {
+            if (hasValidMoveInDirection(currentPosition, board, rowDirection, colDirection)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean hasValidMoveInDirection(Location currentPosition, Board board,
+                                            int rowDirection, int colDirection) {
+        int targetRow = currentPosition.getX() + rowDirection;
+        int targetCol = currentPosition.getY() + colDirection;
+
+        while (isOnBoard(targetRow, targetCol)) {
+            Location target = new Location(targetRow, targetCol);
+
+            if (isValidMove(currentPosition, target, board)) {
+                return true;
+            }
+
+            targetRow += rowDirection;
+            targetCol += colDirection;
+        }
+
+        return false;
+    }
+
+    private boolean isOnBoard(int row, int col) {
+        return row >= 0 && row < NUM_ROWS && col >= 0 && col < NUM_COLS;
     }
 }
