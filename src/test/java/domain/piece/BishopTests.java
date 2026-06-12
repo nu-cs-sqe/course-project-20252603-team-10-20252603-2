@@ -300,6 +300,27 @@ public class BishopTests {
     }
 
     @Test
+    public void isValidMove_Bishop_BlocksCheck_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Bishop enemyBishop = new Bishop(Color.BLACK);
+
+        Location kingPos = new Location(0, 0);
+        Location bishopStart = new Location(2, 0);
+        Location bishopEnd = new Location(1, 1);
+        Location enemyBishopPos = new Location(3, 3);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(bishopStart, bishop);
+        board.setPiece(enemyBishopPos, enemyBishop);
+
+        boolean result = bishop.isValidMove(bishopStart, bishopEnd, board);
+
+        assertTrue(result);
+    }
+
+    @Test
     public void makeCopy_Bishop_black_returnsNewBishopWithSameColorAndType() {
         Bishop original = new Bishop(Color.BLACK);
 
