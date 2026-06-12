@@ -285,6 +285,7 @@
 | 7           | BLACK KNIGHT | (7,7)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion")                                              | yes          |
 | 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException ("Invalid promotion piece")                                                          | yes          |
 | 9           | BLACK PAWN   | (6,0)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion") because black pawn is not on promotion row   | yes          |
+| 10          | WHITE PAWN   | (1,0)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion") because white pawn is not on promotion row   | yes          |
 
 ### STEPS FOR BVA: `promotePawn()`
 
