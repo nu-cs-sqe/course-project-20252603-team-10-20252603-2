@@ -283,6 +283,7 @@ public class BishopTests {
         assertEquals(Color.WHITE, copy.getColor());
     }
 
+    @Test
     public void hasValidMoves_Bishop_ClearBoardCenter_ReturnsTrue() {
         final int bishopRow = 4;
         final int bishopCol = 4;
