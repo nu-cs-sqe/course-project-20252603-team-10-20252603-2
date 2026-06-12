@@ -528,4 +528,4 @@ compare against the locale codes listed in languages.properties instead of hardc
 | Test Case | System under test                                                   | Expected output          | Implemented? |
 |-----------|---------------------------------------------------------------------|--------------------------|--------------|
 | 1         | Game has no completed checkmate, draw, or stalemate condition yet   | Returns null             | yes          |
-| 2         | WHITE player is checkmated                                          | Returns the BLACK player | no           |
+| 2         | WHITE player is checkmated                                          | Returns the BLACK player | yes          |

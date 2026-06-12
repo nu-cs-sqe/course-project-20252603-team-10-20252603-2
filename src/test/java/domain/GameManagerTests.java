@@ -1217,4 +1217,32 @@ public class GameManagerTests {
         assertNull(game.getWinner());
     }
 
+    @Test
+    public void getWinner_afterWhiteCheckmated_returnsBlackPlayer() {
+        King mockKing = EasyMock.createMock(King.class);
+        EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(
+                EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class)
+        )).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(
+                EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class)
+        )).andReturn(false).anyTimes();
+
+        EasyMock.replay(mockKing);
+
+        board.setPiece(new Location(0, 0), mockKing);
+        game.setBoard(board);
+
+        assertTrue(game.isGameOver());
+
+        assertNotNull(game.getWinner());
+        assertEquals(Color.BLACK, game.getWinner().getPlayerColor());
+
+        EasyMock.verify(mockKing);
+    }
+
 }
