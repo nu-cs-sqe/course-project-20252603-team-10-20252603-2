@@ -10,359 +10,383 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
+import org.easymock.EasyMock;
+
 public class QueenTests {
 
     @Test
     public void isValidMove_Queen_xMovPos_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 0;
+
         Piece queen = new Queen(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_QueenBlack_xMovPos_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 0;
+
         Piece queen = new Queen(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_xMovNeg_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 0;
+        final int endCol = 7;
+
         Piece queen = new Queen(Color.BLACK);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(0, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_yMovNeg_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 7;
+        final int endCol = 0;
+
         Piece queen = new Queen(Color.BLACK);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(7, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_yMovPos_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 0;
+        final int endCol = 7;
+
         Piece queen = new Queen(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(0, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_diagonalPos_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+
         Piece queen = new Queen(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_diagonalNeg_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 0;
+        final int endCol = 0;
+
         Piece queen = new Queen(Color.WHITE);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(0, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_xMovPosFriendlyBlock_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 0;
+        final int blockerRow = 3;
+        final int blockerCol = 0;
+
         Piece queen = new Queen(Color.BLACK);
-        Piece blocker = new Pawn(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 0);
-        Location blockerLocation = new Location(3, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blockerLocation = new Location(blockerRow, blockerCol);
         Board board = new Board(false);
-        board.setPiece(blockerLocation, blocker);
+        board.setPiece(blockerLocation, new Pawn(Color.BLACK));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_xMovPosEnemyBlock_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 0;
+        final int blockerRow = 3;
+        final int blockerCol = 0;
+
         Piece queen = new Queen(Color.BLACK);
-        Piece blocker = new Pawn(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 0);
-        Location blockerLocation = new Location(3, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blockerLocation = new Location(blockerRow, blockerCol);
         Board board = new Board(false);
-        board.setPiece(blockerLocation, blocker);
+        board.setPiece(blockerLocation, new Pawn(Color.WHITE));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_yMovPosEnemyBlock_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 0;
+        final int endCol = 7;
+        final int blockerRow = 0;
+        final int blockerCol = 3;
+
         Piece queen = new Queen(Color.BLACK);
-        Piece blocker = new Pawn(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(0, 7);
-        Location blockerLocation = new Location(0, 3);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blockerLocation = new Location(blockerRow, blockerCol);
         Board board = new Board(false);
-        board.setPiece(blockerLocation, blocker);
+        board.setPiece(blockerLocation, new Pawn(Color.WHITE));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_diagonalPosEnemyBlock_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+        final int blockerRow = 3;
+        final int blockerCol = 3;
+
         Piece queen = new Queen(Color.WHITE);
-        Piece blocker = new Pawn(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-        Location blockerLocation = new Location(3, 3);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blockerLocation = new Location(blockerRow, blockerCol);
         Board board = new Board(false);
-        board.setPiece(blockerLocation, blocker);
+        board.setPiece(blockerLocation, new Pawn(Color.BLACK));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_xMovNegEnemyEnd_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 0;
+        final int endCol = 7;
+
         Piece queen = new Queen(Color.WHITE);
-        Piece blocker = new Pawn(Color.BLACK);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(0, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
-        board.setPiece(chosen, blocker);
+        board.setPiece(chosen, new Pawn(Color.BLACK));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_xMovNegFriendlyEnd_returnFalse() {
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 0;
+        final int endCol = 7;
+
         Piece queen = new Queen(Color.WHITE);
-        Piece blocker = new Pawn(Color.WHITE);
-
-        Location start = new Location(7, 7);
-        Location chosen = new Location(0, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
-        board.setPiece(chosen, blocker);
+        board.setPiece(chosen, new Pawn(Color.WHITE));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_sameSquare_returnFalse() {
+        final int startRow = 5;
+        final int startCol = 7;
+
         Piece queen = new Queen(Color.WHITE);
-
-        Location start = new Location(5, 7);
-        Location chosen = new Location(5, 7);
-
+        Location start = new Location(startRow, startCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, start, board));
     }
 
     @Test
     public void isValidMove_Queen_LMov1_returnFalse() {
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 5;
+        final int endCol = 2;
+
         Piece queen = new Queen(Color.WHITE);
-
-        Location start = new Location(3, 3);
-        Location chosen = new Location(5, 2);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_LMov3_returnFalse() {
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 4;
+        final int endCol = 1;
+
         Piece queen = new Queen(Color.BLACK);
-
-        Location start = new Location(3, 3);
-        Location chosen = new Location(4, 1);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_diagonalPosMidEndBlocker_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+        final int blockerRow = 6;
+        final int blockerCol = 6;
+
         Piece queen = new Queen(Color.WHITE);
-        Piece blocker = new Pawn(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-        Location blocking_loc = new Location(6, 6);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blockingLoc = new Location(blockerRow, blockerCol);
         Board board = new Board(false);
-        board.setPiece(blocking_loc, blocker);
+        board.setPiece(blockingLoc, new Pawn(Color.BLACK));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_diagonal70to07_returnTrue() {
+        final int startRow = 7;
+        final int startCol = 0;
+        final int endRow = 0;
+        final int endCol = 7;
+
         Piece queen = new Queen(Color.WHITE);
-
-        Location start = new Location(7, 0);
-        Location chosen = new Location(0, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_mutantTestDiagonalPosEnemy_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 7;
+
         Piece queen = new Queen(Color.WHITE);
-        Piece blocker = new Queen(Color.BLACK);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
-        board.setPiece(chosen, blocker);
+        board.setPiece(chosen, new Queen(Color.BLACK));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_mutantTestYDirEnemyBlocker_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 0;
+        final int endCol = 7;
+
         Piece queen = new Queen(Color.BLACK);
-        Piece blocker = new Queen(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(0, 7);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
-        board.setPiece(chosen, blocker);
+        board.setPiece(chosen, new Queen(Color.WHITE));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_mutantTestXDirEnemyBlocker_returnTrue() {
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 7;
+        final int endCol = 0;
+
         Piece queen = new Queen(Color.BLACK);
-        Piece blocker = new Queen(Color.WHITE);
-
-        Location start = new Location(0, 0);
-        Location chosen = new Location(7, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
         Board board = new Board(false);
-        board.setPiece(chosen, blocker);
+        board.setPiece(chosen, new Queen(Color.WHITE));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertTrue(result);
+        assertTrue(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_mutantTestYNegEnemyPath_returnFalse() {
+        final int startRow = 0;
+        final int startCol = 7;
+        final int endRow = 0;
+        final int endCol = 0;
+        final int blockerRow = 0;
+        final int blockerCol = 1;
+
         Piece queen = new Queen(Color.BLACK);
-        Piece blocker = new Queen(Color.WHITE);
-
-        Location start = new Location(0, 7);
-        Location chosen = new Location(0, 0);
-        Location blocking_at = new Location(0, 1);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blockingAt = new Location(blockerRow, blockerCol);
         Board board = new Board(false);
-        board.setPiece(blocking_at, blocker);
+        board.setPiece(blockingAt, new Queen(Color.WHITE));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
     public void isValidMove_Queen_mutantTestXNegEnemyPath_returnFalse() {
+        final int startRow = 7;
+        final int startCol = 0;
+        final int endRow = 0;
+        final int endCol = 0;
+        final int blockerRow = 1;
+        final int blockerCol = 0;
+
         Piece queen = new Queen(Color.BLACK);
-        Piece blocker = new Queen(Color.WHITE);
-
-        Location start = new Location(7, 0);
-        Location chosen = new Location(0, 0);
-        Location blocking_at = new Location(1, 0);
-
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blockingAt = new Location(blockerRow, blockerCol);
         Board board = new Board(false);
-        board.setPiece(blocking_at, blocker);
+        board.setPiece(blockingAt, new Queen(Color.WHITE));
 
-        boolean result = queen.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(queen.isValidMove(start, chosen, board));
     }
 
     @Test
@@ -411,7 +435,6 @@ public class QueenTests {
 
         Queen queen = new Queen(Color.WHITE);
         Location queenPos = new Location(queenRow, queenCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
 
@@ -425,7 +448,6 @@ public class QueenTests {
 
         Queen queen = new Queen(Color.WHITE);
         Location queenPos = new Location(queenRow, queenCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
 
@@ -439,7 +461,6 @@ public class QueenTests {
 
         Queen queen = new Queen(Color.WHITE);
         Location queenPos = new Location(queenRow, queenCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
 
@@ -457,7 +478,6 @@ public class QueenTests {
 
         Queen queen = new Queen(Color.WHITE);
         Location queenPos = new Location(queenRow, queenCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
         board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
@@ -481,7 +501,6 @@ public class QueenTests {
 
         Queen queen = new Queen(Color.WHITE);
         Location queenPos = new Location(queenRow, queenCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
         board.setPiece(new Location(queenRow, rightCol), new Pawn(Color.WHITE));
@@ -507,9 +526,19 @@ public class QueenTests {
         final int rightCol = queenCol + 1;
 
         Queen queen = new Queen(Color.WHITE);
-        King king = new King(Color.WHITE);
         Piece rook1 = new Rook(Color.BLACK);
         Piece rook2 = new Rook(Color.BLACK);
+
+        King mockKing = EasyMock.createMock(King.class);
+        EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockKing.isSameColor(EasyMock.anyObject())).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(
+                        EasyMock.anyObject(Location.class),
+                        EasyMock.isA(Board.class)))
+                .andReturn(true).anyTimes();
+        EasyMock.replay(mockKing);
 
         Location queenPos = new Location(queenRow, queenCol);
         Location kingPos = new Location(kingRow, kingCol);
@@ -518,10 +547,9 @@ public class QueenTests {
 
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
-        board.setPiece(kingPos, king);
+        board.setPiece(kingPos, mockKing);
         board.setPiece(rook1Pos, rook1);
         board.setPiece(rook2Pos, rook2);
-
         board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
         board.setPiece(new Location(aboveRow, queenCol), new Pawn(Color.WHITE));
         board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
@@ -530,6 +558,8 @@ public class QueenTests {
         board.setPiece(new Location(belowRow, rightCol), new Pawn(Color.WHITE));
 
         assertFalse(queen.hasValidMoves(queenPos, board));
+
+        EasyMock.verify(mockKing);
     }
 
     @Test
@@ -543,10 +573,8 @@ public class QueenTests {
 
         Queen queen = new Queen(Color.WHITE);
         Location queenPos = new Location(queenRow, queenCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
-
         board.setPiece(new Location(aboveRow, queenCol), new Pawn(Color.WHITE));
         board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
         board.setPiece(new Location(queenRow, leftCol), new Pawn(Color.WHITE));
@@ -569,10 +597,8 @@ public class QueenTests {
 
         Queen queen = new Queen(Color.WHITE);
         Location queenPos = new Location(queenRow, queenCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
-
         board.setPiece(new Location(aboveRow, leftCol), new Pawn(Color.WHITE));
         board.setPiece(new Location(aboveRow, rightCol), new Pawn(Color.WHITE));
         board.setPiece(new Location(queenRow, leftCol), new Pawn(Color.WHITE));
@@ -592,13 +618,11 @@ public class QueenTests {
         final int enemyCol = 3;
 
         Queen queen = new Queen(Color.WHITE);
-        Piece enemy = new Pawn(Color.BLACK);
         Location queenPos = new Location(queenRow, queenCol);
         Location enemyPos = new Location(enemyRow, enemyCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
-        board.setPiece(enemyPos, enemy);
+        board.setPiece(enemyPos, new Pawn(Color.BLACK));
 
         assertTrue(queen.hasValidMoves(queenPos, board));
     }
@@ -610,7 +634,6 @@ public class QueenTests {
 
         Queen queen = new Queen(Color.BLACK);
         Location queenPos = new Location(queenRow, queenCol);
-
         Board board = new Board(false);
         board.setPiece(queenPos, queen);
 
