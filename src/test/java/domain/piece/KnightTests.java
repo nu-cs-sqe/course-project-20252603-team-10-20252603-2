@@ -5,8 +5,10 @@ import domain.Location;
 import constants.Color;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class KnightTests {
 
@@ -343,6 +345,31 @@ public class KnightTests {
     }
 
     @Test
+    public void makeCopy_Knight_black_returnsNewKnightWithSameColorAndType() {
+        Knight original = new Knight(Color.BLACK);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Knight.class, copy);
+        assertEquals(PieceType.KNIGHT, copy.getType());
+        assertEquals(Color.BLACK, copy.getColor());
+    }
+
+    @Test
+    public void makeCopy_Knight_white_returnsNewKnightWithSameColorAndType() {
+        Knight original = new Knight(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Knight.class, copy);
+        assertEquals(PieceType.KNIGHT, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
+    }
+
     public void hasValidMoves_knight_notBlocked_returnsTrue() {
         Piece knight = new Knight(Color.WHITE);
 
@@ -454,4 +481,5 @@ public class KnightTests {
 
         assertTrue(result);
     }
+
 }

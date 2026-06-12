@@ -5,8 +5,10 @@ import domain.Location;
 import org.junit.jupiter.api.Test;
 import constants.Color;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class QueenTests {
 
@@ -364,6 +366,45 @@ public class QueenTests {
     }
 
     @Test
+    public void isValidMove_Queen_mutantDiagonalMidBoard_returnTrue() {
+        Piece queen = new Queen(Color.WHITE);
+
+        Location start = new Location(1, 2);
+        Location chosen = new Location(3, 4);
+
+        Board board = new Board(false);
+
+        boolean result = queen.isValidMove(start, chosen, board);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void makeCopy_Queen_black_returnsNewQueenWithSameColorAndType() {
+        Queen original = new Queen(Color.BLACK);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Queen.class, copy);
+        assertEquals(PieceType.QUEEN, copy.getType());
+        assertEquals(Color.BLACK, copy.getColor());
+    }
+
+    @Test
+    public void makeCopy_Queen_white_returnsNewQueenWithSameColorAndType() {
+        Queen original = new Queen(Color.WHITE);
+
+        Piece copy = original.makeCopy();
+
+        assertNotNull(copy);
+        assertNotSame(original, copy);
+        assertInstanceOf(Queen.class, copy);
+        assertEquals(PieceType.QUEEN, copy.getType());
+        assertEquals(Color.WHITE, copy.getColor());
+    }
+
     public void hasValidMoves_Queen_ClearBoard_ReturnsTrue() {
         final int queenRow = 4;
         final int queenCol = 4;
