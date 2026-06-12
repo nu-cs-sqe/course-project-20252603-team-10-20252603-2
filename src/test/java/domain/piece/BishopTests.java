@@ -258,6 +258,26 @@ public class BishopTests {
     }
 
     @Test
+    public void isValidMove_Bishop_EmptyDestination_RestoresBoardAfterSimulation() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        King king = new King(Color.WHITE);
+
+        Location start = new Location(2, 0);
+        Location end = new Location(3, 1);
+        Location kingPos = new Location(0, 0);
+
+        Board board = new Board(false);
+        board.setPiece(start, bishop);
+        board.setPiece(kingPos, king);
+
+        boolean result = bishop.isValidMove(start, end, board);
+
+        assertTrue(result);
+        assertSame(bishop, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
     public void makeCopy_Bishop_black_returnsNewBishopWithSameColorAndType() {
         Bishop original = new Bishop(Color.BLACK);
 

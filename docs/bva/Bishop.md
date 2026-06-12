@@ -3,24 +3,25 @@
 ### Method under test: `isValidMove()` for Bishop
 
 
-| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern              | Expected output | Implemented? |
-|-------------|---------|----------------|-----------------|--------------------------|----------------|-------------------------------|-----------------|--------------|
-| 1           | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square                   | False           | yes          |
-| 2           | "WHITE" | [0][0]         | [1][1]          | EMPTY                    | True           | 1 diagonal (row++, col++) min | True            | yes          |
-| 3           | "WHITE" | [0][7]         | [1][6]          | EMPTY                    | True           | 1 diagonal (row++, col--) min | True            | yes          |
-| 4           | "WHITE" | [7][0]         | [6][1]          | EMPTY                    | True           | 1 diagonal (row--, col++) min | True            | yes          |
-| 5           | "WHITE" | [7][7]         | [6][6]          | EMPTY                    | True           | 1 diagonal (row--, col--) min | True            | yes          |
-| 6           | "WHITE" | [0][0]         | [7][7]          | EMPTY                    | True           | 7 diagonal (row++, col++) max | True            | yes          |
-| 7           | "WHITE" | [0][7]         | [7][0]          | EMPTY                    | True           | 7 diagonal (row++, col--) max | True            | yes          |
-| 8           | "WHITE" | [7][0]         | [0][7]          | EMPTY                    | True           | 7 diagonal (row--, col++) max | True            | yes          |
-| 9           | "WHITE" | [7][7]         | [0][0]          | EMPTY                    | True           | 7 diagonal (row--, col--) max | True            | yes          |
-| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | True           | vertical                      | False           | yes          |
-| 11          | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | True           | horizontal                    | False           | yes          |
-| 12          | "WHITE" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal              | True            | yes          |
-| 13          | "WHITE" | [0][0]         | [3][3]          | friendly                 | True           | friendly diagonal             | False           | yes          |
-| 14          | "BLACK" | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal              | True            | yes          |
-| 15          | "BLACK" | [0][0]         | [7][7]          | empty                    | False          | valid move + blocked path     | False           | yes          |
-| 16          | "BLACK" | [0][0]         | [7][7]          | empty                    | True           | valid move                    | True            | yes          |
+| Test Number | Color     | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern                                     | Expected output                                                 | Implemented? |
+|-------------|-----------|----------------|-----------------|--------------------------|----------------|------------------------------------------------------|-----------------------------------------------------------------|--------------|
+| 1           | "WHITE"   | [0][0]         | [0][0]          | EMPTY                    | True           | same square                                          | False                                                           | yes          |
+| 2           | "WHITE"   | [0][0]         | [1][1]          | EMPTY                    | True           | 1 diagonal (row++, col++) min                        | True                                                            | yes          |
+| 3           | "WHITE"   | [0][7]         | [1][6]          | EMPTY                    | True           | 1 diagonal (row++, col--) min                        | True                                                            | yes          |
+| 4           | "WHITE"   | [7][0]         | [6][1]          | EMPTY                    | True           | 1 diagonal (row--, col++) min                        | True                                                            | yes          |
+| 5           | "WHITE"   | [7][7]         | [6][6]          | EMPTY                    | True           | 1 diagonal (row--, col--) min                        | True                                                            | yes          |
+| 6           | "WHITE"   | [0][0]         | [7][7]          | EMPTY                    | True           | 7 diagonal (row++, col++) max                        | True                                                            | yes          |
+| 7           | "WHITE"   | [0][7]         | [7][0]          | EMPTY                    | True           | 7 diagonal (row++, col--) max                        | True                                                            | yes          |
+| 8           | "WHITE"   | [7][0]         | [0][7]          | EMPTY                    | True           | 7 diagonal (row--, col++) max                        | True                                                            | yes          |
+| 9           | "WHITE"   | [7][7]         | [0][0]          | EMPTY                    | True           | 7 diagonal (row--, col--) max                        | True                                                            | yes          |
+| 10          | "WHITE"   | [0][0]         | [3][0]          | EMPTY                    | True           | vertical                                             | False                                                           | yes          |
+| 11          | "WHITE"   | [0][0]         | [0][3]          | EMPTY                    | True           | horizontal                                           | False                                                           | yes          |
+| 12          | "WHITE"   | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal                                     | True                                                            | yes          |
+| 13          | "WHITE"   | [0][0]         | [3][3]          | friendly                 | True           | friendly diagonal                                    | False                                                           | yes          |
+| 14          | "BLACK"   | [0][0]         | [7][7]          | enemy                    | True           | capture diagonal                                     | True                                                            | yes          |
+| 15          | "BLACK"   | [0][0]         | [7][7]          | empty                    | False          | valid move + blocked path                            | False                                                           | yes          |
+| 16          | "BLACK"   | [0][0]         | [7][7]          | empty                    | True           | valid move                                           | True                                                            | yes          |
+| 17          | "WHITE"   | [2][0]         | [3][1]          | EMPTY                    | True           | valid diagonal + board restoration after simulation  | True, bishop remains at [2][0] and [3][1] is empty after call   | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Bishop
 
@@ -34,6 +35,7 @@
     * movement pattern (one of the chess movement types, or not)
 * output:
     * a yes/no answer
+    * board state after simulated king-safety check is restored
 
 2) BVA catalog classes
 * input:
@@ -45,6 +47,8 @@
     * movement pattern (one of the chess movement types, or not): cases
 * output:
     * a yes/no answer: boolean
+    * side effect: cases
+        * board state after simulated king-safety check is restored
 
 3) BVA catalog classes -- values
 * input:
@@ -85,6 +89,8 @@
         * blocked path with valid direction
 * output:
     * a yes/no answer: boolean
+    * side effect: cases
+        * board state after simulated king-safety check is restored
 
 
 ### Method under test: `makeCopy()` for Bishop, basic functionality testing
