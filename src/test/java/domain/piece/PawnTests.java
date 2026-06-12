@@ -285,6 +285,24 @@ public class PawnTests {
     }
 
     @Test
+    public void isValidMove_Pawn_boardRestoredAfterOneForward_returnsTrue() {
+        final int startRow = 6;
+        final int startCol = 0;
+        final int endRow = 5;
+        final int endCol = 0;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location end = new Location(endRow, endCol);
+        Board board = new Board(false);
+        board.setPiece(start, pawn);
+
+        assertTrue(pawn.isValidMove(start, end, board));
+        assertSame(pawn, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
     public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
         final int pawnRow = 6;
         final int pawnCol = 0;
