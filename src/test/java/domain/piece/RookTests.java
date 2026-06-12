@@ -468,5 +468,18 @@ public class RookTests {
 
         assertTrue(rook.hasValidMoves(rookLoc, board));
     }
+    @Test
+    public void hasValidMoves_rookAtCornerFacingEdge_killsEdgeBoundaryMutants() {
+        Board board = new Board(false);
+        Rook rook = new Rook(Color.WHITE);
+
+        Location rookLoc = new Location(0, 6);
+        board.setPiece(rookLoc, rook);
+
+        board.setPiece(new Location(1, 6), new Pawn(Color.WHITE));
+        board.setPiece(new Location(0, 5), new Pawn(Color.WHITE));
+
+        assertTrue(rook.hasValidMoves(rookLoc, board));
+    }
 
 }
