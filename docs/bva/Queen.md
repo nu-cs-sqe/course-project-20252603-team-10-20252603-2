@@ -27,7 +27,7 @@
 | 21          | "BLACK" | x=0, y=0       | x=7, y=0        | ENEMY                    | True                             | x movement (+ direction) | True            | yes          |
 | 22          | "BLACK" | x=0, y=7       | x=0, y=0        | EMPTY                    | False (enemy piece @ x=0,y=1)    | y movement (- direction) | False           | yes          |
 | 23          | "BLACK" | x=7, y=0       | x=0, y=0        | EMPTY                    | False (enemy piece @ x=1,y=0)    | x movement (- direction) | False           | yes          |
-
+| 24          | "WHITE" | x=1, y=2       | x=3, y=4        | EMPTY                    | True                             | diagonal (+ dir)         | True            | yes          |
 
 
 ### STEPS FOR BVA: `isValidMove()` for Queen
@@ -101,3 +101,66 @@
     * a yes/no answer: boolean
 
     
+### Method under test: `makeCopy()` for Queen, basic functionality testing
+
+| Test Number | Color      | Expected output                                          | Implemented? |
+|-------------|------------|----------------------------------------------------------|--------------|
+| 1           | "BLACK"    | new non null queen, same color same type and diff object | yes          |
+| 2           | "WHITE"    | new non null queen, same color same type and diff object | yes          |
+
+
+## Method under test: `hasValidMoves()` for Queen
+
+| Test Number | Color | Start position | Board State                                                      | Expected Output | Implemented? |
+|-------------|-------|----------------|------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [4,4]          | Clear board                                                      | TRUE            | yes          |
+| 2           | WHITE | [0,0]          | Clear board                                                      | TRUE            | yes          |
+| 3           | WHITE | [7,7]          | Clear board                                                      | TRUE            | yes          |
+| 4           | WHITE | [4,4]          | all 8 adjacent squares are blocked by friendly pieces            | FALSE           | yes          |
+| 5           | WHITE | [0,0]          | queen in corner, adjacent squares are blocked by friendly pieces | FALSE           | yes          |
+| 6           | WHITE | [4,4]          | queen moving would put the king in check                         | FALSE           | yes          |
+| 7           | WHITE | [4,4]          | one diagonal path open, all other directions blocked             | TRUE            | yes          |
+| 8           | WHITE | [4,4]          | One straight path open, all other directions blocked             | TRUE            | yes          |
+| 9           | WHITE | [4,4]          | unprotected enemy piece on destination                           | TRUE            | yes          |
+| 10          | BLACK | [7,7]          | Clear board                                                      | TRUE            | yes          |
+
+### STEPS FOR BVA: `hasValidMoves()` for Queen
+
+1) input equivalence classes and output equivalence classes
+* input:
+    * queen color
+    * queen start position (row, column)
+    * state of the board (Board)
+    * are any squares reachable without exposing the king?
+* output:
+    * a yes/no answer
+
+2) BVA catalog classes
+* input:
+    * queen color: cases
+    * queen start position (row, column): array indices
+    * state of the board: cases
+    * reachable square exists: boolean
+* output:
+    * a yes/no answer: boolean
+
+3) BVA catalog classes -- values
+* input:
+    * queen color: cases
+        * WHITE, BLACK
+    * queen start position (row, column): array indices
+        * all indices are 0 at same time: [0][0]  
+        * all largest valid value: [7][7]  
+        * center of board: [4][4]
+    * state of the board: cases
+        * clear board 
+        * all immediate squares in every direction blocked by friendly pieces 
+        * moving exposes king to check
+        * one diagonal path open, all others blocked
+        * one straight path open, all others blocked
+        * unprotected enemy piece reachable
+    * reachable square exists: boolean
+        * True
+        * False
+* output:
+    * a yes/no answer: boolean
