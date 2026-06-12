@@ -593,5 +593,281 @@ public class KnightTests {
         assertTrue(knight.hasValidMoves(location, board));
     }
 
+    @Test
+    public void hasValidMoves_knight_onlyL1OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col + 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col + 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
+
+    @Test
+    public void hasValidMoves_knight_onlyL2OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col + 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col + 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
+
+    @Test
+    public void hasValidMoves_knight_onlyL3OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col + 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col + 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
+
+    @Test
+    public void hasValidMoves_knight_onlyL4OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col + 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
+
+    @Test
+    public void hasValidMoves_knight_onlyL5OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col + 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col + 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
+
+    @Test
+    public void hasValidMoves_knight_onlyL6OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col + 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col + 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
+
+    @Test
+    public void hasValidMoves_knight_onlyL7OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col + 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col + 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
+
+    @Test
+    public void hasValidMoves_knight_onlyL8OpenReturnsTrue() {
+        final int row = 4;
+        final int col = 4;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(row + 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col - 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row + 1, col + 2), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col - 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 2, col + 1), new Knight(Color.WHITE));
+        board.setPiece(new Location(row - 1, col - 2), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
+
+    @Test
+    public void isValidMove_Knight_vacatingSquareExposesKing_returnsFalse() {
+        final int knightRow = 3;
+        final int knightCol = 0;
+        final int endRow = 1;
+        final int endCol = 1;
+        final int kingRow = 0;
+        final int kingCol = 0;
+        final int rookRow = 7;
+        final int rookCol = 0;
+
+        Knight knight = new Knight(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+
+        Location knightPos = new Location(knightRow, knightCol);
+        Location end = new Location(endRow, endCol);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(knightPos, knight);
+        board.setPiece(kingPos, king);
+        board.setPiece(rookPos, rook);
+
+        assertFalse(knight.isValidMove(knightPos, end, board));
+    }
+
+    @Test
+    public void isValidMove_Knight_boardRestoredAfterCapture_returnsTrue() {
+        final int knightRow = 4;
+        final int knightCol = 4;
+        final int endRow = 2;
+        final int endCol = 3;
+
+        Knight knight = new Knight(Color.WHITE);
+        Piece enemy = new Pawn(Color.BLACK);
+        Location start = new Location(knightRow, knightCol);
+        Location end = new Location(endRow, endCol);
+        Board board = new Board(false);
+        board.setPiece(start, knight);
+        board.setPiece(end, enemy);
+
+        assertTrue(knight.isValidMove(start, end, board));
+        assertSame(knight, board.getPiece(start));
+        assertSame(enemy, board.getPiece(end));
+    }
+
+    @Test
+    public void isValidMove_Knight_landingSquareBlocksCheck_returnsTrue() {
+        final int knightRow = 1;
+        final int knightCol = 2;
+        final int endRow = 2;
+        final int endCol = 0;
+        final int kingRow = 7;
+        final int kingCol = 0;
+        final int rookRow = 0;
+        final int rookCol = 0;
+
+        Knight knight = new Knight(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+
+        Location knightPos = new Location(knightRow, knightCol);
+        Location end = new Location(endRow, endCol);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(knightPos, knight);
+        board.setPiece(kingPos, king);
+        board.setPiece(rookPos, rook);
+
+        assertTrue(knight.isValidMove(knightPos, end, board));
+    }
+
+    @Test
+    public void isValidMove_Knight_boardRestoredAfterMoveToEmptySquare_returnsTrue() {
+        final int knightRow = 4;
+        final int knightCol = 4;
+        final int endRow = 2;
+        final int endCol = 3;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location start = new Location(knightRow, knightCol);
+        Location end = new Location(endRow, endCol);
+        Board board = new Board(false);
+        board.setPiece(start, knight);
+
+        assertTrue(knight.isValidMove(start, end, board));
+        assertSame(knight, board.getPiece(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
+    public void hasValidMoves_knight_atMaxCornerOnlyTwoCandidatesValid_returnsTrue() {
+        final int row = 7;
+        final int col = 7;
+
+        Knight knight = new Knight(Color.WHITE);
+        Location pos = new Location(row, col);
+        Board board = new Board(false);
+        board.setPiece(pos, knight);
+
+        board.setPiece(new Location(5, 6), new Knight(Color.WHITE));
+
+        assertTrue(knight.hasValidMoves(pos, board));
+    }
 }
 
