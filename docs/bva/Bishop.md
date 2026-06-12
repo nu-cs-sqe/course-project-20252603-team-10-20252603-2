@@ -106,21 +106,21 @@
 
 ## Method under test: `hasValidMoves()` for Bishop
 
-| Test Number | Color  | Start position | State                                                                                                  | Expected Output | Implemented? |
-|-------------|--------|----------------|--------------------------------------------------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE  | [4,4]          | Clear board                                                                                            | TRUE            | yes          |
-| 2           | WHITE  | [0,0]          | Clear board                                                                                            | TRUE            | yes          |
-| 3           | WHITE  | [4,4]          | all 4 diagonal squares blocked by friendly pieces                                                      | FALSE           | yes          |
-| 4           | WHITE  | [0,0]          | bishop in corder, diagonal square [1,1] blocked by friendly piece                                      | FALSE           | yes          |
-| 5           | WHITE  | [4,4]          | bishop cannot move without exposing king                                                               | FALSE           | yes          |
-| 6           | WHITE  | [4,4]          | one diagonal path open, all others blocked                                                             | TRUE            | yes          |
-| 7           | WHITE  | [4,4]          | unprotected enemy piece on diagonal                                                                    | TRUE            | yes          |
-| 8           | BLACK  | [7,7]          | Clear board                                                                                            | TRUE            | yes          |
-| 9           | WHITE  | [4,4]          | only up-left diagonal open; up-right, down-left, and down-right blocked by friendly pieces             | TRUE            | yes          |
-| 10          | WHITE  | [4,4]          | only up-right diagonal open; up-left, down-left, and down-right blocked by friendly pieces             | TRUE            | yes          |
-| 11          | WHITE  | [4,4]          | only down-left diagonal open; up-left, up-right, and down-right blocked by friendly pieces             | TRUE            | yes          |
-| 12          | WHITE  | [4,4]          | only down-right diagonal open; up-left, up-right, and down-left blocked by friendly pieces             | TRUE            | yes          |
-| 13          | WHITE  | [4,4]          | far up-left enemy available at [2,2]; up-right, down-left, and down-right blocked by friendly pieces   | TRUE            | yes          |
+| Test Number | Color  | Start position | State                                                                                                | Expected Output | Implemented? |
+|-------------|--------|----------------|------------------------------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE  | [4,4]          | Clear board                                                                                          | TRUE            | yes          |
+| 2           | WHITE  | [0,0]          | Clear board                                                                                          | TRUE            | yes          |
+| 3           | WHITE  | [4,4]          | all 4 diagonal squares blocked by friendly pieces                                                    | FALSE           | yes          |
+| 4           | WHITE  | [0,0]          | bishop in corner, diagonal square [1,1] blocked by friendly piece                                    | FALSE           | yes          |
+| 5           | WHITE  | [4,4]          | bishop cannot move without exposing king                                                             | FALSE           | yes          |
+| 6           | WHITE  | [4,4]          | one diagonal path open, all others blocked                                                           | TRUE            | yes          |
+| 7           | WHITE  | [4,4]          | unprotected enemy piece on diagonal                                                                  | TRUE            | yes          |
+| 8           | BLACK  | [7,7]          | Clear board                                                                                          | TRUE            | yes          |
+| 9           | WHITE  | [4,4]          | only up-left diagonal open; up-right, down-left, and down-right blocked by friendly pieces           | TRUE            | yes          |
+| 10          | WHITE  | [4,4]          | only up-right diagonal open; up-left, down-left, and down-right blocked by friendly pieces           | TRUE            | yes          |
+| 11          | WHITE  | [4,4]          | only down-left diagonal open; up-left, up-right, and down-right blocked by friendly pieces           | TRUE            | yes          |
+| 12          | WHITE  | [4,4]          | only down-right diagonal open; up-left, up-right, and down-left blocked by friendly pieces           | TRUE            | yes          |
+| 13          | WHITE  | [4,4]          | far up-left enemy available at [2,2]; up-right, down-left, and down-right blocked by friendly pieces | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Bishop
 
@@ -156,6 +156,11 @@
         * all diagonal paths attacked, moving exposes king 
         * one diagonal path open, all others blocked by friendlies 
         * enemy piece on diagonal, not protected 
+        * only up-left open
+        * only up-right open
+        * only down-left open 
+        * only down-right open
+        * far enemy piece reachable on a diagonal while other diagonal directions are blocked
     * reachable diagonal square exists: boolean
         * True 
         * False 
