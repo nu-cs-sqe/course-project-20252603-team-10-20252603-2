@@ -340,6 +340,23 @@ public class PawnTests {
     }
 
     @Test
+    public void hasValidMoves_Pawn_onlyDiagonalLeftCaptureOpen_returnsTrue() {
+        final int pawnRow = 6;
+        final int pawnCol = 4;
+        final int forwardRow = 5;
+        final int leftCol = 3;
+
+        Piece pawn = new Pawn(Color.WHITE);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+        board.setPiece(new Location(forwardRow, pawnCol), new Pawn(Color.WHITE));
+        board.setPiece(new Location(forwardRow, leftCol), new Pawn(Color.BLACK));
+
+        assertTrue(pawn.hasValidMoves(pawnPos, board));
+    }
+
+    @Test
     public void hasValidMoves_Pawn_NotBlocked_returnsTrue() {
         final int pawnRow = 6;
         final int pawnCol = 0;
