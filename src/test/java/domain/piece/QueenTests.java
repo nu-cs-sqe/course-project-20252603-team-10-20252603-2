@@ -622,4 +622,19 @@ public class QueenTests {
 
         assertTrue(queen.hasValidMoves(queenLoc, board));
     }
+
+    @Test
+    public void hasValidMoves_queenNearEdgeFacingBoundary_killsBoundaryMutants() {
+        Board board = new Board(false);
+        Queen queen = new Queen(Color.WHITE);
+
+        Location queenLoc = new Location(0, 6);
+        board.setPiece(queenLoc, queen);
+
+        board.setPiece(new Location(0, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 6), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 7), new Pawn(Color.WHITE));
+        assertTrue(queen.hasValidMoves(queenLoc, board));
+    }
 }
