@@ -25,6 +25,7 @@ public class GameManager {
     private Player whitePlayer;
     private Player blackPlayer;
     private Player currentPlayer;
+    private Player winner;
     private int consecutiveDrawMoves = 0;
     private Board board;
 
@@ -36,6 +37,7 @@ public class GameManager {
         this.whitePlayer = null;
         this.blackPlayer = null;
         this.currentPlayer = null;
+        this.winner = null;
         this.supportedLanguages = loadSupportedLanguages();
     }
 
@@ -62,6 +64,10 @@ public class GameManager {
 
     public List<LanguageOption> getSupportedLanguages() {
         return new ArrayList<>(supportedLanguages);
+    }
+
+    public int getConsecutiveDrawMoves() {
+        return this.consecutiveDrawMoves;
     }
 
     public void incrementDrawCounter() {
@@ -137,11 +143,26 @@ public class GameManager {
         }
     }
 
+    public Player getWinner() {
+        return winner;
+    }
+
     public boolean isGameOver() {
         if (currentPlayer == null || board == null) {
             return false;
         }
-        return isGameADraw() || isCheckmate() || isStalemate();
+
+        if (isCheckmate()) {
+            this.winner = currentPlayer.getPlayerColor() == Color.BLACK ? getWhitePlayer() : getBlackPlayer();
+            return true;
+        }
+
+        if (isGameADraw() || isStalemate()) {
+            this.winner = null;
+            return true;
+        }
+
+        return false;
     }
 
     public boolean isCheckmate() {
@@ -209,7 +230,6 @@ public class GameManager {
     }
 
     private boolean isPromotionMove(Piece piece, Location location) {
-
         if (piece == null) {
             return false;
         }
@@ -239,13 +259,22 @@ public class GameManager {
         }
 
         if (pieceToMove.isValidMove(start, end, board)) {
-            if (board.isPieceHere(end)) {
+            boolean isCapturingPiece = board.isPieceHere(end);
+            boolean isPawnMove = pieceToMove.getType() == PieceType.PAWN;
+
+            if (isCapturingPiece) {
                 Piece capturedPiece = board.getPiece(end);
                 this.currentPlayer.incrementPoints(capturedPiece.getType());
             }
 
             board.setPiece(end, pieceToMove);
             board.removePiece(start);
+
+            if (isCapturingPiece || isPawnMove) {
+                this.consecutiveDrawMoves = 0;
+            } else {
+                incrementDrawCounter();
+            }
 
             if (isPromotionMove(pieceToMove, end)) {
                 return MoveResult.PROMOTION_REQUIRED;
