@@ -558,4 +558,17 @@ public class PawnTests {
 
         assertFalse(pawn.hasValidMoves(pawnPos, board));
     }
+
+    @Test
+    public void hasValidMoves_Pawn_blackAtRowSeven_forwardOffBoard_returnsFalse() {
+        final int pawnRow = 7;
+        final int pawnCol = 4;
+
+        Piece pawn = new Pawn(Color.BLACK);
+        Location pawnPos = new Location(pawnRow, pawnCol);
+        Board board = new Board(false);
+        board.setPiece(pawnPos, pawn);
+
+        assertFalse(pawn.hasValidMoves(pawnPos, board));
+    }
 }

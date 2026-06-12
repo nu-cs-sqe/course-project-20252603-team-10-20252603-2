@@ -103,6 +103,7 @@
 | 6           | WHITE | [6,0]          | clear                                                                                    | True            | yes          |
 | 7           | WHITE | [6,7]          | clear                                                                                    | True            | yes          |
 | 8           | WHITE | [0,4]          | forward off board                                                                        | False           | yes          |
+| 9           | WHITE | [7,4]          | forward off board                                                                        | False           | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Pawn
 
