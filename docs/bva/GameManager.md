@@ -94,12 +94,14 @@
   * !isInCheck() && hasValidMoves() == 0 --> TRUE
 **Method under test: isGameOver()**
 
-|             | System under test                                          | Expected output | Implemented? |
-|:------------|:-----------------------------------------------------------| :---- |:-------------|
-| Test Case 1 | King is in check and has no other valid moves.             | Returns true, game notification that the game is over. | yes          |
-| Test Case 2 | King is in check and has >=1 valid move.                   | Returns false, the game continues. | yes          |
-| Test Case 3 | Stalemate \- player is not in check but has 0 valid moves. | Returns true, game is a draw.  | yes          |
- | Test Case 4 | King is not in check and has >=1 valid move.               | Returns false, the game continues. | yes          |
+|             | System under test                                           | Expected output                                        | Implemented? |
+|:------------|:------------------------------------------------------------|:-------------------------------------------------------|:-------------|
+| Test Case 1 | King is in check and has no other valid moves.              | Returns true, game notification that the game is over. | yes          |
+| Test Case 2 | King is in check and has >=1 valid move.                    | Returns false, the game continues.                     | yes          |
+| Test Case 3 | Stalemate \- player is not in check but has 0 valid moves.  | Returns true, game is a draw.                          | yes          |
+| Test Case 4 | King is not in check and has >=1 valid move.                | Returns false, the game continues.                     | yes          |
+| Test Case 5 | Game not started yet, thus currentPlayer and board are null | Returns false                                          | yes          |
+
 
 ### STEPS FOR BVA: `isGameOver()`
 
@@ -115,6 +117,23 @@
   * King isInCheck() == true && there are >= 1 valid moves → ❌
   * King isInCheck() == false && there are 0 valid moves → Stalemate
   * King isInCheck() == false && there are >= 1 valid moves → ❌
+
+
+**Method under test: getBoard(), basic functional testing**
+
+| Test Case | System under test | Expected output       | Implemented? |
+|-----------|-------------------|-----------------------|--------------|
+| 1         | board == null     | returns null          | yes          |
+| 2         | board != null     | returns copy of board | yes          |
+
+
+**Method under test: setBoard(), basic functional testing**
+
+| Test Case | System under test | Expected output / side effect                                                               | Implemented? |
+|-----------|-------------------|---------------------------------------------------------------------------------------------|--------------|
+| 1         | board == null     | GameManager's internal board is set to null; getBoard() returns null                        | yes          |
+| 2         | board != null     | GameManager stores a copy of the given board; getBoard() returns an equivalent copied board | yes          |
+
 
 ## Method under test: `getMessage()` for GameManager
 

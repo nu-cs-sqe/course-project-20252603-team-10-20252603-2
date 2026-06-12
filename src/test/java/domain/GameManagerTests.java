@@ -823,6 +823,69 @@ public class GameManagerTests {
     }
 
     @Test
+    public void isGameOver_NotStarted_ReturnsFalse() {
+        GameManager game = new GameManager();
+
+        assertFalse(game.isGameOver());
+    }
+
+    @Test
+    public void getBoard_BoardIsNull_ReturnsNull() {
+        GameManager game = new GameManager();
+
+        assertNull(game.getBoard());
+    }
+
+    @Test
+    public void getBoard_BoardIsSet_ReturnsCopyOfBoard() {
+        GameManager game = new GameManager();
+
+        Board board = new Board(false);
+        Location location = new Location(0, 0);
+        Pawn pawn = new Pawn(Color.WHITE);
+        board.setPiece(location, pawn);
+
+        game.setBoard(board);
+
+        Board copiedBoard = game.getBoard();
+
+        assertNotNull(copiedBoard);
+        assertNotSame(board, copiedBoard);
+        assertTrue(copiedBoard.isPieceHere(location));
+    }
+
+    @Test
+    public void setBoard_nullBoard_setsBoardToNull() {
+        GameManager game = new GameManager();
+
+        game.setBoard(null);
+
+        assertNull(game.getBoard());
+    }
+
+    @Test
+    public void setBoard_validBoard_storesCopyOfBoard() {
+        GameManager game = new GameManager();
+
+        Board original = new Board(false);
+        original.setPiece(new Location(0, 0), new Pawn(Color.WHITE));
+
+        game.setBoard(original);
+
+        Board storedBoard = game.getBoard();
+
+        assertNotNull(storedBoard);
+        assertNotSame(original, storedBoard);
+
+        Piece originalPiece = original.getPiece(new Location(0, 0));
+        Piece storedPiece = storedBoard.getPiece(new Location(0, 0));
+
+        assertNotNull(storedPiece);
+        assertNotSame(originalPiece, storedPiece);
+        assertEquals(originalPiece.getType(), storedPiece.getType());
+        assertEquals(originalPiece.getColor(), storedPiece.getColor());
+    }
+  
     public void getSupportedLanguages_configIncludesSpanish_returnsSpanishLanguageOption() {
         GameManager game = new GameManager();
 
