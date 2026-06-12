@@ -48,14 +48,17 @@
   * “B” → “W”
   * “W” → “B”
 
+
 **Method under test: isCheckmate()**
-|             | System under test                                          | Expected output | Implemented? |
-|:------------|:-----------------------------------------------------------| :---- |:-------------|
-| Test Case 1 | King is in check and has no other valid moves.             | Returns true, game notification that the game is over. | yes          |
-| Test Case 2 | King is in check and has 1 valid move.                   | Returns false, the game continues. | yes          |
-| Test Case 3 | King is not in check and has >=1 valid move.               | Returns false, the game continues. | yes          |
-| Test Case 4 | King is in check and has >1 valid move.                | Returns false, the game continues. | no          |
-| Test Case 5 | King is not in check and has 0 valid moves.               | Returns false, the game is a stalemate. | no          |
+
+| Test Case | System under test                                                    | Expected output                                        | Implemented? |
+|-----------|----------------------------------------------------------------------|--------------------------------------------------------|--------------|
+| 1         | King is in check and has no other valid moves.                       | Returns true, game notification that the game is over. | yes          |
+| 2         | King is in check and has 1 valid move.                               | Returns false, the game continues.                     | yes          |
+| 3         | King is not in check and has >=1 valid move.                         | Returns false, the game continues.                     | yes          |
+| 4         | Game has not started, so currentPlayer and board are null.           | Returns false.                                         | yes          |
+| 5         | Game has started, but the current player's king is not on the board. | Returns false.                                         | yes          |
+| 6         | Game has started, so currentPlayer is set, but board is null.        | Returns false.                                         | yes          |
 
 ### STEPS FOR BVA: `isCheckmate()`
 1. Data Types
@@ -73,12 +76,15 @@
 
 **Method under test: isStalemate()**
 
-|             | System under test                                 | Expected output                          | Implemented? |
-|:------------|:--------------------------------------------------|:-----------------------------------------|:-------------|
-| Test Case 1 | King is not in check and player has 0 valid moves | Returns true, game is a draw.            | yes          |
-| Test Case 2 | King is not in check and player has 1 valid move  | Returns false, the game continues.       | yes          |
-| Test Case 3 | King is in check and has no other valid moves.    | Returns false, game ends on a checkmate. | yes          |
-| Test Case 4 | King is not in check and has >1 valid moves.      | Returns false, the game continues.       | yes            |
+|             | System under test                                                    | Expected output                          | Implemented? |
+|:------------|:---------------------------------------------------------------------|:-----------------------------------------|:-------------|
+| Test Case 1 | King is not in check and player has 0 valid moves                    | Returns true, game is a draw.            | yes          |
+| Test Case 2 | King is not in check and player has 1 valid move                     | Returns false, the game continues.       | yes          |
+| Test Case 3 | King is in check and has no other valid moves.                       | Returns false, game ends on a checkmate. | yes          |
+| Test Case 4 | King is not in check and has >1 valid moves.                         | Returns false, the game continues.       | yes          |
+| Test Case 5 | Game has not started, so currentPlayer and board are null.           | Returns false.                           | yes          |
+| Test Case 6 | Game has started, but the current player's king is not on the board. | Returns false.                           | yes          |
+| Test Case 7 | Game has started, so currentPlayer is set, but board is null.        | Returns false.                           | yes          |
 
 ### STEPS FOR BVA: `isStalemate()`
 1. Data Types
@@ -92,16 +98,18 @@
   * !isInCheck() && hasValidMoves() == 1--> FALSE
   * !isInCheck() && hasValidMoves() > 1 --> FALSE
   * !isInCheck() && hasValidMoves() == 0 --> TRUE
+
+
 **Method under test: isGameOver()**
 
-|             | System under test                                           | Expected output                                        | Implemented? |
-|:------------|:------------------------------------------------------------|:-------------------------------------------------------|:-------------|
-| Test Case 1 | King is in check and has no other valid moves.              | Returns true, game notification that the game is over. | yes          |
-| Test Case 2 | King is in check and has >=1 valid move.                    | Returns false, the game continues.                     | yes          |
-| Test Case 3 | Stalemate \- player is not in check but has 0 valid moves.  | Returns true, game is a draw.                          | yes          |
-| Test Case 4 | King is not in check and has >=1 valid move.                | Returns false, the game continues.                     | yes          |
-| Test Case 5 | Game not started yet, thus currentPlayer and board are null | Returns false                                          | yes          |
-
+|             | System under test                                              | Expected output                                        | Implemented? |
+|:------------|:---------------------------------------------------------------|:-------------------------------------------------------|:-------------|
+| Test Case 1 | King is in check and has no other valid moves.                 | Returns true, game notification that the game is over. | yes          |
+| Test Case 2 | King is in check and has >=1 valid move.                       | Returns false, the game continues.                     | yes          |
+| Test Case 3 | Stalemate \- player is not in check but has 0 valid moves.     | Returns true, game is a draw.                          | yes          |
+| Test Case 4 | King is not in check and has >=1 valid move.                   | Returns false, the game continues.                     | yes          |
+| Test Case 5 | Game not started yet, thus currentPlayer and board are null    | Returns false                                          | yes          |
+| Test Case 6 | Game has started, so currentPlayer is set, but board is null.  | Returns false.                                         | yes          |
 
 ### STEPS FOR BVA: `isGameOver()`
 
@@ -271,17 +279,18 @@
 
 **Method under test: promotePawn()**
 
-| Test Number | PIECE        | Location | Replace with | Expected output                                                  | Implemented? |
-|:------------|:-------------|:---------|:-------------|:-----------------------------------------------------------------|:-------------|
-| 1           | WHITE PAWN   | (0,0)    | QUEEN        | white pawn replaced with white queen                             | yes          |
-| 2           | BLACK PAWN   | (7,7)    | QUEEN        | black pawn replaced with black queen                             | yes          |
-| 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                            | yes          |
-| 4           | WHITE PAWN   | (0,0)    | BISHOP       | white pawn replaced with white bishop                            | yes          |
-| 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                              | yes          |
-| 6           | null         | (0,0)    | ROOK         | IllegalArgumentException ("Piece is not eligible for promotion") | yes          |
-| 7           | BLACK KNIGHT | (7,7)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion") | yes          |
-| 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException ("Invalid promotion piece")             | yes          |
-
+| Test Number | PIECE        | Location | Replace with | Expected output                                                                                               | Implemented? |
+|:------------|:-------------|:---------|:-------------|:--------------------------------------------------------------------------------------------------------------|:-------------|
+| 1           | WHITE PAWN   | (0,0)    | QUEEN        | white pawn replaced with white queen                                                                          | yes          |
+| 2           | BLACK PAWN   | (7,7)    | QUEEN        | black pawn replaced with black queen                                                                          | yes          |
+| 3           | WHITE PAWN   | (0,0)    | KNIGHT       | white pawn replaced with white knight                                                                         | yes          |
+| 4           | WHITE PAWN   | (0,0)    | BISHOP       | white pawn replaced with white bishop                                                                         | yes          |
+| 5           | WHITE PAWN   | (0,0)    | ROOK         | white pawn replaced with white rook                                                                           | yes          |
+| 6           | null         | (0,0)    | ROOK         | IllegalArgumentException ("Piece is not eligible for promotion")                                              | yes          |
+| 7           | BLACK KNIGHT | (7,7)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion")                                              | yes          |
+| 8           | WHITE PAWN   | (0,0)    | KING         | IllegalArgumentException ("Invalid promotion piece")                                                          | yes          |
+| 9           | BLACK PAWN   | (6,0)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion") because black pawn is not on promotion row   | yes          |
+| 10          | WHITE PAWN   | (1,0)    | QUEEN        | IllegalArgumentException ("Piece is not eligible for promotion") because white pawn is not on promotion row   | yes          |
 
 ### STEPS FOR BVA: `promotePawn()`
 
@@ -507,3 +516,26 @@ compare against the locale codes listed in languages.properties instead of hardc
   * defensive copy:
     * modifying the returned list does not modify GameManager's internal list
     * repeated calls return equivalent contents but not the same list object
+
+
+**Method under test: getWhitePlayer(), basic functional testing**
+
+| Test Case | System under test                                        | Expected output            | Implemented? |
+|-----------|----------------------------------------------------------|----------------------------|--------------|
+| 1         | Game started with one WHITE player and one BLACK player  | Returns the WHITE player   | yes          |
+
+
+**Method under test: getBlackPlayer(), basic functional testing**
+
+| Test Case | System under test                                         | Expected output            | Implemented? |
+|-----------|-----------------------------------------------------------|----------------------------|--------------|
+| 1         | Game started with one WHITE player and one BLACK player   | Returns the BLACK player   | yes          |
+
+
+**Method under test: getWinner(), basic functional testing**
+
+| Test Case | System under test                                                 | Expected output          | Implemented? |
+|-----------|-------------------------------------------------------------------|--------------------------|--------------|
+| 1         | Game has no completed checkmate, draw, or stalemate condition yet | Returns null             | yes          |
+| 2         | WHITE player is checkmated                                        | Returns the BLACK player | yes          |
+| 3         | BLACK player is checkmated                                        | Returns the WHITE player | yes          |

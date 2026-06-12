@@ -205,6 +205,13 @@ public class GameManagerTests {
     }
 
     @Test
+    public void isGameOver_startedGameWithNullBoard_returnsFalse() {
+        game.setBoard(null);
+
+        assertFalse(game.isGameOver());
+    }
+
+    @Test
     public void isStalemate_notInCheckZeroMoves_returnsTrue() {
         King mockKing = EasyMock.createMock(King.class);
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
@@ -286,6 +293,28 @@ public class GameManagerTests {
     }
 
     @Test
+    public void isStalemate_gameNotStarted_returnsFalse() {
+        GameManager newGame = new GameManager();
+
+        assertFalse(newGame.isStalemate());
+    }
+
+    @Test
+    public void isStalemate_noAlliedKingOnBoard_returnsFalse() {
+        Board emptyBoard = new Board(false);
+        game.setBoard(emptyBoard);
+
+        assertFalse(game.isStalemate());
+    }
+
+    @Test
+    public void isStalemate_startedGameWithNullBoard_returnsFalse() {
+        game.setBoard(null);
+
+        assertFalse(game.isStalemate());
+    }
+
+    @Test
     public void isCheckmate_inCheckZeroMoves_returnsTrue() {
         King mockKing = EasyMock.createMock(King.class);
         EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
@@ -339,6 +368,28 @@ public class GameManagerTests {
 
         assertFalse(game.isCheckmate());
         EasyMock.verify(mockKing);
+    }
+
+    @Test
+    public void isCheckmate_gameNotStarted_returnsFalse() {
+        GameManager newGame = new GameManager();
+
+        assertFalse(newGame.isCheckmate());
+    }
+
+    @Test
+    public void isCheckmate_noAlliedKingOnBoard_returnsFalse() {
+        Board emptyBoard = new Board(false);
+        game.setBoard(emptyBoard);
+
+        assertFalse(game.isCheckmate());
+    }
+
+    @Test
+    public void isCheckmate_startedGameWithNullBoard_returnsFalse() {
+        game.setBoard(null);
+
+        assertFalse(game.isCheckmate());
     }
 
     @Test
@@ -891,6 +942,42 @@ public class GameManagerTests {
     }
 
     @Test
+    public void promotePawn_blackPawnNotOnPromotionRow_throwIllegalArgException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Board board = new Board(false);
+        board.setPiece(new Location(6, 0), new Pawn(Color.BLACK));
+        game.setBoard(board);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            game.promotePawn(new Location(6, 0), PieceType.QUEEN);
+        });
+
+        assertTrue(exception.getMessage().contains("Piece is not eligible for promotion."));
+    }
+
+    @Test
+    public void promotePawn_whitePawnNotOnPromotionRow_throwIllegalArgException() {
+        GameManager game = new GameManager();
+        game.addPlayer(new Player("Player1", Color.BLACK));
+        game.addPlayer(new Player("Player2", Color.WHITE));
+        game.start();
+
+        Board board = new Board(false);
+        board.setPiece(new Location(1, 0), new Pawn(Color.WHITE));
+        game.setBoard(board);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            game.promotePawn(new Location(1, 0), PieceType.QUEEN);
+        });
+
+        assertTrue(exception.getMessage().contains("Piece is not eligible for promotion."));
+    }
+
+    @Test
     public void loadSupportedLanguages_validFixedResources_gameManagerInitializes() {
         assertDoesNotThrow(() -> {
             GameManager game = new GameManager();
@@ -1198,6 +1285,81 @@ public class GameManagerTests {
                 .anyMatch(language -> language.getLocale().equals(Locale.forLanguageTag("xx")));
 
         assertFalse(containsFakeLanguage);
+    }
+
+    @Test
+    public void getWhitePlayer_afterStart_returnsWhitePlayer() {
+        assertNotNull(game.getWhitePlayer());
+        assertEquals(Color.WHITE, game.getWhitePlayer().getPlayerColor());
+    }
+
+    @Test
+    public void getBlackPlayer_afterStart_returnsBlackPlayer() {
+        assertNotNull(game.getBlackPlayer());
+        assertEquals(Color.BLACK, game.getBlackPlayer().getPlayerColor());
+    }
+
+    @Test
+    public void getWinner_newGame_returnsNull() {
+        assertNull(game.getWinner());
+    }
+
+    @Test
+    public void getWinner_afterWhiteCheckmated_returnsBlackPlayer() {
+        King mockKing = EasyMock.createMock(King.class);
+        EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(
+                EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class)
+        )).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(
+                EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class)
+        )).andReturn(false).anyTimes();
+
+        EasyMock.replay(mockKing);
+
+        board.setPiece(new Location(0, 0), mockKing);
+        game.setBoard(board);
+
+        assertTrue(game.isGameOver());
+
+        assertNotNull(game.getWinner());
+        assertEquals(Color.BLACK, game.getWinner().getPlayerColor());
+
+        EasyMock.verify(mockKing);
+    }
+
+    @Test
+    public void getWinner_afterBlackCheckmated_returnsWhitePlayer() {
+        game.changeTurns();
+
+        King mockKing = EasyMock.createMock(King.class);
+        EasyMock.expect(mockKing.getColor()).andReturn(Color.BLACK).anyTimes();
+        EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(
+                EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class)
+        )).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.hasValidMoves(
+                EasyMock.anyObject(Location.class),
+                EasyMock.anyObject(Board.class)
+        )).andReturn(false).anyTimes();
+
+        EasyMock.replay(mockKing);
+
+        board.setPiece(new Location(7, 7), mockKing);
+        game.setBoard(board);
+
+        assertTrue(game.isGameOver());
+
+        assertNotNull(game.getWinner());
+        assertEquals(Color.WHITE, game.getWinner().getPlayerColor());
+
+        EasyMock.verify(mockKing);
     }
 
 }
