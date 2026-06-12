@@ -1206,4 +1206,10 @@ public class GameManagerTests {
         assertEquals(Color.WHITE, game.getWhitePlayer().getPlayerColor());
     }
 
+    @Test
+    public void getBlackPlayer_afterStart_returnsBlackPlayer() {
+        assertNotNull(game.getBlackPlayer());
+        assertEquals(Color.BLACK, game.getBlackPlayer().getPlayerColor());
+    }
+
 }

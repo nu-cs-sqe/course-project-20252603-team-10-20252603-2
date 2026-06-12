@@ -514,3 +514,10 @@ compare against the locale codes listed in languages.properties instead of hardc
 | Test Case | System under test                                        | Expected output            | Implemented? |
 |-----------|----------------------------------------------------------|----------------------------|--------------|
 | 1         | Game started with one WHITE player and one BLACK player  | Returns the WHITE player   | yes          |
+
+
+**Method under test: getBlackPlayer(), basic functional testing**
+
+| Test Case | System under test                                         | Expected output            | Implemented? |
+|-----------|-----------------------------------------------------------|----------------------------|--------------|
+| 1         | Game started with one WHITE player and one BLACK player   | Returns the BLACK player   | yes          |
