@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 public class KingTests {
 
     @Test
-    public void isInCheckNoAttackingPiecesReturnsFalse() {
+    public void isInCheck_NoAttackingPieces_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
 
@@ -28,7 +28,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyRookSameRowClearPathReturnsTrue() {
+    public void isInCheck_EnemyRookSameRowClearPath_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rookRow = 4;
@@ -48,7 +48,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyRookBlockedByFriendlyReturnsFalse() {
+    public void isInCheck_EnemyRookBlockedByFriendly_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rookRow = 4;
@@ -72,7 +72,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyRookSameColClearReturnsTrue() {
+    public void isInCheck_EnemyRookSameColClear_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rookRow = 0;
@@ -91,7 +91,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckFriendlyRookSameRowReturnsFalse() {
+    public void isInCheck_FriendlyRookSameRow_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rookRow = 4;
@@ -110,7 +110,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyBishopDiagonalClearReturnsTrue() {
+    public void isInCheck_EnemyBishopDiagonalClear_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -129,7 +129,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyBishopBlockedReturnsFalse() {
+    public void isInCheck_EnemyBishopBlocked_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -153,7 +153,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyKnightLShapeReturnsTrue() {
+    public void isInCheck_EnemyKnightLShape_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -172,7 +172,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyPawnCorrectDirectionReturnsTrue() {
+    public void isInCheck_EnemyPawnCorrectDirection_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 3;
@@ -191,7 +191,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyPawnWrongDirectionReturnsFalse() {
+    public void isInCheck_EnemyPawnWrongDirection_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 5;
@@ -210,7 +210,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyQueenReturnsTrue() {
+    public void isInCheck_EnemyQueen_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 4;
@@ -229,7 +229,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyQueen2ReturnsTrue() {
+    public void isInCheck_EnemyQueen2_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 1;
@@ -248,7 +248,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckFriendlyPawnSameDiagonalReturnsFalse() {
+    public void isInCheck_FriendlyPawnSameDiagonal_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -267,7 +267,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckAdjacentEnemyKingReturnsTrue() {
+    public void isInCheck_AdjacentEnemyKing_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 3;
@@ -286,7 +286,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyKingTooFarReturnsFalse() {
+    public void isInCheck_EnemyKingTooFar_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int row = 2;
@@ -305,7 +305,7 @@ public class KingTests {
     }
 
     @Test
-    public void isInCheckEnemyRookSameRowReturnsTrue() {
+    public void isInCheck_EnemyRookSameRow_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 7;
         final int row = 7;
@@ -324,7 +324,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingSameSquareReturnsFalse() {
+    public void isValidMove_King_SameSquare_ReturnsFalse() {
         final int kingRow = 0;
         final int kingCol = 0;
 
@@ -338,7 +338,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingTwoSquaresHorizontalReturnsFalse() {
+    public void isValidMove_King_TwoSquaresHorizontal_ReturnsFalse() {
         final int kingRow = 0;
         final int kingCol = 0;
         final int row = 0;
@@ -355,7 +355,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingTwoSquaresVerticalReturnsFalse() {
+    public void isValidMove_King_TwoSquaresVertical_ReturnsFalse() {
         final int kingRow = 7;
         final int kingCol = 7;
         final int row = 5;
@@ -372,7 +372,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingOneIncreasingColReturnsTrue() {
+    public void isValidMove_King_OneIncreasingCol_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 4;
         final int row = 7;
@@ -389,7 +389,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingOneDecreasingColReturnsTrue() {
+    public void isValidMove_King_OneDecreasingCol_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 4;
         final int row = 0;
@@ -406,7 +406,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingOneDecreasingRowReturnsTrue() {
+    public void isValidMove_King_OneDecreasingRow_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 0;
         final int row = 3;
@@ -423,7 +423,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingOneIncreasingRowReturnsTrue() {
+    public void isValidMove_King_OneIncreasingRow_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 7;
         final int row = 5;
@@ -440,7 +440,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingDiagonal1ReturnsTrue() {
+    public void isValidMove_King_Diagonal1_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
         final int row = 1;
@@ -457,7 +457,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingDiagonal2ReturnsTrue() {
+    public void isValidMove_King_Diagonal2_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 7;
         final int row = 1;
@@ -474,7 +474,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingDiagonal3ReturnsTrue() {
+    public void isValidMove_King_Diagonal3_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 0;
         final int endRow = 6;
@@ -491,7 +491,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingDiagonal4ReturnsTrue() {
+    public void isValidMove_King_Diagonal4_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 7;
         final int endRow = 6;
@@ -508,7 +508,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingFriendlyDestinationReturnsFalse() {
+    public void isValidMove_King_FriendlyDestination_ReturnsFalse() {
         final int kingRow = 7;
         final int kingCol = 7;
         final int endRow = 6;
@@ -527,7 +527,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingCaptureEnemyReturnsTrue() {
+    public void isValidMove_King_CaptureEnemy_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
         final int endRow = 1;
@@ -546,7 +546,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveBlackKingValidMoveReturnsTrue() {
+    public void isValidMove_BlackKing_ValidMove_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
         final int endRow = 0;
@@ -563,7 +563,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingMovesIntoCheckReturnsFalse() {
+    public void isValidMove_King_MovesIntoCheck_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int endRow = 3;
@@ -585,7 +585,7 @@ public class KingTests {
     }
 
     @Test
-    public void isValidMoveKingCaptureMovesIntoCheckReturnsFalse() {
+    public void isValidMove_King_CaptureMovesIntoCheck_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int endRow = 3;
@@ -682,7 +682,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingClearBoardCornerReturnsTrue() {
+    public void hasValidMoves_King_ClearBoardCorner_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
 
@@ -696,7 +696,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingAllAdjacentFriendlyReturnsFalse() {
+    public void hasValidMoves_King_AllAdjacentFriendly_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int aboveRow = 3;
@@ -725,7 +725,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingCornerAdjacentFriendlyReturnsFalse() {
+    public void hasValidMoves_King_CornerAdjacentFriendly_ReturnsFalse() {
         final int kingRow = 0;
         final int kingCol = 0;
 
@@ -742,7 +742,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingAllAdjacentAttackedReturnsFalse() {
+    public void hasValidMoves_King_AllAdjacentAttacked_ReturnsFalse() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int rook1Row = 3;
@@ -768,7 +768,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingOneSafeSquareReturnsTrue() {
+    public void hasValidMoves_King_OneSafeSquare_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int aboveRow = kingRow - 1;
@@ -794,7 +794,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingUnprotectedEnemyReturnsTrue() {
+    public void hasValidMoves_King_UnprotectedEnemy_ReturnsTrue() {
         final int kingRow = 4;
         final int kingCol = 4;
         final int enemyRow = 3;
@@ -813,7 +813,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesBlackKingClearReturnsTrue() {
+    public void hasValidMoves_BlackKing_Clear_ReturnsTrue() {
         final int kingRow = 0;
         final int kingCol = 0;
 
@@ -827,7 +827,7 @@ public class KingTests {
     }
 
     @Test
-    public void hasValidMovesKingClearBoardMaxValueReturnsTrue() {
+    public void hasValidMoves_King_ClearBoardMaxValue_ReturnsTrue() {
         final int kingRow = 7;
         final int kingCol = 7;
 
