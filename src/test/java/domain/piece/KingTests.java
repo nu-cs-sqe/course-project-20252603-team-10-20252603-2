@@ -380,6 +380,26 @@ public class KingTests {
     }
 
     @Test
+    public void isInCheckEnemyKingSameRowAdjacentReturnsTrue() {
+        final int kingRow = 4;
+        final int kingCol = 4;
+        final int enemyRow = 4;
+        final int enemyCol = 3;
+
+        King king = new King(Color.WHITE);
+        King enemyKing = new King(Color.BLACK);
+
+        Location kingPos = new Location(kingRow, kingCol);
+        Location enemyPos = new Location(enemyRow, enemyCol);
+
+        Board board = new Board(false);
+        board.setPiece(kingPos, king);
+        board.setPiece(enemyPos, enemyKing);
+
+        assertTrue(king.isInCheck(kingPos, board));
+    }
+
+    @Test
     public void isValidMoveKingSameSquareReturnsFalse() {
         final int kingRow = 0;
         final int kingCol = 0;
