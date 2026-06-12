@@ -482,4 +482,18 @@ public class RookTests {
         assertTrue(rook.hasValidMoves(rookLoc, board));
     }
 
+    @Test
+    public void hasValidMoves_completelySurroundedByTeammates_killsLine115BlockerMutant() {
+        Board board = new Board(false);
+        Rook rook = new Rook(Color.WHITE);
+        Location rookLoc = new Location(3, 3);
+        board.setPiece(rookLoc, rook);
+
+        board.setPiece(new Location(2, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(4, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(3, 2), new Pawn(Color.WHITE));
+        board.setPiece(new Location(3, 4), new Pawn(Color.WHITE));
+
+        assertFalse(rook.hasValidMoves(rookLoc, board));
+    }
 }
