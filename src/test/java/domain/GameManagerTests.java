@@ -341,6 +341,7 @@ public class GameManagerTests {
         Piece moved = game.getBoard().getPiece(new Location(2,0));
         assertEquals(PieceType.KNIGHT, moved.getType());
         assertEquals(Color.BLACK, moved.getColor());
+        assertEquals(1, game.getConsecutiveDrawMoves());
 
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
 
@@ -363,6 +364,7 @@ public class GameManagerTests {
         Piece moved = game.getBoard().getPiece(new Location(5,5));
         assertEquals(PieceType.KNIGHT, moved.getType());
         assertEquals(Color.WHITE, moved.getColor());
+        assertEquals(1, game.getConsecutiveDrawMoves());
 
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
 
@@ -416,6 +418,7 @@ public class GameManagerTests {
         Piece moved = game.getBoard().getPiece(new Location(6,0));
         assertEquals(PieceType.ROOK, moved.getType());
         assertEquals(Color.BLACK, moved.getColor());
+        assertEquals(0, game.getConsecutiveDrawMoves());
 
         assertNotEquals(currentPlayer, game.getCurrentPlayer());
         assertEquals(1, currentPlayer.getPoints());
@@ -502,6 +505,7 @@ public class GameManagerTests {
 
         assertEquals(currentPlayer, game.getCurrentPlayer());
         assertEquals(0, currentPlayer.getPoints());
+        assertEquals(0, game.getConsecutiveDrawMoves());
 
     }
 

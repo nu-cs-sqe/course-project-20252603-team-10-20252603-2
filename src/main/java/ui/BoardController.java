@@ -10,6 +10,8 @@ import domain.piece.Piece;
 import domain.piece.PieceType;
 
 import javax.swing.*;
+import java.awt.*;
+import java.text.MessageFormat;
 
 public class BoardController {
     private BoardView boardView;
@@ -61,12 +63,19 @@ public class BoardController {
     public void handleSecondClick(Location endLocation) {
         Location startLocation = selectedLocation;
         selectedLocation = null;
+        repaintBoard();
 
         GameManager.MoveResult result = gameManager.movePiece(startLocation, endLocation);
+
+        Object[] closeButton = {
+                gameManager.getMessage("button.close")
+        };
 
         switch (result) {
             case SUCCESS:
                 updateGameStatsView();
+                repaintBoard();
+                checkGameOver();
                 break;
             case PROMOTION_REQUIRED:
                 PieceType[] options = {
@@ -76,57 +85,96 @@ public class BoardController {
                         PieceType.BISHOP,
                 };
 
-                PieceType choice = (PieceType) JOptionPane.showInputDialog(
-                        boardView,
-                        gameManager.getMessage("board.pawnPromotionMessage"),
-                        gameManager.getMessage("board.pawnPromotionTitle"),
+                JComboBox<PieceType> promotionBox = new JComboBox<>(options);
+                promotionBox.setSelectedItem(PieceType.QUEEN);
+
+                Object[] promotionButtons = {
+                        gameManager.getMessage("button.select")
+                };
+
+                JOptionPane promotionPane = new JOptionPane(
+                        new Object[] {
+                                gameManager.getMessage("board.pawnPromotionMessage"),
+                                promotionBox
+                        },
                         JOptionPane.QUESTION_MESSAGE,
+                        JOptionPane.DEFAULT_OPTION,
                         null,
-                        options,
-                        PieceType.QUEEN
+                        promotionButtons,
+                        promotionButtons[0]
                 );
 
-                if (choice != null) {
-                    gameManager.promotePawn(endLocation, choice);
+                JDialog promotionDialog = promotionPane.createDialog(
+                        boardView,
+                        gameManager.getMessage("board.pawnPromotionTitle")
+                );
+
+                promotionDialog.setVisible(true);
+
+                Object selectedButton = promotionPane.getValue();
+
+                PieceType choice;
+                if (selectedButton == promotionButtons[0]) {
+                    choice = (PieceType) promotionBox.getSelectedItem();
                 } else {
-                    gameManager.promotePawn(endLocation, PieceType.QUEEN);
+                    choice = PieceType.QUEEN;
                 }
+
+                gameManager.promotePawn(endLocation, choice);
 
                 gameManager.changeTurns();
                 updateGameStatsView();
-
+                repaintBoard();
+                checkGameOver();
                 break;
             case INVALID_MOVE:
-                JOptionPane.showMessageDialog(
+                JOptionPane.showOptionDialog(
                         boardView,
                         gameManager.getMessage("error.invalidMoveMessage"),
                         gameManager.getMessage("error.invalidMoveTitle"),
-                        JOptionPane.WARNING_MESSAGE
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        closeButton,
+                        closeButton[0]
                 );
+
                 break;
             case WRONG_PLAYER_PIECE:
-                JOptionPane.showMessageDialog(
+                JOptionPane.showOptionDialog(
                         boardView,
                         gameManager.getMessage("error.wrongTeamMessage"),
                         gameManager.getMessage("error.wrongTeamTitle"),
-                        JOptionPane.WARNING_MESSAGE
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        closeButton,
+                        closeButton[0]
                 );
+
                 break;
             case NO_PIECE_SELECTED:
-                JOptionPane.showMessageDialog(
+                JOptionPane.showOptionDialog(
                         boardView,
                         gameManager.getMessage("error.noSelectionMessage"),
                         gameManager.getMessage("error.noSelectionTitle"),
-                        JOptionPane.WARNING_MESSAGE
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        closeButton,
+                        closeButton[0]
                 );
+
                 break;
 
         }
 
+    }
+
+    private void repaintBoard() {
         if (boardView != null) {
             boardView.repaint();
         }
-
     }
 
     public Piece[][] getBoardSnapshot() {
@@ -138,6 +186,46 @@ public class BoardController {
         if (gameStatsView != null) {
             gameStatsView.updateCurrentPlayer(gameManager.getCurrentPlayer().getPlayerName());
             gameStatsView.updatePoints(gameManager.getWhitePlayer(), gameManager.getBlackPlayer());
+        }
+    }
+
+    private void checkGameOver() {
+        if (!gameManager.isGameOver()) {
+            return;
+        }
+
+        String message;
+
+        if (gameManager.isGameADraw()) {
+            message = gameManager.getMessage("gameOver.message.draw");
+        } else if (gameManager.isCheckmate()) {
+            message = MessageFormat.format(
+                    gameManager.getMessage("gameOver.message.checkmate"),
+                    gameManager.getWinner().getPlayerName());
+        } else if (gameManager.isStalemate()) {
+            message = gameManager.getMessage("gameOver.message.stalemate");
+        } else {
+            message = gameManager.getMessage("gameOver.message.generic");
+        }
+
+        Object[] options = {
+                gameManager.getMessage("button.close")
+        };
+
+        JOptionPane.showOptionDialog(
+                boardView,
+                message,
+                gameManager.getMessage("gameOver.title"),
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        Window window = SwingUtilities.getWindowAncestor(boardView);
+        if (window != null) {
+            window.dispose();
         }
     }
 }
