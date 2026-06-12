@@ -65,3 +65,15 @@
 11. [done] Samreen: Reviewed pawn hasValidMoves implementation by Vivian  (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/46)
 12. [50% done] Samreen: BVA for isValidMove and isInCheck for King class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/53)
 
+# Week 10 (06/1/2026-06/7/2026)
+1. [done] Cate: implemented working GUI for everything except gameOver, including movePiece(), GUI errors, dynamic text, and more (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/66)
+2. [done] Cate: implemented i18n GUI functionality (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/66)
+3. [90% done] Cate: implemented full coverage and mutation-kill testing across all classes (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/50)
+
+
+# Week 11 (06/8/2026-06/12/2026)
+1. [done] Cate: implemented GUI for gameOver (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/84)
+2. [done] Cate: implemented code coverage / mutation testing for game manager, extended functionality (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/90)
+3. [done] Cate: implemented code coverage / mutation testing for king piece, extended functionality (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/89)
+4. [done] Cate: implemented code coverage / mutation testing for bishop piece, extended functionality (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/87)
+5. [done] Cate: reviewed and approved PRs for Vivian and Samreen

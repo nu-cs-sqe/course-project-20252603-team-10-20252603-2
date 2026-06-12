@@ -3,6 +3,7 @@ package domain.piece;
 import domain.Board;
 import domain.Location;
 import constants.Color;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,10 +15,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov1_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 5;
+        final int endCol = 2;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(5, 2);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -28,10 +33,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov2_returnTrue() {
-        Piece knight = new Knight(Color.BLACK);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 5;
+        final int endCol = 4;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(5, 4);
+        Piece knight = new Knight(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -42,10 +51,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov3_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 4;
+        final int endCol = 1;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(4, 1);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -56,10 +69,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov4_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 4;
+        final int endCol = 5;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(4, 5);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -70,10 +87,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov5_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 1;
+        final int endCol = 2;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(1, 2);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -84,10 +105,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov6_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 1;
+        final int endCol = 4;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(1, 4);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -98,10 +123,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov7_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 2;
+        final int endCol = 1;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(2, 1);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -112,10 +141,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov8_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 2;
+        final int endCol = 5;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(2, 5);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -126,10 +159,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_starting00_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 0;
+        final int startCol = 0;
+        final int endRow = 2;
+        final int endCol = 1;
 
-        Location start = new Location(0, 0);
-        Location chosen = new Location(2, 1);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -140,10 +177,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_starting77_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 7;
+        final int startCol = 7;
+        final int endRow = 6;
+        final int endCol = 5;
 
-        Location start = new Location(7, 7);
-        Location chosen = new Location(6, 5);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -154,10 +195,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_ending00_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 2;
+        final int startCol = 1;
+        final int endRow = 0;
+        final int endCol = 0;
 
-        Location start = new Location(2, 1);
-        Location chosen = new Location(0, 0);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -168,10 +213,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_ending77_returnTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 6;
+        final int startCol = 5;
+        final int endRow = 7;
+        final int endCol = 7;
 
-        Location start = new Location(6, 5);
-        Location chosen = new Location(7, 7);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -182,11 +231,17 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov1blockedPathVert1_returnTrue() {
-        Piece knight = new Knight(Color.BLACK);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int blockerRow = 4;
+        final int blockerCol = 3;
+        final int endRow = 5;
+        final int endCol = 2;
 
-        Location start = new Location(3, 3);
-        Location blocker = new Location(4, 3);
-        Location chosen = new Location(5, 2);
+        Piece knight = new Knight(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location blocker = new Location(blockerRow, blockerCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -200,10 +255,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov1blockedEndEnemy_returnTrue() {
-        Piece knight = new Knight(Color.BLACK);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 5;
+        final int endCol = 2;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(5, 2);
+        Piece knight = new Knight(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -217,10 +276,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov1blockedEndFriendly_returnFalse() {
-        Piece knight = new Knight(Color.BLACK);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 5;
+        final int endCol = 2;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(5, 2);
+        Piece knight = new Knight(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -234,10 +297,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_xMovement_returnFalse() {
-        Piece knight = new Knight(Color.BLACK);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 5;
+        final int endCol = 3;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(5, 3);
+        Piece knight = new Knight(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -248,10 +315,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_yMovement_returnFalse() {
-        Piece knight = new Knight(Color.BLACK);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 3;
+        final int endCol = 5;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(3, 5);
+        Piece knight = new Knight(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -262,10 +333,14 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_diagonal_returnFalse() {
-        Piece knight = new Knight(Color.WHITE);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 5;
+        final int endCol = 5;
 
-        Location start = new Location(3, 3);
-        Location chosen = new Location(5, 5);
+        Piece knight = new Knight(Color.WHITE);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -276,25 +351,29 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_sameSquare_returnFalse() {
+        final int startRow = 3;
+        final int startCol = 3;
+
         Piece knight = new Knight(Color.WHITE);
-
-        Location start = new Location(3, 3);
-        Location chosen = new Location(3, 3);
-
+        Location start = new Location(startRow, startCol);
         Board board = new Board(false);
 
-        boolean result = knight.isValidMove(start, chosen, board);
-
-        assertFalse(result);
+        assertFalse(knight.isValidMove(start, start, board));
     }
 
     @Test
     public void isValidMove_Knight_Lmov1blockedPathVert2_returnTrue() {
-        Piece knight = new Knight(Color.BLACK);
+        final int startRow = 3;
+        final int startCol = 3;
+        final int blockerRow = 5;
+        final int blockerCol = 3;
+        final int endRow = 5;
+        final int endCol = 2;
 
-        Location start = new Location(3, 3);
-        Location blocker = new Location(5, 3);
-        Location chosen = new Location(5, 2);
+        Piece knight = new Knight(Color.BLACK);
+        Location start = new Location(startRow, startCol);
+        Location blocker = new Location(blockerRow, blockerCol);
+        Location chosen = new Location(endRow, endCol);
 
         Board board = new Board(false);
 
@@ -308,12 +387,17 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov3blockedPathHoriz1_returnTrue() {
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 4;
+        final int endCol = 1;
+        final int blockerRow = 4;
+        final int blockerCol = 3;
+
         Piece knight = new Knight(Color.WHITE);
-
-        Location start = new Location(3, 3);
-        Location chosen = new Location(4, 1);
-
-        Location blocker = new Location(4, 3);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blocker = new Location(blockerRow, blockerCol);
 
         Board board = new Board(false);
 
@@ -327,12 +411,17 @@ public class KnightTests {
 
     @Test
     public void isValidMove_Knight_Lmov3blockedPathHoriz2_returnTrue() {
+        final int startRow = 3;
+        final int startCol = 3;
+        final int endRow = 4;
+        final int endCol = 1;
+        final int blockerRow = 4;
+        final int blockerCol = 2;
+
         Piece knight = new Knight(Color.WHITE);
-
-        Location start = new Location(3, 3);
-        Location chosen = new Location(4, 1);
-
-        Location blocker = new Location(4, 2);
+        Location start = new Location(startRow, startCol);
+        Location chosen = new Location(endRow, endCol);
+        Location blocker = new Location(blockerRow, blockerCol);
 
         Board board = new Board(false);
 
@@ -371,9 +460,11 @@ public class KnightTests {
     }
 
     public void hasValidMoves_knight_notBlocked_returnsTrue() {
-        Piece knight = new Knight(Color.WHITE);
+        final int knightRow = 6;
+        final int knightCol = 0;
 
-        Location location = new Location(6, 0);
+        Piece knight = new Knight(Color.WHITE);
+        Location location = new Location(knightRow, knightCol);
 
         Board board = new Board(false);
         board.setPiece(location, knight);
@@ -385,35 +476,38 @@ public class KnightTests {
 
     @Test
     public void hasValidMoves_knight_blockedByFriendlyPieces_returnsFalse() {
+        final int knightRow = 6;
+        final int knightCol = 0;
+        final int friendly1Row = 4;
+        final int friendly1Col = 1;
+        final int friendly2Row = 5;
+        final int friendly2Col = 2;
+        final int friendly3Row = 7;
+        final int friendly3Col = 2;
+
         Piece knight = new Knight(Color.WHITE);
-        Piece friendlyKnight1 = new Knight(Color.WHITE);
-        Piece friendlyKnight2 = new Knight(Color.WHITE);
-        Piece friendlyKnight3 = new Knight(Color.WHITE);
-
-        Location location = new Location(6, 0);
-        Location friendlyKnightLocation1 = new Location(4, 1);
-        Location friendlyKnightLocation2 = new Location(5, 2);
-        Location friendlyKnightLocation3 = new Location(7, 2);
-
-
+        Location location = new Location(knightRow, knightCol);
         Board board = new Board(false);
         board.setPiece(location, knight);
-        board.setPiece(friendlyKnightLocation1, friendlyKnight1);
-        board.setPiece(friendlyKnightLocation2, friendlyKnight2);
-        board.setPiece(friendlyKnightLocation3, friendlyKnight3);
+        board.setPiece(new Location(friendly1Row, friendly1Col), new Knight(Color.WHITE));
+        board.setPiece(new Location(friendly2Row, friendly2Col), new Knight(Color.WHITE));
+        board.setPiece(new Location(friendly3Row, friendly3Col), new Knight(Color.WHITE));
 
-        boolean result = knight.hasValidMoves(location, board);
-
-        assertFalse(result);
+        assertFalse(knight.hasValidMoves(location, board));
     }
 
     @Test
     public void hasValidMoves_knight_blockedByOneFriendlyPiece_returnsTrue() {
+        final int knightRow = 5;
+        final int knightCol = 4;
+        final int friendlyRow = 3;
+        final int friendlyCol = 5;
+
         Piece knight = new Knight(Color.BLACK);
         Piece friendlyKnight1 = new Knight(Color.BLACK);
 
-        Location location = new Location(5, 4);
-        Location friendlyKnightLocation1 = new Location(3, 5);
+        Location location = new Location(knightRow, knightCol);
+        Location friendlyKnightLocation1 = new Location(friendlyRow, friendlyCol);
 
 
         Board board = new Board(false);
@@ -427,18 +521,19 @@ public class KnightTests {
 
     @Test
     public void hasValidMoves_knight_atEdgeBlockedByTwoFriendlyPieces_returnsFalse() {
+        final int knightRow = 7;
+        final int knightCol = 0;
+        final int friendly1Row = 5;
+        final int friendly1Col = 1;
+        final int friendly2Row = 6;
+        final int friendly2Col = 2;
+
         Piece knight = new Knight(Color.BLACK);
-        Piece friendlyKnight1 = new Knight(Color.BLACK);
-        Piece friendlyKnight2 = new Knight(Color.BLACK);
-
-        Location location = new Location(7, 0);
-        Location friendlyKnightLocation1 = new Location(5, 1);
-        Location friendlyKnightLocation2 = new Location(6, 2);
-
+        Location location = new Location(knightRow, knightCol);
         Board board = new Board(false);
         board.setPiece(location, knight);
-        board.setPiece(friendlyKnightLocation1, friendlyKnight1);
-        board.setPiece(friendlyKnightLocation2, friendlyKnight2);
+        board.setPiece(new Location(friendly1Row, friendly1Col), new Knight(Color.BLACK));
+        board.setPiece(new Location(friendly2Row, friendly2Col), new Knight(Color.BLACK));
 
         boolean result = knight.hasValidMoves(location, board);
 
@@ -447,39 +542,56 @@ public class KnightTests {
 
     @Test
     public void hasValidMoves_knight_byKingAndEnemyPiece_returnsFalse() {
+        final int knightRow = 7;
+        final int knightCol = 1;
+        final int rookRow = 7;
+        final int rookCol = 7;
+        final int kingRow = 7;
+        final int kingCol = 0;
+
         Piece knight = new Knight(Color.WHITE);
         Piece enemyRook = new Rook(Color.BLACK);
-        Piece friendlyKing = new King(Color.WHITE);
 
-        Location location = new Location(7, 1);
-        Location enemyRookLocation = new Location(7, 7);
-        Location friendlyKingLocation = new Location(7, 0);
+        King mockKing = EasyMock.createMock(King.class);
+        EasyMock.expect(mockKing.getType()).andReturn(PieceType.KING).anyTimes();
+        EasyMock.expect(mockKing.getColor()).andReturn(Color.WHITE).anyTimes();
+        EasyMock.expect(mockKing.isSameColor(EasyMock.anyObject())).andReturn(true).anyTimes();
+        EasyMock.expect(mockKing.makeCopy()).andReturn(mockKing).anyTimes();
+        EasyMock.expect(mockKing.isInCheck(
+                        EasyMock.anyObject(Location.class),
+                        EasyMock.isA(Board.class)))
+                .andReturn(true).anyTimes();
+        EasyMock.replay(mockKing);
+
+        Location location = new Location(knightRow, knightCol);
+        Location enemyRookLocation = new Location(rookRow, rookCol);
+        Location kingLocation = new Location(kingRow, kingCol);
 
         Board board = new Board(false);
         board.setPiece(location, knight);
         board.setPiece(enemyRookLocation, enemyRook);
-        board.setPiece(friendlyKingLocation, friendlyKing);
+        board.setPiece(kingLocation, mockKing);
 
-        boolean result = knight.hasValidMoves(location, board);
+        assertFalse(knight.hasValidMoves(location, board));
 
-        assertFalse(result);
+        EasyMock.verify(mockKing);
     }
 
     @Test
     public void hasValidMoves_knight_blockedByEnemyPiece_returnsTrue() {
+        final int knightRow = 7;
+        final int knightCol = 1;
+        final int enemyRow = 5;
+        final int enemyCol = 2;
+
         Piece knight = new Knight(Color.WHITE);
-        Piece enemyRook = new Rook(Color.BLACK);
-
-        Location location = new Location(7, 1);
-        Location enemyRookLocation = new Location(5, 2);
-
+        Location location = new Location(knightRow, knightCol);
         Board board = new Board(false);
         board.setPiece(location, knight);
-        board.setPiece(enemyRookLocation, enemyRook);
+        board.setPiece(new Location(enemyRow, enemyCol), new Rook(Color.BLACK));
 
-        boolean result = knight.hasValidMoves(location, board);
-
-        assertTrue(result);
+        assertTrue(knight.hasValidMoves(location, board));
     }
 
 }
+
