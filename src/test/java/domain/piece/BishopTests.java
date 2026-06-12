@@ -278,6 +278,28 @@ public class BishopTests {
     }
 
     @Test
+    public void isValidMove_Bishop_CaptureDestination_returnsTrue_RestoresOriginalTargetAfterSimulation() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Pawn enemyPawn = new Pawn(Color.BLACK);
+
+        Location start = new Location(0, 0);
+        Location end = new Location(2, 2);
+        Location kingPos = new Location(7, 7);
+
+        Board board = new Board(false);
+        board.setPiece(start, bishop);
+        board.setPiece(end, enemyPawn);
+        board.setPiece(kingPos, king);
+
+        boolean result = bishop.isValidMove(start, end, board);
+
+        assertTrue(result);
+        assertSame(bishop, board.getPiece(start));
+        assertSame(enemyPawn, board.getPiece(end));
+    }
+
+    @Test
     public void makeCopy_Bishop_black_returnsNewBishopWithSameColorAndType() {
         Bishop original = new Bishop(Color.BLACK);
 
