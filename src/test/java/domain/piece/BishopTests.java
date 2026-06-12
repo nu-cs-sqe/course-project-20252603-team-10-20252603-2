@@ -321,6 +321,31 @@ public class BishopTests {
     }
 
     @Test
+    public void isValidMove_Bishop_CoversKingSearchBranches_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Pawn enemyPawn = new Pawn(Color.BLACK);
+        Pawn sameColorPawn = new Pawn(Color.WHITE);
+        King king = new King(Color.WHITE);
+
+        Location enemyPawnPos = new Location(0, 0);
+        Location sameColorPawnPos = new Location(0, 1);
+        Location kingPos = new Location(0, 2);
+
+        Location bishopStart = new Location(2, 0);
+        Location bishopEnd = new Location(3, 1);
+
+        Board board = new Board(false);
+        board.setPiece(enemyPawnPos, enemyPawn);
+        board.setPiece(sameColorPawnPos, sameColorPawn);
+        board.setPiece(kingPos, king);
+        board.setPiece(bishopStart, bishop);
+
+        boolean result = bishop.isValidMove(bishopStart, bishopEnd, board);
+
+        assertTrue(result);
+    }
+
+    @Test
     public void makeCopy_Bishop_black_returnsNewBishopWithSameColorAndType() {
         Bishop original = new Bishop(Color.BLACK);
 
