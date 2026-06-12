@@ -808,5 +808,33 @@ public class KnightTests {
         assertSame(knight, board.getPiece(start));
         assertSame(enemy, board.getPiece(end));
     }
+
+    @Test
+    public void isValidMove_Knight_landingSquareBlocksCheck_returnsTrue() {
+        final int knightRow = 1;
+        final int knightCol = 2;
+        final int endRow = 2;
+        final int endCol = 0;
+        final int kingRow = 7;
+        final int kingCol = 0;
+        final int rookRow = 0;
+        final int rookCol = 0;
+
+        Knight knight = new Knight(Color.WHITE);
+        King king = new King(Color.WHITE);
+        Piece rook = new Rook(Color.BLACK);
+
+        Location knightPos = new Location(knightRow, knightCol);
+        Location end = new Location(endRow, endCol);
+        Location kingPos = new Location(kingRow, kingCol);
+        Location rookPos = new Location(rookRow, rookCol);
+
+        Board board = new Board(false);
+        board.setPiece(knightPos, knight);
+        board.setPiece(kingPos, king);
+        board.setPiece(rookPos, rook);
+
+        assertTrue(knight.isValidMove(knightPos, end, board));
+    }
 }
 

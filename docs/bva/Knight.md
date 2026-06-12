@@ -29,10 +29,12 @@
 
 ### Method under test: `isValidMove()` for Knight — additional BVA for mutation coverage
 
-| Test Number | Color | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern | Board State                                            | Expected output                   | Implemented? |
-|-------------|-------|----------------|-----------------|--------------------------|----------------|------------------|--------------------------------------------------------|-----------------------------------|--------------|
-| 23          | WHITE | x=3, y=0       | x=1, y=1        | EMPTY                    | True           | L movement #5    | Allied King at [0,0], enemy Rook at [7,0], same column | False )                           | yes          |
-| 24          | WHITE | x=4, y=4       | x=2, y=3        | ENEMY                    | True           | L movement #5    | n/a                                                    | True, board restored after move   | yes          |
+| Test Number | Color | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern | Board State                                            | Expected output                  | Implemented? |
+|-------------|-------|----------------|-----------------|--------------------------|----------------|------------------|--------------------------------------------------------|----------------------------------|--------------|
+| 23          | WHITE | x=3, y=0       | x=1, y=1        | EMPTY                    | True           | L movement       | Allied King at [0,0], enemy Rook at [7,0], same column | False )                          | yes          |
+| 24          | WHITE | x=4, y=4       | x=2, y=3        | ENEMY                    | True           | L movement       | n/a                                                    | True, board restored after move  | yes          |
+| 23          | WHITE | x=3, y=0       | x=1, y=1        | EMPTY                    | True           | L movement       | Allied King at [0,0], enemy Rook at [7,0], same column | False                            | yes          |
+| 24          | WHITE | x=1, y=2       | x=2, y=0        | EMPTY                    | True           | L movement       | landing square still blocks check                      | True, board restored after move  | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Knight
 
