@@ -349,6 +349,14 @@ public class GameManagerTests {
     }
 
     @Test
+    public void isCheckmate_noAlliedKingOnBoard_returnsFalse() {
+        Board emptyBoard = new Board(false);
+        game.setBoard(emptyBoard);
+
+        assertFalse(game.isCheckmate());
+    }
+
+    @Test
     public void getMessageDefaultEnglishIfLocaleNotSet() {
         GameManager game = new GameManager();
 
