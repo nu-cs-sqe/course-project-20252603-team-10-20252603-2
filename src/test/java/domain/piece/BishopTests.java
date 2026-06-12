@@ -593,4 +593,19 @@ public class BishopTests {
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
 
+    @Test
+    public void hasValidMoves_BishopOnlyEdgeDestinationAvailable_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(1, 1);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        board.setPiece(new Location(2, 0), new Pawn(Color.WHITE));
+        board.setPiece(new Location(2, 2), new Pawn(Color.WHITE));
+        board.setPiece(new Location(0, 2), new Pawn(Color.WHITE));
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
 }

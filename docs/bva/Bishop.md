@@ -121,6 +121,7 @@
 | 11          | WHITE  | [4,4]          | only down-left diagonal open; up-left, up-right, and down-right blocked by friendly pieces           | TRUE            | yes          |
 | 12          | WHITE  | [4,4]          | only down-right diagonal open; up-left, up-right, and down-left blocked by friendly pieces           | TRUE            | yes          |
 | 13          | WHITE  | [4,4]          | far up-left enemy available at [2,2]; up-right, down-left, and down-right blocked by friendly pieces | TRUE            | yes          |
+| 14          | WHITE  | [1,1]          | only edge destination [0,0] is available; other immediate diagonals blocked by friendly pieces       | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Bishop
 
