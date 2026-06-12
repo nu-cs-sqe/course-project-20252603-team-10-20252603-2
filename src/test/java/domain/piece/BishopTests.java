@@ -478,6 +478,7 @@ public class BishopTests {
 
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
+
     @Test
     public void hasValidMoves_BlackBishop_ClearBoardCorner_ReturnsTrue() {
         final int bishopRow = 7;
@@ -488,6 +489,21 @@ public class BishopTests {
 
         Board board = new Board(false);
         board.setPiece(bishopPos, bishop);
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
+    @Test
+    public void hasValidMoves_Bishop_OnlyUpLeftOpen_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Location bishopPos = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+
+        board.setPiece(new Location(3, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 5), new Pawn(Color.WHITE));
 
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
