@@ -5,8 +5,7 @@ import domain.Location;
 import org.junit.jupiter.api.Test;
 import constants.Color;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class QueenTests {
 
@@ -635,6 +634,63 @@ public class QueenTests {
         board.setPiece(new Location(1, 5), new Pawn(Color.WHITE));
         board.setPiece(new Location(1, 6), new Pawn(Color.WHITE));
         board.setPiece(new Location(1, 7), new Pawn(Color.WHITE));
+        assertTrue(queen.hasValidMoves(queenLoc, board));
+    }
+
+    @Test
+    public void isValidMove_failedTeammateCaptureSimulation_restoresOriginalTeammatePiece() {
+        Board board = new Board(false);
+        Queen whiteQueen = new Queen(Color.WHITE);
+        King whiteKing = new King(Color.WHITE);
+        Location queenLoc = new Location(5, 0);
+        Location kingLoc = new Location(4, 0);
+
+        board.setPiece(queenLoc, whiteQueen);
+        board.setPiece(kingLoc, whiteKing);
+
+
+        assertFalse(whiteQueen.isValidMove(queenLoc, kingLoc, board));
+
+        assertNotNull(board.getPiece(kingLoc));
+        assertEquals(PieceType.KING, board.getPiece(kingLoc).getType());
+    }
+
+    @Test
+    public void isValidMove_movingPinnedPieceUncoversCheck_restoresQueenAndLeavesDestinationClear() {
+        Board board = new Board(false);
+        Queen whiteQueen = new Queen(Color.WHITE);
+        King whiteKing = new King(Color.WHITE);
+        Rook enemyBlackRook = new Rook(Color.BLACK);
+
+        Location start = new Location(6, 0);
+        Location end = new Location(6, 1);
+
+        board.setPiece(new Location(7, 0), whiteKing);
+        board.setPiece(start, whiteQueen);
+        board.setPiece(new Location(0, 0), enemyBlackRook);
+
+        assertFalse(whiteQueen.isValidMove(start, end, board));
+
+        assertTrue(board.isPieceHere(start));
+        assertFalse(board.isPieceHere(end));
+    }
+
+    @Test
+    public void hasValidMoves_queenValidatingUpperEdge_killsUpperBoundaryMutant() {
+        Board board = new Board(false);
+        Queen queen = new Queen(Color.WHITE);
+
+        Location queenLoc = new Location(6, 6);
+        board.setPiece(queenLoc, queen);
+
+        board.setPiece(new Location(6, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 6), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 7), new Pawn(Color.WHITE));
+        board.setPiece(new Location(6, 7), new Pawn(Color.WHITE));
+        board.setPiece(new Location(7, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(7, 6), new Pawn(Color.WHITE));
+
         assertTrue(queen.hasValidMoves(queenLoc, board));
     }
 }
