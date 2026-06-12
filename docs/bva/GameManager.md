@@ -55,10 +55,8 @@
 | 1         | King is in check and has no other valid moves.                        | Returns true, game notification that the game is over. | yes          |
 | 2         | King is in check and has 1 valid move.                                | Returns false, the game continues.                     | yes          |
 | 3         | King is not in check and has >=1 valid move.                          | Returns false, the game continues.                     | yes          |
-| 4         | King is in check and has >1 valid move.                               | Returns false, the game continues.                     | no           |
-| 5         | King is not in check and has 0 valid moves.                           | Returns false, the game is a stalemate.                | no           |
-| 6         | Game has not started, so currentPlayer and board are null.            | Returns false.                                         | yes          |
-| 7         | Game has started, but the current player's king is not on the board.  | Returns false.                                         | yes          |
+| 4         | Game has not started, so currentPlayer and board are null.            | Returns false.                                         | yes          |
+| 5         | Game has started, but the current player's king is not on the board.  | Returns false.                                         | yes          |
 
 ### STEPS FOR BVA: `isCheckmate()`
 1. Data Types
