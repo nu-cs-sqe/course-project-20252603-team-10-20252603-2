@@ -43,7 +43,16 @@ public class King extends Piece {
     private boolean canKingAttack(Location from, Location kingPos) {
         int rowDistance = Math.abs(kingPos.getX() - from.getX());
         int colDistance = Math.abs(kingPos.getY() - from.getY());
-        return rowDistance <= 1 && colDistance <= 1 && !(rowDistance == 0 && colDistance == 0);
+
+        if (rowDistance > 1) {
+            return false;
+        }
+
+        if (colDistance > 1) {
+            return false;
+        }
+
+        return rowDistance != 0 || colDistance != 0;
     }
 
     @Override
