@@ -578,4 +578,22 @@ public class BishopTests {
         assertTrue(bishop.hasValidMoves(bishopPos, board));
     }
 
+    @Test
+    public void hasValidMoves_BishopFarUpLeftEnemy_ReturnsTrue() {
+        Bishop bishop = new Bishop(Color.WHITE);
+        Pawn enemyPawn = new Pawn(Color.BLACK);
+
+        Location bishopPos = new Location(4, 4);
+
+        Board board = new Board(false);
+        board.setPiece(bishopPos, bishop);
+        board.setPiece(new Location(2, 2), enemyPawn);
+
+        board.setPiece(new Location(3, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 5), new Pawn(Color.WHITE));
+
+        assertTrue(bishop.hasValidMoves(bishopPos, board));
+    }
+
 }
