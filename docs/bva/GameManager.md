@@ -94,12 +94,14 @@
   * !isInCheck() && hasValidMoves() == 0 --> TRUE
 **Method under test: isGameOver()**
 
-|             | System under test                                          | Expected output | Implemented? |
-|:------------|:-----------------------------------------------------------| :---- |:-------------|
-| Test Case 1 | King is in check and has no other valid moves.             | Returns true, game notification that the game is over. | yes          |
-| Test Case 2 | King is in check and has >=1 valid move.                   | Returns false, the game continues. | yes          |
-| Test Case 3 | Stalemate \- player is not in check but has 0 valid moves. | Returns true, game is a draw.  | yes          |
- | Test Case 4 | King is not in check and has >=1 valid move.               | Returns false, the game continues. | yes          |
+|             | System under test                                           | Expected output                                        | Implemented? |
+|:------------|:------------------------------------------------------------|:-------------------------------------------------------|:-------------|
+| Test Case 1 | King is in check and has no other valid moves.              | Returns true, game notification that the game is over. | yes          |
+| Test Case 2 | King is in check and has >=1 valid move.                    | Returns false, the game continues.                     | yes          |
+| Test Case 3 | Stalemate \- player is not in check but has 0 valid moves.  | Returns true, game is a draw.                          | yes          |
+| Test Case 4 | King is not in check and has >=1 valid move.                | Returns false, the game continues.                     | yes          |
+| Test Case 5 | Game not started yet, thus currentPlayer and board are null | Returns false                                          | yes          |
+
 
 ### STEPS FOR BVA: `isGameOver()`
 
@@ -115,6 +117,23 @@
   * King isInCheck() == true && there are >= 1 valid moves → ❌
   * King isInCheck() == false && there are 0 valid moves → Stalemate
   * King isInCheck() == false && there are >= 1 valid moves → ❌
+
+
+**Method under test: getBoard(), basic functional testing**
+
+| Test Case | System under test | Expected output       | Implemented? |
+|-----------|-------------------|-----------------------|--------------|
+| 1         | board == null     | returns null          | yes          |
+| 2         | board != null     | returns copy of board | yes          |
+
+
+**Method under test: setBoard(), basic functional testing**
+
+| Test Case | System under test | Expected output / side effect                                                               | Implemented? |
+|-----------|-------------------|---------------------------------------------------------------------------------------------|--------------|
+| 1         | board == null     | GameManager's internal board is set to null; getBoard() returns null                        | yes          |
+| 2         | board != null     | GameManager stores a copy of the given board; getBoard() returns an equivalent copied board | yes          |
+
 
 ## Method under test: `getMessage()` for GameManager
 
@@ -167,16 +186,16 @@
 
 **Method under test: movePiece()**
 
-| Test Number | Current Turn | Location 1           | Location 2 | Piece being moved | Location 2 contents | Expected output                                                               | Implemented? |
-|:------------|:-------------|:---------------------|:-----------|:------------------|:--------------------|:------------------------------------------------------------------------------|:-------------|
-| 1           | WHITE        | (4,0)                | (5,0)      | null              | empty               | MoveResult.NO_PIECE_SELECTED (board/turn unchanged)                           | yes          |
-| 2           | BLACK        | (0,1)                | (2,0)      | BLACK KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated)                                      | yes          |                                         
-| 3           | WHITE        | (7,6)                | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated)                                      | yes          |                                          
-| 4           | BLACK        | (0,0)                | (1,0)      | BLACK ROOK        | friendly            | MoveResult.INVALID_MOVE (board/turn unchanged)                                | yes          |                                         
-| 5           | BLACK        | (2,0) (custom board) | (6,0)      | BLACK ROOK        | enemy               | MoveResult.SUCCESS  (board/turn updated, point count updated)                 | yes          |                                         
-| 6           | WHITE        | (5,7) (custom board) | (1,1)      | WHITE QUEEN       | empty               | MoveResult.INVALID_MOVE (board/turn unchanged, point NOT count updated)       | yes          |                                         
-| 7           | BLACK        | (7,6)                | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.WRONG_PLAYER_PIECE (board/turn unchanged)                          | yes          |                                         
-| 8           | BLACK        | (6,0) (custom board) | (7,0)      | BLACK PAWN        | empty               | MoveResult.PROMOTION_REQUIRED (board updated, turn unchanged until promotion) | yes          |                                         
+| Test Number | Current Turn | Location 1           | Location 2 | Piece being moved | Location 2 contents | Expected output                                                                                           | Implemented? |
+|:------------|:-------------|:---------------------|:-----------|:------------------|:--------------------|:----------------------------------------------------------------------------------------------------------|:-------------|
+| 1           | WHITE        | (4,0)                | (5,0)      | null              | empty               | MoveResult.NO_PIECE_SELECTED (board/turn unchanged)                                                       | yes          |
+| 2           | BLACK        | (0,1)                | (2,0)      | BLACK KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated, draw moves incremented)                                          | yes          |                                         
+| 3           | WHITE        | (7,6)                | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.SUCCESS  (board/turn updated, draw moves incremented)                                          | yes          |                                          
+| 4           | BLACK        | (0,0)                | (1,0)      | BLACK ROOK        | friendly            | MoveResult.INVALID_MOVE (board/turn unchanged)                                                            | yes          |                                         
+| 5           | BLACK        | (2,0) (custom board) | (6,0)      | BLACK ROOK        | enemy               | MoveResult.SUCCESS  (board/turn updated, point count updated, draw moves reset to 0)                      | yes          |                                         
+| 6           | WHITE        | (5,7) (custom board) | (1,1)      | WHITE QUEEN       | empty               | MoveResult.INVALID_MOVE (board/turn unchanged, point NOT count updated)                                   | yes          |                                         
+| 7           | BLACK        | (7,6)                | (5,5)      | WHITE KNIGHT      | empty               | MoveResult.WRONG_PLAYER_PIECE (board/turn unchanged)                                                      | yes          |                                         
+| 8           | BLACK        | (6,0) (custom board) | (7,0)      | BLACK PAWN        | empty               | MoveResult.PROMOTION_REQUIRED (board updated, turn unchanged until promotion, draw moves reset to 0)      | yes          |                                         
 
 
 ### STEPS FOR BVA: `movePiece()`
@@ -195,6 +214,9 @@
     * board state updated/unchanged
     * turn changed/unchanged
     * points updated if captured
+    * non-pawn non capture move increments consecutiveDrawMoves
+    * pawn move resets consecutiveDrawMoves
+    * capturing a piece resets consecutiveDrawMoves
 2. BVA catalog types
 * Input:
   * color of current turn: cases
@@ -203,7 +225,7 @@
   * Location 2: array indices
   * State of location 2: cases
 * Output
-  * move result: cases:
+  * move result: cases
   * Side effects: cases
 3. Values
 * Input:
@@ -242,6 +264,9 @@
     * board state updated/unchanged
     * turn changed/unchanged
     * points updated if captured
+    * non-pawn non capture move increments consecutiveDrawMoves
+    * pawn move resets consecutiveDrawMoves
+    * capturing a piece resets consecutiveDrawMoves
 
 
 **Method under test: promotePawn()**
