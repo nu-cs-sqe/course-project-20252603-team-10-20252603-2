@@ -16,14 +16,10 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
-        //  STRUCTURE:
-
-        //  are location start / end the same?
         if (start.equals(end)) {
             return false;
         }
 
-        //  is it too far?
         int direction = (getColor() == Color.WHITE) ? -1 : 1;
 
         int distX = end.getX() - start.getX();
@@ -41,7 +37,6 @@ public class Pawn extends Piece {
             return false;
         }
 
-        //  is there a piece blocking?
         if (oneForward && board.isPieceHere(end)) {
             return false;
         }

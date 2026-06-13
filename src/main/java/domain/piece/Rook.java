@@ -20,11 +20,15 @@ public class Rook extends Piece {
 
     @Override
     public boolean isValidMove(Location start, Location end, Board board) {
-        if (start.equals(end)) return false;
+        if (start.equals(end)) {
+            return false;
+        };
 
         boolean isHorizontal = (start.getX() == end.getX());
         boolean isVertical = (start.getY() == end.getY());
-        if (!isHorizontal && !isVertical) return false;
+        if (!isHorizontal && !isVertical) {
+            return false;
+        }
 
         int colDirection = isHorizontal ? ((end.getY() > start.getY()) ? 1 : -1) : 0;
         int rowDirection = !isHorizontal ? ((end.getX() > start.getX()) ? 1 : -1) : 0;
@@ -42,7 +46,9 @@ public class Rook extends Piece {
 
         if (board.isPieceHere(end)) {
             Piece target = board.getPiece(end);
-            if (this.isSameColor(target)) return false;
+            if (this.isSameColor(target)) {
+                return false;
+            }
         }
 
         boolean leavesKingInCheck = false;
@@ -65,7 +71,9 @@ public class Rook extends Piece {
                         }
                     }
                 }
-                if (kingLocation != null) break;
+                if (kingLocation != null) {
+                    break;
+                };
             }
 
             if (kingLocation != null) {

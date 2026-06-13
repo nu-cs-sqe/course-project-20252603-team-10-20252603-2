@@ -2,7 +2,8 @@ package domain.piece;
 
 import domain.Board;
 import domain.Location;
-import constants.Color;import org.junit.jupiter.api.Test;
+import constants.Color;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
