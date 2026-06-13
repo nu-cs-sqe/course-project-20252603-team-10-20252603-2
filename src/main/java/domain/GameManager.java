@@ -75,7 +75,8 @@ public class GameManager {
     }
 
     public boolean isGameADraw() {
-        return consecutiveDrawMoves >= 50;
+        final int drawMoves = 50;
+        return consecutiveDrawMoves >= drawMoves;
     }
 
     public void addPlayer(Player player) {
@@ -172,10 +173,12 @@ public class GameManager {
     public boolean isCheckmate() {
         if (currentPlayer == null || board == null) {
             return false;
-        };
+        }
 
         Location kingLocation = findKingLocation(currentPlayer.getPlayerColor());
-        if (kingLocation == null) return false;
+        if (kingLocation == null) {
+            return false;
+        }
 
         King alliedKing = (King) board.getPiece(kingLocation);
         boolean hasValidMoves = !board.getValidPiecesByColor(currentPlayer.getPlayerColor()).isEmpty();
@@ -184,10 +187,14 @@ public class GameManager {
     }
 
     public boolean isStalemate() {
-        if (currentPlayer == null || board == null) return false;
+        if (currentPlayer == null || board == null) {
+            return false;
+        }
 
         Location kingLocation = findKingLocation(currentPlayer.getPlayerColor());
-        if (kingLocation == null) return false;
+        if (kingLocation == null) {
+            return false;
+        }
 
         King alliedKing = (King) board.getPiece(kingLocation);
         boolean hasValidMoves = !board.getValidPiecesByColor(currentPlayer.getPlayerColor()).isEmpty();
@@ -301,7 +308,7 @@ public class GameManager {
 
         Color color = piece.getColor();
 
-        switch(newType) {
+        switch (newType) {
             case QUEEN:
                 board.setPiece(location, new Queen(color));
                 break;

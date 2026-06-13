@@ -23,7 +23,7 @@ public final class BoardView extends JPanel {
     private final java.awt.Color lightSquareColor = new java.awt.Color(240, 217, 181);
     private final java.awt.Color darkSquareColor = new java.awt.Color(181, 136, 99);
 
-    private final java.awt.Color SELECTED_SQUARE_COLOR = new java.awt.Color(164, 149, 195); // NU Purple 40
+    private final java.awt.Color selectedSquareColor = new java.awt.Color(164, 149, 195); // NU Purple 40
     private int selectedRow = -1;
     private int selectedCol = -1;
 
@@ -125,7 +125,7 @@ public final class BoardView extends JPanel {
     }
 
     private void drawSelectedSquare(Graphics g) {
-        g.setColor(SELECTED_SQUARE_COLOR);
+        g.setColor(selectedSquareColor);
         g.fillRect(selectedCol * TILE_SIZE, selectedRow * TILE_SIZE, TILE_SIZE, TILE_SIZE);
     }
 
