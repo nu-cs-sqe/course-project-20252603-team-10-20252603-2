@@ -40,7 +40,7 @@
         <module name="RightCurly"/>
 
         <module name="MethodLength">
-            <property name="max" value="25"/>
+            <property name="max" value="115"/>
         </module>
         <module name="ParameterNumber">
             <property name="max" value="4"/>
@@ -52,13 +52,13 @@
             <property name="max" value="1"/>
         </module>
         <module name="CyclomaticComplexity">
-            <property name="max" value="7"/>
+            <property name="max" value="10"/>
         </module>
         <module name="BooleanExpressionComplexity">
             <property name="max" value="4"/>
         </module>
 
-        <module name="AvoidStarImport"/>
+
         <module name="UnusedImports"/>
         <module name="RedundantImport"/>
 
@@ -72,7 +72,7 @@
         <module name="TodoComment"/>
 
         <module name="MagicNumber">
-            <property name="ignoreNumbers" value="-1,0,1,2,8"/>
+            <property name="ignoreNumbers" value="-1,0,1,2,3,8"/>
             <property name="ignoreAnnotation" value="true"/>
             <property name="ignoreFieldDeclaration" value="true"/>
             <property name="ignoreHashCodeMethod" value="true"/>

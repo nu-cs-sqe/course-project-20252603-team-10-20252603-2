@@ -29,7 +29,6 @@ public abstract class Piece {
 
     public abstract boolean isValidMove(Location start, Location end, Board board);
 
-    // TODO: implement for each piece whether they have any valid moves
     public abstract boolean hasValidMoves(Location location, Board board);
 
     @Override

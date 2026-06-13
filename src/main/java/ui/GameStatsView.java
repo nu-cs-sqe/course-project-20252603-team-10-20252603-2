@@ -21,7 +21,7 @@ public class GameStatsView extends JPanel {
     private static final int PLAYER_ONE = 1;
     private static final int PLAYER_TWO = 2;
 
-    private transient final GameManager gameManager;
+    private final transient GameManager gameManager;
 
     private final JLabel player1Label;
     private final JLabel player2Label;
@@ -29,7 +29,8 @@ public class GameStatsView extends JPanel {
 
     @SuppressFBWarnings(
             value = "EI_EXPOSE_REP2",
-            justification = "GameStatsView intentionally stores the shared GameManager used to display current game state."
+            justification = "GameStatsView intentionally stores the shared " +
+                    "GameManager used to display current game state."
     )
     public GameStatsView(GameManager gameManager, String player1Name, String player2Name) {
         this.gameManager = gameManager;

@@ -9,7 +9,7 @@ import java.awt.*;
 public final class MainView extends JFrame {
     private transient BoardView boardView;
     private transient BoardController boardController;
-    private transient final GameManager gameManager;
+    private final transient GameManager gameManager;
 
     private transient GameStatsView gameStatsView;
     private String player1Name;
@@ -17,7 +17,8 @@ public final class MainView extends JFrame {
 
     @SuppressFBWarnings(
             value = "EI_EXPOSE_REP2",
-            justification = "MainView intentionally stores the shared GameManager used to coordinate board and game state."
+            justification = "MainView intentionally stores the shared " +
+                    "GameManager used to coordinate board and game state."
     )
     public MainView(GameManager gameManager, String player1Name, String player2Name) {
         this.gameManager = gameManager;
@@ -36,8 +37,10 @@ public final class MainView extends JFrame {
         setTitle(gameManager.getMessage("main.title"));
         setTitle("Team 10 Chess Game GUI Example :)!");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 1200);
-        setLocationRelativeTo(null); // Center the window on the screen
+        final int width = 800;
+        final int height = 1200;
+        setSize(width, height);
+        setLocationRelativeTo(null);
     }
 
     private void addGameStatsView() {
