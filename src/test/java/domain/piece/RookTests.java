@@ -474,4 +474,67 @@ public class RookTests {
 
         assertTrue(rook.hasValidMoves(location, board));
     }
+
+    @Test
+    public void isValidMove_pinnedRookCapturesExposingKing_killsSimulationAndCleanupMutants() {
+        Board board = new Board(false);
+        Rook whiteRook = new Rook(Color.WHITE);
+        King whiteKing = new King(Color.WHITE);
+        Rook enemyBlackRook = new Rook(Color.BLACK);
+
+        Location start = new Location(6, 0);
+        Location end = new Location(6, 1);
+
+        board.setPiece(new Location(7, 0), whiteKing);
+        board.setPiece(start, whiteRook);
+        board.setPiece(new Location(0, 0), enemyBlackRook);
+
+        assertFalse(whiteRook.isValidMove(start, end, board));
+
+        assertTrue(board.isPieceHere(start));
+        assertFalse(board.isPieceHere(end));
+    }
+    @Test
+    public void hasValidMoves_onlyOneStepAvailable_killsStepOneBoundaryMutant() {
+        Board board = new Board(false);
+        Rook rook = new Rook(Color.WHITE);
+        Location rookLoc = new Location(3, 3);
+        board.setPiece(rookLoc, rook);
+
+        board.setPiece(new Location(2, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(4, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(3, 2), new Pawn(Color.WHITE));
+
+        board.setPiece(new Location(3, 5), new Pawn(Color.WHITE));
+
+        assertTrue(rook.hasValidMoves(rookLoc, board));
+    }
+    @Test
+    public void hasValidMoves_rookAtCornerFacingEdge_killsEdgeBoundaryMutants() {
+        Board board = new Board(false);
+        Rook rook = new Rook(Color.WHITE);
+
+        Location rookLoc = new Location(0, 6);
+        board.setPiece(rookLoc, rook);
+
+        board.setPiece(new Location(1, 6), new Pawn(Color.WHITE));
+        board.setPiece(new Location(0, 5), new Pawn(Color.WHITE));
+
+        assertTrue(rook.hasValidMoves(rookLoc, board));
+    }
+
+    @Test
+    public void hasValidMoves_completelySurroundedByTeammates_killsLine115BlockerMutant() {
+        Board board = new Board(false);
+        Rook rook = new Rook(Color.WHITE);
+        Location rookLoc = new Location(3, 3);
+        board.setPiece(rookLoc, rook);
+
+        board.setPiece(new Location(2, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(4, 3), new Pawn(Color.WHITE));
+        board.setPiece(new Location(3, 2), new Pawn(Color.WHITE));
+        board.setPiece(new Location(3, 4), new Pawn(Color.WHITE));
+
+        assertFalse(rook.hasValidMoves(rookLoc, board));
+    }
 }
