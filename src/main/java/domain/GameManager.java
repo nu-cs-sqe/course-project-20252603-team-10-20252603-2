@@ -124,9 +124,13 @@ public class GameManager {
         return currentPlayer;
     }
 
-    public Player getWhitePlayer() { return whitePlayer; }
+    public Player getWhitePlayer() {
+        return whitePlayer;
+    }
 
-    public Player getBlackPlayer() { return blackPlayer; }
+    public Player getBlackPlayer() {
+        return blackPlayer;
+    }
 
     public Board getBoard() {
         if (this.board == null) {
@@ -316,7 +320,5 @@ public class GameManager {
         }
 
     }
-
-
 
 }

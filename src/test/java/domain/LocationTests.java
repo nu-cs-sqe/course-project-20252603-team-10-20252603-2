@@ -21,7 +21,7 @@ public class LocationTests {
     void hashCode_loc34_returnsExpectedHashCode() {
         Location loc = new Location(3, 4);
 
-        assertEquals(Objects.hash(3,4), loc.hashCode());
+        assertEquals(Objects.hash(3, 4), loc.hashCode());
     }
 
     @Test

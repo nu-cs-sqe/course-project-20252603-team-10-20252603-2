@@ -69,7 +69,11 @@
 1. [done] Cate: implemented working GUI for everything except gameOver, including movePiece(), GUI errors, dynamic text, and more (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/66)
 2. [done] Cate: implemented i18n GUI functionality (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/66)
 3. [90% done] Cate: implemented full coverage and mutation-kill testing across all classes (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/50)
-
+4. [100% done] Samreen: BVA for isValidMove and isInCheck for King class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/53)
+5. [100% done] Samreen: Implementation for isValidMove and isInCheck for King class (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/53)
+6. [done] Samreen: reviewed and approved PRs for Vivian and Cate
+7. [done] Vivian: hasValidMoves() for Knight (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/74)
+8. [done] Vivian: hasValidMoves() for Rook (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/72)
 
 # Week 11 (06/8/2026-06/12/2026)
 1. [done] Cate: implemented GUI for gameOver (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/84)
@@ -77,3 +81,13 @@
 3. [done] Cate: implemented code coverage / mutation testing for king piece, extended functionality (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/89)
 4. [done] Cate: implemented code coverage / mutation testing for bishop piece, extended functionality (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/87)
 5. [done] Cate: reviewed and approved PRs for Vivian and Samreen
+6. [100% done] Samreen: King hasValidMoves BVA and implementation (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/69)
+7. [100% done] Samreen: Bishop and King refactoring, checkstyle fixes hasValidMoves BVA and implementation (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/67)
+8. [100% done] Samreen: Integration testing for game ending (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/81)
+9. [100% done] Samreen: Began i18n implementation (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/68)
+10. [100% done] Samreen: Test refactoring + mutation testing (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/92)
+11. [done] Vivian: Make move integration test (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/80)
+12. [done] Vivian: Board getValidPiecesByColor() BVA (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/86)
+13. [done] Vivian: refactor tests to use mocking (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/83)
+14. [done] Vivian: fix checkstyle warnings for Tests (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/94)
+15. [done] Vivian: Mutation testing for Queen and Rook (https://github.com/nu-cs-sqe/course-project-20252603-team-10-20252603-2/pull/88)

@@ -27,8 +27,11 @@
 | 21          | "BLACK" | x=0, y=0       | x=7, y=0        | ENEMY                    | True                             | x movement (+ direction) | True            | yes          |
 | 22          | "BLACK" | x=0, y=7       | x=0, y=0        | EMPTY                    | False (enemy piece @ x=0,y=1)    | y movement (- direction) | False           | yes          |
 | 23          | "BLACK" | x=7, y=0       | x=0, y=0        | EMPTY                    | False (enemy piece @ x=1,y=0)    | x movement (- direction) | False           | yes          |
-| 24          | "WHITE" | x=1, y=2       | x=3, y=4        | EMPTY                    | True                             | diagonal (+ dir)         | True            | yes          |
-
+| 24          | "WHITE" | x=0, y=0       | x=2, y=1        | EMPTY                    | True                             | diagonal (- direction)   | False           | yes          |
+| 25          | "WHITE" | x=3, y=3       | x=3, y=5        | EMPTY                    | True                             | y movement (- direction) | True            | yes          |
+| 26          | "WHITE" | x=5, y=0       | x=4, y=0        | EMPTY                    | False                            | x movement (- direction) | True            | yes          |
+| 27          | "WHITE" | x=6, y=0       | x=6, y=1        | EMPTY                    | False                            | y movement (+ direction) | True            | yes          |
+| 28          | "WHITE" | x=1, y=2       | x=3, y=4        | EMPTY                    | True                             | diagonal (+ dir)         | True            | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Queen
 
@@ -123,6 +126,9 @@
 | 8           | WHITE | [4,4]          | One straight path open, all other directions blocked             | TRUE            | yes          |
 | 9           | WHITE | [4,4]          | unprotected enemy piece on destination                           | TRUE            | yes          |
 | 10          | BLACK | [7,7]          | Clear board                                                      | TRUE            | yes          |
+| 11          | WHITE | [4,4]          | Only Negative Y-Axis Path Open                                   | TRUE            | yes          |
+| 12          | BLACK | [0,6]          | Pawns occupying various locations                                | TRUE            | yes          |
+| 13          | WHITE | [6,6]          | Pawns occupying various locations                                | TRUE            | yes          |
 
 ### STEPS FOR BVA: `hasValidMoves()` for Queen
 
@@ -164,3 +170,5 @@
         * False
 * output:
     * a yes/no answer: boolean
+
+    

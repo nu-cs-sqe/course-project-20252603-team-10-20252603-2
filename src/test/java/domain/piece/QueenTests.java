@@ -639,4 +639,145 @@ public class QueenTests {
 
         assertTrue(queen.hasValidMoves(queenPos, board));
     }
+
+    @Test
+    public void isValidMove_invalidQueenMovementPattern_returnsFalse() {
+        Board board = new Board(false);
+        Queen queen = new Queen(Color.WHITE);
+
+        Location start = new Location(0, 0);
+        Location end = new Location(2, 1);
+
+        board.setPiece(start, queen);
+
+        assertFalse(queen.isValidMove(start, end, board));
+    }
+
+    @Test
+    public void isValidMove_preservesOriginalBoardStateAfterEvaluation() {
+        Board testBoard = new Board(false);
+        Queen whiteQueen = new Queen(Color.WHITE);
+        Location start = new Location(3, 3);
+        Location end = new Location(3, 5);
+
+        testBoard.setPiece(start, whiteQueen);
+
+        whiteQueen.isValidMove(start, end, testBoard);
+
+        assertTrue(testBoard.isPieceHere(start));
+        assertFalse(testBoard.isPieceHere(end));
+    }
+
+    @Test
+    public void hasValidMoves_onlyNegativeYAxisPathOpen_killsDirectionMathMutant() {
+        Board board = new Board(false);
+        Queen queen = new Queen(Color.WHITE);
+        Location queenLoc = new Location(4, 4);
+        board.setPiece(queenLoc, queen);
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (i == 0 && j == 0) continue;
+                if (i == -1 && j == 1) continue;
+
+                board.setPiece(new Location(4 + i, 4 + j), new Pawn(Color.WHITE));
+            }
+        }
+
+        assertTrue(queen.hasValidMoves(queenLoc, board));
+    }
+
+    @Test
+    public void hasValidMoves_queenNearEdgeFacingBoundary_killsBoundaryMutants() {
+        Board board = new Board(false);
+        Queen queen = new Queen(Color.WHITE);
+
+        Location queenLoc = new Location(0, 6);
+        board.setPiece(queenLoc, queen);
+
+        board.setPiece(new Location(0, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 6), new Pawn(Color.WHITE));
+        board.setPiece(new Location(1, 7), new Pawn(Color.WHITE));
+        assertTrue(queen.hasValidMoves(queenLoc, board));
+    }
+
+    @Test
+    public void isValidMove_failedTeammateCaptureSimulation_restoresOriginalTeammatePiece() {
+        Board board = new Board(false);
+        Queen whiteQueen = new Queen(Color.WHITE);
+        King whiteKing = new King(Color.WHITE);
+        Location queenLoc = new Location(5, 0);
+        Location kingLoc = new Location(4, 0);
+
+        board.setPiece(queenLoc, whiteQueen);
+        board.setPiece(kingLoc, whiteKing);
+
+
+        assertFalse(whiteQueen.isValidMove(queenLoc, kingLoc, board));
+
+        assertNotNull(board.getPiece(kingLoc));
+        assertEquals(PieceType.KING, board.getPiece(kingLoc).getType());
+    }
+
+    @Test
+    public void isValidMove_movingPinnedPieceUncoversCheck_restoresQueenAndLeavesDestinationClear() {
+        Board board = new Board(false);
+        Queen whiteQueen = new Queen(Color.WHITE);
+        King whiteKing = new King(Color.WHITE);
+        Rook enemyBlackRook = new Rook(Color.BLACK);
+
+        Location start = new Location(6, 0);
+        Location end = new Location(6, 1);
+
+        board.setPiece(new Location(7, 0), whiteKing);
+        board.setPiece(start, whiteQueen);
+        board.setPiece(new Location(0, 0), enemyBlackRook);
+
+        assertFalse(whiteQueen.isValidMove(start, end, board));
+
+        assertSame(whiteQueen, board.getPiece(start));
+    }
+
+    @Test
+    public void hasValidMoves_queenValidatingUpperEdge_killsUpperBoundaryMutant() {
+        Board board = new Board(false);
+        Queen queen = new Queen(Color.WHITE);
+
+        Location queenLoc = new Location(6, 6);
+        board.setPiece(queenLoc, queen);
+
+        board.setPiece(new Location(6, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 6), new Pawn(Color.WHITE));
+        board.setPiece(new Location(5, 7), new Pawn(Color.WHITE));
+        board.setPiece(new Location(6, 7), new Pawn(Color.WHITE));
+        board.setPiece(new Location(7, 5), new Pawn(Color.WHITE));
+        board.setPiece(new Location(7, 6), new Pawn(Color.WHITE));
+
+        assertTrue(queen.hasValidMoves(queenLoc, board));
+    }
+
+    @Test
+    public void isValidMove_pinnedQueenCapturesEnemyExposingKing_killsSimulationAndCleanupMutants() {
+        Board board = new Board(false);
+        Queen whiteQueen = new Queen(Color.WHITE);
+        King whiteKing = new King(Color.WHITE);
+        Rook enemyBlackRook = new Rook(Color.BLACK);
+        Pawn enemyTargetPawn = new Pawn(Color.BLACK);
+
+        Location start = new Location(6, 0);
+        Location end = new Location(6, 1);
+
+        board.setPiece(new Location(7, 0), whiteKing);
+        board.setPiece(start, whiteQueen);
+        board.setPiece(end, enemyTargetPawn);
+        board.setPiece(new Location(0, 0), enemyBlackRook);
+
+        assertFalse(whiteQueen.isValidMove(start, end, board));
+
+        assertSame(whiteQueen, board.getPiece(start));
+
+        assertSame(enemyTargetPawn, board.getPiece(end));
+    }
 }

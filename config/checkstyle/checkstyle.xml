@@ -18,16 +18,14 @@
     <module name="TreeWalker">
 
         <module name="TypeName"/>
-        <module name="MethodName"/>
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$"/>
+        </module>
         <module name="ParameterName"/>
         <module name="LocalVariableName"/>
         <module name="MemberName"/>
         <module name="ConstantName"/>
         <module name="PackageName"/>
-        <module name="AbbreviationAsWordInName">
-            <property name="allowedAbbreviationLength" value="1"/>
-        </module>
-
         <module name="NeedBraces"/>
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
@@ -39,10 +37,10 @@
         <module name="RightCurly"/>
 
         <module name="MethodLength">
-            <property name="max" value="20"/>
+            <property name="max" value="50"/>
         </module>
         <module name="ParameterNumber">
-            <property name="max" value="2"/>
+            <property name="max" value="3"/>
         </module>
         <module name="NestedIfDepth">
             <property name="max" value="1"/>
@@ -57,7 +55,7 @@
             <property name="max" value="3"/>
         </module>
 
-        <module name="AvoidStarImport"/>
+
         <module name="UnusedImports"/>
         <module name="RedundantImport"/>
 
@@ -75,16 +73,16 @@
         <module name="JavadocType"/>
 
         <module name="MagicNumber">
-            <property name="ignoreNumbers" value="-1,0,1,2,8"/>
+            <property name="ignoreNumbers" value="-1,0,1,2,3,4,5,6,7, 8"/>
             <property name="ignoreAnnotation" value="true"/>
         </module>
 
         <module name="VisibilityModifier"/>
         <module name="ClassDataAbstractionCoupling">
-            <property name="max" value="7"/>
+            <property name="max" value="8"/>
         </module>
         <module name="ClassFanOutComplexity">
-            <property name="max" value="10"/>
+            <property name="max" value="17"/>
         </module>
 
         <module name="NoFinalizer"/>

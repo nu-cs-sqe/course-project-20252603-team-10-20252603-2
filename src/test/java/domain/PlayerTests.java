@@ -49,37 +49,46 @@ public class PlayerTests {
         player.incrementPoints(PieceType.QUEEN);
 
         int actual = player.getPoints();
-        assertEquals(9, actual);
+        final int expected = 9;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void getPoints_AllPiecesCaptured_Returns39() {
         Player player = new Player("Player1", Color.WHITE);
 
-        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.BISHOP,
-                PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
+        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN,
+                PieceType.PAWN, PieceType.PAWN, PieceType.PAWN,
+                PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.BISHOP,
+                PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN,
+                PieceType.ROOK, PieceType.ROOK));
 
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));
         }
+        final int expected = 39;
 
         int actual = player.getPoints();
-        assertEquals(39, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void getPoints_AllPiecesCapturedWithPawnPromotedToQueen_Returns47() {
         Player player = new Player("Player1", Color.WHITE);
 
-        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.QUEEN,
-                PieceType.BISHOP, PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT, PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
+        List<PieceType> pieces = new ArrayList<>(Arrays.asList(PieceType.PAWN, PieceType.PAWN,
+                PieceType.PAWN, PieceType.PAWN,
+                PieceType.PAWN, PieceType.PAWN, PieceType.PAWN, PieceType.QUEEN,
+                PieceType.BISHOP, PieceType.BISHOP, PieceType.KNIGHT, PieceType.KNIGHT,
+                PieceType.QUEEN, PieceType.ROOK, PieceType.ROOK));
 
         for (int i = 0; i < pieces.size(); i++) {
             player.incrementPoints(pieces.get(i));
         }
 
         int actual = player.getPoints();
-        assertEquals(47, actual);
+        final int expected = 47;
+        assertEquals(expected, actual);
     }
 
     @Test
