@@ -5,6 +5,10 @@ import domain.Board;
 import domain.Location;
 
 public class Pawn extends Piece {
+    private static final int WHITE_START_ROW = 6;
+    private static final int BLACK_START_ROW = 1;
+    private static final int LAST_ROW = 7;
+
     public Pawn(Color color) {
         super(PieceType.PAWN, color);
     }
@@ -19,9 +23,17 @@ public class Pawn extends Piece {
         if (start.equals(end)) {
             return false;
         }
+        if (!isShapeValid(start, end)) {
+            return false;
+        }
+        if (!isPathAndTargetValid(start, end, board)) {
+            return false;
+        }
+        return !wouldExposeKing(start, end, board);
+    }
 
-        int direction = (getColor() == Color.WHITE) ? -1 : 1;
-
+    private boolean isShapeValid(Location start, Location end) {
+        int direction = getDirection();
         int distX = end.getX() - start.getX();
         int distY = end.getY() - start.getY();
 
@@ -29,86 +41,60 @@ public class Pawn extends Piece {
         boolean twoForward = (distX == direction * 2 && distY == 0);
         boolean oneForwardDiagonal = (distX == direction && Math.abs(distY) == 1);
 
-        boolean onStartRow =
-                (getColor() == Color.WHITE && start.getX() == 6)
-                        || (getColor() == Color.BLACK && start.getX() == 1);
+        return oneForward || oneForwardDiagonal || twoForward;
+    }
 
-        if (!(oneForward || oneForwardDiagonal || twoForward)) {
-            return false;
+    private boolean isPathAndTargetValid(Location start, Location end, Board board) {
+        int direction = getDirection();
+        int distX = end.getX() - start.getX();
+        int distY = end.getY() - start.getY();
+
+        boolean oneForward = (distX == direction && distY == 0);
+        boolean twoForward = (distX == direction * 2 && distY == 0);
+        boolean oneForwardDiagonal = (distX == direction && Math.abs(distY) == 1);
+
+        if (oneForward) {
+            return !board.isPieceHere(end);
         }
-
-        if (oneForward && board.isPieceHere(end)) {
-            return false;
-        }
-
         if (twoForward) {
-            Location mid = new Location(start.getX() + direction, start.getY());
-            if (!onStartRow) {
-                return false;
-            }
-            if (board.isPieceHere(mid)) {
-                return false;
-            }
-            if (board.isPieceHere(end)) {
-                return false;
-            }
+            return isTwoForwardValid(start, end, board, direction);
         }
         if (oneForwardDiagonal) {
-            if (!board.isPieceHere(end)) {
-                return false;
-            }
-            Piece target = board.getPiece(end);
-            if (this.isSameColor(target)) {
-                return false;
-            }
+            return isDiagonalCaptureValid(end, board);
         }
-        Piece originalTarget = board.getPiece(end);
+        return true;
+    }
 
-        board.setPiece(end, this);
-        board.removePiece(start);
-
-        Location kingLocation = null;
-        King alliedKing = null;
-
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                Location loc = new Location(i, j);
-                if (board.isPieceHere(loc)) {
-                    Piece p = board.getPiece(loc);
-                    if (p.getColor() == this.getColor() && p.getType() == PieceType.KING) {
-                        kingLocation = loc;
-                        alliedKing = (King) p;
-                        break;
-                    }
-                }
-            }
-            if (kingLocation != null)  {
-                break;
-            };
-        }
-
-        boolean exposesKing = false;
-        if (alliedKing != null) {
-            exposesKing = alliedKing.isInCheck(kingLocation, board);
-        }
-
-        board.setPiece(start, this);
-        if (originalTarget != null) {
-            board.setPiece(end, originalTarget);
-        } else {
-            board.removePiece(end);
-        }
-
-        if (exposesKing) {
+    private boolean isTwoForwardValid(Location start, Location end, Board board, int direction) {
+        if (!isOnStartRow(start)) {
             return false;
         }
+        Location mid = new Location(start.getX() + direction, start.getY());
+        return !board.isPieceHere(mid) && !board.isPieceHere(end);
+    }
 
-        return true;
+    private boolean isDiagonalCaptureValid(Location end, Board board) {
+        if (!board.isPieceHere(end)) {
+            return false;
+        }
+        Piece target = board.getPiece(end);
+        return !this.isSameColor(target);
+    }
+
+    private boolean isOnStartRow(Location start) {
+        if (getColor() == Color.WHITE) {
+            return start.getX() == WHITE_START_ROW;
+        }
+        return start.getX() == BLACK_START_ROW;
+    }
+
+    private int getDirection() {
+        return (getColor() == Color.WHITE) ? -1 : 1;
     }
 
     @Override
     public boolean hasValidMoves(Location currentPosition, Board board) {
-        int direction = (this.getColor() == Color.BLACK) ? 1 : -1;
+        int direction = getDirection();
         int currX = currentPosition.getX();
         int currY = currentPosition.getY();
 
@@ -120,19 +106,15 @@ public class Pawn extends Piece {
         };
 
         for (int[] coord : potentialCoordinates) {
-            int targetX = coord[0];
-            int targetY = coord[1];
-
-            if (targetX >= 0 && targetX <= 7 && targetY >= 0 && targetY <= 7) {
-
-                Location target = new Location(targetX, targetY);
-
-                if (this.isValidMove(currentPosition, target, board)) {
-                    return true;
-                }
+            if (isOnBoard(coord[0], coord[1])
+                    && this.isValidMove(currentPosition, new Location(coord[0], coord[1]), board)) {
+                return true;
             }
         }
-
         return false;
+    }
+
+    private boolean isOnBoard(int x, int y) {
+        return x >= 0 && x <= LAST_ROW && y >= 0 && y <= LAST_ROW;
     }
 }

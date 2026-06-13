@@ -36,4 +36,42 @@ public abstract class Piece {
     public String toString() {
         return String.format("%s %s", color.name(), type.name());
     }
+
+    protected boolean wouldExposeKing(Location start, Location end, Board board) {
+        Piece originalTarget = board.getPiece(end);
+
+        board.setPiece(end, this);
+        board.removePiece(start);
+
+        Location kingLocation = findAlliedKingLocation(board);
+        boolean exposesKing = false;
+        if (kingLocation != null) {
+            King alliedKing = (King) board.getPiece(kingLocation);
+            exposesKing = alliedKing.isInCheck(kingLocation, board);
+        }
+
+        board.setPiece(start, this);
+        if (originalTarget != null) {
+            board.setPiece(end, originalTarget);
+        } else {
+            board.removePiece(end);
+        }
+
+        return exposesKing;
+    }
+
+    private Location findAlliedKingLocation(Board board) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Location loc = new Location(i, j);
+                if (board.isPieceHere(loc)) {
+                    Piece p = board.getPiece(loc);
+                    if (p.getColor() == this.getColor() && p.getType() == PieceType.KING) {
+                        return loc;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }

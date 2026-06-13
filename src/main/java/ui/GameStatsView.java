@@ -4,17 +4,28 @@ import domain.GameManager;
 import domain.Player;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
 import java.text.MessageFormat;
 
 public class GameStatsView extends JPanel {
 
+    private static final Color BACKGROUND_COLOR = new Color(104, 76, 150);
+    private static final Color TEXT_COLOR = new Color(255, 255, 255);
+    private static final int TITLE_FONT_SIZE = 30;
+    private static final int LABEL_FONT_SIZE = 20;
+    private static final int STARTING_POINTS = 0;
+    private static final int PLAYER_ONE = 1;
+    private static final int PLAYER_TWO = 2;
+
     private transient final GameManager gameManager;
 
-    private JLabel player1Label;
-    private JLabel player2Label;
-    private JLabel currentPlayerLabel;
+    private final JLabel player1Label;
+    private final JLabel player2Label;
+    private final JLabel currentPlayerLabel;
 
     @SuppressFBWarnings(
             value = "EI_EXPOSE_REP2",
@@ -25,48 +36,12 @@ public class GameStatsView extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(true);
-        setBackground(new Color(104, 76, 150));
+        setBackground(BACKGROUND_COLOR);
 
-        JLabel playerInfoLabel = new JLabel(
-                gameManager.getMessage("main.playerInformation")
-        );
-        playerInfoLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        playerInfoLabel.setForeground(new Color(255, 255, 255));
-
-        String playerPattern = gameManager.getMessage("main.playerStatus");
-        player1Label = new JLabel(
-                MessageFormat.format(
-                        playerPattern,
-                        1,
-                        player1Name,
-                        gameManager.getMessage("team.white"),
-                        0
-                )
-        );
-        player1Label.setFont(new Font("Arial", Font.BOLD, 20));
-        player1Label.setForeground(new Color(255, 255, 255));
-
-        player2Label = new JLabel(
-                MessageFormat.format(
-                        playerPattern,
-                        2,
-                        player2Name,
-                        gameManager.getMessage("team.black"),
-                        0
-                )
-        );
-        player2Label.setFont(new Font("Arial", Font.BOLD, 20));
-        player2Label.setForeground(new Color(255, 255, 255));
-
-        String currentPlayerPattern = gameManager.getMessage("main.currentPlayer");
-        currentPlayerLabel = new JLabel(
-                MessageFormat.format(
-                        currentPlayerPattern,
-                        player1Name
-                )
-        );
-        currentPlayerLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        currentPlayerLabel.setForeground(new Color(255, 255, 255));
+        JLabel playerInfoLabel = createTitleLabel(gameManager.getMessage("main.playerInformation"));
+        player1Label = createPlayerStatusLabel(PLAYER_ONE, player1Name, "team.white", STARTING_POINTS);
+        player2Label = createPlayerStatusLabel(PLAYER_TWO, player2Name, "team.black", STARTING_POINTS);
+        currentPlayerLabel = createTitleLabel(currentPlayerText(player1Name));
 
         add(playerInfoLabel);
         add(player1Label);
@@ -74,34 +49,36 @@ public class GameStatsView extends JPanel {
         add(currentPlayerLabel);
     }
 
+    private JLabel createTitleLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Arial", Font.BOLD, TITLE_FONT_SIZE));
+        label.setForeground(TEXT_COLOR);
+        return label;
+    }
+
+    private JLabel createPlayerStatusLabel(int playerNumber, String playerName, String teamKey, int points) {
+        JLabel label = new JLabel(playerStatusText(playerNumber, playerName, teamKey, points));
+        label.setFont(new Font("Arial", Font.BOLD, LABEL_FONT_SIZE));
+        label.setForeground(TEXT_COLOR);
+        return label;
+    }
+
+    private String playerStatusText(int playerNumber, String playerName, String teamKey, int points) {
+        String pattern = gameManager.getMessage("main.playerStatus");
+        return MessageFormat.format(pattern, playerNumber, playerName, gameManager.getMessage(teamKey), points);
+    }
+
+    private String currentPlayerText(String name) {
+        String pattern = gameManager.getMessage("main.currentPlayer");
+        return MessageFormat.format(pattern, name);
+    }
+
     public void updateCurrentPlayer(String name) {
-        String currentPlayerPattern = gameManager.getMessage("main.currentPlayer");
-        currentPlayerLabel.setText(
-                MessageFormat.format(
-                        currentPlayerPattern,
-                        name
-                )
-        );
+        currentPlayerLabel.setText(currentPlayerText(name));
     }
 
     public void updatePoints(Player player1, Player player2) {
-        String pattern = gameManager.getMessage("main.playerStatus");
-        player1Label.setText(
-                MessageFormat.format(
-                        pattern,
-                        1,
-                        player1.getPlayerName(),
-                        gameManager.getMessage("team.white"),
-                        player1.getPoints())
-        );
-        player2Label.setText(
-                MessageFormat.format(
-                        pattern,
-                        2,
-                        player2.getPlayerName(),
-                        gameManager.getMessage("team.black"),
-                        player2.getPoints())
-        );
-
+        player1Label.setText(playerStatusText(PLAYER_ONE, player1.getPlayerName(), "team.white", player1.getPoints()));
+        player2Label.setText(playerStatusText(PLAYER_TWO, player2.getPlayerName(), "team.black", player2.getPoints()));
     }
 }

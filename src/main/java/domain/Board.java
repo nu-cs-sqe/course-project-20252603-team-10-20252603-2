@@ -1,7 +1,14 @@
 package domain;
 
 import constants.Color;
-import domain.piece.*;
+import domain.piece.Bishop;
+import domain.piece.King;
+import domain.piece.Knight;
+import domain.piece.Pawn;
+import domain.piece.Piece;
+import domain.piece.PieceType;
+import domain.piece.Queen;
+import domain.piece.Rook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,62 +20,67 @@ public class Board {
 
     private static final int TOTAL_ROWS = 8;
     private static final int TOTAL_COLS = 8;
-    private Piece[][] pieces;
+    private static final int LAST_ROW = 7;
+    private static final int BACK_ROW_BLACK = 0;
+    private static final int PAWN_ROW_BLACK = 1;
+    private static final int PAWN_ROW_WHITE = 6;
+    private static final int ROOK_COL_QUEENSIDE = 0;
+    private static final int KNIGHT_COL_QUEENSIDE = 1;
+    private static final int BISHOP_COL_QUEENSIDE = 2;
+    private static final int QUEEN_COL = 3;
+    private static final int KING_COL = 4;
+    private static final int BISHOP_COL_KINGSIDE = 5;
+    private static final int KNIGHT_COL_KINGSIDE = 6;
+    private static final int ROOK_COL_KINGSIDE = 7;
 
+    private final Piece[][] pieces;
 
-    public Board(boolean init){
+    public Board(boolean init) {
         pieces = new Piece[TOTAL_ROWS][TOTAL_COLS];
         if (init) {
             initializeBoard();
         }
-
     }
 
     public Board(Board other) {
         this.pieces = new Piece[TOTAL_ROWS][TOTAL_COLS];
         if (other != null && other.pieces != null) {
-            for (int i = 0; i < TOTAL_ROWS; i++) {
-                for (int j = 0; j < TOTAL_COLS; j++) {
-                    if (other.pieces[i][j] != null) {
-                        this.pieces[i][j] = other.pieces[i][j].makeCopy();
-                    }
+            copyPiecesFrom(other);
+        }
+    }
+
+    private void copyPiecesFrom(Board other) {
+        for (int i = 0; i < TOTAL_ROWS; i++) {
+            for (int j = 0; j < TOTAL_COLS; j++) {
+                if (other.pieces[i][j] != null) {
+                    this.pieces[i][j] = other.pieces[i][j].makeCopy();
                 }
             }
         }
     }
 
-    private void initializeBoard(){
+    private void initializeBoard() {
+        initializePawns();
+        initializeBackRow(BACK_ROW_BLACK, BLACK);
+        initializeBackRow(LAST_ROW, WHITE);
+    }
 
-        // Initialize pawns
+    private void initializePawns() {
         for (int i = 0; i < TOTAL_COLS; i++) {
-            pieces[1][i] = new Pawn(BLACK);
-            pieces[6][i] = new Pawn(WHITE);
+            pieces[PAWN_ROW_BLACK][i] = new Pawn(BLACK);
+            pieces[PAWN_ROW_WHITE][i] = new Pawn(WHITE);
         }
+    }
 
-
-        // Initialize rooks
-        pieces[0][0] = new Rook(BLACK);
-        pieces[0][7] = new Rook(BLACK);
-        pieces[7][0] = new Rook(WHITE);
-        pieces[7][7] = new Rook(WHITE);
-
-        // Initialize knights
-        pieces[0][1] = new Knight(BLACK);
-        pieces[0][6] = new Knight(BLACK);
-        pieces[7][1] = new Knight(WHITE);
-        pieces[7][6] = new Knight(WHITE);
-
-        // Initialize bishops
-        pieces[0][2] = new Bishop(BLACK);
-        pieces[0][5] = new Bishop(BLACK);
-        pieces[7][2] = new Bishop(WHITE);
-        pieces[7][5] = new Bishop(WHITE);
-
-        // Initialize queens and kings
-        pieces[0][3] = new Queen(BLACK);
-        pieces[0][4] = new King(BLACK);
-        pieces[7][3] = new Queen(WHITE);
-        pieces[7][4] = new King(WHITE);
+    private void initializeBackRow(int row, Color color) {
+        pieces[row][ROOK_COL_QUEENSIDE] = new Rook(color);
+        pieces[row][ROOK_COL_KINGSIDE] = new Rook(color);
+        pieces[row][KNIGHT_COL_QUEENSIDE] = new Knight(color);
+        pieces[row][KNIGHT_COL_KINGSIDE] = new Knight(color);
+        pieces[row][BISHOP_COL_QUEENSIDE] = new Bishop(color);
+        pieces[row][BISHOP_COL_KINGSIDE] = new Bishop(color);
+        pieces[row][QUEEN_COL] = new Queen(color);
+        pieces[row][KING_COL] = new King(color);
     }
 
     public Piece[][] getSnapshot() {
@@ -97,12 +109,11 @@ public class Board {
         }
         pieces[location.getX()][location.getY()] = piece;
     }
-    
+
     public void removePiece(Location location) {
         pieces[location.getX()][location.getY()] = null;
     }
-    
-    // TODO: requires BVA and testing (basic functionality written for testing purposes)
+
     public List<Piece> getValidPiecesByColor(Color color) {
         List<Piece> validPiecesByColor = new ArrayList<>();
         for (int i = 0; i < TOTAL_ROWS; i++) {
@@ -118,7 +129,7 @@ public class Board {
     }
 
     public Location findKingLocation(Color color) {
-        for (int x = 0; x< TOTAL_ROWS; x++) {
+        for (int x = 0; x < TOTAL_ROWS; x++) {
             for (int y = 0; y < TOTAL_COLS; y++) {
                 Piece piece = pieces[x][y];
                 if (piece != null && piece.getType() == PieceType.KING && piece.getColor() == color) {
@@ -126,8 +137,6 @@ public class Board {
                 }
             }
         }
-
         return null;
-
     }
 }
