@@ -2,29 +2,31 @@
 
 ### Method under test: `isValidMove()` for Rook 
 
-| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern                 | Expected output | Implemented? |
-|-------------|---------|----------------|-----------------|--------------------------|----------------|----------------------------------|-----------------|--------------|
-| 1           | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square                      | False           | yes          |
-| 2           | "WHITE" | [0][0]         | [0][1]          | EMPTY                    | True           | 1 right (min distance)           | True            | yes          |
-| 3           | "WHITE" | [0][0]         | [0][7]          | EMPTY                    | True           | 7 right (max distance)           | True            | yes          |
-| 4           | "WHITE" | [0][7]         | [0][6]          | EMPTY                    | True           | 1 left (min distance)            | True            | yes          |
-| 5           | "WHITE" | [0][7]         | [0][0]          | EMPTY                    | True           | 7 left (max distance)            | True            | yes          |
-| 6           | "WHITE" | [0][0]         | [1][0]          | EMPTY                    | True           | 1 down (min distance)            | True            | yes          |
-| 7           | "WHITE" | [0][0]         | [7][0]          | EMPTY                    | True           | 7 down (max distance)            | True            | yes          |
-| 8           | "WHITE" | [0][0]         | [3][3]          | EMPTY                    | True           | diag                             | False           | yes          |
-| 9           | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | False          | blocked horizontal               | False           | yes          |
-| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | False          | blocked vertical                 | False           | yes          |
-| 11          | "WHITE" | [0][0]         | [0][7]          | enemy                    | True           | capture horizontal               | True            | yes          |
-| 12          | "WHITE" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical                 | True            | yes          |
-| 13          | "WHITE" | [7][0]         | [6][0]          | EMPTY                    | True           | 1 up (min)                       | True            | yes          |
-| 14          | "WHITE" | [7][0]         | [0][0]          | EMPTY                    | True           | 7 up (max)                       | True            | yes          |
-| 15          | "BLACK" | [0][0]         | [0][3]          | enemy                    | True           | capture horizontal (black rook)  | True            | yes          |
-| 16          | "BLACK" | [0][0]         | [0][1]          | friendly                 | True           | friendly horizontal (black rook) | False           | yes          |
-| 17          | "WHITE" | [0][0]         | [0][3]          | friendly                 | True           | friendly horizontal              | False           | yes          |
-| 18          | "WHITE" | [0][0]         | [3][0]          | friendly                 | True           | friendly vertical                | False           | yes          |
-| 19          | "BLACK" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical (black rook)    | True            | yes          |
-| 20          | "BLACK" | [7][7]         | [7][6]          | empty                    | True           | 1 left from bottom corner        | True            | yes          |
-| 21          | "WHITE" | [7][7]         | [6][7]          | empty                    | True           | 1 up from bottom corner          | True            | yes          |
+| Test Number | Color   | Start position | Chosen position | Chosen position contents | Is path clear? | Movement pattern                  | Expected output | Implemented? |
+|-------------|---------|----------------|-----------------|--------------------------|----------------|-----------------------------------|-----------------|--------------|
+| 1           | "WHITE" | [0][0]         | [0][0]          | EMPTY                    | True           | same square                       | False           | yes          |
+| 2           | "WHITE" | [0][0]         | [0][1]          | EMPTY                    | True           | 1 right (min distance)            | True            | yes          |
+| 3           | "WHITE" | [0][0]         | [0][7]          | EMPTY                    | True           | 7 right (max distance)            | True            | yes          |
+| 4           | "WHITE" | [0][7]         | [0][6]          | EMPTY                    | True           | 1 left (min distance)             | True            | yes          |
+| 5           | "WHITE" | [0][7]         | [0][0]          | EMPTY                    | True           | 7 left (max distance)             | True            | yes          |
+| 6           | "WHITE" | [0][0]         | [1][0]          | EMPTY                    | True           | 1 down (min distance)             | True            | yes          |
+| 7           | "WHITE" | [0][0]         | [7][0]          | EMPTY                    | True           | 7 down (max distance)             | True            | yes          |
+| 8           | "WHITE" | [0][0]         | [3][3]          | EMPTY                    | True           | diag                              | False           | yes          |
+| 9           | "WHITE" | [0][0]         | [0][3]          | EMPTY                    | False          | blocked horizontal                | False           | yes          |
+| 10          | "WHITE" | [0][0]         | [3][0]          | EMPTY                    | False          | blocked vertical                  | False           | yes          |
+| 11          | "WHITE" | [0][0]         | [0][7]          | enemy                    | True           | capture horizontal                | True            | yes          |
+| 12          | "WHITE" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical                  | True            | yes          |
+| 13          | "WHITE" | [7][0]         | [6][0]          | EMPTY                    | True           | 1 up (min)                        | True            | yes          |
+| 14          | "WHITE" | [7][0]         | [0][0]          | EMPTY                    | True           | 7 up (max)                        | True            | yes          |
+| 15          | "BLACK" | [0][0]         | [0][3]          | enemy                    | True           | capture horizontal (black rook)   | True            | yes          |
+| 16          | "BLACK" | [0][0]         | [0][1]          | friendly                 | True           | friendly horizontal (black rook)  | False           | yes          |
+| 17          | "WHITE" | [0][0]         | [0][3]          | friendly                 | True           | friendly horizontal               | False           | yes          |
+| 18          | "WHITE" | [0][0]         | [3][0]          | friendly                 | True           | friendly vertical                 | False           | yes          |
+| 19          | "BLACK" | [0][0]         | [7][0]          | enemy                    | True           | capture vertical (black rook)     | True            | yes          |
+| 20          | "BLACK" | [7][7]         | [7][6]          | empty                    | True           | 1 left from bottom corner         | True            | yes          |
+| 21          | "WHITE" | [7][7]         | [6][7]          | empty                    | True           | 1 up from bottom corner           | True            | yes          |
+| 22          | "WHITE" | [6][0]         | [6][1]          | empty                    | True           | 1 right                           | True            | yes          |
+| 23          | "WHITE" | [6][0]         | [6][1]          | empty                    | True           | Sideways move uncovers king check | False           | yes          |
 
 ### STEPS FOR BVA: `isValidMove()` for Rook
 
@@ -97,13 +99,17 @@
 
 ### Method under test: `hasValidMoves()` for Rook
 
-| Test Number | Color | Start position | Board State                                                                    | Expected Output | Implemented? |
-|-------------|-------|----------------|--------------------------------------------------------------------------------|-----------------|--------------|
-| 1           | WHITE | [6,0]          | Clear board                                                                    | TRUE            | yes          |               
-| 2           | WHITE | [6,0]          | Friendly pieces at [5,0], [7,0], and [6,1]                                     | FALSE           | yes          |                
+| Test Number | Color | Start position | Board State                                                                   | Expected Output | Implemented? |
+|-------------|-------|----------------|-------------------------------------------------------------------------------|-----------------|--------------|
+| 1           | WHITE | [6,0]          | Clear board                                                                   | TRUE            | yes          |               
+| 2           | WHITE | [6,0]          | Friendly pieces at [5,0], [7,0], and [6,1]                                    | FALSE           | yes          |                
 | 3           | BLACK | [5,4]          | Friendly piece at [4,4]. Left, right, and down paths are completely wide open. | TRUE            | yes          |
-| 4           | BLACK | [7,7]          | Sitting at the absolute corner. Blocked by friendly pieces at [6,7] and [7,6]  | FALSE           | yes          |
-| 5           | BLACK | [7,7]          | Blocked by enemy pieces at [6,7] and [7,6]                                     | TRUE            | yes          |
+| 4           | BLACK | [7,7]          | Sitting at the absolute corner. Blocked by friendly pieces at [6,7] and [7,6] | FALSE           | yes          |
+| 5           | BLACK | [7,7]          | Blocked by enemy pieces at [6,7] and [7,6]                                    | TRUE            | yes          |
+| 6           | WHITE | [3,3]          | Friendly pieces at [2,3], [4,3], [3,2], [3,5]                                  | TRUE            | yes          |
+| 7           | WHITE | [0,6]          | At edge. Friendly pieces block Down [1,6] and Left [0,5]. Only Right [0,7] open.                                | TRUE            | yes          |
+| 8           | WHITE | [3,3]          | Tightly encircled/sandwiched in all 4 cardinal directions by friendly pawns.                                    | FALSE           | yes          |
+
 
 ### STEPS FOR BVA: `hasValidMoves()` for Rook
 
