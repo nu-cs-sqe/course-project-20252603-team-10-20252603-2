@@ -44,6 +44,7 @@ public class BoardController {
 
     public boolean handleFirstClick(Location location) {
         Board board = gameManager.getBoard();
+
         if (!board.isPieceHere(location)) {
             return false;
         }
@@ -166,8 +167,13 @@ public class BoardController {
                 );
 
                 break;
+            default:
+                repaintBoard();
+                updateGameStatsView();
+                break;
 
         }
+
 
     }
 
